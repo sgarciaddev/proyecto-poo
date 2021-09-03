@@ -17,9 +17,9 @@
 
 ### Entrega parcial 2
 
-- [ ] Diseño conceptual y codificación de 2 (dos) niveles de anidación de colecciones de objetos.
-- [ ] Diseño conceptual y codificación de 2 (dos) clases que utilicen sobrecarga de métodos.
-- [ ] Diseño conceptual y codificación de al menos 1 clase mapa del JCF.
+- [X] Diseño conceptual y codificación de 2 (dos) niveles de anidación de colecciones de objetos.
+- [X] Diseño conceptual y codificación de 2 (dos) clases que utilicen sobrecarga de métodos.
+- [X] Diseño conceptual y codificación de al menos 1 clase mapa del JCF.
 
 ### Entrega parcial 3
 
