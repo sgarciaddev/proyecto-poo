@@ -45,7 +45,7 @@ public class RegistroAsistencia {
     /**
      * Permite obtener la asistencia del alumno en un mes determinado.
      *
-     * @param mes
+     * @param mes Número de mes (1 = marzo, 10 = diciembre)
      * @return Porcentaje de asistencia (entre 0 y 1).
      */
     public float obtenerAsistencia(int mes) {
@@ -55,8 +55,8 @@ public class RegistroAsistencia {
     /**
      * Permite obtener la asistencia del alumno, calculada al día de realizada la consulta.
      *
-     * @param dia
-     * @param mes
+     * @param dia Dia a buscar
+     * @param mes Número de mes (1 = marzo, 10 = diciembre)
      * @return Porcentaje de asistencia (entre 0 y 1).
      */
     public float obtenerAsistencia(int dia, int mes) {

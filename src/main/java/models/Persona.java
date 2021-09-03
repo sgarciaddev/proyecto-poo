@@ -10,8 +10,10 @@ public class Persona {
     private String rut, nombres, apPaterno, apMaterno;
 
     /**
-     * @param rut RUT de la persona
-     * @param nombres Nombres de la persona
+     * Genera un objeto de tipo Persona
+     *
+     * @param rut       RUT de la persona
+     * @param nombres   Nombres de la persona
      * @param apPaterno Apellido paterno de la persona
      * @param apMaterno Apellido materno de la persona
      */
@@ -23,6 +25,8 @@ public class Persona {
     }
 
     /**
+     * Obtiene el RUT de la persona
+     *
      * @return RUT de la persona
      */
     public String getRut() {
@@ -30,6 +34,8 @@ public class Persona {
     }
 
     /**
+     * Obtiene los nombres de la persona
+     *
      * @return Nombres de la persona
      */
     public String getNombres() {
@@ -37,6 +43,8 @@ public class Persona {
     }
 
     /**
+     * Obtiene el apellido paterno de la persona
+     *
      * @return Apellido paterno de la persona
      */
     public String getApPaterno() {
@@ -44,6 +52,8 @@ public class Persona {
     }
 
     /**
+     * Obtiene el apellido materno de la persona
+     *
      * @return Apellido materno de la persona
      */
     public String getApMaterno() {
@@ -51,6 +61,8 @@ public class Persona {
     }
 
     /**
+     * Actualiza los nombres de la persona
+     *
      * @param nombres Nombres de la persona
      */
     public void setNombres(String nombres) {
@@ -58,6 +70,8 @@ public class Persona {
     }
 
     /**
+     * Actualiza el apellido paterno de la persona
+     *
      * @param apPaterno Apellido paterno de la persona
      */
     public void setApPaterno(String apPaterno) {
@@ -65,6 +79,7 @@ public class Persona {
     }
 
     /**
+     * Actualiza el apellido materno de la persona
      * @param apMaterno Apellido materno de la persona
      */
     public void setApMaterno(String apMaterno) {

@@ -9,17 +9,32 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
+/**
+ * Clase que contiene los aspectos visuales de la aplicación de consola.
+ *
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 1.0
+ */
 public class CLI {
     private CursoData cursoData;
     private List<Curso> cursos;
     private BufferedReader lector;
 
+    /**
+     * Genera un objeto de tipo CLI, que contiene la aplicación de consola.
+     */
     public CLI() {
         this.cursoData = new CursoDatafile();
         this.cursos = cursoData.getCursos();
         this.lector = new BufferedReader(new InputStreamReader(System.in));
     }
 
+    /**
+     * Método que se encarga de obtener la opción numérica que ingrese el usuario.
+     *
+     * @return Opcion numérica
+     * @throws IOException Posible error al leer datos del usuario
+     */
     public short obtenerOpcionUsuario() throws IOException {
         short opt;
         System.out.print("\nIngrese opcion numerica: ");
@@ -32,14 +47,25 @@ public class CLI {
         return opt;
     }
 
+    /**
+     * Muestra un error al ingresar una opción no soportada por el programa
+     */
     public void opcionErronea() {
         System.out.println("\nOPCION ERRONEA. Por favor, intente nuevamente");
     }
 
+    /**
+     * Muestra los cursos almacenados en los datos
+     */
     public void verCursos() {
         CursoView.mostrarCursos(this.cursos);
     }
 
+    /**
+     * Muestra los alumnos de un curso especifico
+     *
+     * @throws IOException Posible error al leer datos del usuario
+     */
     public void verAlumnos() throws IOException {
         short nivel;
         char letra;
@@ -50,6 +76,11 @@ public class CLI {
         AlumnoView.mostrarAlumnos(this.cursoData.getCurso(nivel, letra).getAlumnos());
     }
 
+    /**
+     * Muestra el menú principal de la aplicación
+     *
+     * @throws IOException Posible error al leer datos del usuario
+     */
     public void menuPrincipal() throws IOException {
         short opt;
         do {
@@ -74,6 +105,12 @@ public class CLI {
         } while (opt != 0);
     }
 
+    /**
+     * Programa principal. Inicia la aplicación de consola
+     *
+     * @param args Argumentos de ejecución (método main)
+     * @throws IOException Posible error al leer datos del usuario
+     */
     public static void main(String[] args) throws IOException {
         System.out.println("Cargando datos...");
         CLI cli = new CLI();

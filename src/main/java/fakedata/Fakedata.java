@@ -1,8 +1,14 @@
 package fakedata;
 
 import com.github.javafaker.Faker;
-import data.datafile.*;
-import models.*;
+import data.datafile.AlumnoDatafile;
+import data.datafile.ApoderadoDatafile;
+import data.datafile.CursoDatafile;
+import data.datafile.ProfesorDatafile;
+import models.Alumno;
+import models.Apoderado;
+import models.Curso;
+import models.Profesor;
 
 /**
  * Clase que permite generar datos falsos y almacenarlos en los archivos de
@@ -20,6 +26,9 @@ public class Fakedata {
     private final ProfesorDatafile profesorDatafile;
     private final Faker faker;
 
+    /**
+     * Constructor del objeto Fakedata. Interactúa con los Datafile.
+     */
     public Fakedata() {
         this.alumnoDatafile = new AlumnoDatafile();
         this.apoderadoDatafile = new ApoderadoDatafile();
@@ -28,6 +37,11 @@ public class Fakedata {
         this.faker = new Faker();
     }
 
+    /**
+     * Genera apoderado ficticio
+     *
+     * @return Apoderado ficticio
+     */
     public Apoderado generateApoderado() {
         String rut, nombres, apPat, apMat, email;
         int telefono;
@@ -41,6 +55,12 @@ public class Fakedata {
         return new Apoderado(rut, nombres, apPat, apMat, telefono, email);
     }
 
+    /**
+     * Genera alumno ficticio
+     *
+     * @param ap Apoderado del alumno
+     * @return Alumno ficticio
+     */
     public Alumno generateAlumno(Apoderado ap) {
         String rut, nombres, apMat;
         rut = Integer.toString(this.faker.number().numberBetween(40000000, 50000000))
@@ -50,6 +70,11 @@ public class Fakedata {
         return new Alumno(rut, nombres, ap.getApPaterno(), apMat, ap);
     }
 
+    /**
+     * Genera profesor ficticio
+     *
+     * @return Profesor ficticio
+     */
     public Profesor generateProfesor() {
         String rut, nombres, apPat, apMat, email, asignatura;
         int telefono;
@@ -64,6 +89,9 @@ public class Fakedata {
         return new Profesor(rut, nombres, apPat, apMat, asignatura, email, telefono);
     }
 
+    /**
+     * Genera los datos ficticios y los almacena en archivos CSV
+     */
     public void generateFakedata() {
         Alumno alumno;
         Apoderado apoderado;
@@ -83,6 +111,11 @@ public class Fakedata {
         }
     }
 
+    /**
+     * Programa principal (método main) que genera los archivos con los datos iniciales ficticios.
+     *
+     * @param args Argumentos de ejecución (método main)
+     */
     public static void main(String[] args) {
         Fakedata fakedata = new Fakedata();
         fakedata.generateFakedata();

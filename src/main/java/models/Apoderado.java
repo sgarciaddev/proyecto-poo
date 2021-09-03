@@ -11,12 +11,14 @@ public class Apoderado extends Persona {
     private String email;
 
     /**
-     * @param rut RUT del apoderado
-     * @param nombres Nombres del apoderado
+     * Genera un objeto de tipo Apoderado
+     *
+     * @param rut       RUT del apoderado
+     * @param nombres   Nombres del apoderado
      * @param apPaterno Apellido paterno del apoderado
      * @param apMaterno Apellido materno del apoderado
-     * @param telefono Teléfono del apoderado
-     * @param email Correo electrónico del apoderado
+     * @param telefono  Teléfono del apoderado
+     * @param email     Correo electrónico del apoderado
      */
     public Apoderado(String rut, String nombres, String apPaterno, String apMaterno, int telefono, String email) {
         super(rut, nombres, apPaterno, apMaterno);
@@ -25,6 +27,8 @@ public class Apoderado extends Persona {
     }
 
     /**
+     * Obtiene el teléfono del apoderado
+     *
      * @return Teléfono de contacto del apoderado
      */
     public int getTelefono() {
@@ -32,6 +36,8 @@ public class Apoderado extends Persona {
     }
 
     /**
+     * Obtiene el correo electrónico del apoderado
+     *
      * @return Correo electrónico del apoderado
      */
     public String getEmail() {
@@ -39,6 +45,8 @@ public class Apoderado extends Persona {
     }
 
     /**
+     * Actualiza el teléfono de contacto del apoderado
+     *
      * @param telefono Teléfono de contacto del apoderado
      */
     public void setTelefono(int telefono) {
@@ -46,6 +54,8 @@ public class Apoderado extends Persona {
     }
 
     /**
+     * Actualiza el correo electrónico del apoderado
+     *
      * @param email Correo electrónico del apoderado
      */
     public void setEmail(String email) {

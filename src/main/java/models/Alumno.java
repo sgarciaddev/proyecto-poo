@@ -11,6 +11,8 @@ public class Alumno extends Persona {
     private RegistroAsistencia asistencia;
 
     /**
+     * Genera un objeto de tipo Alumno
+     *
      * @param rut       RUT del alumno
      * @param nombres   Primer y segundo nombre del alumno
      * @param apPaterno Apellido paterno del alumno
@@ -24,6 +26,8 @@ public class Alumno extends Persona {
     }
 
     /**
+     * Obtener apoderado asociado al alumno
+     *
      * @return Apoderado
      */
     public Apoderado getApoderado() {
@@ -31,6 +35,8 @@ public class Alumno extends Persona {
     }
 
     /**
+     * Obtener el registro de asistencia asociado al alumno
+     *
      * @return Registro de asistencia del alumno
      */
     public RegistroAsistencia getAsistencia() {
@@ -38,6 +44,8 @@ public class Alumno extends Persona {
     }
 
     /**
+     * Asociar registro de asistencia al alumno
+     *
      * @param asistencia Registro de asistencia a asociar
      */
     public void setAsistencia(RegistroAsistencia asistencia) {

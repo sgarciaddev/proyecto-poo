@@ -1,0 +1,7 @@
+data
+data.database
+data.datafile
+fakedata
+models
+views.cli
+views.gui

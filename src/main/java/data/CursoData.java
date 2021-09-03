@@ -11,10 +11,51 @@ import java.util.List;
  * @version 1.0
  */
 public interface CursoData {
-    public List<Curso> getCursos();
-    public List<Curso> getCursos(short nivel);
-    public Curso getCurso(short nivel, char letra);
-    public boolean insertCurso(Curso curso);
-    public boolean updateCurso(Curso curso);
-    public boolean deleteCurso(Curso curso);
+    /**
+     * Obtiene todos los cursos
+     *
+     * @return ArrayList de cursos
+     */
+    List<Curso> getCursos();
+
+    /**
+     * Obtiene todos los cursos del nivel especificado
+     *
+     * @param nivel Nivel
+     * @return ArrayList de cursos del nivel especificado
+     */
+    List<Curso> getCursos(short nivel);
+
+    /**
+     * Obtiene un curso específico
+     *
+     * @param nivel Nivel del curso
+     * @param letra Letra identificatoria de paralelo del curso
+     * @return Curso buscado, o `null` en caso de no encontrarse
+     */
+    Curso getCurso(short nivel, char letra);
+
+    /**
+     * Agrega un curso
+     *
+     * @param curso Curso a agregar
+     * @return Valor de verdad sobre el éxito o fracaso de la operación
+     */
+    boolean insertCurso(Curso curso);
+
+    /**
+     * Actualiza un curso
+     *
+     * @param curso Curso a actualizar
+     * @return Valor de verdad sobre el éxito o fracaso de la operación
+     */
+    boolean updateCurso(Curso curso);
+
+    /**
+     * Elimina un curso
+     *
+     * @param curso Curso a eliminar
+     * @return Valor de verdad sobre el éxito o fracaso de la operación
+     */
+    boolean deleteCurso(Curso curso);
 }

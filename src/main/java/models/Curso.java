@@ -15,10 +15,12 @@ public class Curso {
     private Map<String, Alumno> alumnos;
 
     /**
-     * @param nivel Nivel (de 1 a 12) del curso
-     * @param letra Caracter identificador del paralelo del curso
+     * Genera un objeto de tipo Curso
+     *
+     * @param nivel        Nivel (de 1 a 12) del curso
+     * @param letra        Caracter identificador del paralelo del curso
      * @param profesorJefe Profesor jefe a cargo del curso
-     * @param alumnos Lista de alumnos del curso
+     * @param alumnos      Lista de alumnos del curso
      */
     public Curso(short nivel, char letra, Profesor profesorJefe, Map<String, Alumno> alumnos) {
         this.nivel = nivel;
@@ -28,6 +30,8 @@ public class Curso {
     }
 
     /**
+     * Obtiene el nivel del curso
+     *
      * @return Valor numérico del nivel (de 1 a 12)
      */
     public short getNivel() {
@@ -35,6 +39,8 @@ public class Curso {
     }
 
     /**
+     * Obtiene la letra identificadora de paralelo del curso
+     *
      * @return Caracter identificador del paralelo del curso
      */
     public char getLetra() {
@@ -42,6 +48,8 @@ public class Curso {
     }
 
     /**
+     * Obtiene el Profesor jefe del curso
+     *
      * @return Profesor jefe a cargo del curso
      */
     public Profesor getProfesorJefe() {
@@ -49,13 +57,17 @@ public class Curso {
     }
 
     /**
-     * @return Lista de alumnos del curso
+     * Obtiene el HashMap con los alumnos del curso
+     *
+     * @return HashMap de alumnos del curso
      */
     public Map<String, Alumno> getAlumnos() {
         return alumnos;
     }
 
     /**
+     * Actualiza al profesor jefe del curso.
+     *
      * @param profesorJefe Profesor jefe a cargo del curso
      */
     public void setProfesorJefe(Profesor profesorJefe) {
@@ -63,12 +75,19 @@ public class Curso {
     }
 
     /**
+     * Actualiza el HashMap de alumnos del curso
+     *
      * @param alumnos Lista de alumnos del curso
      */
     public void setAlumnos(Map<String, Alumno> alumnos) {
         this.alumnos = alumnos;
     }
 
+    /**
+     * Permite obtener el nivel del curso en palabras, para ser mostrado por pantalla.
+     *
+     * @return String con el nivel del curso
+     */
     public String nivelToString() {
         if (this.nivel >= 9) {
             return Integer.toString(this.nivel - 8) + " medio";
@@ -86,6 +105,11 @@ public class Curso {
         return this.nivelToString() + " " + Character.toUpperCase(this.letra);
     }
 
+    /**
+     * Permite obtener el curso en formato nivel-letra. Ejemplo: `4MB`
+     *
+     * @return String con el curso en formato corto
+     */
     public String toShortStr() {
         if (this.nivel >= 9) {
             return Integer.toString(this.nivel - 8) + "M" + Character.toUpperCase(this.letra);

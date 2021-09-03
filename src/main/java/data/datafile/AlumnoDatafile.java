@@ -21,7 +21,7 @@ public class AlumnoDatafile implements AlumnoData {
     private final ApoderadoDatafile apDataFile;
 
     /**
-     * Inicializa los Datafile necesarios para trabajar.
+     * Constructor de AlumnoDatafile. Trabaja con un objeto Datafile.
      */
     public AlumnoDatafile() {
         this.datafile = new Datafile("alumno");
@@ -64,7 +64,7 @@ public class AlumnoDatafile implements AlumnoData {
     /**
      * Obtiene todos los alumnos almacenados en el archivo
      *
-     * @return Lista de alumnos
+     * @return HashMap de alumnos
      */
     @Override
     public Map<String, Alumno> getAlumnos() {
@@ -83,7 +83,7 @@ public class AlumnoDatafile implements AlumnoData {
      * nivel requerido.
      *
      * @param nivel Nivel por el que se busca filtrar los datos
-     * @return Lista de alumnos del nivel entregado
+     * @return HashMap de alumnos del nivel entregado
      */
     @Override
     public Map<String, Alumno> getAlumnos(int nivel) {
@@ -106,7 +106,7 @@ public class AlumnoDatafile implements AlumnoData {
      * @param nivel Nivel por el que se busca filtrar los datos
      * @param letra Caracter que identifica el paralelo por el que se busca
      *              filtrar los datos
-     * @return Lista de alumnos del nivel y paralelo entregado
+     * @return HashMap de alumnos del nivel y paralelo entregado
      */
     @Override
     public Map<String, Alumno> getAlumnos(int nivel, char letra) {

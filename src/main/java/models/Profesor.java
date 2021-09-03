@@ -12,13 +12,15 @@ public class Profesor extends Persona {
     private int telefono;
 
     /**
-     * @param rut RUT del profesor
-     * @param nombres Nombres del profesor
-     * @param apPaterno Apellido paterno del profesor
-     * @param apMaterno Apellido materno del profesor
+     * Genera un objeto de tipo Profesor
+     *
+     * @param rut        RUT del profesor
+     * @param nombres    Nombres del profesor
+     * @param apPaterno  Apellido paterno del profesor
+     * @param apMaterno  Apellido materno del profesor
      * @param asignatura Asignatura que dicta el profesor
-     * @param email Correo electrónico del profesor
-     * @param telefono Teléfono de contacto del profesor
+     * @param email      Correo electrónico del profesor
+     * @param telefono   Teléfono de contacto del profesor
      */
     public Profesor(String rut, String nombres, String apPaterno, String apMaterno, String asignatura, String email,
                     int telefono) {
@@ -29,6 +31,8 @@ public class Profesor extends Persona {
     }
 
     /**
+     * Obtiene la asignatura que dicta el profesor
+     *
      * @return Asignatura que dicta el profesor
      */
     public String getAsignatura() {
@@ -36,6 +40,8 @@ public class Profesor extends Persona {
     }
 
     /**
+     * Obtiene el correo electrónico de contacto del profesor
+     *
      * @return Correo electrónico del profesor
      */
     public String getEmail() {
@@ -43,6 +49,8 @@ public class Profesor extends Persona {
     }
 
     /**
+     * Obtiene el teléfono de contacto del profesor
+     *
      * @return Teléfono de contacto del profesor
      */
     public int getTelefono() {
@@ -50,6 +58,8 @@ public class Profesor extends Persona {
     }
 
     /**
+     * Actualiza la asignatura que dicta el profesor
+     *
      * @param asignatura Asignatura que dicta el profesor
      */
     public void setAsignatura(String asignatura) {
@@ -57,6 +67,8 @@ public class Profesor extends Persona {
     }
 
     /**
+     * Actualiza el correo electrónico de contacto del profesor
+     *
      * @param email Correo electrónico del profesor
      */
     public void setEmail(String email) {
@@ -64,6 +76,8 @@ public class Profesor extends Persona {
     }
 
     /**
+     * Actualiza el teléfono de contacto del profesor
+     *
      * @param telefono Teléfono de contacto del profesor
      */
     public void setTelefono(int telefono) {
