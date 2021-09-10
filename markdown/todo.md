@@ -23,10 +23,10 @@
 
 ### Entrega parcial 3
 
-- [ ] Diseño de diagrama de clases UML de lo considerado hasta la EP3
+- [X] Diseño de diagrama de clases UML de lo considerado hasta la EP3
     - Se debe hacer un menú para el Sistema donde ofrezca las funcionalidades de:
-        - [ ] Inserción Manual / agregar elemento
-        - [ ] Mostrar por pantalla listado de elementos.Esto para cada una de las 2 colecciones anidadas
+        - [X] Inserción Manual / agregar elemento
+        - [X] Mostrar por pantalla listado de elementos.Esto para cada una de las 2 colecciones anidadas
 
 ### Parte A
 
@@ -38,7 +38,7 @@
 - [ ] Se debe generar un reporte en archivo txt que considere mostrar datos de las 2 colecciones anidadas (ej: csv).
     - [ ] OP Se puede generar un archivo de salida de planilla de cálculo (.xls o .xlsx).
     - [ ] OP Se puede utilizar un componente gráfico estadístico (JFreeChart u otro) en ventana.
-- [ ] El código fuente debe estar bien modularizado de acuerdo a lo descrito en el informe además de seguir las buenas prácticas de documentación interna y legibilidad.
-- [ ] Todas las funcionalidades pueden ser implementadas mediante consola.
+- [X] El código fuente debe estar bien modularizado de acuerdo a lo descrito en el informe además de seguir las buenas prácticas de documentación interna y legibilidad.
+- [X] Todas las funcionalidades pueden ser implementadas mediante consola.
     - [ ] OP La implementación de una o más interfaces gráficas de usuario, con la inclusión de ventanas con componentes AWT, SWING, JAVAFXu otro.
-- [ ] Utilizacion de GitHub (Realización de al menos 3 Commit).
+- [X] Utilización de GitHub (Realización de al menos 3 Commit).

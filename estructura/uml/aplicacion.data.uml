@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>aplicacion.data</OriginalElement>
+  <nodes>
+    <node x="360.5" y="278.0">aplicacion.data.datafile</node>
+    <node x="665.5" y="278.0">aplicacion.data.database</node>
+    <node x="936.0" y="11.0">aplicacion.data.CursoData</node>
+    <node x="594.0" y="0.0">aplicacion.data.AlumnoData</node>
+    <node x="313.0" y="11.0">aplicacion.data.ProfesorData</node>
+    <node x="0.0" y="33.5">aplicacion.data.ApoderadoData</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="aplicacion.data.datafile" target="aplicacion.data.AlumnoData" relationship="REALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="443.5" y="238.0" />
+      <point x="755.0" y="238.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.data.database" target="aplicacion.data.ApoderadoData" relationship="REALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="755.0" y="218.0" />
+      <point x="146.5" y="218.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile" target="aplicacion.data.ApoderadoData" relationship="REALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="443.5" y="228.0" />
+      <point x="146.5" y="228.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="aplicacion.data.database" target="aplicacion.data.ProfesorData" relationship="REALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="755.0" y="208.0" />
+      <point x="443.5" y="208.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile" target="aplicacion.data.datafile" relationship="TO_ONE">
+      <point x="-41.5" y="15.0" />
+      <point x="402.0" y="328.0" />
+      <point x="340.5" y="328.0" />
+      <point x="340.5" y="300.5" />
+      <point x="-83.0" y="7.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile" target="aplicacion.data.ProfesorData" relationship="REALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="aplicacion.data.database" target="aplicacion.data.CursoData" relationship="REALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="755.0" y="258.0" />
+      <point x="1053.5" y="258.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile" target="aplicacion.data.datafile" relationship="CREATE">
+      <point x="41.5" y="15.0" />
+      <point x="485.0" y="338.0" />
+      <point x="330.5" y="338.0" />
+      <point x="330.5" y="285.5" />
+      <point x="-83.0" y="-7.5" />
+    </edge>
+    <edge source="aplicacion.data.database" target="aplicacion.data.AlumnoData" relationship="REALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile" target="aplicacion.data.CursoData" relationship="REALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="443.5" y="248.0" />
+      <point x="1053.5" y="248.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.869857262804366" showDependencies="true" x="585.5" y="169.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

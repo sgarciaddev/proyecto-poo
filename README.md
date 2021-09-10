@@ -28,17 +28,27 @@
 ```
 .
 ├── .gitignore
-├── README.md
 ├── pom.xml
+├── README.md
+├── nb-configuration.xml
+├── markdown/
+│   └── todo.md
+├── datafiles/
+│   ├── alumno.csv
+│   ├── apoderado.csv
+│   ├── curso.csv
+│   └── profesor.csv
 └── src/
     └── main/
         └── java/
-            ├── data/
-            │   ├── database/
-            │   └── datafile/
-            ├── fakedata/
-            ├── models/
-            └── views/
+            ├── aplicacion.controllers/
+            │   ├── cli/
+            │   └── gui/
+            ├── aplicacion.data/
+            │   ├── datafile/
+            │   └── database/
+            ├── aplicacion.models
+            └── aplicacion.views/
                 ├── cli/
                 └── gui/
 ```
@@ -47,46 +57,47 @@
 ```
 .
 └── src/main/java/
-    ├── data/
-    │   ├── AlumnoData.java
-    │   ├── ApoderadoData.java
-    │   ├── CursoData.java
-    │   ├── ProfesorData.java
+    ├── aplicacion.controllers.cli/
+    │   ├── AlumnoControllerCLI.java
+    │   └── CursoControllerCLI.java
+    ├── aplicacion.data/
     │   ├── database/
     │   │   ├── AlumnoDB.java
     │   │   ├── ApoderadoDB.java
     │   │   ├── CursoDB.java
     │   │   ├── ProfesorDB.java
-    │   │   └── DBConnection.java
-    │   └── datafile/
-    │       ├── AlumnoDatafile.java
-    │       ├── ApoderadoDatafile.java
-    │       ├── CursoDatafile.java
-    │       ├── ProfesorDatafile.java
-    │       └── Datafile.java
-    ├── fakedata/
-    │   └── Fakedata.java
-    ├── models/
+    │   │   └── ConexionDB.java
+    │   ├── datafile/
+    │   │   ├── AlumnoDatafile.java
+    │   │   ├── ApoderadoDatafile.java
+    │   │   ├── CursoDatafile.java
+    │   │   ├── ProfesorDatafile.java
+    │   │   └── Datafile.java
+    │   ├── AlumnoData.java
+    │   ├── ApoderadoData.java
+    │   ├── CursoData.java
+    │   └── ProfesorData.java
+    ├── aplicacion.models/
     │   ├── Alumno.java
     │   ├── Apoderado.java
     │   ├── Curso.java
     │   ├── Persona.java
     │   ├── Profesor.java
     │   └── RegistroAsistencia.java
-    └── views/
-        ├── cli/
-        │   ├── AlumnoView.java
-        │   ├── CursoView.java
-        │   └── CLI.java
-        └── gui/
-            └── GUI.java
+    └── aplicacion.views.cli/
+        ├── AlumnoViewCLI.java
+        ├── CursoViewCLI.java
+        ├── CLI.java
+        └── UtilsCLI.java
 ```
 
 Las carpetas en las que se divide el proyecto corresponden a:
-* `data`: Carpeta con las **interfaces** de acceso de datos para generar los objetos que correspondan. Incluye los dos directorios `database` y `datafile`, ambas con las clases que implementan las interfaces en `data` y que permiten trabajar con BBDD MySQL y archivos .CSV, respectivamente.
-* `fakedata`: Carpeta con los archivos necesarios para generar datos aleatorios falsos, para utilizar en las pruebas al programa.
-* `models`: Modelos de datos (objetos) correspondientes al problema.
-* `views`: Vistas al usuario, ya sea por `cli` (linea de comandos) o `gui` (interfaz grafica).
+* Modelo -- Vista -- Controlador
+  * `aplicacion.controllers`: Controladores de las interfaces de interacción con el usuario. Se encargan de la comunicación entre el origen de datos y los aspectos visuales de las interfaces visuales y de consola de comandos.
+  * `aplicacion.models`: Modelos de datos (objetos) correspondientes al problema.
+  * `aplicacion.views`: Vistas al usuario, ya sea por `cli` (linea de comandos) o `gui` (interfaz grafica).
+* `aplicacion.data`: Carpeta con las **interfaces** de acceso de datos para generar los objetos que correspondan. Incluye los dos directorios `database` y `datafile`, ambas con las clases que implementan las interfaces en `aplicacion.data` y que permiten trabajar con BBDD MySQL y archivos .CSV, respectivamente.
+* `utils.fakedata`: Carpeta con los archivos necesarios para generar datos aleatorios falsos, para utilizar en las pruebas al programa.
 
 ## IDE
 

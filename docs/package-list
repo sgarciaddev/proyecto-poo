@@ -1,7 +1,7 @@
-data
-data.database
-data.datafile
-fakedata
-models
-views.cli
-views.gui
+aplicacion.controllers.cli
+aplicacion.data
+aplicacion.data.database
+aplicacion.data.datafile
+aplicacion.models
+aplicacion.views.cli
+utils.fakedata

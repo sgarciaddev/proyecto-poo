@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>aplicacion.data.datafile</OriginalElement>
+  <nodes>
+    <node x="43.7166666666667" y="606.0">aplicacion.data.datafile.AlumnoDatafile</node>
+    <node x="56.0" y="318.5">aplicacion.data.datafile.ApoderadoDatafile</node>
+    <node x="191.82500000000002" y="968.0">aplicacion.data.datafile.CursoDatafile</node>
+    <node x="174.14166666666668" y="0.0">aplicacion.data.datafile.Datafile</node>
+    <node x="371.0" y="296.0">aplicacion.data.datafile.ProfesorDatafile</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="aplicacion.data.datafile.CursoDatafile" target="aplicacion.data.datafile.Datafile" relationship="TO_ONE">
+      <point x="-58.75" y="-150.0" />
+      <point x="250.57500000000002" y="947.0" />
+      <point x="124.95000000000002" y="947.0" />
+      <point x="124.95000000000002" y="937.0" />
+      <point x="0.0" y="937.0" />
+      <point x="0.0" y="275.0" />
+      <point x="155.26666666666668" y="275.0" />
+      <point x="155.26666666666668" y="265.0" />
+      <point x="240.14166666666668" y="265.0" />
+      <point x="-66.0" y="117.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDatafile" target="aplicacion.data.datafile.ApoderadoDatafile" relationship="TO_ONE">
+      <point x="-80.5" y="-150.0" />
+      <point x="124.2166666666667" y="584.0" />
+      <point x="157.7166666666667" y="584.0" />
+      <point x="157.7166666666667" y="574.0" />
+      <point x="129.5" y="574.0" />
+      <point x="-73.5" y="105.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDatafile" target="aplicacion.data.datafile.Datafile" relationship="CREATE">
+      <point x="58.75" y="-150.0" />
+      <point x="368.07500000000005" y="947.0" />
+      <point x="510.45000000000005" y="947.0" />
+      <point x="510.45000000000005" y="927.0" />
+      <point x="644.5" y="927.0" />
+      <point x="644.5" y="265.0" />
+      <point x="463.64166666666665" y="265.0" />
+      <point x="463.64166666666665" y="255.0" />
+      <point x="372.14166666666665" y="255.0" />
+      <point x="66.0" y="117.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ProfesorDatafile" target="aplicacion.data.datafile.Datafile" relationship="CREATE">
+      <point x="65.75" y="-128.0" />
+      <point x="568.25" y="265.0" />
+      <point x="463.64166666666665" y="265.0" />
+      <point x="463.64166666666665" y="255.0" />
+      <point x="372.14166666666665" y="255.0" />
+      <point x="66.0" y="117.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDatafile" target="aplicacion.data.datafile.Datafile" relationship="TO_ONE">
+      <point x="-80.5" y="-150.0" />
+      <point x="124.2166666666667" y="584.0" />
+      <point x="157.7166666666667" y="584.0" />
+      <point x="157.7166666666667" y="574.0" />
+      <point x="45.5" y="574.0" />
+      <point x="45.5" y="275.0" />
+      <point x="155.26666666666668" y="275.0" />
+      <point x="155.26666666666668" y="265.0" />
+      <point x="240.14166666666668" y="265.0" />
+      <point x="-66.0" y="117.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDatafile" target="aplicacion.data.datafile.Datafile" relationship="CREATE">
+      <point x="80.5" y="-150.0" />
+      <point x="285.2166666666667" y="584.0" />
+      <point x="251.7166666666667" y="584.0" />
+      <point x="251.7166666666667" y="574.0" />
+      <point x="360.5" y="574.0" />
+      <point x="360.5" y="265.0" />
+      <point x="463.64166666666665" y="265.0" />
+      <point x="463.64166666666665" y="255.0" />
+      <point x="372.14166666666665" y="255.0" />
+      <point x="66.0" y="117.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDatafile" target="aplicacion.data.datafile.ApoderadoDatafile" relationship="CREATE">
+      <point x="80.5" y="-150.0" />
+      <point x="285.2166666666667" y="584.0" />
+      <point x="251.7166666666667" y="584.0" />
+      <point x="251.7166666666667" y="574.0" />
+      <point x="276.5" y="574.0" />
+      <point x="73.5" y="105.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDatafile" target="aplicacion.data.datafile.AlumnoDatafile" relationship="TO_ONE">
+      <point x="-58.75" y="-150.0" />
+      <point x="250.57500000000002" y="947.0" />
+      <point x="124.95000000000002" y="947.0" />
+      <point x="-80.5" y="150.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDatafile" target="aplicacion.data.datafile.AlumnoDatafile" relationship="CREATE">
+      <point x="58.75" y="-150.0" />
+      <point x="368.07500000000005" y="947.0" />
+      <point x="510.45000000000005" y="947.0" />
+      <point x="510.45000000000005" y="927.0" />
+      <point x="285.2166666666667" y="927.0" />
+      <point x="80.5" y="150.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDatafile" target="aplicacion.data.datafile.ProfesorDatafile" relationship="CREATE">
+      <point x="58.75" y="-150.0" />
+      <point x="368.07500000000005" y="947.0" />
+      <point x="510.45000000000005" y="947.0" />
+      <point x="510.45000000000005" y="927.0" />
+      <point x="508.65000000000003" y="927.0" />
+      <point x="508.65000000000003" y="584.0" />
+      <point x="568.25" y="584.0" />
+      <point x="65.75" y="128.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDatafile" target="aplicacion.data.datafile.ProfesorDatafile" relationship="TO_ONE">
+      <point x="-58.75" y="-150.0" />
+      <point x="250.57500000000002" y="947.0" />
+      <point x="124.95000000000002" y="947.0" />
+      <point x="124.95000000000002" y="937.0" />
+      <point x="497.6500000000001" y="937.0" />
+      <point x="497.65000000000003" y="584.0" />
+      <point x="436.75" y="584.0" />
+      <point x="-65.75" y="128.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ApoderadoDatafile" target="aplicacion.data.datafile.Datafile" relationship="TO_ONE">
+      <point x="-73.5" y="-105.5" />
+      <point x="129.5" y="275.0" />
+      <point x="155.26666666666668" y="275.0" />
+      <point x="155.26666666666668" y="265.0" />
+      <point x="240.14166666666668" y="265.0" />
+      <point x="-66.0" y="117.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ApoderadoDatafile" target="aplicacion.data.datafile.Datafile" relationship="CREATE">
+      <point x="73.5" y="-105.5" />
+      <point x="276.5" y="265.0" />
+      <point x="463.6416666666667" y="265.0" />
+      <point x="463.64166666666665" y="255.0" />
+      <point x="372.14166666666665" y="255.0" />
+      <point x="66.0" y="117.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ProfesorDatafile" target="aplicacion.data.datafile.Datafile" relationship="TO_ONE">
+      <point x="-65.75" y="-128.0" />
+      <point x="436.75" y="275.0" />
+      <point x="155.2666666666667" y="275.0" />
+      <point x="155.26666666666668" y="265.0" />
+      <point x="240.14166666666668" y="265.0" />
+      <point x="-66.0" y="117.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6017080745341615" showDependencies="true" x="322.5" y="634.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

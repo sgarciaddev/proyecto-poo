@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>aplicacion.views.cli</OriginalElement>
+  <nodes>
+    <node x="0.0" y="503.0">aplicacion.views.cli.CLI</node>
+    <node x="617.0" y="569.5">aplicacion.views.cli.AlumnoViewCLI</node>
+    <node x="286.0" y="0.0">aplicacion.views.cli.UtilsCLI</node>
+    <node x="308.0" y="569.5">aplicacion.views.cli.CursoViewCLI</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="aplicacion.views.cli.CLI" target="aplicacion.views.cli.UtilsCLI" relationship="DEPENDENCY">
+      <point x="0.0" y="-116.5" />
+      <point x="144.0" y="478.0" />
+      <point x="452.5" y="478.0" />
+      <point x="0.0" y="226.5" />
+    </edge>
+    <edge source="aplicacion.views.cli.CursoViewCLI" target="aplicacion.views.cli.UtilsCLI" relationship="DEPENDENCY">
+      <point x="0.0" y="-50.0" />
+      <point x="0.0" y="226.5" />
+    </edge>
+    <edge source="aplicacion.views.cli.AlumnoViewCLI" target="aplicacion.views.cli.UtilsCLI" relationship="DEPENDENCY">
+      <point x="0.0" y="-50.0" />
+      <point x="818.0" y="478.0" />
+      <point x="452.5" y="478.0" />
+      <point x="0.0" y="226.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="509.5" y="368.0" />
+  <SelectedNodes>
+    <node>aplicacion.views.cli.AlumnoViewCLI</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
