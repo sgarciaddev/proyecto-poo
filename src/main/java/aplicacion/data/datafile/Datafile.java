@@ -157,9 +157,38 @@ public class Datafile {
     }
 
     /**
+     * Limpia un archivo CSV, es decir, lo deja vacío
+     */
+    public void clearFile() {
+        boolean cleared = false;
+        File tempFile = new File("_TEMP_EMPTYFILE.csv");
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile, true));
+            writer.close();
+            cleared = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        final boolean d = this.file.delete();
+        final boolean b = tempFile.renameTo(this.file);
+    }
+
+    /**
      * @return Valor de verdad sobre la existencia del archivo.
      */
     public boolean isFileExists() {
         return fileExists;
+    }
+
+    /**
+     * @return String con la ruta del archivo.
+     */
+    public String getFilePath() {
+        try {
+            return this.file.getCanonicalPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

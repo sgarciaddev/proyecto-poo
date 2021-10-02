@@ -30,12 +30,12 @@
 
 ### Parte A
 
-- [ ] La integración de todo lo entregado anteriormente (entregas Parciales) más lo detallado a continuación.
+- [X] La integración de todo lo entregado anteriormente (entregas Parciales) más lo detallado a continuación.
     - Se debe hacer un menú para el sistema, para cada una de las 2 colecciones anidadas, donde ofrezca las funcionalidades de:
-        - [ ] Edición o modificación del elemento.
-        - [ ] Eliminación del elemento.
+        - [X] Edición o modificación del elemento.
+        - [X] Eliminación del elemento.
     - [ ] OP Implementar la funcionalidad de buscar elemento en 1 o más niveles.
-- [ ] Se debe generar un reporte en archivo txt que considere mostrar datos de las 2 colecciones anidadas (ej: csv).
+- [X] Se debe generar un reporte en archivo txt que considere mostrar datos de las 2 colecciones anidadas (ej: csv).
     - [ ] OP Se puede generar un archivo de salida de planilla de cálculo (.xls o .xlsx).
     - [ ] OP Se puede utilizar un componente gráfico estadístico (JFreeChart u otro) en ventana.
 - [X] El código fuente debe estar bien modularizado de acuerdo a lo descrito en el informe además de seguir las buenas prácticas de documentación interna y legibilidad.

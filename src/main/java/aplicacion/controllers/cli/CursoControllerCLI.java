@@ -3,7 +3,9 @@ package aplicacion.controllers.cli;
 import aplicacion.data.CursoData;
 import aplicacion.data.ProfesorData;
 import aplicacion.data.datafile.CursoDatafile;;
+import aplicacion.data.datafile.Datafile;
 import aplicacion.data.datafile.ProfesorDatafile;
+import aplicacion.models.Alumno;
 import aplicacion.models.Curso;
 import aplicacion.models.Profesor;
 import aplicacion.views.cli.CursoViewCLI;
@@ -11,6 +13,7 @@ import aplicacion.views.cli.UtilsCLI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.*;
 
 /**
  * Clase controladora del menú de gestión de Cursos de la interfaz de linea de comandos.
@@ -34,6 +37,10 @@ public class CursoControllerCLI {
         this.profesorData = new ProfesorDatafile();
         this.cursoView = new CursoViewCLI();
         this.lector = lector;
+    }
+
+    private Datafile generarReporte(String tipo, String id) {
+        return new Datafile("reportes/" + tipo + "-" + id);
     }
 
     /**
@@ -147,9 +154,58 @@ public class CursoControllerCLI {
                     System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
                 break;
             default:
-                UtilsCLI.mensajeErrOpc();
+                UtilsCLI.mensajeErrIngresado();
                 break;
         }
+    }
+
+    /**
+     * Método que permite generar el reporte con la lista de un curso específico.
+     *
+     * @param nivel Nivel del curso a generar reporte
+     * @param paralelo Letra identificadora de paralelo del curso
+     * @return String con la ruta del archivo generado.
+     */
+    public String generarReporteListaCurso(short nivel, char paralelo) {
+        Datafile reporteListaCurso = generarReporte("lista-curso", (nivel + "-" + paralelo));
+        reporteListaCurso.insertLine(Datafile.listToCSV(Arrays.asList(UtilsCLI.headersAlumnos)));
+        Map<String, Alumno> alumnos = this.cursoData.getCurso(nivel, paralelo).getAlumnos();
+        List<String> line = new ArrayList<>();
+        for (Alumno alumno: alumnos.values()) {
+            line.add(alumno.getRut());
+            line.add(alumno.getApPaterno());
+            line.add(alumno.getApMaterno());
+            line.add(alumno.getNombres());
+            line.add(alumno.getApoderado().getNombreCompleto());
+            line.add(Integer.toString(alumno.getApoderado().getTelefono()));
+            reporteListaCurso.insertLine(Datafile.listToCSV(line));
+            line.clear();
+        }
+        return reporteListaCurso.getFilePath();
+    }
+
+    /**
+     * Método que permite generar el reporte con la tabla de cursos.
+     *
+     * @return String con la ruta del archivo generado.
+     */
+    public String generarReporteTablaCursos() {
+        Datafile reporteTablaCursos = generarReporte("tabla-cursos",
+                Integer.toString((int) Math.floor(Math.random()*(9000)+1000)));
+        reporteTablaCursos.insertLine(Datafile.listToCSV(Arrays.asList(UtilsCLI.headersCursos)));
+        List<Curso> cursos = this.cursoData.getCursos();
+        List<String> line = new ArrayList<>();
+        for (Curso curso: cursos) {
+            line.add(curso.toShortStr());
+            line.add(Short.toString(curso.getNivel()));
+            line.add(Character.toString(curso.getLetra()));
+            line.add(curso.getProfesorJefe().getNombreCompleto());
+            line.add(curso.getProfesorJefe().getEmail());
+            line.add(Integer.toString(curso.getProfesorJefe().getTelefono()));
+            reporteTablaCursos.insertLine(Datafile.listToCSV(line));
+            line.clear();
+        }
+        return reporteTablaCursos.getFilePath();
     }
 
     /**

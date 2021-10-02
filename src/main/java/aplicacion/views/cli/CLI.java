@@ -94,7 +94,7 @@ public class CLI {
                 System.out.println("\nEsta funcionalidad aún no ha sido implementada\n");
                 break;
             default:
-                UtilsCLI.mensajeErrOpc();
+                UtilsCLI.mensajeErrIngresado();
                 break;
         }
     }
@@ -122,7 +122,7 @@ public class CLI {
                 System.out.println("\nEsta funcionalidad aún no ha sido implementada\n");
                 break;
             default:
-                UtilsCLI.mensajeErrOpc();
+                UtilsCLI.mensajeErrIngresado();
                 break;
         }
     }
@@ -135,8 +135,10 @@ public class CLI {
      * @throws IOException Posibles errores de entrada/salida de datos
      */
     private void opcMenuReportes(short opt) throws IOException {
-        int nivel;
+        short nivel;
         char paralelo;
+        Curso curso;
+        String rutaArchivo;
         switch (opt) {
             case 0:
                 break;
@@ -145,18 +147,27 @@ public class CLI {
                 System.exit(0);
             case 1:
                 UtilsCLI.imprimirSolicitar("el nivel del alumno", "número de 1 a 12");
-                nivel = Integer.parseInt(this.lector.readLine());
+                nivel = Short.parseShort(this.lector.readLine());
                 UtilsCLI.imprimirSolicitar("el paralelo al que pertenece el alumno", "caracter");
                 paralelo = this.lector.readLine().charAt(0);
                 // Todo: Agregar funcion
                 System.out.println("Generar reporte del curso " + nivel + "/" + paralelo);
+                rutaArchivo = this.cursoController.generarReporteListaCurso(nivel, paralelo);
+                if (!rutaArchivo.equals(""))
+                    System.out.println("Archivo generado: " + rutaArchivo);
+                else
+                    System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
                 break;
             case 2:
-                // Todo: Agregar funcion
                 System.out.println("Generar reporte de todos los cursos");
+                rutaArchivo = this.cursoController.generarReporteTablaCursos();
+                if (!rutaArchivo.equals(""))
+                    System.out.println("Archivo generado: " + rutaArchivo);
+                else
+                    System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
                 break;
             default:
-                UtilsCLI.mensajeErrOpc();
+                UtilsCLI.mensajeErrIngresado();
                 break;
         }
     }

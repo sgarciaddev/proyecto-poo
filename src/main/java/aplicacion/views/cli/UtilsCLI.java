@@ -17,7 +17,7 @@ public class UtilsCLI {
             "Paralelo",
             "Nombre profesor jefe",
             "Email profesor jefe",
-            "Teléfono profesor jefe"
+            "Telefono profesor jefe"
     };
 
     /**
@@ -254,8 +254,8 @@ public class UtilsCLI {
     /**
      * Imprime un mensaje de error de opción al usuario
      */
-    public static void mensajeErrOpc() {
-        System.out.println("\nLa opción ingresada no es válida. Intente nuevamente");
+    public static void mensajeErrIngresado() {
+        System.out.println("\nLo ingresado no es válido. Intente nuevamente");
     }
 
     /**

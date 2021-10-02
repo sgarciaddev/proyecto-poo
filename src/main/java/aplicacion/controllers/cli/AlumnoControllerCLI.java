@@ -129,7 +129,7 @@ public class AlumnoControllerCLI {
                 rut = this.lector.readLine();
                 alumno = this.alumnoData.getAlumno(rut);
                 if (alumno == null) {
-                    UtilsCLI.mensajeErrOpc();
+                    UtilsCLI.mensajeErrIngresado();
                     break;
                 }
                 System.out.println("Editando alumno:\n  Nombre: " + alumno.getNombreCompleto() + "\n  RUT: " + rut);
@@ -148,7 +148,7 @@ public class AlumnoControllerCLI {
                 rut = this.lector.readLine();
                 alumno = this.alumnoData.getAlumno(rut);
                 if (alumno == null) {
-                    UtilsCLI.mensajeErrOpc();
+                    UtilsCLI.mensajeErrIngresado();
                     break;
                 }
                 System.out.println("Eliminando alumno:\n  Nombre: " + alumno.getNombreCompleto() + "\n  RUT: " + rut);
@@ -158,7 +158,7 @@ public class AlumnoControllerCLI {
                     System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
                 break;
             default:
-                UtilsCLI.mensajeErrOpc();
+                UtilsCLI.mensajeErrIngresado();
                 break;
         }
     }
