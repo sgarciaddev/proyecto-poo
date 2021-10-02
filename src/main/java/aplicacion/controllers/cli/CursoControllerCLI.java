@@ -1,7 +1,9 @@
 package aplicacion.controllers.cli;
 
 import aplicacion.data.CursoData;
+import aplicacion.data.ProfesorData;
 import aplicacion.data.datafile.CursoDatafile;;
+import aplicacion.data.datafile.ProfesorDatafile;
 import aplicacion.models.Curso;
 import aplicacion.models.Profesor;
 import aplicacion.views.cli.CursoViewCLI;
@@ -18,6 +20,7 @@ import java.io.IOException;
  */
 public class CursoControllerCLI {
     private final CursoData cursoData;
+    private final ProfesorData profesorData;
     private final CursoViewCLI cursoView;
     private final BufferedReader lector;
 
@@ -28,6 +31,7 @@ public class CursoControllerCLI {
      */
     public CursoControllerCLI(BufferedReader lector) {
         this.cursoData = new CursoDatafile();
+        this.profesorData = new ProfesorDatafile();
         this.cursoView = new CursoViewCLI();
         this.lector = lector;
     }
@@ -99,6 +103,9 @@ public class CursoControllerCLI {
      * @throws IOException Posibles errores de entrada/salida de datos
      */
     private void opcMenuCursos(short opt) throws IOException {
+        Curso curso, cursoActualizado;
+        short nivel;
+        char paralelo;
         switch (opt) {
             case 0:
                 break;
@@ -113,12 +120,31 @@ public class CursoControllerCLI {
                 this.cursoView.mostrarTablaCursos(this.cursoData.getCursos());
                 break;
             case 3:
-                // Todo: Agregar funcionalidad
-                System.out.println("Asignar nuevo profesor jefe a curso");
+                UtilsCLI.imprimirSolicitar("el nivel de los alumnos", "número de 1 a 12");
+                nivel = Short.parseShort(this.lector.readLine());
+                UtilsCLI.imprimirSolicitar("el paralelo al que pertenecen los alumnos", "caracter");
+                paralelo = this.lector.readLine().charAt(0);
+                curso = this.cursoData.getCurso(nivel, paralelo);
+                System.out.println("Cambiando profesor jefe del " + curso.cursoToString());
+                cursoActualizado = obtenerDatosCurso(curso);
+                if (this.cursoData.updateCurso(cursoActualizado)) {
+                    this.profesorData.insertProfesor(cursoActualizado.getProfesorJefe());
+                    this.profesorData.deleteProfesor(curso.getProfesorJefe());
+                    System.out.println("El curso ha sido actualizado exitosamente");
+                } else
+                    System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
                 break;
             case 4:
-                // Todo: Agregar funcionalidad
-                System.out.println("Aquí se elimina un curso");
+                UtilsCLI.imprimirSolicitar("el nivel del curso", "número de 1 a 12");
+                nivel = Short.parseShort(this.lector.readLine());
+                UtilsCLI.imprimirSolicitar("el paralelo del curso", "caracter");
+                paralelo = this.lector.readLine().charAt(0);
+                curso = this.cursoData.getCurso(nivel, paralelo);
+                System.out.println("Eliminando curso " + curso.cursoToString());
+                if (this.cursoData.deleteCurso(curso))
+                    System.out.println("El curso ha sido eliminado exitosamente");
+                else
+                    System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
                 break;
             default:
                 UtilsCLI.mensajeErrOpc();

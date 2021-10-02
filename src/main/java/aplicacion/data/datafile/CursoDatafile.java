@@ -135,6 +135,7 @@ public class CursoDatafile implements CursoData {
         for (Alumno alumno: curso.getAlumnos().values()) {
             this.alDatafile.deleteAlumno(alumno, curso.getNivel(), curso.getLetra());
         }
+        this.prDatafile.deleteProfesor(curso.getProfesorJefe());
         return this.datafile.deleteLine(cursoToCSV(curso));
     }
 }
