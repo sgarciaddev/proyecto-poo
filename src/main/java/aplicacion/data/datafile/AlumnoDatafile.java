@@ -175,6 +175,7 @@ public class AlumnoDatafile implements AlumnoData {
      */
     @Override
     public boolean deleteAlumno(Alumno alumno, int nivel, char letra) {
+        this.apDataFile.deleteApoderado(alumno.getApoderado());
         return this.datafile.deleteLine(alumnoToCSV(alumno, nivel, letra));
     }
 }

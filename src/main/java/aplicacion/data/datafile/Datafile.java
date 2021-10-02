@@ -65,6 +65,7 @@ public class Datafile {
                     data.add(line);
                 }
             } while (line != null);
+            fileReader.close();
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
@@ -121,6 +122,7 @@ public class Datafile {
         final boolean d = this.file.delete();
         final boolean b = tempFile.renameTo(this.file);
         return updated && d && b;
+        //return updated;
     }
 
     /**
@@ -140,7 +142,7 @@ public class Datafile {
             while ((currLine = reader.readLine()) != null) {
                 trimmedLine = currLine.trim();
                 if (!trimmedLine.equals(line))
-                    writer.write(line + System.getProperty("line.separator"));
+                    writer.write(currLine + System.getProperty("line.separator"));
                 else
                     deleted = true;
             }

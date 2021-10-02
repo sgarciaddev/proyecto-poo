@@ -43,7 +43,7 @@ public class UtilsCLI {
             },
             {
                     2,
-                    "Reportes (próximamente)",
+                    "Reportes",
                     "Permite generar reportes con los datos del sistema"
             },
             {
@@ -90,6 +90,32 @@ public class UtilsCLI {
     };
 
     /**
+     * Ítems del menú de reportes
+     */
+    public static final Object[][] opcMenuReportes = {
+            {
+                    1,
+                    "Generar lista de curso",
+                    "Permite generar un archivo CSV con la lista de un curso (alumnos enumerados)"
+            },
+            {
+                    2,
+                    "Generar tabla de cursos",
+                    "Permite generar una tabla con todos los cursos del colegio"
+            },
+            {
+                    9,
+                    "Salir",
+                    "Salir de la aplicación"
+            },
+            {
+                    0,
+                    "Volver al menú principal",
+                    "Salir de la generación de reportes"
+            }
+    };
+
+    /**
      * Ítems del menú de cursos
      */
     public static final Object[][] opcMenuCursos = {
@@ -102,6 +128,16 @@ public class UtilsCLI {
                     2,
                     "Ver cursos",
                     "Permite ver la lista de cursos disponibles"
+            },
+            {
+                    3,
+                    "Asignar nuevo profesor jefe a curso",
+                    "Permite asignar un nuevo profesor jefe al curso"
+            },
+            {
+                    4,
+                    "Eliminar curso",
+                    "Permite eliminar un curso en específico"
             },
             {
                     9,
@@ -130,6 +166,16 @@ public class UtilsCLI {
                     "Permite ver la lista de alumnos del curso"
             },
             {
+                    3,
+                    "Editar alumno",
+                    "Permite editar un alumno en específico"
+            },
+            {
+                    4,
+                    "Eliminar alumno",
+                    "Permite eliminar un alumno en específico"
+            },
+            {
                     9,
                     "Salir",
                     "Salir de la aplicación"
@@ -145,7 +191,7 @@ public class UtilsCLI {
      * Permite obtener el ancho de las columnas (en cant. de caracteres) para ser mostrados por pantalla en formato
      * de tabla.
      *
-     * @param data Datos a ser mostrados
+     * @param data   Datos a ser mostrados
      * @param header Cabecera de la tabla
      * @return Arreglo de enteros correspondiente al ancho de cada una de las columnas de la tabla.
      */
@@ -168,7 +214,7 @@ public class UtilsCLI {
      */
     private static int anchoTotalTabla(int[] anchos) {
         int anchoTotal = 4;
-        for (int ancho: anchos)
+        for (int ancho : anchos)
             anchoTotal += ancho;
         anchoTotal += (anchos.length - 1) * 3;
         return anchoTotal;
@@ -177,7 +223,7 @@ public class UtilsCLI {
     /**
      * Imprime una fila de datos de la tabla por pantalla
      *
-     * @param fila Columnas con los datos a ser mostrados
+     * @param fila   Columnas con los datos a ser mostrados
      * @param anchos Anchos de las columnas
      */
     private static void imprimirFilaTabla(Object[] fila, int[] anchos) {
@@ -216,7 +262,7 @@ public class UtilsCLI {
      * Imprime por pantalla un mensaje para solicitar datos al usuario
      *
      * @param datoSolicitado Texto con el dato solicitado
-     * @param tipo Tipo de dato solicitado
+     * @param tipo           Tipo de dato solicitado
      */
     public static void imprimirSolicitar(String datoSolicitado, String tipo) {
         System.out.print("Ingrese " + datoSolicitado + "(" + tipo + "): ");
@@ -234,7 +280,7 @@ public class UtilsCLI {
     /**
      * Imprime por pantalla la opción para ingresar datos al usuario
      *
-     * @param tipo Tipo de dato solicitado (para ser mostrado)
+     * @param tipo    Tipo de dato solicitado (para ser mostrado)
      * @param ejemplo Ejemplo para ser mostrado
      */
     public static void imprimirIngresarOpcion(String tipo, String ejemplo) {
@@ -245,17 +291,17 @@ public class UtilsCLI {
      * Imprime un título centrado
      *
      * @param titulo Titulo a ser impreso
-     * @param ancho Ancho de caracteres para centrar el título
+     * @param ancho  Ancho de caracteres para centrar el título
      */
     public static void imprimirTitulo(String titulo, int ancho) {
-        System.out.println(String.format("%" + ((ancho - titulo.length())/(2) - 1) + "s %s", " ", titulo));
+        System.out.println(String.format("%" + ((ancho - titulo.length()) / (2) - 1) + "s %s", " ", titulo));
     }
 
     /**
      * Imprime un caracter una cantidad de veces
      *
      * @param caracter Caracter a ser impreso
-     * @param veces Cantidad de veces que se desea se imprima el caracter
+     * @param veces    Cantidad de veces que se desea se imprima el caracter
      */
     public static void imprimirCaracter(char caracter, int veces) {
         System.out.println(new String(new char[veces]).replace('\0', caracter));
@@ -264,19 +310,19 @@ public class UtilsCLI {
     /**
      * Imprime por pantalla una tabla con datos
      *
-     * @param data Datos a ser impresos
+     * @param data   Datos a ser impresos
      * @param header Cabecera de la tabla
      * @param titulo Título de la tabla
      */
     public static void imprimirTabla(Object[][] data, String[] header, String titulo) {
-        int[] anchos =anchoColumnas(data, header);
+        int[] anchos = anchoColumnas(data, header);
         int anchoTotal = anchoTotalTabla(anchos);
 
         imprimirTitulo(titulo, anchoTotal);
         imprimirCaracter('-', anchoTotal);
         imprimirFilaTabla(header, anchos);
         imprimirCaracter('-', anchoTotal);
-        for (Object[] fila: data) {
+        for (Object[] fila : data) {
             imprimirFilaTabla(fila, anchos);
         }
         imprimirCaracter('-', anchoTotal);
@@ -285,12 +331,13 @@ public class UtilsCLI {
 
     /**
      * Imprime por pantalla un menú con sus ítems y opciones
+     *
      * @param menuItems Ítems del menú
-     * @param titulo Título del menú
+     * @param titulo    Título del menú
      */
     public static void imprimirMenu(Object[][] menuItems, String titulo) {
         System.out.println("\n" + titulo);
-        for (Object[] item: menuItems) {
+        for (Object[] item : menuItems) {
             System.out.print("  -> ");
             System.out.println(String.format("%s %2s %2s - %s", "(", item[0], ")", item[1]));
             System.out.println(String.format("%14s %s", " ", item[2]));

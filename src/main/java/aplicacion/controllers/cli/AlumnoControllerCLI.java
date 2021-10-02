@@ -68,14 +68,35 @@ public class AlumnoControllerCLI {
     }
 
     /**
+     * Solicita los datos necesarios al usuario para crear un objeto de tipo Alumno, generado desde la edición de un
+     * alumno inicial.
+     *
+     * @param alumnoOriginal Alumno original (para actualizar datos)
+     * @return Alumno
+     * @throws IOException Posibles errores de entrada/salida de datos
+     */
+    private Alumno obtenerDatosAlumno(Alumno alumnoOriginal) throws IOException {
+        String nombres, apPat, apMat;
+        UtilsCLI.imprimirSolicitar("los nombres del alumno", "texto");
+        nombres = this.lector.readLine();
+        UtilsCLI.imprimirSolicitar("el apellido paterno del alumno", "texto");
+        apPat = this.lector.readLine();
+        UtilsCLI.imprimirSolicitar("el apellido materno del alumno", "texto");
+        apMat = this.lector.readLine();
+        return new Alumno(alumnoOriginal.getRut(), nombres, apPat, apMat, alumnoOriginal.getApoderado());
+    }
+
+    /**
      * Controla el flujo de trabajo de la opción marcada por el usuario, en el menú de gestión de alumnos.
      *
      * @param opt Entero que contiene la opción marcada por el usuario
      * @throws IOException Posibles errores de entrada/salida de datos
      */
     private void opcMenuAlumnos(short opt) throws IOException {
+        Alumno alumno, alumnoEditado;
         int nivel;
         char paralelo;
+        String rut;
         switch (opt) {
             case 0:
                 break;
@@ -98,6 +119,43 @@ public class AlumnoControllerCLI {
                 paralelo = this.lector.readLine().charAt(0);
                 this.alumnoViewCLI.mostrarTablaAlumnos(this.alumnoData.getAlumnos(nivel, paralelo),
                         Curso.cursoToString(nivel, paralelo));
+                break;
+            case 3:
+                UtilsCLI.imprimirSolicitar("el nivel de los alumnos", "número de 1 a 12");
+                nivel = Integer.parseInt(this.lector.readLine());
+                UtilsCLI.imprimirSolicitar("el paralelo al que pertenecen los alumnos", "caracter");
+                paralelo = this.lector.readLine().charAt(0);
+                UtilsCLI.imprimirSolicitar("el RUT del alumno", "sin puntos, con guión");
+                rut = this.lector.readLine();
+                alumno = this.alumnoData.getAlumno(rut);
+                if (alumno == null) {
+                    UtilsCLI.mensajeErrOpc();
+                    break;
+                }
+                System.out.println("Editando alumno:\n  Nombre: " + alumno.getNombreCompleto() + "\n  RUT: " + rut);
+                alumnoEditado = obtenerDatosAlumno(alumno);
+                if (this.alumnoData.updateAlumno(alumnoEditado, nivel, paralelo))
+                    System.out.println("Alumno actualizado exitosamente.");
+                else
+                    System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
+                break;
+            case 4:
+                UtilsCLI.imprimirSolicitar("el nivel de los alumnos", "número de 1 a 12");
+                nivel = Integer.parseInt(this.lector.readLine());
+                UtilsCLI.imprimirSolicitar("el paralelo al que pertenecen los alumnos", "caracter");
+                paralelo = this.lector.readLine().charAt(0);
+                UtilsCLI.imprimirSolicitar("el RUT del alumno", "sin puntos, con guión");
+                rut = this.lector.readLine();
+                alumno = this.alumnoData.getAlumno(rut);
+                if (alumno == null) {
+                    UtilsCLI.mensajeErrOpc();
+                    break;
+                }
+                System.out.println("Eliminando alumno:\n  Nombre: " + alumno.getNombreCompleto() + "\n  RUT: " + rut);
+                if (this.alumnoData.deleteAlumno(alumno, nivel, paralelo))
+                    System.out.println("Alumno eliminado exitosamente.");
+                else
+                    System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
                 break;
             default:
                 UtilsCLI.mensajeErrOpc();

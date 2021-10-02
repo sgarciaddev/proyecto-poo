@@ -1,6 +1,7 @@
 package aplicacion.data.datafile;
 
 import aplicacion.data.CursoData;
+import aplicacion.models.Alumno;
 import aplicacion.models.Curso;
 
 import java.util.ArrayList;
@@ -131,6 +132,9 @@ public class CursoDatafile implements CursoData {
      */
     @Override
     public boolean deleteCurso(Curso curso) {
+        for (Alumno alumno: curso.getAlumnos().values()) {
+            this.alDatafile.deleteAlumno(alumno, curso.getNivel(), curso.getLetra());
+        }
         return this.datafile.deleteLine(cursoToCSV(curso));
     }
 }

@@ -2,6 +2,7 @@ package aplicacion.views.cli;
 
 import aplicacion.controllers.cli.AlumnoControllerCLI;
 import aplicacion.controllers.cli.CursoControllerCLI;
+import aplicacion.models.Curso;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -44,6 +45,21 @@ public class CLI {
     }
 
     /**
+     * Muestra el menú de generación de reportes por pantalla
+     *
+     * @throws IOException Posible errores de entrada/salida de datos
+     */
+    private void mostrarMenuReportes() throws IOException {
+        short opt = -1;
+        while (opt != 0) {
+            UtilsCLI.imprimirMenu(UtilsCLI.opcMenuReportes, "Generar reportes");
+            UtilsCLI.imprimirIngresarOpcion("numérica");
+            opt = Short.parseShort(this.lector.readLine());
+            opcMenuReportes(opt);
+        }
+    }
+
+    /**
      * Muestra el menú de administración del colegio por pantalla
      *
      * @throws IOException Posible errores de entrada/salida de datos
@@ -72,6 +88,8 @@ public class CLI {
                 mostrarMenuAdmin();
                 break;
             case 2:
+                mostrarMenuReportes();
+                break;
             case 3:
                 System.out.println("\nEsta funcionalidad aún no ha sido implementada\n");
                 break;
@@ -102,6 +120,40 @@ public class CLI {
                 break;
             case 3:
                 System.out.println("\nEsta funcionalidad aún no ha sido implementada\n");
+                break;
+            default:
+                UtilsCLI.mensajeErrOpc();
+                break;
+        }
+    }
+
+    /**
+     * Controla el flujo de trabajo de la opción marcada por el usuario, en el menú de generación de reportes del
+     * colegio.
+     *
+     * @param opt Entero que contiene la opción marcada por el usuario
+     * @throws IOException Posibles errores de entrada/salida de datos
+     */
+    private void opcMenuReportes(short opt) throws IOException {
+        int nivel;
+        char paralelo;
+        switch (opt) {
+            case 0:
+                break;
+            case 9:
+                UtilsCLI.mensajeDespedida();
+                System.exit(0);
+            case 1:
+                UtilsCLI.imprimirSolicitar("el nivel del alumno", "número de 1 a 12");
+                nivel = Integer.parseInt(this.lector.readLine());
+                UtilsCLI.imprimirSolicitar("el paralelo al que pertenece el alumno", "caracter");
+                paralelo = this.lector.readLine().charAt(0);
+                // Todo: Agregar funcion
+                System.out.println("Generar reporte del curso " + nivel + "/" + paralelo);
+                break;
+            case 2:
+                // Todo: Agregar funcion
+                System.out.println("Generar reporte de todos los cursos");
                 break;
             default:
                 UtilsCLI.mensajeErrOpc();

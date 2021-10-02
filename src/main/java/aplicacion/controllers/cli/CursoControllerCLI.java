@@ -65,6 +65,34 @@ public class CursoControllerCLI {
     }
 
     /**
+     * Solicita los datos necesarios al usuario para editar el profesor jefe de un curso definido.
+     *
+     * @param cursoOriginal Curso original a basar la información
+     * @return Curso
+     * @throws IOException Posibles errores de entrada/salida de datos
+     */
+    private Curso obtenerDatosCurso(Curso cursoOriginal) throws IOException {
+        int telefono;
+        String rut, nombres, apPat, apMat, email, asignatura;
+        UtilsCLI.imprimirSolicitar("el RUT del profesor jefe", "RUT");
+        rut = this.lector.readLine();
+        UtilsCLI.imprimirSolicitar("los nombres del profesor jefe", "texto");
+        nombres = this.lector.readLine();
+        UtilsCLI.imprimirSolicitar("el apellido paterno del profesor jefe", "texto");
+        apPat = this.lector.readLine();
+        UtilsCLI.imprimirSolicitar("el apellido materno del profesor jefe", "texto");
+        apMat = this.lector.readLine();
+        UtilsCLI.imprimirSolicitar("la asignatura del profesor jefe", "texto");
+        asignatura = this.lector.readLine();
+        UtilsCLI.imprimirSolicitar("el email del profesor jefe", "texto");
+        email = this.lector.readLine();
+        UtilsCLI.imprimirSolicitar("el teléfono del profesor jefe", "texto");
+        telefono = Integer.parseInt(this.lector.readLine());
+        return new Curso(cursoOriginal.getNivel(), cursoOriginal.getLetra(), new Profesor(rut, nombres, apPat, apMat,
+                asignatura, email, telefono));
+    }
+
+    /**
      * Controla el flujo de trabajo de la opción marcada por el usuario, en el menú de gestión de cursos.
      *
      * @param opt Entero que contiene la opción marcada por el usuario
@@ -83,6 +111,14 @@ public class CursoControllerCLI {
                 break;
             case 2:
                 this.cursoView.mostrarTablaCursos(this.cursoData.getCursos());
+                break;
+            case 3:
+                // Todo: Agregar funcionalidad
+                System.out.println("Asignar nuevo profesor jefe a curso");
+                break;
+            case 4:
+                // Todo: Agregar funcionalidad
+                System.out.println("Aquí se elimina un curso");
                 break;
             default:
                 UtilsCLI.mensajeErrOpc();
