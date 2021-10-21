@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 /**
  * Aplicación principal de la interfaz de consola de comandos (CLI).
  *
@@ -179,6 +181,8 @@ public class CLI {
      * @throws IOException Posibles errores de entrada/salida de datos
      */
     public static void main(String[] args) throws IOException {
+        Dotenv dotenv = Dotenv.load();
+        System.out.println(dotenv.get("TESTING"));
         UtilsCLI.mensajeBienvenida();
         CLI cli = new CLI();
         cli.mostrarMenuPrincipal();

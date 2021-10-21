@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  poo_database:
+    image: mysql:latest
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_spanish_ci
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+
+  db_phpMyAdmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=poo_database
+      - PMA_USER=${MYSQL_ROOT}
+      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    depends_on:
+      - poo_database
+volumes:
+  mysql_data:
