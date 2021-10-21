@@ -20,10 +20,10 @@ public class CursoViewCLI {
     public void mostrarTablaCursos(List<Curso> cursos) {
         int i = 0;
         Object[][] data = new Object[cursos.size()][UtilsCLI.headersCursos.length];
-        for (Curso curso: cursos) {
+        for (Curso curso : cursos) {
             data[i][0] = curso.toShortStr();
             data[i][1] = curso.getNivel();
-            data[i][2] = curso.getLetra();
+            data[i][2] = curso.getParalelo();
             data[i][3] = curso.getProfesorJefe().getNombreCompleto();
             data[i][4] = curso.getProfesorJefe().getEmail();
             data[i][5] = curso.getProfesorJefe().getTelefono();
@@ -38,4 +38,5 @@ public class CursoViewCLI {
     public void mostrarMenuCursos() {
         UtilsCLI.imprimirMenu(UtilsCLI.opcMenuCursos, "Gestionar cursos");
     }
+
 }

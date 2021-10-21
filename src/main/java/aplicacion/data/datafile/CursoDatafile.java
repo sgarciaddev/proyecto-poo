@@ -38,7 +38,7 @@ public class CursoDatafile implements CursoData {
     public String cursoToCSV(Curso curso) {
         List<String> dataList = new ArrayList<>();
         dataList.add(Short.toString(curso.getNivel()));
-        dataList.add(Character.toString(curso.getLetra()));
+        dataList.add(Character.toString(curso.getParalelo()));
         dataList.add(curso.getProfesorJefe().getRut());
         return Datafile.listToCSV(dataList);
     }
@@ -120,7 +120,7 @@ public class CursoDatafile implements CursoData {
      */
     @Override
     public boolean updateCurso(Curso curso) {
-        String oldLine = cursoToCSV(getCurso(curso.getNivel(), curso.getLetra())), newLine = cursoToCSV(curso);
+        String oldLine = cursoToCSV(getCurso(curso.getNivel(), curso.getParalelo())), newLine = cursoToCSV(curso);
         return this.datafile.updateLine(oldLine, newLine);
     }
 
@@ -133,7 +133,7 @@ public class CursoDatafile implements CursoData {
     @Override
     public boolean deleteCurso(Curso curso) {
         for (Alumno alumno: curso.getAlumnos().values()) {
-            this.alDatafile.deleteAlumno(alumno, curso.getNivel(), curso.getLetra());
+            this.alDatafile.deleteAlumno(alumno);
         }
         this.prDatafile.deleteProfesor(curso.getProfesorJefe());
         return this.datafile.deleteLine(cursoToCSV(curso));

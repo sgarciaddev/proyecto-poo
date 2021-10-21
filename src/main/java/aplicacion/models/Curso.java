@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class Curso {
     private short nivel;
-    private char letra;
+    private char paralelo;
     private Profesor profesorJefe;
     private Map<String, Alumno> alumnos;
 
@@ -19,13 +19,13 @@ public class Curso {
      * Genera un objeto de tipo Curso
      *
      * @param nivel        Nivel (de 1 a 12) del curso
-     * @param letra        Caracter identificador del paralelo del curso
+     * @param paralelo        Caracter identificador del paralelo del curso
      * @param profesorJefe Profesor jefe a cargo del curso
      * @param alumnos      Lista de alumnos del curso
      */
-    public Curso(short nivel, char letra, Profesor profesorJefe, Map<String, Alumno> alumnos) {
+    public Curso(short nivel, char paralelo, Profesor profesorJefe, Map<String, Alumno> alumnos) {
         this.nivel = nivel;
-        this.letra = letra;
+        this.paralelo = paralelo;
         this.profesorJefe = profesorJefe;
         this.alumnos = alumnos;
     }
@@ -34,12 +34,12 @@ public class Curso {
      * Genera un objeto de tipo Curso
      *
      * @param nivel        Nivel (de 1 a 12) del curso
-     * @param letra        Caracter identificador del paralelo del curso
+     * @param paralelo        Caracter identificador del paralelo del curso
      * @param profesorJefe Profesor jefe a cargo del curso
      */
-    public Curso(short nivel, char letra, Profesor profesorJefe) {
+    public Curso(short nivel, char paralelo, Profesor profesorJefe) {
         this.nivel = nivel;
-        this.letra = letra;
+        this.paralelo = paralelo;
         this.profesorJefe = profesorJefe;
         this.alumnos = new HashMap<String, Alumno>();
     }
@@ -74,12 +74,12 @@ public class Curso {
     }
 
     /**
-     * Obtiene la letra identificadora de paralelo del curso
+     * Obtiene la paralelo identificadora de paralelo del curso
      *
      * @return Caracter identificador del paralelo del curso
      */
-    public char getLetra() {
-        return letra;
+    public char getParalelo() {
+        return paralelo;
     }
 
     /**
@@ -137,19 +137,19 @@ public class Curso {
      * @return String con el curso en palabras
      */
     public String cursoToString() {
-        return this.nivelToString() + " " + Character.toUpperCase(this.letra);
+        return this.nivelToString() + " " + Character.toUpperCase(this.paralelo);
     }
 
     /**
-     * Permite obtener el curso en formato nivel-letra. Ejemplo: `4MB`
+     * Permite obtener el curso en formato nivel-paralelo. Ejemplo: `4MB`
      *
      * @return String con el curso en formato corto
      */
     public String toShortStr() {
         if (this.nivel >= 9) {
-            return Integer.toString(this.nivel - 8) + "M" + Character.toUpperCase(this.letra);
+            return Integer.toString(this.nivel - 8) + "M" + Character.toUpperCase(this.paralelo);
         } else {
-            return Integer.toString(this.nivel) + "B" + Character.toUpperCase(this.letra);
+            return Integer.toString(this.nivel) + "B" + Character.toUpperCase(this.paralelo);
         }
     }
 }

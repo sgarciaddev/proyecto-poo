@@ -1,6 +1,7 @@
 package aplicacion.controllers.cli;
 
 import aplicacion.data.AlumnoData;
+import aplicacion.data.database.AlumnoDB;
 import aplicacion.data.datafile.AlumnoDatafile;
 import aplicacion.models.Alumno;
 import aplicacion.models.Apoderado;
@@ -29,7 +30,7 @@ public class AlumnoControllerCLI {
      * @param lector BufferedReader lector utilizado en el main
      */
     public AlumnoControllerCLI(BufferedReader lector) {
-        this.alumnoData = new AlumnoDatafile();
+        this.alumnoData = new AlumnoDB();
         this.alumnoViewCLI = new AlumnoViewCLI();
         this.lector = lector;
     }
@@ -40,7 +41,7 @@ public class AlumnoControllerCLI {
      * @return Alumno
      * @throws IOException Posibles errores de entrada/salida de datos
      */
-    private Alumno obtenerDatosAlumno() throws IOException {
+    private Alumno obtenerDatosAlumno(int nivel, char paralelo) throws IOException {
         int telefonoAp;
         String rut, nombres, apPat, apMat, rutAp, nombresAp, apPatAp, apMatAp, emailAp;
         UtilsCLI.imprimirSolicitar("el RUT del alumno", "RUT");
@@ -63,8 +64,8 @@ public class AlumnoControllerCLI {
         emailAp = this.lector.readLine();
         UtilsCLI.imprimirSolicitar("el teléfono del apoderado", "texto");
         telefonoAp = Integer.parseInt(this.lector.readLine());
-        return new Alumno(rut, nombres, apPat, apMat, new Apoderado(rutAp, nombresAp, apPatAp, apMatAp, telefonoAp,
-                emailAp));
+        return new Alumno(rut, nombres, apPat, apMat, nivel, paralelo, new Apoderado(rutAp, nombresAp, apPatAp, apMatAp,
+                telefonoAp, emailAp));
     }
 
     /**
@@ -75,7 +76,7 @@ public class AlumnoControllerCLI {
      * @return Alumno
      * @throws IOException Posibles errores de entrada/salida de datos
      */
-    private Alumno obtenerDatosAlumno(Alumno alumnoOriginal) throws IOException {
+    private Alumno obtenerDatosAlumno(Alumno alumnoOriginal, int nivel, char paralelo) throws IOException {
         String nombres, apPat, apMat;
         UtilsCLI.imprimirSolicitar("los nombres del alumno", "texto");
         nombres = this.lector.readLine();
@@ -83,7 +84,8 @@ public class AlumnoControllerCLI {
         apPat = this.lector.readLine();
         UtilsCLI.imprimirSolicitar("el apellido materno del alumno", "texto");
         apMat = this.lector.readLine();
-        return new Alumno(alumnoOriginal.getRut(), nombres, apPat, apMat, alumnoOriginal.getApoderado());
+        return new Alumno(alumnoOriginal.getRut(), nombres, apPat, apMat, nivel, paralelo,
+                alumnoOriginal.getApoderado());
     }
 
     /**
@@ -108,7 +110,7 @@ public class AlumnoControllerCLI {
                 nivel = Integer.parseInt(this.lector.readLine());
                 UtilsCLI.imprimirSolicitar("el paralelo al que pertenece el alumno", "caracter");
                 paralelo = this.lector.readLine().charAt(0);
-                this.alumnoData.insertAlumno(obtenerDatosAlumno(), nivel, paralelo);
+                this.alumnoData.insertAlumno(obtenerDatosAlumno(nivel, paralelo));
                 this.alumnoViewCLI.mostrarTablaAlumnos(this.alumnoData.getAlumnos(nivel, paralelo),
                         Curso.cursoToString(nivel, paralelo));
                 break;
@@ -133,8 +135,8 @@ public class AlumnoControllerCLI {
                     break;
                 }
                 System.out.println("Editando alumno:\n  Nombre: " + alumno.getNombreCompleto() + "\n  RUT: " + rut);
-                alumnoEditado = obtenerDatosAlumno(alumno);
-                if (this.alumnoData.updateAlumno(alumnoEditado, nivel, paralelo))
+                alumnoEditado = obtenerDatosAlumno(alumno, nivel, paralelo);
+                if (this.alumnoData.updateAlumno(alumnoEditado))
                     System.out.println("Alumno actualizado exitosamente.");
                 else
                     System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
@@ -152,7 +154,7 @@ public class AlumnoControllerCLI {
                     break;
                 }
                 System.out.println("Eliminando alumno:\n  Nombre: " + alumno.getNombreCompleto() + "\n  RUT: " + rut);
-                if (this.alumnoData.deleteAlumno(alumno, nivel, paralelo))
+                if (this.alumnoData.deleteAlumno(alumno))
                     System.out.println("Alumno eliminado exitosamente.");
                 else
                     System.out.println("Ha ocurrido un error, por favor intente nuevamente.");

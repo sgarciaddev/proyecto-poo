@@ -47,29 +47,23 @@ public interface AlumnoData {
      * Agrega un alumno a los datos.
      *
      * @param alumno Alumno a agregar
-     * @param nivel  Nivel del alumno
-     * @param letra  Paralelo que identifica el curso del alumno
      * @return Valor de verdad sobre el éxito o fracaso de la operación
      */
-    boolean insertAlumno(Alumno alumno, int nivel, char letra);
+    boolean insertAlumno(Alumno alumno);
 
     /**
      * Actualiza un alumno.
      *
      * @param alumno Alumno a actualizar
-     * @param nivel  Nivel del alumno
-     * @param letra  Paralelo que identifica el curso del alumno
      * @return Valor de verdad sobre el éxito o fracaso de la operación
      */
-    boolean updateAlumno(Alumno alumno, int nivel, char letra);
+    boolean updateAlumno(Alumno alumno);
 
     /**
      * Elimina un alumno
      *
      * @param alumno Alumno a eliminar
-     * @param nivel  Nivel del alumno
-     * @param letra  Paralelo que identifica el curso del alumno
      * @return Valor de verdad sobre el éxito o fracaso de la operación
      */
-    boolean deleteAlumno(Alumno alumno, int nivel, char letra);
+    boolean deleteAlumno(Alumno alumno);
 }
