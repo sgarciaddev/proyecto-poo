@@ -7,8 +7,10 @@ package aplicacion.models;
  * @version 1.0
  */
 public class Alumno extends Persona {
-    private Apoderado apoderado;
+    private final Apoderado apoderado;
     private RegistroAsistencia asistencia;
+    private int nivel;
+    private char paralelo;
 
     /**
      * Genera un objeto de tipo Alumno
@@ -19,8 +21,11 @@ public class Alumno extends Persona {
      * @param apMaterno Apellido materno del alumno
      * @param apoderado Apoderado del alumno
      */
-    public Alumno(String rut, String nombres, String apPaterno, String apMaterno, Apoderado apoderado) {
+    public Alumno(String rut, String nombres, String apPaterno, String apMaterno, int nivel,
+                  char paralelo, Apoderado apoderado) {
         super(rut, nombres, apPaterno, apMaterno);
+        this.nivel = nivel;
+        this.paralelo = paralelo;
         this.apoderado = apoderado;
         this.asistencia = new RegistroAsistencia();
     }
@@ -51,4 +56,21 @@ public class Alumno extends Persona {
     public void setAsistencia(RegistroAsistencia asistencia) {
         this.asistencia = asistencia;
     }
+
+    public int getNivel() {
+        return this.nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public char getParalelo() {
+        return this.paralelo;
+    }
+
+    public void setParalelo(char paralelo) {
+        this.paralelo = paralelo;
+    }
+
 }

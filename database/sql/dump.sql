@@ -1262,7 +1262,8 @@ CREATE TABLE IF NOT EXISTS ProyectoPOO.Alumnos (
     apellido_materno VARCHAR (25) NOT NULL,
     rut_apoderado VARCHAR (10) NOT NULL,
     PRIMARY KEY (rut),
-    FOREIGN KEY (rut_apoderado) REFERENCES ProyectoPOO.Apoderados (rut)
+    FOREIGN KEY (rut_apoderado) REFERENCES ProyectoPOO.Apoderados (rut),
+    FOREIGN KEY (nivel, paralelo) REFERENCES ProyectoPOO.Cursos (nivel, paralelo)
     ) ENGINE = InnoDB;
 
 INSERT IGNORE INTO ProyectoPOO.Alumnos (nivel, paralelo, rut, nombres, apellido_paterno, apellido_materno, rut_apoderado)

@@ -33,14 +33,12 @@ public class AlumnoDatafile implements AlumnoData {
      * contiene los valores en formato CSV.
      *
      * @param alumno Alumno a obtener sus valores
-     * @param nivel  Valor numérico con el nivel del alumno
-     * @param letra  Caracter que identifica el paralelo al que pertenece el alumno
      * @return String con formato CSV que contiene los datos del alumno
      */
-    public String alumnoToCSV(Alumno alumno, int nivel, char letra) {
+    public String alumnoToCSV(Alumno alumno) {
         List<String> dataList = new ArrayList<>();
-        dataList.add(Integer.toString(nivel));
-        dataList.add(Character.toString(letra));
+        dataList.add(Integer.toString(alumno.getNivel()));
+        dataList.add(Character.toString(alumno.getParalelo()));
         dataList.add(alumno.getRut());
         dataList.add(alumno.getNombres());
         dataList.add(alumno.getApPaterno());
@@ -58,7 +56,13 @@ public class AlumnoDatafile implements AlumnoData {
      */
     public Alumno alumnoFromCSV(String csv) {
         String[] parts = csv.split(",");
-        return new Alumno(parts[2], parts[3], parts[4], parts[5], this.apDataFile.getApoderado(parts[6]));
+        return new Alumno(parts[2],
+                          parts[3],
+                          parts[4],
+                          parts[5],
+                          Integer.parseInt(parts[0]),
+                          parts[1].charAt(0),
+                          this.apDataFile.getApoderado(parts[6]));
     }
 
     /**
@@ -142,40 +146,34 @@ public class AlumnoDatafile implements AlumnoData {
      * Inserta un nuevo alumno al archivo plano que los contiene
      *
      * @param alumno Alumno a agregar al archivo
-     * @param nivel  Nivel del alumno a agregar al archivo
-     * @param letra  Paralelo del curso del alumno a agregar al archivo
      * @return Valor de verdad de la operación de inserción
      */
     @Override
-    public boolean insertAlumno(Alumno alumno, int nivel, char letra) {
-        return this.datafile.insertLine(alumnoToCSV(alumno, nivel, letra)) && this.apDataFile.insertApoderado(alumno.getApoderado());
+    public boolean insertAlumno(Alumno alumno) {
+        return this.datafile.insertLine(alumnoToCSV(alumno)) && this.apDataFile.insertApoderado(alumno.getApoderado());
     }
 
     /**
      * Actualiza un alumno en el archivo plano que los contiene
      *
      * @param alumno Alumno a actualizar en el archivo
-     * @param nivel  Nivel del alumno a actualizar en el archivo
-     * @param letra  Paralelo del curso del alumno a actualizar en el archivo
      * @return Valor de verdad de la operación de actualización
      */
     @Override
-    public boolean updateAlumno(Alumno alumno, int nivel, char letra) {
+    public boolean updateAlumno(Alumno alumno) {
         Alumno oldData = getAlumno(alumno.getRut());
-        return this.datafile.updateLine(alumnoToCSV(oldData, nivel, letra), alumnoToCSV(alumno, nivel, letra));
+        return this.datafile.updateLine(alumnoToCSV(oldData), alumnoToCSV(alumno));
     }
 
     /**
      * Elimina un alumno del archivo plano
      *
      * @param alumno Alumno a agregar al archivo
-     * @param nivel  Nivel del alumno a agregar al archivo
-     * @param letra  Paralelo del curso del alumno a agregar al archivo
      * @return Valor de verdad de la operación de borrado
      */
     @Override
-    public boolean deleteAlumno(Alumno alumno, int nivel, char letra) {
+    public boolean deleteAlumno(Alumno alumno) {
         this.apDataFile.deleteApoderado(alumno.getApoderado());
-        return this.datafile.deleteLine(alumnoToCSV(alumno, nivel, letra));
+        return this.datafile.deleteLine(alumnoToCSV(alumno));
     }
 }

@@ -2,13 +2,16 @@ package aplicacion.views.cli;
 
 import aplicacion.controllers.cli.AlumnoControllerCLI;
 import aplicacion.controllers.cli.CursoControllerCLI;
+
+import aplicacion.data.*;
+import aplicacion.data.database.*;
+import aplicacion.data.datafile.*;
+
 import aplicacion.models.Curso;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import io.github.cdimascio.dotenv.Dotenv;
 
 /**
  * Aplicación principal de la interfaz de consola de comandos (CLI).
@@ -22,6 +25,11 @@ public class CLI {
     private final CursoControllerCLI cursoController;
     private final AlumnoControllerCLI alumnoController;
 
+    private final AlumnoData alumnoData;
+    private final ApoderadoData apoderadoData;
+    private final ProfesorData profesorData;
+    private final CursoData cursoData;
+
     /**
      * Genera la instancia de la aplicación CLI
      */
@@ -29,6 +37,23 @@ public class CLI {
         this.lector = new BufferedReader(new InputStreamReader(System.in));
         this.cursoController = new CursoControllerCLI(this.lector);
         this.alumnoController = new AlumnoControllerCLI(this.lector);
+
+        // Se intenta conexión con la base da datos y se verifica
+        UtilsCLI.mensajeIntentandoConexionMySQL();
+        if (DBConnection.connect() == null) {
+            UtilsCLI.mensajeExitoConexionMySQL();
+            this.alumnoData = new AlumnoDB();
+            this.apoderadoData = new ApoderadoDB();
+            this.profesorData = new ProfesorDB();
+            this.cursoData = new CursoDB();
+        } else {
+            UtilsCLI.mensajeUtilizandoDatafile();
+            this.alumnoData = new AlumnoDatafile();
+            this.apoderadoData = new ApoderadoDatafile();
+            this.profesorData = new ProfesorDatafile();
+            this.cursoData = new CursoDatafile();
+        }
+
     }
 
     /**
@@ -181,8 +206,6 @@ public class CLI {
      * @throws IOException Posibles errores de entrada/salida de datos
      */
     public static void main(String[] args) throws IOException {
-        Dotenv dotenv = Dotenv.load();
-        System.out.println(dotenv.get("TESTING"));
         UtilsCLI.mensajeBienvenida();
         CLI cli = new CLI();
         cli.mostrarMenuPrincipal();
