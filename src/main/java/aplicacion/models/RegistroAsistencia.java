@@ -1,5 +1,7 @@
 package aplicacion.models;
 
+import java.util.Random;
+
 /**
  * Clase que registra la asistencia de un alumno, para un año escolar completo.
  *
@@ -39,6 +41,17 @@ public class RegistroAsistencia {
      * @return Porcentaje de asistencia (entre 0 y 1).
      */
     public float obtenerAsistencia() {
+        float totalDiasAsistidos = 0;
+
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 31; j++){
+                if (Float.compare(this.asistencia[j][i], 1.0f) == 0 || Float.compare(this.asistencia[j][i], 0.5f) == 0){
+                    totalDiasAsistidos++;
+                }
+            }
+        }
+        if (totalDiasAsistidos != 0)
+            return totalDiasAsistidos / 310;
         return 0.0f;
     }
 
@@ -60,6 +73,27 @@ public class RegistroAsistencia {
      * @return Porcentaje de asistencia (entre 0 y 1).
      */
     public float obtenerAsistencia(int dia, int mes) {
+        return 0.0f;
+    }
+
+    /**
+     * Permite obtener los retiros del alumno, calculada al día de realizada la consulta.
+     *
+     * @return Porcentaje de retiros (entre 0 y 1).
+     */
+
+    public float obtenerRetiros() {
+        float totalDiasRetirado = 0;
+
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 31; j++){
+                if (Float.compare(this.asistencia[j][i], 0.5f) == 0){
+                    totalDiasRetirado++;
+                }
+            }
+        }
+        if (totalDiasRetirado != 0)
+            return totalDiasRetirado / 310;
         return 0.0f;
     }
 }

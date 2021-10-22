@@ -43,7 +43,7 @@ public class CLI {
 
         // Se intenta conexión con la base da datos y se verifica
         UtilsCLI.mensajeIntentandoConexionMySQL();
-        if (DBConnection.connect() == null) {
+        if (DBConnection.connect() != null) {
             UtilsCLI.mensajeExitoConexionMySQL();
             this.alumnoData = new AlumnoDB();
             this.apoderadoData = new ApoderadoDB();
