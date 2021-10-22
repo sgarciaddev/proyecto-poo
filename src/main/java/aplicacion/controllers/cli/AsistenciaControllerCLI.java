@@ -5,8 +5,6 @@ import aplicacion.models.Curso;
 import aplicacion.views.cli.MenuCLI;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,9 +38,9 @@ public class AsistenciaControllerCLI {
      * @param value Valor por defecto que designa la opción del dato a retornar; 1 si es asistencia, 2 si es retiros
      * @return Alumno
      */
-    private Alumno getAlumnoRequerido(int value){
+    public Alumno getAlumnoRequerido(int value){
         Alumno alumnoReq = null;
-        List<Curso> cursos = this.cursoData.getCursos();
+        List<Curso> cursos = this.menuCLI.getCursoData().getCursos();
 
         for (Curso curso: cursos) {
             for (Alumno alumno: curso.getAlumnos().values()) {
@@ -64,23 +62,22 @@ public class AsistenciaControllerCLI {
      * @param value Valor por defecto que designa la opción del dato a retornar; 1 si es asistencia, 2 si es retiros
      * @return HashMap con los alumnos seleccionados
      */
-    private Map<String, Alumno> getEntrePorcentajes(int percent1, int percent2, int value){
-        List<Curso> cursos = this.cursoData.getCursos();
+    public Map<String, Alumno> getEntrePorcentajes(int percent1, int percent2, int value){
+        List<Curso> cursos = this.menuCLI.getCursoData().getCursos();
         Map<String, Alumno> alumnos = new HashMap<>();
-        int alumnoReq;
+        int alumnoReq = -1;
 
         for (Curso curso: cursos) {
             for (Alumno alumno: curso.getAlumnos().values()) {
                 if (value == 1){
                     alumnoReq = (int) Math.round((alumno.getAsistencia().obtenerAsistencia() * 100.0));
-                    if (alumnoReq >= percent1 && alumnoReq <= percent2)
                         alumnos.put(alumno.getRut(), alumno);
                 }
-                if (value == 0){
+                if (value == 0)
                     alumnoReq = (int) Math.round((alumno.getAsistencia().obtenerRetiros() * 100.0));
-                    if (alumnoReq >= percent1 && alumnoReq <= percent2)
-                        alumnos.put(alumno.getRut(), alumno);
-                }
+
+                if (alumnoReq >= percent1 && alumnoReq <= percent2)
+                    alumnos.put(alumno.getRut(), alumno);
             }
         }
         return alumnos;
