@@ -79,7 +79,7 @@ public class UtilsCLI {
             },
             {
                     3,
-                    "Gestionar asistencia (próximamente)",
+                    "Gestionar asistencia",
                     "Permite gestionar la asistencia de los alumnos"
             },
             {
@@ -189,6 +189,39 @@ public class UtilsCLI {
                     0,
                     "Volver al menú de administración",
                     "Salir de la gestión de alumnos"
+            }
+    };
+
+    public static final Object[][] opcMenuAsistencia = {
+            {
+                    1,
+                    "Alumno con mejor asistencia",
+                    "Permite ver el alumno con mejor asistencia del año"
+            },
+            {
+                    2,
+                    "Alumnos entre % y % de asistencia",
+                    "Permite ver los alumnos con los porcentajes de asistencia especificados"
+            },
+            {
+                    3,
+                    "Alumno con mas retiros",
+                    "Permite ver el alumno con mas retiros en el año"
+            },
+            {
+                    4,
+                    "Alumnos entre % y % de retiros",
+                    "Permite ver los alumnos con los porcentajes de retiros especificados"
+            },
+            {
+                    9,
+                    "Salir",
+                    "Salir de la aplicación"
+            },
+            {
+                    0,
+                    "Volver al menú de administración",
+                    "Salir de la gestión de cursos"
             }
     };
 
