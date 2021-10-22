@@ -7,29 +7,36 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que permite la interacción con la base de datos MySQL que almacena
+ * los datos del Curso. Implementa la interfaz CursoData.
+ *
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 2.0
+ */
 public class CursoDB implements CursoData {
 
     private final AlumnoDB alumnoData;
     private final ProfesorDB profesorData;
 
+    /**
+     * Constructor de CursoDB. Trabaja con una base de datos MySQL.
+     */
     public CursoDB() {
         this.alumnoData = new AlumnoDB();
         this.profesorData = new ProfesorDB();
     }
 
-    public static final String GET_TODOS_CURSOS = "SELECT * FROM Cursos";
-    public static final String GET_CURSOS_NIVEL = "SELECT * FROM Cursos WHERE nivel = %h";
-    public static final String GET_CURSO = "SELECT * FROM Cursos WHERE nivel = %d AND paralelo = '%c'";
-    public static final String INSERT_CURSO = "INSERT INTO Cursos (nivel, paralelo, rut_profesor) VALUES (%d, '%c', '%s')";
-    public static final String UPDATE_CURSO = "UPDATE Alumnos SET nivel = %d, paralelo = '%c' , rut_profesor = '%s' " +
-                    "WHERE nivel = %d AND paralelo = '%c'";
-    public static final String DELETE_CURSO = "DELETE FROM Cursos WHERE nivel = %d AND paralelo = '%c'";
-
+    /**
+     * Permite obtener todos los cursos almacenados en la base de datos MySQL.
+     *
+     * @return ArrayList de cursos
+     */
     @Override
     public List<Curso> getCursos() {
         List<Curso> cursos = new ArrayList<>();
         try {
-            ResultSet resultados = DBConnection.getQuery(GET_TODOS_CURSOS);
+            ResultSet resultados = DBConnection.getQuery(SQLSentences.GET_TODOS_CURSOS.toString());
             if (resultados == null) return null;
             while (resultados.next()) {
                 cursos.add(new Curso(
@@ -45,11 +52,17 @@ public class CursoDB implements CursoData {
         }
     }
 
+    /**
+     * Permite obtener los cursos de cierto nivel, almacenados en la base de datos MySQL
+     *
+     * @param nivel Nivel que se desea filtrar
+     * @return ArrayList de cursos del nivel especificado
+     */
     @Override
     public List<Curso> getCursos(short nivel) {
         List<Curso> cursos = new ArrayList<>();
         try {
-            ResultSet resultados = DBConnection.getQuery(String.format(GET_CURSOS_NIVEL, nivel));
+            ResultSet resultados = DBConnection.getQuery(String.format(SQLSentences.GET_CURSOS_NIVEL.toString(), nivel));
             if (resultados == null) return null;
             while (resultados.next()) {
                 cursos.add(new Curso(
@@ -65,11 +78,18 @@ public class CursoDB implements CursoData {
         }
     }
 
+    /**
+     * Permite obtener un curso en específico, almacenado en la base de datos MySQL.
+     *
+     * @param nivel    Nivel del curso
+     * @param paralelo Letra identificadora de paralelo
+     * @return Curso solicitado
+     */
     @Override
     public Curso getCurso(short nivel, char paralelo) {
         Curso curso;
         try {
-            ResultSet resultados = DBConnection.getQuery(String.format(GET_CURSO, nivel, paralelo));
+            ResultSet resultados = DBConnection.getQuery(String.format(SQLSentences.GET_CURSO.toString(), nivel, paralelo));
             if (resultados == null) return null;
             if (resultados.next()) {
                 curso = new Curso(resultados.getShort("nivel"), resultados.getString("paralelo").charAt(0),
@@ -84,34 +104,45 @@ public class CursoDB implements CursoData {
         return null;
     }
 
+    /**
+     * Agrega un Curso a la base de datos MySQL
+     *
+     * @param curso Curso que se desea agregar a la base de datos
+     */
     @Override
-    public boolean insertCurso(Curso curso) {
-        if (DBConnection.updateQuery(String.format(INSERT_CURSO,
+    public void insertCurso(Curso curso) {
+        DBConnection.updateQuery(String.format(SQLSentences.INSERT_CURSO.toString(),
                 curso.getNivel(),
                 curso.getParalelo(),
-                curso.getProfesorJefe().getRut())) == 0)
-            return false;
-        return true;
+                curso.getProfesorJefe().getRut()));
     }
 
+    /**
+     * Actualiza un Curso en la base de datos MySQL
+     *
+     * @param curso Curso que se desea actualizar en la base de datos
+     * @return Valor de verdad (boolean) sobre el éxito o fracaso de la operación de actualización
+     */
     @Override
     public boolean updateCurso(Curso curso) {
-        if (DBConnection.updateQuery(String.format(UPDATE_CURSO,
+        return DBConnection.updateQuery(String.format(SQLSentences.UPDATE_CURSO.toString(),
                 curso.getNivel(),
                 curso.getParalelo(),
                 curso.getProfesorJefe().getRut(),
                 curso.getNivel(),
-                curso.getParalelo())) == 1)
-            return true;
-        return false;
+                curso.getParalelo())) == 1;
     }
 
+    /**
+     * Elimina un Curso de la base de datos MySQL
+     *
+     * @param curso Curso que se desea eliminar de la base de datos.
+     * @return Valor de verdad (boolean) sobre el éxito o fracaso de la operación de eliminación.
+     */
     @Override
     public boolean deleteCurso(Curso curso) {
-        if (DBConnection.updateQuery(String.format(DELETE_CURSO,
+        return DBConnection.updateQuery(String.format(SQLSentences.DELETE_CURSO.toString(),
                 curso.getNivel(),
-                curso.getParalelo())) == 1)
-            return true;
-        return false;
+                curso.getParalelo())) == 1;
     }
 }

@@ -1,12 +1,8 @@
 package aplicacion.controllers.cli;
 
-import aplicacion.data.CursoData;
-import aplicacion.data.datafile.CursoDatafile;
 import aplicacion.models.Alumno;
 import aplicacion.models.Curso;
-import aplicacion.views.cli.AlumnoViewCLI;
-import aplicacion.views.cli.AsistenciaViewCli;
-import aplicacion.views.cli.UtilsCLI;
+import aplicacion.views.cli.MenuCLI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,71 +15,23 @@ import java.util.Map;
  * Clase controladora del menú de gestión de Asistencia de la interfaz de linea de comandos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 
 public class AsistenciaControllerCLI {
-    private final CursoData cursoData;
-    private final AsistenciaViewCli asistenciaView;
-    private final AlumnoViewCLI alumnoViewCLI;
-    private final BufferedReader lector;
 
-    public AsistenciaControllerCLI(BufferedReader lector) {
-        this.cursoData = new CursoDatafile();
-        this.asistenciaView = new AsistenciaViewCli();
-        this.alumnoViewCLI = new AlumnoViewCLI();
-        this.lector = lector;
-    }
+    private final BufferedReader lector;
+    private final MenuCLI menuCLI;
 
     /**
-     * Controla el flujo de trabajo de la opción marcada por el usuario, en el menú de gestión de alumnos.
+     * Objeto controlador de Asistencia en la interfaz de línea de comandos
      *
-     * @param opt Entero que contiene la opción marcada por el usuario
-     * @throws IOException Posibles errores de entrada/salida de datos
+     * @param lector  Instancia de lector para lectura de datos ingresados por teclado.
+     * @param menuCLI Instancia del origen de datos de alumnos.
      */
-
-    private void opcMenuAsistencia(short opt) throws IOException {
-        Map<String, Alumno> alumnosEnPorcentaje;
-        int porcentaje1, porcentaje2;
-        Alumno alumno;
-        DecimalFormat df = new DecimalFormat("#.##");
-
-        switch (opt) {
-            case 0:
-                break;
-            case 9:
-                UtilsCLI.mensajeDespedida();
-                System.exit(0);
-            case 1:
-                System.out.println("Alumno con mejor Asistencia: ");
-                alumno = getAlumnoRequerido(1);
-                System.out.println(alumno.getNombreCompleto() + " con " + df.format(alumno.getAsistencia().obtenerAsistencia()) + "% de asistencia");
-                break;
-            case 2:
-                UtilsCLI.imprimirSolicitar("porcentaje 1 ", "número de 1 a 100");
-                porcentaje1 = Integer.parseInt(lector.readLine());
-                UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 1 a 100");
-                porcentaje2 = Integer.parseInt(lector.readLine());
-                alumnosEnPorcentaje = getEntrePorcentajes(porcentaje1, porcentaje2, 1);
-                alumnoViewCLI.mostrarTablaAlumnos(alumnosEnPorcentaje, "porcentaje dado ASISTENCIA");
-                break;
-            case 3:
-                System.out.println("Alumno con mas retiros: ");
-                alumno = getAlumnoRequerido(0);
-                System.out.println(alumno.getNombreCompleto() + " con " + df.format(alumno.getAsistencia().obtenerRetiros()) + "% de retiros");
-                break;
-            case 4:
-                UtilsCLI.imprimirSolicitar("porcentaje 1 ", "número de 1 a 100");
-                porcentaje1 = Integer.parseInt(lector.readLine());
-                UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 1 a 100");
-                porcentaje2 = Integer.parseInt(lector.readLine());
-                alumnosEnPorcentaje = getEntrePorcentajes(porcentaje1, porcentaje2, 0);
-                alumnoViewCLI.mostrarTablaAlumnos(alumnosEnPorcentaje, "porcentaje dado RETIROS");
-                break;
-            default:
-                UtilsCLI.mensajeErrIngresado();
-                break;
-        }
+    public AsistenciaControllerCLI(BufferedReader lector, MenuCLI menuCLI) {
+        this.menuCLI = menuCLI;
+        this.lector = lector;
     }
 
     /**
@@ -136,24 +84,6 @@ public class AsistenciaControllerCLI {
             }
         }
         return alumnos;
-    }
-
-
-
-    /**
-     * Muestra el menú de gestión de Asistencia por pantalla
-     *
-     * @throws IOException Posibles errores de entrada/salida de datos
-     */
-
-    public void mostrarMenuAsistencia() throws IOException {
-        short opt = -1;
-        while (opt != 0) {
-            this.asistenciaView.mostrarMenuAsistencia();
-            UtilsCLI.imprimirIngresarOpcion("numérica");
-            opt = Short.parseShort(this.lector.readLine());
-            opcMenuAsistencia(opt);
-        }
     }
 
 }

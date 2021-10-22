@@ -6,7 +6,7 @@ import java.util.Random;
  * Clase que registra la asistencia de un alumno, para un año escolar completo.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class RegistroAsistencia {
 

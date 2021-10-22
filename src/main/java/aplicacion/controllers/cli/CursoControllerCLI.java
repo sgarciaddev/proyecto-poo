@@ -1,44 +1,47 @@
 package aplicacion.controllers.cli;
 
-import aplicacion.data.CursoData;
-import aplicacion.data.ProfesorData;
-import aplicacion.data.database.CursoDB;
-import aplicacion.data.database.ProfesorDB;
 import aplicacion.data.datafile.Datafile;
 import aplicacion.models.Alumno;
 import aplicacion.models.Curso;
 import aplicacion.models.Profesor;
-import aplicacion.views.cli.CursoViewCLI;
+import aplicacion.views.cli.MenuCLI;
 import aplicacion.views.cli.UtilsCLI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Clase controladora del menú de gestión de Cursos de la interfaz de linea de comandos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class CursoControllerCLI {
-    private final CursoData cursoData;
-    private final ProfesorData profesorData;
-    private final CursoViewCLI cursoView;
     private final BufferedReader lector;
+    private final MenuCLI menuCLI;
 
     /**
      * Objeto controlador de Curso en la interfaz de línea de comandos
      *
-     * @param lector BufferedReader lector utilizado en el main
+     * @param lector  BufferedReader lector utilizado en el main
+     * @param menuCLI Instancia de menú con los origenes de datos.
      */
-    public CursoControllerCLI(BufferedReader lector) {
-        this.cursoData = new CursoDB();
-        this.profesorData = new ProfesorDB();
-        this.cursoView = new CursoViewCLI();
+    public CursoControllerCLI(BufferedReader lector, MenuCLI menuCLI) {
+        this.menuCLI = menuCLI;
         this.lector = lector;
     }
 
+    /**
+     * Genera el Datafile correspondiente a la generación de un reporte
+     *
+     * @param tipo Tipo de reporte
+     * @param id   ID del reporte
+     * @return Datafile con el reporte correspondiente.
+     */
     private Datafile generarReporte(String tipo, String id) {
         return new Datafile("reportes/" + tipo + "-" + id);
     }
@@ -49,7 +52,7 @@ public class CursoControllerCLI {
      * @return Curso
      * @throws IOException Posibles errores de entrada/salida de datos
      */
-    private Curso obtenerDatosCurso() throws IOException {
+    public Curso obtenerDatosCurso() throws IOException {
         int telefono;
         short nivel;
         char paralelo;
@@ -82,7 +85,7 @@ public class CursoControllerCLI {
      * @return Curso
      * @throws IOException Posibles errores de entrada/salida de datos
      */
-    private Curso obtenerDatosCurso(Curso cursoOriginal) throws IOException {
+    public Curso obtenerDatosCurso(Curso cursoOriginal) throws IOException {
         int telefono;
         String rut, nombres, apPat, apMat, email, asignatura;
         UtilsCLI.imprimirSolicitar("el RUT del profesor jefe", "RUT");
@@ -104,62 +107,6 @@ public class CursoControllerCLI {
     }
 
     /**
-     * Controla el flujo de trabajo de la opción marcada por el usuario, en el menú de gestión de cursos.
-     *
-     * @param opt Entero que contiene la opción marcada por el usuario
-     * @throws IOException Posibles errores de entrada/salida de datos
-     */
-    private void opcMenuCursos(short opt) throws IOException {
-        Curso curso, cursoActualizado;
-        short nivel;
-        char paralelo;
-        switch (opt) {
-            case 0:
-                break;
-            case 9:
-                UtilsCLI.mensajeDespedida();
-                System.exit(0);
-            case 1:
-                this.cursoData.insertCurso(obtenerDatosCurso());
-                this.cursoView.mostrarTablaCursos(this.cursoData.getCursos());
-                break;
-            case 2:
-                this.cursoView.mostrarTablaCursos(this.cursoData.getCursos());
-                break;
-            case 3:
-                UtilsCLI.imprimirSolicitar("el nivel de los alumnos", "número de 1 a 12");
-                nivel = Short.parseShort(this.lector.readLine());
-                UtilsCLI.imprimirSolicitar("el paralelo al que pertenecen los alumnos", "caracter");
-                paralelo = this.lector.readLine().charAt(0);
-                curso = this.cursoData.getCurso(nivel, paralelo);
-                System.out.println("Cambiando profesor jefe del " + curso.cursoToString());
-                cursoActualizado = obtenerDatosCurso(curso);
-                if (this.cursoData.updateCurso(cursoActualizado)) {
-                    this.profesorData.insertProfesor(cursoActualizado.getProfesorJefe());
-                    this.profesorData.deleteProfesor(curso.getProfesorJefe());
-                    System.out.println("El curso ha sido actualizado exitosamente");
-                } else
-                    System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
-                break;
-            case 4:
-                UtilsCLI.imprimirSolicitar("el nivel del curso", "número de 1 a 12");
-                nivel = Short.parseShort(this.lector.readLine());
-                UtilsCLI.imprimirSolicitar("el paralelo del curso", "caracter");
-                paralelo = this.lector.readLine().charAt(0);
-                curso = this.cursoData.getCurso(nivel, paralelo);
-                System.out.println("Eliminando curso " + curso.cursoToString());
-                if (this.cursoData.deleteCurso(curso))
-                    System.out.println("El curso ha sido eliminado exitosamente");
-                else
-                    System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
-                break;
-            default:
-                UtilsCLI.mensajeErrIngresado();
-                break;
-        }
-    }
-
-    /**
      * Método que permite generar el reporte con la lista de un curso específico.
      *
      * @param nivel Nivel del curso a generar reporte
@@ -168,10 +115,10 @@ public class CursoControllerCLI {
      */
     public String generarReporteListaCurso(short nivel, char paralelo) {
         Datafile reporteListaCurso = generarReporte("lista-curso", (nivel + "-" + paralelo));
-        reporteListaCurso.insertLine(Datafile.listToCSV(Arrays.asList(UtilsCLI.headersAlumnos)));
-        Map<String, Alumno> alumnos = this.cursoData.getCurso(nivel, paralelo).getAlumnos();
+        reporteListaCurso.insertLine(Datafile.listToCSV(Arrays.asList(UtilsCLI.headers.get("alumnos"))));
+        Map<String, Alumno> alumnos = this.menuCLI.getCursoData().getCurso(nivel, paralelo).getAlumnos();
         List<String> line = new ArrayList<>();
-        for (Alumno alumno: alumnos.values()) {
+        for (Alumno alumno : alumnos.values()) {
             line.add(alumno.getRut());
             line.add(alumno.getApPaterno());
             line.add(alumno.getApMaterno());
@@ -191,11 +138,11 @@ public class CursoControllerCLI {
      */
     public String generarReporteTablaCursos() {
         Datafile reporteTablaCursos = generarReporte("tabla-cursos",
-                Integer.toString((int) Math.floor(Math.random()*(9000)+1000)));
-        reporteTablaCursos.insertLine(Datafile.listToCSV(Arrays.asList(UtilsCLI.headersCursos)));
-        List<Curso> cursos = this.cursoData.getCursos();
+                Integer.toString((int) Math.floor(Math.random() * (9000) + 1000)));
+        reporteTablaCursos.insertLine(Datafile.listToCSV(Arrays.asList(UtilsCLI.headers.get("cursos"))));
+        List<Curso> cursos = this.menuCLI.getCursoData().getCursos();
         List<String> line = new ArrayList<>();
-        for (Curso curso: cursos) {
+        for (Curso curso : cursos) {
             line.add(curso.toShortStr());
             line.add(Short.toString(curso.getNivel()));
             line.add(Character.toString(curso.getParalelo()));
@@ -206,21 +153,6 @@ public class CursoControllerCLI {
             line.clear();
         }
         return reporteTablaCursos.getFilePath();
-    }
-
-    /**
-     * Muestra el menú de gestión de Cursos por pantalla
-     *
-     * @throws IOException Posibles errores de entrada/salida de datos
-     */
-    public void mostrarMenuCursos() throws IOException {
-        short opt = -1;
-        while (opt != 0) {
-            this.cursoView.mostrarMenuCursos();
-            UtilsCLI.imprimirIngresarOpcion("numérica");
-            opt = Short.parseShort(this.lector.readLine());
-            opcMenuCursos(opt);
-        }
     }
 
 }

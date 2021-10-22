@@ -7,29 +7,35 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Clase que permite la interacción con la base de datos MySQL que almancena
+ * los datos de los alumnos. Implementa la interfaz AlumnoData.
+ *
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 2.0
+ */
 public class AlumnoDB implements AlumnoData {
 
-    public static final String GET_TODOS_ALUMNOS = "SELECT * FROM Alumnos";
-    public static final String GET_ALUMNOS_NIVEL = "SELECT * FROM Alumnos WHERE nivel = %d";
-    public static final String GET_ALUMNOS_NIVEL_PAR = "SELECT * FROM Alumnos WHERE nivel = %d AND paralelo = '%c'";
-    public static final String GET_ALUMNO_RUT = "SELECT * FROM Alumnos WHERE rut = '%s'";
-    public static final String INSERT_ALUMNO = "INSERT INTO Alumnos (nivel, paralelo, rut, nombres, apellido_paterno," +
-            "apellido_materno, rut_apoderado) VALUES (%d, '%c', '%s', '%s', '%s', '%s', '%s')";
-    public static final String UPDATE_ALUMNO = "UPDATE Alumnos SET nivel = %d, paralelo = '%c' , rut = '%s' ," +
-            "nombres = '%s' , apellido_paterno = '%s' , apellido_materno = '%s', " + "rut_apoderado = '%s' " +
-            "WHERE rut = '%s'";
-    public static final String DELETE_ALUMNO = "DELETE FROM Alumnos WHERE rut = '%s'";
+
     private final ApoderadoDB apoderadoData;
 
+    /**
+     * Constructor de AlumnoDatafile. Trabaja con el origen de datos de apoderados.
+     */
     public AlumnoDB() {
         this.apoderadoData = new ApoderadoDB();
     }
 
+    /**
+     * Obtiene todos los alumnos de la base de datos.
+     *
+     * @return HashMap de alumnos
+     */
     @Override
     public Map<String, Alumno> getAlumnos() {
         Map<String, Alumno> alumnos = new HashMap<>();
         try {
-            ResultSet resultados = DBConnection.getQuery(GET_TODOS_ALUMNOS);
+            ResultSet resultados = DBConnection.getQuery(SQLSentences.GET_TODOS_ALUMNOS.toString());
             if (resultados == null) return null;
             while (resultados.next()) {
                 alumnos.put(resultados.getString("rut"), new Alumno(
@@ -50,11 +56,18 @@ public class AlumnoDB implements AlumnoData {
 
     }
 
+    /**
+     * Obtiene todos los alumnos almacenados en la base de datos, y que estén en el
+     * nivel requerido.
+     *
+     * @param nivel Nivel por el que se busca filtrar los datos
+     * @return HashMap de alumnos del nivel entregado
+     */
     @Override
     public Map<String, Alumno> getAlumnos(int nivel) {
         Map<String, Alumno> alumnos = new HashMap<>();
         try {
-            ResultSet resultados = DBConnection.getQuery(String.format(GET_ALUMNOS_NIVEL, nivel));
+            ResultSet resultados = DBConnection.getQuery(String.format(SQLSentences.GET_ALUMNOS_NIVEL.toString(), nivel));
             if (resultados == null) return null;
             while (resultados.next()) {
                 alumnos.put(resultados.getString("rut"), new Alumno(
@@ -74,11 +87,21 @@ public class AlumnoDB implements AlumnoData {
         }
     }
 
+    /**
+     * Obtiene todos los alumnos almacenados en la base de datos, y que estén en el
+     * curso requerido.
+     *
+     * @param nivel    Nivel por el que se busca filtrar los datos
+     * @param paralelo Caracter que identifica el paralelo por el que se busca
+     *                 filtrar los datos
+     * @return HashMap de alumnos del nivel y paralelo entregado
+     */
     @Override
     public Map<String, Alumno> getAlumnos(int nivel, char paralelo) {
         Map<String, Alumno> alumnos = new HashMap<>();
         try {
-            ResultSet resultados = DBConnection.getQuery(String.format(GET_ALUMNOS_NIVEL_PAR, nivel, paralelo));
+            ResultSet resultados = DBConnection.getQuery(String.format(SQLSentences.GET_ALUMNOS_NIVEL_PAR.toString(), nivel,
+                    paralelo));
             if (resultados == null) return null;
             while (resultados.next()) {
                 alumnos.put(resultados.getString("rut"), new Alumno(
@@ -98,10 +121,16 @@ public class AlumnoDB implements AlumnoData {
         }
     }
 
+    /**
+     * Permite obtener un alumno especifico
+     *
+     * @param rut RUT del alumno a obtener
+     * @return El alumno, de no encontrarse retorna null
+     */
     @Override
     public Alumno getAlumno(String rut) {
         try {
-            ResultSet resultados = DBConnection.getQuery(String.format(GET_ALUMNO_RUT, rut));
+            ResultSet resultados = DBConnection.getQuery(String.format(SQLSentences.GET_ALUMNO_RUT.toString(), rut));
             if (resultados == null) return null;
             if (resultados.next()) {
                 return new Alumno(
@@ -120,23 +149,32 @@ public class AlumnoDB implements AlumnoData {
         return null;
     }
 
+    /**
+     * Inserta un nuevo alumno a la base de datos MySQL
+     *
+     * @param alumno Alumno a agregar
+     */
     @Override
-    public boolean insertAlumno(Alumno alumno) {
-        if (DBConnection.updateQuery(String.format(INSERT_ALUMNO,
+    public void insertAlumno(Alumno alumno) {
+        DBConnection.updateQuery(String.format(SQLSentences.INSERT_ALUMNO.toString(),
                 alumno.getNivel(),
                 alumno.getParalelo(),
                 alumno.getRut(),
                 alumno.getNombres(),
                 alumno.getApPaterno(),
                 alumno.getApMaterno(),
-                alumno.getApoderado().getRut())) == 0)
-            return false;
-        return true;
+                alumno.getApoderado().getRut()));
     }
 
+    /**
+     * Actualiza un alumno en la base de datos MySQL
+     *
+     * @param alumno Alumno a actualizar
+     * @return Valor de verdad de la operación de actualización
+     */
     @Override
     public boolean updateAlumno(Alumno alumno) {
-        if (DBConnection.updateQuery(String.format(UPDATE_ALUMNO,
+        return DBConnection.updateQuery(String.format(SQLSentences.UPDATE_ALUMNO.toString(),
                 alumno.getNivel(),
                 alumno.getParalelo(),
                 alumno.getRut(),
@@ -144,15 +182,17 @@ public class AlumnoDB implements AlumnoData {
                 alumno.getApPaterno(),
                 alumno.getApMaterno(),
                 alumno.getApoderado().getRut(),
-                alumno.getRut())) == 0)
-            return false;
-        return true;
+                alumno.getRut())) != 0;
     }
 
+    /**
+     * Elimina un alumno de la base de datos MySQL
+     *
+     * @param alumno Alumno a eliminar
+     * @return Valor de verdad de la operación de eliminación
+     */
     @Override
     public boolean deleteAlumno(Alumno alumno) {
-        if (DBConnection.updateQuery(String.format(DELETE_ALUMNO, alumno.getRut())) == 1)
-            return true;
-        return false;
+        return DBConnection.updateQuery(String.format(SQLSentences.DELETE_ALUMNO.toString(), alumno.getRut())) == 1;
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
  * archivos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class Datafile {
     private final File file;

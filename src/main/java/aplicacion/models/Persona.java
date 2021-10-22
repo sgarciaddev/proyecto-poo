@@ -4,7 +4,7 @@ package aplicacion.models;
  * Clase que define una persona.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class Persona {
     private String rut, nombres, apPaterno, apMaterno;

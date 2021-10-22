@@ -3,99 +3,142 @@
   <ID>JAVA</ID>
   <OriginalElement>aplicacion</OriginalElement>
   <nodes>
-    <node x="648.0" y="1231.0">aplicacion.views.cli.CLI</node>
-    <node x="0.0" y="645.0">aplicacion.views.cli.UtilsCLI</node>
-    <node x="350.0" y="875.0">aplicacion.models.Profesor</node>
-    <node x="817.75" y="274.0">aplicacion.data.datafile.AlumnoDatafile</node>
-    <node x="1140.75" y="274.0">aplicacion.data.datafile.CursoDatafile</node>
-    <node x="772.0" y="645.0">aplicacion.models.Persona</node>
-    <node x="1140.75" y="12.0">aplicacion.data.CursoData</node>
-    <node x="689.5" y="0.0">aplicacion.data.AlumnoData</node>
-    <node x="735.0" y="887.0">aplicacion.models.Apoderado</node>
-    <node x="1095.0" y="887.0">aplicacion.models.Alumno</node>
-    <node x="308.0" y="1601.0">aplicacion.views.cli.AlumnoViewCLI</node>
-    <node x="0.0" y="1601.0">aplicacion.models.RegistroAsistencia</node>
-    <node x="1352.0" y="1231.0">aplicacion.controllers.cli.AlumnoControllerCLI</node>
-    <node x="733.0" y="1601.0">aplicacion.views.cli.CursoViewCLI</node>
-    <node x="601.0" y="421.0">aplicacion.data.database</node>
-    <node x="0.0" y="1231.0">aplicacion.controllers.cli.CursoControllerCLI</node>
-    <node x="270.00000000000006" y="322.5">aplicacion.data.datafile.ApoderadoDatafile</node>
-    <node x="967.0" y="1231.0">aplicacion.models.Curso</node>
-    <node x="1.0" y="12.0">aplicacion.data.ProfesorData</node>
-    <node x="392.5" y="36.5">aplicacion.data.ApoderadoData</node>
-    <node x="0.0" y="298.0">aplicacion.data.datafile.ProfesorDatafile</node>
-    <node x="353.0" y="1231.0">aplicacion.data.datafile.Datafile</node>
+    <node x="1257.0" y="1253.0">aplicacion.views.cli.CLI</node>
+    <node x="962.0" y="252.0">aplicacion.data.datafile.AlumnoDatafile</node>
+    <node x="331.0" y="1253.0">aplicacion.views.cli.MenuCLI</node>
+    <node x="253.5" y="0.0">aplicacion.models.Persona</node>
+    <node x="1366.0" y="1645.0">aplicacion.views.cli.AlumnoViewCLI</node>
+    <node x="0.0" y="1645.0">aplicacion.models.RegistroAsistencia</node>
+    <node x="706.0" y="0.0">aplicacion.data.database.SQLSentences</node>
+    <node x="920.0" y="1253.0">aplicacion.controllers.cli.CursoControllerCLI</node>
+    <node x="892.0" y="897.0">aplicacion.data.datafile.ApoderadoDatafile</node>
+    <node x="904.0" y="1645.0">aplicacion.views.cli.AsistenciaViewCli</node>
+    <node x="1501.0" y="717.0">aplicacion.models.Curso</node>
+    <node x="351.0" y="945.0">aplicacion.data.datafile.ProfesorDatafile</node>
+    <node x="0.0" y="717.0">aplicacion.views.cli.UtilsCLI</node>
+    <node x="465.0" y="397.0">aplicacion.models.Profesor</node>
+    <node x="1613.0" y="228.0">aplicacion.data.datafile.CursoDatafile</node>
+    <node x="1728.5" y="0.0">aplicacion.data.CursoData</node>
+    <node x="1844.0" y="264.0">aplicacion.data.database.CursoDB</node>
+    <node x="1118.5" y="0.0">aplicacion.data.AlumnoData</node>
+    <node x="277.0" y="433.0">aplicacion.models.Apoderado</node>
+    <node x="609.0" y="981.5">aplicacion.data.database.ProfesorDB</node>
+    <node x="0.0" y="373.0">aplicacion.models.Alumno</node>
+    <node x="0.0" y="1253.0">aplicacion.controllers.cli.MenuControllerCLI</node>
+    <node x="1275.0" y="288.0">aplicacion.data.database.AlumnoDB</node>
+    <node x="545.0" y="1645.0">aplicacion.controllers.cli.AlumnoControllerCLI</node>
+    <node x="1775.0" y="1645.0">aplicacion.views.cli.CursoViewCLI</node>
+    <node x="1184.0" y="933.5">aplicacion.data.database.ApoderadoDB</node>
+    <node x="1534.0" y="1253.0">aplicacion.controllers.cli.AsistenciaControllerCLI</node>
+    <node x="297.0" y="1645.0">aplicacion.data.database.DBConnection</node>
+    <node x="480.0" y="717.0">aplicacion.data.ProfesorData</node>
+    <node x="635.0" y="1253.0">aplicacion.data.datafile.Datafile</node>
+    <node x="1038.0" y="717.0">aplicacion.data.ApoderadoData</node>
   </nodes>
   <notes />
   <edges>
     <edge source="aplicacion.data.datafile.AlumnoDatafile" target="aplicacion.data.AlumnoData" relationship="REALIZATION">
-      <point x="0.0" y="-163.0" />
-      <point x="969.25" y="234.0" />
-      <point x="841.0" y="234.0" />
-      <point x="0.0" y="102.0" />
+      <point x="0.0" y="-149.5" />
+      <point x="1108.5" y="227.0" />
+      <point x="1265.0" y="227.0" />
+      <point x="0.0" y="101.0" />
     </edge>
     <edge source="aplicacion.data.datafile.ApoderadoDatafile" target="aplicacion.data.ApoderadoData" relationship="REALIZATION">
-      <point x="-5.6843418860808015E-14" y="-114.5" />
-      <point x="409.0" y="254.0" />
-      <point x="531.0" y="254.0" />
-      <point x="0.0" y="65.5" />
+      <point x="0.0" y="-101.5" />
+      <point x="1028.0" y="872.0" />
+      <point x="1174.0" y="872.0" />
+      <point x="0.0" y="65.0" />
     </edge>
     <edge source="aplicacion.data.datafile.ProfesorDatafile" target="aplicacion.data.ProfesorData" relationship="REALIZATION">
-      <point x="0.0" y="-139.0" />
-      <point x="0.0" y="90.0" />
+      <point x="0.0" y="-125.5" />
+      <point x="470.0" y="920.0" />
+      <point x="599.0" y="920.0" />
+      <point x="0.0" y="89.0" />
     </edge>
-    <edge source="aplicacion.data.database" target="aplicacion.data.ApoderadoData" relationship="REALIZATION">
-      <point x="0.0" y="-16.0" />
-      <point x="686.0" y="224.0" />
-      <point x="531.0" y="224.0" />
-      <point x="0.0" y="65.5" />
+    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.data.AlumnoData" relationship="REALIZATION">
+      <point x="0.0" y="-113.5" />
+      <point x="1421.5" y="227.0" />
+      <point x="1265.0" y="227.0" />
+      <point x="0.0" y="101.0" />
     </edge>
-    <edge source="aplicacion.data.database" target="aplicacion.data.ProfesorData" relationship="REALIZATION">
-      <point x="0.0" y="-16.0" />
-      <point x="686.0" y="234.0" />
-      <point x="125.0" y="234.0" />
-      <point x="0.0" y="90.0" />
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.data.CursoData" relationship="REALIZATION">
+      <point x="0.0" y="-113.5" />
+      <point x="1949.5" y="203.0" />
+      <point x="1834.0" y="203.0" />
+      <point x="0.0" y="89.0" />
     </edge>
     <edge source="aplicacion.data.datafile.CursoDatafile" target="aplicacion.data.CursoData" relationship="REALIZATION">
-      <point x="0.0" y="-163.0" />
-      <point x="0.0" y="90.0" />
+      <point x="0.0" y="-149.5" />
+      <point x="1718.5" y="203.0" />
+      <point x="1834.0" y="203.0" />
+      <point x="0.0" y="89.0" />
     </edge>
-    <edge source="aplicacion.data.database" target="aplicacion.data.CursoData" relationship="REALIZATION">
-      <point x="0.0" y="-16.0" />
-      <point x="686.0" y="254.0" />
-      <point x="1250.75" y="254.0" />
-      <point x="0.0" y="90.0" />
+    <edge source="aplicacion.data.database.ApoderadoDB" target="aplicacion.data.ApoderadoData" relationship="REALIZATION">
+      <point x="0.0" y="-65.0" />
+      <point x="1320.0" y="872.0" />
+      <point x="1174.0" y="872.0" />
+      <point x="0.0" y="65.0" />
+    </edge>
+    <edge source="aplicacion.data.database.ProfesorDB" target="aplicacion.data.ProfesorData" relationship="REALIZATION">
+      <point x="0.0" y="-89.0" />
+      <point x="728.0" y="920.0" />
+      <point x="599.0" y="920.0" />
+      <point x="0.0" y="89.0" />
     </edge>
     <edge source="aplicacion.models.Profesor" target="aplicacion.models.Persona" relationship="GENERALIZATION">
-      <point x="0.0" y="-66.0" />
-      <point x="532.5" y="850.0" />
-      <point x="905.0" y="850.0" />
-      <point x="0.0" y="90.0" />
-    </edge>
-    <edge source="aplicacion.data.database" target="aplicacion.data.AlumnoData" relationship="REALIZATION">
-      <point x="0.0" y="-16.0" />
-      <point x="686.0" y="244.0" />
-      <point x="841.0" y="244.0" />
-      <point x="0.0" y="102.0" />
-    </edge>
-    <edge source="aplicacion.models.Apoderado" target="aplicacion.models.Persona" relationship="GENERALIZATION">
-      <point x="0.0" y="-54.0" />
-      <point x="0.0" y="90.0" />
+      <point x="0.0" y="-125.5" />
+      <point x="563.0" y="348.0" />
+      <point x="361.0" y="348.0" />
+      <point x="0.0" y="161.5" />
     </edge>
     <edge source="aplicacion.models.Alumno" target="aplicacion.models.Persona" relationship="GENERALIZATION">
-      <point x="0.0" y="-54.0" />
-      <point x="1260.5" y="850.0" />
-      <point x="905.0" y="850.0" />
-      <point x="0.0" y="90.0" />
+      <point x="0.0" y="-149.5" />
+      <point x="128.5" y="348.0" />
+      <point x="361.0" y="348.0" />
+      <point x="0.0" y="161.5" />
+    </edge>
+    <edge source="aplicacion.models.Apoderado" target="aplicacion.models.Persona" relationship="GENERALIZATION">
+      <point x="0.0" y="-89.5" />
+      <point x="0.0" y="161.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="0.3614457831325301" showDependencies="false" x="814.0" y="903.0" />
-  <SelectedNodes />
+  <settings layout="Hierarchic" zoom="0.3584598698481562" showDependencies="false" x="1027.5" y="912.0" />
+  <SelectedNodes>
+    <node>aplicacion.views.cli.CLI</node>
+    <node>aplicacion.data.datafile.AlumnoDatafile</node>
+    <node>aplicacion.views.cli.MenuCLI</node>
+    <node>aplicacion.models.Persona</node>
+    <node>aplicacion.views.cli.AlumnoViewCLI</node>
+    <node>aplicacion.models.RegistroAsistencia</node>
+    <node>aplicacion.data.database.SQLSentences</node>
+    <node>aplicacion.controllers.cli.CursoControllerCLI</node>
+    <node>aplicacion.data.datafile.ApoderadoDatafile</node>
+    <node>aplicacion.views.cli.AsistenciaViewCli</node>
+    <node>aplicacion.models.Curso</node>
+    <node>aplicacion.data.datafile.ProfesorDatafile</node>
+    <node>aplicacion.views.cli.UtilsCLI</node>
+    <node>aplicacion.models.Profesor</node>
+    <node>aplicacion.data.datafile.CursoDatafile</node>
+    <node>aplicacion.data.CursoData</node>
+    <node>aplicacion.data.database.CursoDB</node>
+    <node>aplicacion.data.AlumnoData</node>
+    <node>aplicacion.models.Apoderado</node>
+    <node>aplicacion.data.database.ProfesorDB</node>
+    <node>aplicacion.models.Alumno</node>
+    <node>aplicacion.controllers.cli.MenuControllerCLI</node>
+    <node>aplicacion.data.database.AlumnoDB</node>
+    <node>aplicacion.controllers.cli.AlumnoControllerCLI</node>
+    <node>aplicacion.views.cli.CursoViewCLI</node>
+    <node>aplicacion.data.database.ApoderadoDB</node>
+    <node>aplicacion.controllers.cli.AsistenciaControllerCLI</node>
+    <node>aplicacion.data.database.DBConnection</node>
+    <node>aplicacion.data.ProfesorData</node>
+    <node>aplicacion.data.datafile.Datafile</node>
+    <node>aplicacion.data.ApoderadoData</node>
+  </SelectedNodes>
   <Categories>
-    <Category>Constructors</Category>
     <Category>Fields</Category>
     <Category>Methods</Category>
-    <Category>Properties</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

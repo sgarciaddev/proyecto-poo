@@ -11,7 +11,7 @@ import java.util.List;
  * los datos de Apoderado. Implementa la interfaz ApoderadoData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class ApoderadoDatafile implements ApoderadoData {
 

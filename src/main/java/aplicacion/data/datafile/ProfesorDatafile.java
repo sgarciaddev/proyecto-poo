@@ -12,7 +12,7 @@ import java.util.List;
  * los datos de Profesor. Implementa la interfaz ProfesorData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class ProfesorDatafile implements ProfesorData {
 
@@ -125,10 +125,9 @@ public class ProfesorDatafile implements ProfesorData {
      * Elimina un profesor del archivo CSV
      *
      * @param profesor Profesor a eliminar
-     * @return Valor de verdad (boolean) sobre el exito o fracaso de la operacion de borrado
      */
     @Override
-    public boolean deleteProfesor(Profesor profesor) {
-        return this.datafile.deleteLine(profesorToCSV(profesor));
+    public void deleteProfesor(Profesor profesor) {
+        this.datafile.deleteLine(profesorToCSV(profesor));
     }
 }

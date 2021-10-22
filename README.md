@@ -15,6 +15,7 @@
 
 ## Indice
 
+- [Instalación de la BBDD y Docker compose](database/README.md)
 - [Estructura de directorios](#estructura-de-directorios)
   - [Mirada general](#mirada-general)
   - [Estructura de clases](#estructura-de-clases)
@@ -22,9 +23,16 @@
 - [Descripción](#descripcion)
 - [To-do](markdown/todo.md)
 
+## Base de datos
+
+Para utilizar la base de datos, se debe utilizar MySQL y agregar la base de datos que aparece en el
+archivo `database/sql/dump.sql`. Para el desarrollo de la aplicación, se utilizó Docker para contener una instancia de
+MySQL, cuyas instrucciones de instalación están [aquí](database/README.md).
+
 ## Estructura de directorios
 
 ### Mirada general
+
 ```
 .
 ├── .gitignore

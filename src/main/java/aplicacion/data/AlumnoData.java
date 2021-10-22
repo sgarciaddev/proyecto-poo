@@ -8,7 +8,7 @@ import java.util.Map;
  * Interfaz que permite interactuar con los datos de Alumnos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public interface AlumnoData {
     /**
@@ -47,9 +47,8 @@ public interface AlumnoData {
      * Agrega un alumno a los datos.
      *
      * @param alumno Alumno a agregar
-     * @return Valor de verdad sobre el éxito o fracaso de la operación
      */
-    boolean insertAlumno(Alumno alumno);
+    void insertAlumno(Alumno alumno);
 
     /**
      * Actualiza un alumno.

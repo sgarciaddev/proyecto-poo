@@ -38,6 +38,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\datafiles\reportes\tabla-cursos-3854.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\datafiles\reportes\tabla-cursos-5587.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

@@ -1,6 +1,5 @@
 package utils.fakedata;
 
-import com.github.javafaker.Faker;
 import aplicacion.data.datafile.AlumnoDatafile;
 import aplicacion.data.datafile.ApoderadoDatafile;
 import aplicacion.data.datafile.CursoDatafile;
@@ -9,6 +8,7 @@ import aplicacion.models.Alumno;
 import aplicacion.models.Apoderado;
 import aplicacion.models.Curso;
 import aplicacion.models.Profesor;
+import com.github.javafaker.Faker;
 
 /**
  * Clase que permite generar datos falsos y almacenarlos en los archivos de
@@ -16,7 +16,7 @@ import aplicacion.models.Profesor;
  * librería externa Faker.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class Fakedata {
 
