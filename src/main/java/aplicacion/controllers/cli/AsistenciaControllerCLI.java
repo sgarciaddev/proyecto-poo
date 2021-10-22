@@ -10,10 +10,10 @@ import aplicacion.views.cli.UtilsCLI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.text.DecimalFormat;
 
 /**
  * Clase controladora del menú de gestión de Asistencia de la interfaz de linea de comandos.
@@ -56,7 +56,7 @@ public class AsistenciaControllerCLI {
                 System.exit(0);
             case 1:
                 System.out.println("Alumno con mejor Asistencia: ");
-                alumno = getAlumnoMasRetiros();
+                alumno = getAlumnoRequerido(1);
                 System.out.println(alumno.getNombreCompleto() + " con " + df.format(alumno.getAsistencia().obtenerAsistencia()) + "% de asistencia");
                 break;
             case 2:
@@ -64,12 +64,12 @@ public class AsistenciaControllerCLI {
                 porcentaje1 = Integer.parseInt(lector.readLine());
                 UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 1 a 100");
                 porcentaje2 = Integer.parseInt(lector.readLine());
-                alumnosEnPorcentaje = getAsistenciaEntrePorcentajes(porcentaje1, porcentaje2);
+                alumnosEnPorcentaje = getEntrePorcentajes(porcentaje1, porcentaje2, 1);
                 alumnoViewCLI.mostrarTablaAlumnos(alumnosEnPorcentaje, "porcentaje dado ASISTENCIA");
                 break;
             case 3:
                 System.out.println("Alumno con mas retiros: ");
-                alumno = getAlumnoMasRetiros();
+                alumno = getAlumnoRequerido(0);
                 System.out.println(alumno.getNombreCompleto() + " con " + df.format(alumno.getAsistencia().obtenerRetiros()) + "% de retiros");
                 break;
             case 4:
@@ -77,7 +77,7 @@ public class AsistenciaControllerCLI {
                 porcentaje1 = Integer.parseInt(lector.readLine());
                 UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 1 a 100");
                 porcentaje2 = Integer.parseInt(lector.readLine());
-                alumnosEnPorcentaje = getRetirosEntrePorcentajes(porcentaje1, porcentaje2);
+                alumnosEnPorcentaje = getEntrePorcentajes(porcentaje1, porcentaje2, 0);
                 alumnoViewCLI.mostrarTablaAlumnos(alumnosEnPorcentaje, "porcentaje dado RETIROS");
                 break;
             default:
@@ -87,87 +87,57 @@ public class AsistenciaControllerCLI {
     }
 
     /**
-     * Filtra los datos seleccionando el alumno con mejor asistencia
+     * Selecciona el alumno con mejor asistencia o más retiros dependiendo del caso
      *
+     * @param value Valor por defecto que designa la opción del dato a retornar; 1 si es asistencia, 2 si es retiros
      * @return Alumno
      */
-    private Alumno getAlumnoMejorAsistencia(){
-        Alumno mejorAsistencia = null;
+    private Alumno getAlumnoRequerido(int value){
+        Alumno alumnoReq = null;
         List<Curso> cursos = this.cursoData.getCursos();
-
 
         for (Curso curso: cursos) {
             for (Alumno alumno: curso.getAlumnos().values()) {
-                if (mejorAsistencia == null || alumno.getAsistencia().obtenerAsistencia() > mejorAsistencia.getAsistencia().obtenerAsistencia()) {
-                    mejorAsistencia = alumno;
+                if (value == 1 && (alumnoReq == null || alumno.getAsistencia().obtenerAsistencia() > alumnoReq.getAsistencia().obtenerAsistencia())) {
+                    alumnoReq = alumno;
                 }
+                if (value == 0 && (alumnoReq == null || alumno.getAsistencia().obtenerRetiros() > alumnoReq.getAsistencia().obtenerRetiros()))
+                    alumnoReq = alumno;
             }
         }
-
-        return mejorAsistencia;
+        return alumnoReq;
     }
 
     /**
-     * Filtra los datos seleccionando los alumnos con asistencia dentro de los rangos dados por usuario
+     * Selecciona los alumnos con asistencia o retiros dentro de los rangos dados por usuario
      *
+     * @param percent1 Primer porcentaje del rango
+     * @param percent2 Segundo porcentaje del rango
+     * @param value Valor por defecto que designa la opción del dato a retornar; 1 si es asistencia, 2 si es retiros
      * @return HashMap con los alumnos seleccionados
      */
-    private Map<String, Alumno> getAsistenciaEntrePorcentajes(int percent1, int percent2){
+    private Map<String, Alumno> getEntrePorcentajes(int percent1, int percent2, int value){
         List<Curso> cursos = this.cursoData.getCursos();
         Map<String, Alumno> alumnos = new HashMap<>();
-        int asistenciaAlumno;
+        int alumnoReq;
 
         for (Curso curso: cursos) {
             for (Alumno alumno: curso.getAlumnos().values()) {
-                asistenciaAlumno = (int) Math.round((alumno.getAsistencia().obtenerAsistencia() * 100.0));
-                if (asistenciaAlumno >= percent1 && asistenciaAlumno <= percent2){
-                    alumnos.put(alumno.getRut(), alumno);
+                if (value == 1){
+                    alumnoReq = (int) Math.round((alumno.getAsistencia().obtenerAsistencia() * 100.0));
+                    if (alumnoReq >= percent1 && alumnoReq <= percent2)
+                        alumnos.put(alumno.getRut(), alumno);
+                }
+                if (value == 0){
+                    alumnoReq = (int) Math.round((alumno.getAsistencia().obtenerRetiros() * 100.0));
+                    if (alumnoReq >= percent1 && alumnoReq <= percent2)
+                        alumnos.put(alumno.getRut(), alumno);
                 }
             }
         }
         return alumnos;
     }
 
-    /**
-     * Filtra los datos seleccionando el alumno con más retiros
-     *
-     * @return Alumno
-     */
-    private Alumno getAlumnoMasRetiros(){
-        Alumno masRetiros = null;
-        List<Curso> cursos = this.cursoData.getCursos();
-
-        for (Curso curso: cursos) {
-            for (Alumno alumno: curso.getAlumnos().values()) {
-                if (masRetiros == null || alumno.getAsistencia().obtenerRetiros() > masRetiros.getAsistencia().obtenerRetiros()) {
-                    masRetiros = alumno;
-                }
-            }
-        }
-
-        return masRetiros;
-    }
-
-    /**
-     * Filtra los datos seleccionando los alumnos con retiros dentro de los rangos dados por usuario
-     *
-     * @return HashMap con los alumnos seleccionados
-     */
-    private Map<String, Alumno> getRetirosEntrePorcentajes(int percent1, int percent2){
-        List<Curso> cursos = this.cursoData.getCursos();
-        Map<String, Alumno> alumnos = new HashMap<>();
-        int retirosAlumno;
-
-        for (Curso curso: cursos) {
-            for (Alumno alumno: curso.getAlumnos().values()) {
-                retirosAlumno = (int) Math.round((alumno.getAsistencia().obtenerRetiros() * 100.0));
-                if (retirosAlumno >= percent1 && retirosAlumno <= percent2){
-                    alumnos.put(alumno.getRut(), alumno);
-                }
-            }
-        }
-        return alumnos;
-    }
 
 
     /**
