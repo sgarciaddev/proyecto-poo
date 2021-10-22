@@ -1,229 +1,48 @@
 package aplicacion.views.cli;
 
-import aplicacion.models.Alumno;
-import aplicacion.models.Curso;
-
-import java.util.logging.XMLFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Clase con utilidades para la interfaz de consola de comandos (CLI).
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class UtilsCLI {
 
     /**
-     * Cabeceras de tablas de cursos
+     * Mapa con los headers de las tablas que se pueden imprimir por pantalla.
      */
-    public static String[] headersCursos = {
-            "Curso",
-            "Nivel",
-            "Paralelo",
-            "Nombre profesor jefe",
-            "Email profesor jefe",
-            "Telefono profesor jefe"
-    };
+    public final static Map<String, String[]> headers = new HashMap<String, String[]>() {{
+        put("cursos", new String[]{
+                "Curso",
+                "Nivel",
+                "Paralelo",
+                "Nombre profesor jefe",
+                "Email profesor jefe",
+                "Telefono profesor jefe"
+        });
 
-    /**
-     * Cabeceras de tablas de alumnos
-     */
-    public static String[] headersAlumnos = {
-            "RUT",
-            "Ap. Paterno",
-            "Ap. Materno",
-            "Nombres",
-            "Nombre completo apoderado",
-            "Teléfono apoderado"
-    };
+        put("alumnos", new String[]{
+                "RUT",
+                "Ap. Paterno",
+                "Ap. Materno",
+                "Nombres",
+                "Nombre completo apoderado",
+                "Teléfono apoderado"
+        });
 
-    /**
-     * Ítems del menú principal
-     */
-    public static final Object[][] opcMenuPrincipal = {
-            {
-                    1,
-                    "Administrar colegio",
-                    "Permite gestionar los cursos, alumnos, profesores y asistencia"
-            },
-            {
-                    2,
-                    "Reportes",
-                    "Permite generar reportes con los datos del sistema"
-            },
-            {
-                    3,
-                    "Gráficos (próximamente)",
-                    "Permite obtener gráficos sobre los datos del sistema"
-            },
-            {
-                    0,
-                    "Salir",
-                    "Salir de la aplicación"
-            }
-    };
-
-    /**
-     * Ítems del menú de administración del colegio
-     */
-    public static final Object[][] opcMenuAdmin = {
-            {
-                    1,
-                    "Gestionar cursos",
-                    "Permite gestionar los datos de los cursos"
-            },
-            {
-                    2,
-                    "Gestionar alumnos",
-                    "Permite gestionar los datos de los alumnos"
-            },
-            {
-                    3,
-                    "Gestionar asistencia",
-                    "Permite gestionar la asistencia de los alumnos"
-            },
-            {
-                    9,
-                    "Salir",
-                    "Salir de la aplicación"
-            },
-            {
-                    0,
-                    "Volver al menú principal",
-                    "Salir de la administración del colegio"
-            }
-    };
-
-    /**
-     * Ítems del menú de reportes
-     */
-    public static final Object[][] opcMenuReportes = {
-            {
-                    1,
-                    "Generar lista de curso",
-                    "Permite generar un archivo CSV con la lista de un curso (alumnos enumerados)"
-            },
-            {
-                    2,
-                    "Generar tabla de cursos",
-                    "Permite generar una tabla con todos los cursos del colegio"
-            },
-            {
-                    9,
-                    "Salir",
-                    "Salir de la aplicación"
-            },
-            {
-                    0,
-                    "Volver al menú principal",
-                    "Salir de la generación de reportes"
-            }
-    };
-
-    /**
-     * Ítems del menú de cursos
-     */
-    public static final Object[][] opcMenuCursos = {
-            {
-                    1,
-                    "Agregar curso",
-                    "Permite agregar un curso al sistema"
-            },
-            {
-                    2,
-                    "Ver cursos",
-                    "Permite ver la lista de cursos disponibles"
-            },
-            {
-                    3,
-                    "Asignar nuevo profesor jefe a curso",
-                    "Permite asignar un nuevo profesor jefe al curso"
-            },
-            {
-                    4,
-                    "Eliminar curso",
-                    "Permite eliminar un curso en específico"
-            },
-            {
-                    9,
-                    "Salir",
-                    "Salir de la aplicación"
-            },
-            {
-                    0,
-                    "Volver al menú de administración",
-                    "Salir de la gestión de cursos"
-            }
-    };
-
-    /**
-     * Ítems del menú de alumnos
-     */
-    public static final Object[][] opcMenuAlumnos = {
-            {
-                    1,
-                    "Agregar alumno",
-                    "Permite agregar un alumno al curso"
-            },
-            {
-                    2,
-                    "Ver alumnos",
-                    "Permite ver la lista de alumnos del curso"
-            },
-            {
-                    3,
-                    "Editar alumno",
-                    "Permite editar un alumno en específico"
-            },
-            {
-                    4,
-                    "Eliminar alumno",
-                    "Permite eliminar un alumno en específico"
-            },
-            {
-                    9,
-                    "Salir",
-                    "Salir de la aplicación"
-            },
-            {
-                    0,
-                    "Volver al menú de administración",
-                    "Salir de la gestión de alumnos"
-            }
-    };
-
-    public static final Object[][] opcMenuAsistencia = {
-            {
-                    1,
-                    "Alumno con mejor asistencia",
-                    "Permite ver el alumno con mejor asistencia del año"
-            },
-            {
-                    2,
-                    "Alumnos entre % y % de asistencia",
-                    "Permite ver los alumnos con los porcentajes de asistencia especificados"
-            },
-            {
-                    3,
-                    "Alumno con mas retiros",
-                    "Permite ver el alumno con mas retiros en el año"
-            },
-            {
-                    4,
-                    "Alumnos entre % y % de retiros",
-                    "Permite ver los alumnos con los porcentajes de retiros especificados"
-            },
-            {
-                    9,
-                    "Salir",
-                    "Salir de la aplicación"
-            },
-            {
-                    0,
-                    "Volver al menú de administración",
-                    "Salir de la gestión de cursos"
-            }
-    };
+        put("asistencia", new String[]{
+                "RUT",
+                "Ap. Paterno",
+                "Ap. Materno",
+                "Nombres",
+                "Nombre completo apoderado",
+                "Teléfono apoderado",
+                "% Asistencia"
+        });
+    }};
 
     /**
      * Permite obtener el ancho de las columnas (en cant. de caracteres) para ser mostrados por pantalla en formato
@@ -335,6 +154,15 @@ public class UtilsCLI {
     }
 
     /**
+     * Imprime un título alineado a la izquierda
+     *
+     * @param titulo Titulo a ser impreso
+     */
+    public static void imprimirTitulo(String titulo) {
+        System.out.println(titulo + "\n");
+    }
+
+    /**
      * Imprime un caracter una cantidad de veces
      *
      * @param caracter Caracter a ser impreso
@@ -381,32 +209,31 @@ public class UtilsCLI {
         }
     }
 
-    public static void imprimirAlumno(Alumno alumno) {
-        /*
-
-        RUT             : XXXXXXXX-X
-        NOMBRE COMPLETO : OAIJSGIOUJFOASDOIASUDOISAUDOIUSADASDLIJASJLASDJ
-        CURSO           : asdfasdfasdf
-        APODERADO       : XXXXXXXX-X | AWSFDPASODIPSAODIPOASDIPASODIAPSOD
-        */
-        imprimirTitulo("Datos del alumno", 50);
-        System.out.println("\nRUT             : " + alumno.getRut());
-        System.out.println("NOMBRE COMPLETO : " + alumno.getNombreCompleto());
-        System.out.println("CURSO           : " + Curso.cursoToString(alumno.getNivel(), alumno.getParalelo()));
-        System.out.println("APODERADO       : " + alumno.getApoderado().getRut() +
-                                                   " | " +
-                                                   alumno.getApoderado().getNombreCompleto());
-        System.out.println();
+    /**
+     * Imprime por pantalla un mensaje sobre la funcionalidad que aún no ha sido implementada en el software.
+     */
+    public static void imprimirFuncionalidadNoImplementada() {
+        System.out.println("Esta funcionalidad aún no ha sido implementada.\n");
     }
 
+    /**
+     * Imprime por pantalla un mensaje cuando se intenta la conexión a la base de datos MySQL.
+     */
     public static void mensajeIntentandoConexionMySQL() {
         System.out.println("Intentando conexión a la base de datos...");
     }
 
+    /**
+     * Muestra un mensaje de éxito en la conexión con la base de datos MySQL.
+     */
     public static void mensajeExitoConexionMySQL() {
         System.out.println("Conexión con base de datos MySQL exitosa!\n");
     }
 
+    /**
+     * Muestra un mensaje de fracaso en la conexión con la base de datos MySQL.
+     * Se muestra que se utilizará base de datos local en vez.
+     */
     public static void mensajeUtilizandoDatafile() {
         System.out.println("La conexión con la base de datos MySQL no ha sido posible. Se utilizará base de datos " +
                 "local en reemplazo.\n");

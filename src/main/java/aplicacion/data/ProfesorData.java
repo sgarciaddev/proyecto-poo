@@ -9,7 +9,7 @@ import java.util.List;
  * Interfaz que permite interactuar con los datos de Profesor.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public interface ProfesorData {
     /**
@@ -55,7 +55,6 @@ public interface ProfesorData {
      * Elimina un profesor
      *
      * @param profesor Profesor a eliminar
-     * @return Valor de verdad sobre el éxito o fracaso de la operación
      */
-    boolean deleteProfesor(Profesor profesor);
+    void deleteProfesor(Profesor profesor);
 }

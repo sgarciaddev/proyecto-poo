@@ -4,7 +4,7 @@ package aplicacion.models;
  * Clase que define el objeto de típo Alumno.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class Alumno extends Persona {
     private final Apoderado apoderado;

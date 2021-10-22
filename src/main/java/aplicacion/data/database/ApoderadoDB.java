@@ -5,20 +5,25 @@ import aplicacion.models.Apoderado;
 
 import java.sql.ResultSet;
 
+/**
+ * Clase que permite la interacción con la base de datos MySQL que almacena
+ * los datos de Apoderado. Implementa la interfaz ApoderadoData.
+ *
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 2.0
+ */
 public class ApoderadoDB implements ApoderadoData {
 
-    public static final String GET_APODERADO = "SELECT * FROM Apoderados WHERE rut = '%s'";
-    public static final String INSERT_APODERADO = "INSERT INTO Apoderados (rut, nombres, apellido_paterno," +
-            "apellido_materno, telefono, email) VALUES ('%s', '%s', '%s', '%s', %d, '%s')";
-    public static final String UPDATE_APODERADO =
-            "UPDATE Apoderados SET rut = '%s' , nombres = '%s' , apellido_paterno = '%s', apellido_materno = '%s', " +
-                    "telefono = %d, email = '%s' WHERE rut = '%s'";
-    public static final String DELETE_APODERADO = "DELETE FROM Apoderados WHERE rut = '%s'";
-
+    /**
+     * Obtener apoderado desde la base de datos MySQL, según su RUT
+     *
+     * @param rut RUT del apoderado
+     * @return Apoderado correspondiente al RUT ingresado, o `null` si no se encontró.
+     */
     @Override
     public Apoderado getApoderado(String rut) {
         try {
-            ResultSet resultados = DBConnection.getQuery(String.format(GET_APODERADO, rut));
+            ResultSet resultados = DBConnection.getQuery(String.format(SQLSentences.GET_APODERADO.toString(), rut));
             if (resultados == null) return null;
             if (resultados.next()) {
                 return new Apoderado(
@@ -35,37 +40,49 @@ public class ApoderadoDB implements ApoderadoData {
         return null;
     }
 
+    /**
+     * Actualiza los datos de un Apoderado en la base de datos MySQL
+     *
+     * @param apoderado Apoderado a actualizar
+     * @return Valor de verdad (boolean) sobre el exito o fracaso de la operacion de actualizacion
+     */
     @Override
     public boolean updateApoderado(Apoderado apoderado) {
-        if (DBConnection.updateQuery(String.format(UPDATE_APODERADO,
+        return DBConnection.updateQuery(String.format(SQLSentences.UPDATE_APODERADO.toString(),
                 apoderado.getRut(),
                 apoderado.getNombres(),
                 apoderado.getApPaterno(),
                 apoderado.getApMaterno(),
                 apoderado.getTelefono(),
                 apoderado.getEmail(),
-                apoderado.getRut())) == 0)
-            return false;
-        return true;
+                apoderado.getRut())) != 0;
     }
 
+    /**
+     * Agrega un Apoderado a la base de datos MySQL
+     *
+     * @param apoderado Apoderado que se desea agregar a la base de datos.
+     * @return Valor de verdad (boolean) sobre el exito o fracaso de la operacion de inserción
+     */
     @Override
     public boolean insertApoderado(Apoderado apoderado) {
-        if (DBConnection.updateQuery(String.format(INSERT_APODERADO,
+        return DBConnection.updateQuery(String.format(SQLSentences.INSERT_APODERADO.toString(),
                 apoderado.getRut(),
                 apoderado.getNombres(),
                 apoderado.getApPaterno(),
                 apoderado.getApMaterno(),
                 apoderado.getTelefono(),
-                apoderado.getEmail())) == 0)
-            return false;
-        return true;
+                apoderado.getEmail())) != 0;
     }
 
+    /**
+     * Elimina un apoderado de la base de datos
+     *
+     * @param apoderado Apoderado a eliminar
+     * @return Valor de verdad (boolean) sobre el exito o fracaso de la operacion de borrado
+     */
     @Override
     public boolean deleteApoderado(Apoderado apoderado) {
-        if (DBConnection.updateQuery(String.format(DELETE_APODERADO, apoderado.getRut())) == 1)
-            return true;
-        return false;
+        return DBConnection.updateQuery(String.format(SQLSentences.DELETE_APODERADO.toString(), apoderado.getRut())) == 1;
     }
 }

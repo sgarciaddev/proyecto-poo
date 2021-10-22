@@ -12,7 +12,7 @@ import java.util.List;
  * los datos del Curso. Implementa la interfaz CursoData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class CursoDatafile implements CursoData {
 
@@ -88,15 +88,15 @@ public class CursoDatafile implements CursoData {
     /**
      * Permite obtener un curso en especifico, almacenado en el archivo CSV.
      *
-     * @param nivel Nivel del curso
-     * @param letra Letra identificadora de paralelo
+     * @param nivel    Nivel del curso
+     * @param paralelo Letra identificadora de paralelo
      * @return Curso solicitado
      */
     @Override
-    public Curso getCurso(short nivel, char letra) {
+    public Curso getCurso(short nivel, char paralelo) {
         List<String> data = this.datafile.getData();
         for (String csv : data)
-            if ((Integer.parseInt(csv.split(",")[0]) == nivel) && (csv.split(",")[1].charAt(0) == letra))
+            if ((Integer.parseInt(csv.split(",")[0]) == nivel) && (csv.split(",")[1].charAt(0) == paralelo))
                 return cursoFromCSV(csv);
         return null;
     }
@@ -105,11 +105,12 @@ public class CursoDatafile implements CursoData {
      * Agrega un Curso al archivo CSV
      *
      * @param curso Curso que se desea agregar al archivo CSV
-     * @return Valor de verdad (boolean) sobre el exito o fracaso de la operacion de inserción
      */
     @Override
-    public boolean insertCurso(Curso curso) {
-        return this.prDatafile.insertProfesor(curso.getProfesorJefe()) && this.datafile.insertLine(cursoToCSV(curso));
+    public void insertCurso(Curso curso) {
+        if (this.prDatafile.insertProfesor(curso.getProfesorJefe())) {
+            this.datafile.insertLine(cursoToCSV(curso));
+        }
     }
 
     /**

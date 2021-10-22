@@ -1,12 +1,8 @@
 package aplicacion.controllers.cli;
 
-import aplicacion.data.AlumnoData;
-import aplicacion.data.database.AlumnoDB;
-import aplicacion.data.datafile.AlumnoDatafile;
 import aplicacion.models.Alumno;
 import aplicacion.models.Apoderado;
-import aplicacion.models.Curso;
-import aplicacion.views.cli.AlumnoViewCLI;
+import aplicacion.views.cli.MenuCLI;
 import aplicacion.views.cli.UtilsCLI;
 
 import java.io.BufferedReader;
@@ -16,32 +12,33 @@ import java.io.IOException;
  * Clase controladora del menú de gestión de Alumnos de la interfaz de linea de comandos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class AlumnoControllerCLI {
 
-    private final AlumnoData alumnoData;
-    private final AlumnoViewCLI alumnoViewCLI;
     private final BufferedReader lector;
+    private final MenuCLI menuCLI;
 
     /**
      * Objeto controlador de Alumno en la interfaz de línea de comandos
      *
-     * @param lector BufferedReader lector utilizado en el main
+     * @param lector  BufferedReader instancia de lector.
+     * @param menuCLI Instancia de menú con los origenes de datos.
      */
-    public AlumnoControllerCLI(BufferedReader lector) {
-        this.alumnoData = new AlumnoDB();
-        this.alumnoViewCLI = new AlumnoViewCLI();
+    public AlumnoControllerCLI(BufferedReader lector, MenuCLI menuCLI) {
         this.lector = lector;
+        this.menuCLI = menuCLI;
     }
 
     /**
-     * Solicita los datos necesarios al usuario para crear un objeto de tipo Alumno
+     * Solicita los datos necesarios al usuario para crear un objeto de tipo Alumno.
      *
+     * @param nivel    Nivel del alumno a generar
+     * @param paralelo Paralelo del curso al que pertenece el alumno
      * @return Alumno
      * @throws IOException Posibles errores de entrada/salida de datos
      */
-    private Alumno obtenerDatosAlumno(int nivel, char paralelo) throws IOException {
+    public Alumno obtenerDatosAlumno(int nivel, char paralelo) throws IOException {
         int telefonoAp;
         String rut, nombres, apPat, apMat, rutAp, nombresAp, apPatAp, apMatAp, emailAp;
         UtilsCLI.imprimirSolicitar("el RUT del alumno", "RUT");
@@ -73,10 +70,12 @@ public class AlumnoControllerCLI {
      * alumno inicial.
      *
      * @param alumnoOriginal Alumno original (para actualizar datos)
+     * @param nivel          Nivel del alumno a generar
+     * @param paralelo       Paralelo del curso al que pertenece el alumno
      * @return Alumno
      * @throws IOException Posibles errores de entrada/salida de datos
      */
-    private Alumno obtenerDatosAlumno(Alumno alumnoOriginal, int nivel, char paralelo) throws IOException {
+    public Alumno obtenerDatosAlumno(Alumno alumnoOriginal, int nivel, char paralelo) throws IOException {
         String nombres, apPat, apMat;
         UtilsCLI.imprimirSolicitar("los nombres del alumno", "texto");
         nombres = this.lector.readLine();
@@ -88,96 +87,6 @@ public class AlumnoControllerCLI {
                 alumnoOriginal.getApoderado());
     }
 
-    /**
-     * Controla el flujo de trabajo de la opción marcada por el usuario, en el menú de gestión de alumnos.
-     *
-     * @param opt Entero que contiene la opción marcada por el usuario
-     * @throws IOException Posibles errores de entrada/salida de datos
-     */
-    private void opcMenuAlumnos(short opt) throws IOException {
-        Alumno alumno, alumnoEditado;
-        int nivel;
-        char paralelo;
-        String rut;
-        switch (opt) {
-            case 0:
-                break;
-            case 9:
-                UtilsCLI.mensajeDespedida();
-                System.exit(0);
-            case 1:
-                UtilsCLI.imprimirSolicitar("el nivel del alumno", "número de 1 a 12");
-                nivel = Integer.parseInt(this.lector.readLine());
-                UtilsCLI.imprimirSolicitar("el paralelo al que pertenece el alumno", "caracter");
-                paralelo = this.lector.readLine().charAt(0);
-                this.alumnoData.insertAlumno(obtenerDatosAlumno(nivel, paralelo));
-                this.alumnoViewCLI.mostrarTablaAlumnos(this.alumnoData.getAlumnos(nivel, paralelo),
-                        Curso.cursoToString(nivel, paralelo));
-                break;
-            case 2:
-                UtilsCLI.imprimirSolicitar("el nivel de los alumnos", "número de 1 a 12");
-                nivel = Integer.parseInt(this.lector.readLine());
-                UtilsCLI.imprimirSolicitar("el paralelo al que pertenecen los alumnos", "caracter");
-                paralelo = this.lector.readLine().charAt(0);
-                this.alumnoViewCLI.mostrarTablaAlumnos(this.alumnoData.getAlumnos(nivel, paralelo),
-                        Curso.cursoToString(nivel, paralelo));
-                break;
-            case 3:
-                UtilsCLI.imprimirSolicitar("el nivel de los alumnos", "número de 1 a 12");
-                nivel = Integer.parseInt(this.lector.readLine());
-                UtilsCLI.imprimirSolicitar("el paralelo al que pertenecen los alumnos", "caracter");
-                paralelo = this.lector.readLine().charAt(0);
-                UtilsCLI.imprimirSolicitar("el RUT del alumno", "sin puntos, con guión");
-                rut = this.lector.readLine();
-                alumno = this.alumnoData.getAlumno(rut);
-                if (alumno == null) {
-                    UtilsCLI.mensajeErrIngresado();
-                    break;
-                }
-                System.out.println("Editando alumno:\n  Nombre: " + alumno.getNombreCompleto() + "\n  RUT: " + rut);
-                alumnoEditado = obtenerDatosAlumno(alumno, nivel, paralelo);
-                if (this.alumnoData.updateAlumno(alumnoEditado))
-                    System.out.println("Alumno actualizado exitosamente.");
-                else
-                    System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
-                break;
-            case 4:
-                UtilsCLI.imprimirSolicitar("el nivel de los alumnos", "número de 1 a 12");
-                nivel = Integer.parseInt(this.lector.readLine());
-                UtilsCLI.imprimirSolicitar("el paralelo al que pertenecen los alumnos", "caracter");
-                paralelo = this.lector.readLine().charAt(0);
-                UtilsCLI.imprimirSolicitar("el RUT del alumno", "sin puntos, con guión");
-                rut = this.lector.readLine();
-                alumno = this.alumnoData.getAlumno(rut);
-                if (alumno == null) {
-                    UtilsCLI.mensajeErrIngresado();
-                    break;
-                }
-                System.out.println("Eliminando alumno:\n  Nombre: " + alumno.getNombreCompleto() + "\n  RUT: " + rut);
-                if (this.alumnoData.deleteAlumno(alumno))
-                    System.out.println("Alumno eliminado exitosamente.");
-                else
-                    System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
-                break;
-            default:
-                UtilsCLI.mensajeErrIngresado();
-                break;
-        }
-    }
 
-    /**
-     * Muestra el menú de gestión de Alumnos por pantalla
-     *
-     * @throws IOException Posibles errores de entrada/salida de datos
-     */
-    public void mostrarMenuAlumnos() throws IOException {
-        short opt = -1;
-        while (opt != 0) {
-            this.alumnoViewCLI.mostrarMenuAlumnos();
-            UtilsCLI.imprimirIngresarOpcion("numérica");
-            opt = Short.parseShort(this.lector.readLine());
-            opcMenuAlumnos(opt);
-        }
-    }
 
 }

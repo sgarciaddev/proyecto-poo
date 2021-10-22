@@ -4,7 +4,7 @@ package aplicacion.models;
  * Clase que define un apoderado. Clase hija de Persona.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class Apoderado extends Persona {
     private int telefono;

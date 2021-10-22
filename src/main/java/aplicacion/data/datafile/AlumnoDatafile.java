@@ -13,7 +13,7 @@ import java.util.Map;
  * los datos de los alumnos. Implementa la interfaz AlumnoData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public class AlumnoDatafile implements AlumnoData {
 
@@ -107,18 +107,18 @@ public class AlumnoDatafile implements AlumnoData {
      * Obtiene todos los alumnos almacenados en el archivo, y que estén en el
      * curso requerido.
      *
-     * @param nivel Nivel por el que se busca filtrar los datos
-     * @param letra Caracter que identifica el paralelo por el que se busca
-     *              filtrar los datos
+     * @param nivel    Nivel por el que se busca filtrar los datos
+     * @param paralelo Caracter que identifica el paralelo por el que se busca
+     *                 filtrar los datos
      * @return HashMap de alumnos del nivel y paralelo entregado
      */
     @Override
-    public Map<String, Alumno> getAlumnos(int nivel, char letra) {
+    public Map<String, Alumno> getAlumnos(int nivel, char paralelo) {
         Alumno alumno;
         Map<String, Alumno> alumnos = new HashMap<String, Alumno>();
         List<String> dataList = this.datafile.getData();
         for (String csv : dataList) {
-            if (Integer.parseInt(csv.split(",")[0]) == nivel && csv.split(",")[1].charAt(0) == letra) {
+            if (Integer.parseInt(csv.split(",")[0]) == nivel && csv.split(",")[1].charAt(0) == paralelo) {
                 alumno = alumnoFromCSV(csv);
                 alumnos.put(alumno.getRut(), alumno);
             }
@@ -146,11 +146,12 @@ public class AlumnoDatafile implements AlumnoData {
      * Inserta un nuevo alumno al archivo plano que los contiene
      *
      * @param alumno Alumno a agregar al archivo
-     * @return Valor de verdad de la operación de inserción
      */
     @Override
-    public boolean insertAlumno(Alumno alumno) {
-        return this.datafile.insertLine(alumnoToCSV(alumno)) && this.apDataFile.insertApoderado(alumno.getApoderado());
+    public void insertAlumno(Alumno alumno) {
+        if (this.datafile.insertLine(alumnoToCSV(alumno))) {
+            this.apDataFile.insertApoderado(alumno.getApoderado());
+        }
     }
 
     /**

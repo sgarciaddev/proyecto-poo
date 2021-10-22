@@ -3,9 +3,10 @@
 ## Indice
 - **To-do**
     - [Entrega parcial 1](#entrega-parcial-1)
-    - [Entrega parcial 2](#entrega-parcial-1)
-    - [Entrega parcial 3](#entrega-parcial-1)
+    - [Entrega parcial 2](#entrega-parcial-2)
+    - [Entrega parcial 3](#entrega-parcial-3)
     - [Parte A](#parte-a)
+    - [Entrega parcial 4](#entrega-parcial-4)
 
 ### Entrega parcial 1
 
@@ -31,14 +32,35 @@
 ### Parte A
 
 - [X] La integración de todo lo entregado anteriormente (entregas Parciales) más lo detallado a continuación.
-    - Se debe hacer un menú para el sistema, para cada una de las 2 colecciones anidadas, donde ofrezca las funcionalidades de:
+    - Se debe hacer un menú para el sistema, para cada una de las 2 colecciones anidadas, donde ofrezca las
+      funcionalidades de:
         - [X] Edición o modificación del elemento.
         - [X] Eliminación del elemento.
-    - [ ] OP Implementar la funcionalidad de buscar elemento en 1 o más niveles.
+    - [ ] **OPCIONAL:** Implementar la funcionalidad de buscar elemento en 1 o más niveles.
 - [X] Se debe generar un reporte en archivo txt que considere mostrar datos de las 2 colecciones anidadas (ej: csv).
-    - [ ] OP Se puede generar un archivo de salida de planilla de cálculo (.xls o .xlsx).
-    - [ ] OP Se puede utilizar un componente gráfico estadístico (JFreeChart u otro) en ventana.
-- [X] El código fuente debe estar bien modularizado de acuerdo a lo descrito en el informe además de seguir las buenas prácticas de documentación interna y legibilidad.
+    - [ ] **OPCIONAL:** Se puede generar un archivo de salida de planilla de cálculo (.xls o .xlsx).
+    - [ ] **OPCIONAL:** Se puede utilizar un componente gráfico estadístico (JFreeChart u otro) en ventana.
+- [X] El código fuente debe estar bien modularizado de acuerdo a lo descrito en el informe además de seguir las buenas
+  prácticas de documentación interna y legibilidad.
 - [X] Todas las funcionalidades pueden ser implementadas mediante consola.
-    - [ ] OP La implementación de una o más interfaces gráficas de usuario, con la inclusión de ventanas con componentes AWT, SWING, JAVAFXu otro.
+    - [ ] **OPCIONAL:** La implementación de una o más interfaces gráficas de usuario, con la inclusión de ventanas con
+      componentes AWT, SWING, JAVAFXu otro.
 - [X] Utilización de GitHub (Realización de al menos 3 Commit).
+
+### Entrega parcial 4
+
+- Se deben incluir al menos 2 funcionalidades propias que sean de utilidad para el negocio (distintas de la inserción,
+  edición, eliminación y reportes). Específicamente:
+    - [X] Seleccionar un objeto por criterio, considera la selección de un objeto basado en un criterio específico,
+      involucrando dos o más colecciones anidadas. Por ejemplo, selección del alumno con la nota final más baja de todos
+      los cursos, o seleccionar el pasajero más joven de todos los buses de una compañía.
+    - [X] Subconjunto filtrado por criterio: considera la selección de un subconjunto de objetos basado en un criterio
+      específico, involucrando dos o más colecciones anidadas. Por ejemplo, selección de los alumnos con nota final
+      entre 4,0 y 7,0 de entre todos los cursos; o seleccionar a todos los pasajeros que tengan asiento impar de entre
+      todos los buses de la compañía.
+- [X] Diseño y codificación de 2 (dos) clases que utilicen sobreescritura de métodos.
+- [X] Diseño y codificación de 1 (una) clase abstracta que sea padre de al menos 2 (dos) clases. La clase abstracta debe
+  ser utilizada por alguna otra clase (contexto)
+- [X] Diseño y codificación de 1 (una) interfaz que sea implementada por al menos 2 (dos) clases. La interfaz debe ser
+  utilizada por alguna otra clase (contexto)
+- [X] **OPCIONAL:** Generar documentación con Javadoc.

@@ -8,7 +8,7 @@ import java.util.List;
  * Interfaz que permite interactuar con los datos de los cursos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 1.0
+ * @version 2.0
  */
 public interface CursoData {
     /**
@@ -39,9 +39,8 @@ public interface CursoData {
      * Agrega un curso
      *
      * @param curso Curso a agregar
-     * @return Valor de verdad sobre el éxito o fracaso de la operación
      */
-    boolean insertCurso(Curso curso);
+    void insertCurso(Curso curso);
 
     /**
      * Actualiza un curso
