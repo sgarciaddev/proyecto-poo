@@ -61,13 +61,13 @@ public class Fakedata {
      * @param ap Apoderado del alumno
      * @return Alumno ficticio
      */
-    public Alumno generateAlumno(Apoderado ap) {
+    public Alumno generateAlumno(Apoderado ap, int nivel, char paralelo) {
         String rut, nombres, apMat;
         rut = Integer.toString(this.faker.number().numberBetween(40000000, 50000000))
                 + "-" + Integer.toString(this.faker.number().numberBetween(0, 9));
         nombres = this.faker.name().firstName();
         apMat = this.faker.name().lastName();
-        return new Alumno(rut, nombres, ap.getApPaterno(), apMat, ap);
+        return new Alumno(rut, nombres, ap.getApPaterno(), apMat, nivel, paralelo, ap);
     }
 
     /**
@@ -103,8 +103,8 @@ public class Fakedata {
                 cursoDatafile.insertCurso(new Curso(i, j, profesor, null));
                 for (int k = 0; k < 15; k++) {
                     apoderado = generateApoderado();
-                    alumno = generateAlumno(apoderado);
-                    alumnoDatafile.insertAlumno(alumno, i, j);
+                    alumno = generateAlumno(apoderado, i, j);
+                    alumnoDatafile.insertAlumno(alumno);
                 }
             }
         }

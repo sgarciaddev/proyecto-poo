@@ -2,9 +2,9 @@ package aplicacion.controllers.cli;
 
 import aplicacion.data.CursoData;
 import aplicacion.data.ProfesorData;
-import aplicacion.data.datafile.CursoDatafile;;
+import aplicacion.data.database.CursoDB;
+import aplicacion.data.database.ProfesorDB;
 import aplicacion.data.datafile.Datafile;
-import aplicacion.data.datafile.ProfesorDatafile;
 import aplicacion.models.Alumno;
 import aplicacion.models.Curso;
 import aplicacion.models.Profesor;
@@ -33,8 +33,8 @@ public class CursoControllerCLI {
      * @param lector BufferedReader lector utilizado en el main
      */
     public CursoControllerCLI(BufferedReader lector) {
-        this.cursoData = new CursoDatafile();
-        this.profesorData = new ProfesorDatafile();
+        this.cursoData = new CursoDB();
+        this.profesorData = new ProfesorDB();
         this.cursoView = new CursoViewCLI();
         this.lector = lector;
     }
@@ -99,7 +99,7 @@ public class CursoControllerCLI {
         email = this.lector.readLine();
         UtilsCLI.imprimirSolicitar("el teléfono del profesor jefe", "texto");
         telefono = Integer.parseInt(this.lector.readLine());
-        return new Curso(cursoOriginal.getNivel(), cursoOriginal.getLetra(), new Profesor(rut, nombres, apPat, apMat,
+        return new Curso(cursoOriginal.getNivel(), cursoOriginal.getParalelo(), new Profesor(rut, nombres, apPat, apMat,
                 asignatura, email, telefono));
     }
 
@@ -198,7 +198,7 @@ public class CursoControllerCLI {
         for (Curso curso: cursos) {
             line.add(curso.toShortStr());
             line.add(Short.toString(curso.getNivel()));
-            line.add(Character.toString(curso.getLetra()));
+            line.add(Character.toString(curso.getParalelo()));
             line.add(curso.getProfesorJefe().getNombreCompleto());
             line.add(curso.getProfesorJefe().getEmail());
             line.add(Integer.toString(curso.getProfesorJefe().getTelefono()));

@@ -1,5 +1,10 @@
 package aplicacion.views.cli;
 
+import aplicacion.models.Alumno;
+import aplicacion.models.Curso;
+
+import java.util.logging.XMLFormatter;
+
 /**
  * Clase con utilidades para la interfaz de consola de comandos (CLI).
  *
@@ -273,8 +278,7 @@ public class UtilsCLI {
      */
     public static void mensajeBienvenida() {
         System.out.println("Bienvenidos a la aplicación");
-        System.out.println("Gestión de asistencia");
-        System.out.print("Cargando datos...\n");
+        System.out.println("Gestión de asistencia\n");
     }
 
     /**
@@ -376,4 +380,36 @@ public class UtilsCLI {
             System.out.println(String.format("%14s %s", " ", item[2]));
         }
     }
+
+    public static void imprimirAlumno(Alumno alumno) {
+        /*
+
+        RUT             : XXXXXXXX-X
+        NOMBRE COMPLETO : OAIJSGIOUJFOASDOIASUDOISAUDOIUSADASDLIJASJLASDJ
+        CURSO           : asdfasdfasdf
+        APODERADO       : XXXXXXXX-X | AWSFDPASODIPSAODIPOASDIPASODIAPSOD
+        */
+        imprimirTitulo("Datos del alumno", 50);
+        System.out.println("\nRUT             : " + alumno.getRut());
+        System.out.println("NOMBRE COMPLETO : " + alumno.getNombreCompleto());
+        System.out.println("CURSO           : " + Curso.cursoToString(alumno.getNivel(), alumno.getParalelo()));
+        System.out.println("APODERADO       : " + alumno.getApoderado().getRut() +
+                                                   " | " +
+                                                   alumno.getApoderado().getNombreCompleto());
+        System.out.println();
+    }
+
+    public static void mensajeIntentandoConexionMySQL() {
+        System.out.println("Intentando conexión a la base de datos...");
+    }
+
+    public static void mensajeExitoConexionMySQL() {
+        System.out.println("Conexión con base de datos MySQL exitosa!\n");
+    }
+
+    public static void mensajeUtilizandoDatafile() {
+        System.out.println("La conexión con la base de datos MySQL no ha sido posible. Se utilizará base de datos " +
+                "local en reemplazo.\n");
+    }
+
 }
