@@ -1,6 +1,7 @@
 package aplicacion.views.cli;
 
 import aplicacion.controllers.cli.AlumnoControllerCLI;
+import aplicacion.controllers.cli.AsistenciaControllerCLI;
 import aplicacion.controllers.cli.CursoControllerCLI;
 import aplicacion.models.Curso;
 
@@ -21,6 +22,7 @@ public class CLI {
     private final BufferedReader lector;
     private final CursoControllerCLI cursoController;
     private final AlumnoControllerCLI alumnoController;
+    private final AsistenciaControllerCLI asistenciaController;
 
     /**
      * Genera la instancia de la aplicación CLI
@@ -29,6 +31,7 @@ public class CLI {
         this.lector = new BufferedReader(new InputStreamReader(System.in));
         this.cursoController = new CursoControllerCLI(this.lector);
         this.alumnoController = new AlumnoControllerCLI(this.lector);
+        this.asistenciaController = new AsistenciaControllerCLI(this.lector);
     }
 
     /**
@@ -121,7 +124,7 @@ public class CLI {
                 this.alumnoController.mostrarMenuAlumnos();
                 break;
             case 3:
-                System.out.println("\nEsta funcionalidad aún no ha sido implementada\n");
+                this.asistenciaController.mostrarMenuAsistencia();
                 break;
             default:
                 UtilsCLI.mensajeErrIngresado();
