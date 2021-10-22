@@ -6,6 +6,7 @@ import aplicacion.views.cli.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Map;
 
 /**
@@ -156,6 +157,9 @@ public class MenuControllerCLI {
     private void menuAsistencia(short opt) throws IOException {
         Map<String, Alumno> alumnosEnPorcentaje;
         int porcentaje1, porcentaje2;
+        Alumno alumno;
+        DecimalFormat df = new DecimalFormat("#.##");
+
         switch (opt) {
             case 0:
                 break;
@@ -164,23 +168,29 @@ public class MenuControllerCLI {
                 System.exit(0);
             case 1:
                 System.out.println("Alumno con mejor Asistencia: ");
-                System.out.println(asistenciaController.getAlumnoMejorAsistencia().getNombreCompleto());
+                System.out.println(asistenciaController.getAlumnoRequerido(1).getNombreCompleto());
                 break;
             case 2:
                 UtilsCLI.imprimirSolicitar("porcentaje 1 ", "número de 1 a 100");
                 porcentaje1 = Integer.parseInt(lector.readLine());
                 UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 1 a 100");
                 porcentaje2 = Integer.parseInt(lector.readLine());
-                alumnosEnPorcentaje = asistenciaController.getAsistenciaEntrePorcentajes(porcentaje1, porcentaje2);
+                alumnosEnPorcentaje = asistenciaController.getEntrePorcentajes(porcentaje1, porcentaje2, 1);
                 AsistenciaViewCli.mostrarTablaAlumnosAsistencia(alumnosEnPorcentaje, "porcentaje dado");
                 break;
             case 3:
-                // Todo: Alumno con más returos
-                UtilsCLI.imprimirFuncionalidadNoImplementada();
+                System.out.println("Alumno con mas retiros: ");
+                alumno = asistenciaController.getAlumnoRequerido(0);
+                System.out.println(alumno.getNombreCompleto() + " con " + df.format(alumno.getAsistencia().obtenerRetiros()) + "% de retiros");
                 break;
             case 4:
-                // Todo: Alumnos entre % de retiros
-                UtilsCLI.imprimirFuncionalidadNoImplementada();
+                UtilsCLI.imprimirSolicitar("porcentaje 1 ", "número de 1 a 100");
+                porcentaje1 = Integer.parseInt(lector.readLine());
+                UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 1 a 100");
+                porcentaje2 = Integer.parseInt(lector.readLine());
+                alumnosEnPorcentaje = asistenciaController.getEntrePorcentajes(porcentaje1, porcentaje2, 0);
+                AsistenciaViewCli.mostrarTablaAlumnosAsistencia(alumnosEnPorcentaje, "porcentaje dado RETIROS");
+
                 break;
             default:
                 UtilsCLI.mensajeErrIngresado();
