@@ -83,4 +83,13 @@ public class Profesor extends Persona {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
+
+    @Override
+    public String toString() {
+        return super.toString("Profesor") +
+                "    -> Asignatura       : " + asignatura + "\n" +
+                "    Datos de contacto\n" +
+                "      -> Teléfono       : " + telefono + "\n" +
+                "      -> Email          : " + email + "\n";
+    }
 }
