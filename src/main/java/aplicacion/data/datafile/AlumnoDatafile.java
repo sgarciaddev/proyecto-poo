@@ -3,10 +3,8 @@ package aplicacion.data.datafile;
 import aplicacion.data.AlumnoData;
 import aplicacion.models.Alumno;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Clase que permite la interacción con el archivo de texto plano que almancena
@@ -44,6 +42,9 @@ public class AlumnoDatafile implements AlumnoData {
         dataList.add(alumno.getApPaterno());
         dataList.add(alumno.getApMaterno());
         dataList.add(alumno.getApoderado().getRut());
+        for (float[] diasAsistencia: alumno.getAsistencia().getAsistenciaMatriz()) {
+            dataList.add(Arrays.toString(diasAsistencia));
+        }
         return Datafile.listToCSV(dataList);
     }
 

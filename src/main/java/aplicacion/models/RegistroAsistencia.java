@@ -1,7 +1,5 @@
 package aplicacion.models;
 
-import java.util.Random;
-
 /**
  * Clase que registra la asistencia de un alumno, para un año escolar completo.
  *
@@ -18,8 +16,17 @@ public class RegistroAsistencia {
      */
     public RegistroAsistencia() {
         // Considera 31 días máximo por mes, desde Marzo (índice 0) a Diciembre (índice 9).
-        this.asistencia = new float[31][10];
+        this.asistencia = new float[10][31];
         this.contadorDias = new int[10];
+
+    }
+
+    public float[][] getAsistenciaMatriz() {
+        return this.asistencia;
+    }
+
+    public void setAsistenciaMatriz(float[][] asistencia) {
+        this.asistencia = asistencia;
     }
 
     /**
@@ -29,9 +36,9 @@ public class RegistroAsistencia {
      * @param dia El día para el que se quiere registrar la asistencia
      * @param mes El mes para el que se quiere registrar la asistencia
      */
-    public void registrarAsistencia(float valor, int dia, int mes) {
-        if ((mes >= 3 && mes <= 12) && (dia >= 1 && dia <= 31))
-            this.asistencia[dia][mes] = valor;
+    public void registrarAsistencia(float valor, int mes, int dia) {
+        if ((mes >= 0 && mes <= 9) && (dia >= 0 && dia <= 30))
+            this.asistencia[mes][dia] = valor;
         this.contadorDias[mes]++;
     }
 
@@ -81,7 +88,6 @@ public class RegistroAsistencia {
      *
      * @return Porcentaje de retiros (entre 0 y 1).
      */
-
     public float obtenerRetiros() {
         float totalDiasRetirado = 0;
 
@@ -96,6 +102,5 @@ public class RegistroAsistencia {
             return totalDiasRetirado / 310;
         return 0.0f;
     }
-
 
 }
