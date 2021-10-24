@@ -73,4 +73,11 @@ public class Alumno extends Persona {
         this.paralelo = paralelo;
     }
 
+    @Override
+    public String toString() {
+        return super.toString("Alumno") +
+                "    -> Curso            : " + Curso.cursoToString(nivel, paralelo) + "\n" +
+                "    -> Apoderado        : " + apoderado.getRut() + " - " + apoderado.getNombreCompleto() + "\n" +
+                "    -> Prom. Asistencia : " + String.format("%.1f", asistencia.obtenerAsistencia() * 100) + " %\n";
+    }
 }

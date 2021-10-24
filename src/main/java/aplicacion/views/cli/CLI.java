@@ -66,6 +66,13 @@ public class CLI {
     public static void main(String[] args) throws IOException {
         UtilsCLI.mensajeBienvenida();
         CLI cli = new CLI();
+
+//        Persona x = cli.cursoData.getCursos().get(0).getProfesorJefe();
+//        Persona x = cli.alumnoData.getAlumnos().get("46595942-0");
+//        Persona x = cli.alumnoData.getAlumnos().get("46595942-0").getApoderado();
+//        System.out.println(x.toString());
+//        System.out.println(x.getNombreCompleto());
+
         cli.menuCLI.mostrarMenu("principal");
         UtilsCLI.mensajeDespedida();
     }
