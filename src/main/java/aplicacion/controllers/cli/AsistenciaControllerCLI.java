@@ -69,13 +69,10 @@ public class AsistenciaControllerCLI {
 
         for (Curso curso: cursos) {
             for (Alumno alumno: curso.getAlumnos().values()) {
-                if (value == 1){
+                if (value == 1)
                     alumnoReq = (int) Math.round((alumno.getAsistencia().obtenerAsistencia() * 100.0));
-                        alumnos.put(alumno.getRut(), alumno);
-                }
                 if (value == 0)
                     alumnoReq = (int) Math.round((alumno.getAsistencia().obtenerRetiros() * 100.0));
-
                 if (alumnoReq >= percent1 && alumnoReq <= percent2)
                     alumnos.put(alumno.getRut(), alumno);
             }

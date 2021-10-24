@@ -96,4 +96,6 @@ public class RegistroAsistencia {
             return totalDiasRetirado / 310;
         return 0.0f;
     }
+
+
 }
