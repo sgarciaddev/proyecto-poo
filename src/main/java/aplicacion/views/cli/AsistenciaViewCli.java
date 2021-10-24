@@ -29,10 +29,16 @@ public class AsistenciaViewCli {
             data[i][3] = alumno.getNombres();
             data[i][4] = alumno.getApoderado().getNombreCompleto();
             data[i][5] = alumno.getApoderado().getTelefono();
-            data[i][6] = alumno.getAsistencia().obtenerAsistencia();
+            if(curso.equals("porcentaje dado ASISTENCIA"))
+                data[i][6] = alumno.getAsistencia().obtenerAsistencia();
+            else
+                data[i][6] = alumno.getAsistencia().obtenerRetiros();
             i++;
         }
-        UtilsCLI.imprimirTabla(data, UtilsCLI.headers.get("asistencia"), "Asistencia de alumnos del " + curso);
+        if(curso.equals("porcentaje dado ASISTENCIA"))
+            UtilsCLI.imprimirTabla(data, UtilsCLI.headers.get("asistencia"), "Asistencia de alumnos del " + curso);
+        else
+            UtilsCLI.imprimirTabla(data, UtilsCLI.headers.get("retiros"), "Asistencia de alumnos del " + curso);
     }
 
 }

@@ -45,6 +45,16 @@ public class UtilsCLI {
                 "Teléfono apoderado",
                 "% Asistencia"
         });
+
+        put("retiros", new String[]{
+                "RUT",
+                "Ap. Paterno",
+                "Ap. Materno",
+                "Nombres",
+                "Nombre completo apoderado",
+                "Teléfono apoderado",
+                "% Retiros"
+        });
     }};
 
     /**

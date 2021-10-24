@@ -91,9 +91,9 @@ public class RegistroAsistencia {
     public float obtenerRetiros() {
         float totalDiasRetirado = 0;
 
-        for (int i = 0; i < 10; i++){
-            for (int j = 0; j < 31; j++){
-                if (Float.compare(this.asistencia[j][i], 0.5f) == 0){
+        for (int mes = 0; mes < 10; mes++){
+            for (int dia = 0; dia < 31; dia++){
+                if (Float.compare(this.asistencia[mes][dia], 0.5f) == 0){
                     totalDiasRetirado++;
                 }
             }
