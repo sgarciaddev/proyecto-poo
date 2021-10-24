@@ -158,7 +158,7 @@ public class MenuControllerCLI {
         Map<String, Alumno> alumnosEnPorcentaje;
         int porcentaje1, porcentaje2;
         Alumno alumno;
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("##.##");
 
         switch (opt) {
             case 0:
@@ -168,27 +168,28 @@ public class MenuControllerCLI {
                 System.exit(0);
             case 1:
                 System.out.println("Alumno con mejor Asistencia: ");
-                System.out.println(asistenciaController.getAlumnoRequerido(1).getNombreCompleto());
+                alumno = this.asistenciaController.getAlumnoRequerido(1);
+                System.out.println(alumno.getNombreCompleto() + " con " + df.format(alumno.getAsistencia().obtenerAsistencia()) + "% de asistencia");
                 break;
             case 2:
-                UtilsCLI.imprimirSolicitar("porcentaje 1 ", "número de 1 a 100");
-                porcentaje1 = Integer.parseInt(lector.readLine());
-                UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 1 a 100");
-                porcentaje2 = Integer.parseInt(lector.readLine());
-                alumnosEnPorcentaje = asistenciaController.getEntrePorcentajes(porcentaje1, porcentaje2, 1);
-                AsistenciaViewCli.mostrarTablaAlumnosAsistencia(alumnosEnPorcentaje, "porcentaje dado");
+                UtilsCLI.imprimirSolicitar("porcentaje 1 ", "número de 0 a 100");
+                porcentaje1 = Integer.parseInt(this.lector.readLine());
+                UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 0 a 100");
+                porcentaje2 = Integer.parseInt(this.lector.readLine());
+                alumnosEnPorcentaje = this.asistenciaController.getEntrePorcentajes(porcentaje1, porcentaje2, 1);
+                AsistenciaViewCli.mostrarTablaAlumnosAsistencia(alumnosEnPorcentaje, "porcentaje dado ASISTENCIA");
                 break;
             case 3:
                 System.out.println("Alumno con mas retiros: ");
-                alumno = asistenciaController.getAlumnoRequerido(0);
+                alumno = this.asistenciaController.getAlumnoRequerido(0);
                 System.out.println(alumno.getNombreCompleto() + " con " + df.format(alumno.getAsistencia().obtenerRetiros()) + "% de retiros");
                 break;
             case 4:
-                UtilsCLI.imprimirSolicitar("porcentaje 1 ", "número de 1 a 100");
-                porcentaje1 = Integer.parseInt(lector.readLine());
-                UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 1 a 100");
-                porcentaje2 = Integer.parseInt(lector.readLine());
-                alumnosEnPorcentaje = asistenciaController.getEntrePorcentajes(porcentaje1, porcentaje2, 0);
+                UtilsCLI.imprimirSolicitar("porcentaje 1 ", "número de 0 a 100");
+                porcentaje1 = Integer.parseInt(this.lector.readLine());
+                UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 0 a 100");
+                porcentaje2 = Integer.parseInt(this.lector.readLine());
+                alumnosEnPorcentaje = this.asistenciaController.getEntrePorcentajes(porcentaje1, porcentaje2, 0);
                 AsistenciaViewCli.mostrarTablaAlumnosAsistencia(alumnosEnPorcentaje, "porcentaje dado RETIROS");
 
                 break;
