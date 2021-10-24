@@ -6,7 +6,7 @@ package aplicacion.models;
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
  * @version 2.0
  */
-public class Persona {
+public abstract class Persona {
     private String rut, nombres, apPaterno, apMaterno;
 
     /**
