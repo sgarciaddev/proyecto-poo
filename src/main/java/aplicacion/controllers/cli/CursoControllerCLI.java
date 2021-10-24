@@ -3,11 +3,12 @@ package aplicacion.controllers.cli;
 import aplicacion.data.datafile.Datafile;
 import aplicacion.models.Alumno;
 import aplicacion.models.Curso;
+import aplicacion.models.IDCurso;
 import aplicacion.models.Profesor;
+import aplicacion.views.cli.CursoViewCLI;
 import aplicacion.views.cli.MenuCLI;
 import aplicacion.views.cli.UtilsCLI;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,18 +22,15 @@ import java.util.Map;
  * @version 2.0
  */
 public class CursoControllerCLI {
-    private final BufferedReader lector;
     private final MenuCLI menuCLI;
 
     /**
      * Objeto controlador de Curso en la interfaz de línea de comandos
      *
-     * @param lector  BufferedReader lector utilizado en el main
      * @param menuCLI Instancia de menú con los origenes de datos.
      */
-    public CursoControllerCLI(BufferedReader lector, MenuCLI menuCLI) {
+    public CursoControllerCLI(MenuCLI menuCLI) {
         this.menuCLI = menuCLI;
-        this.lector = lector;
     }
 
     /**
@@ -54,28 +52,26 @@ public class CursoControllerCLI {
      */
     public Curso obtenerDatosCurso() throws IOException {
         int telefono;
-        short nivel;
-        char paralelo;
+        IDCurso idCurso;
         String rut, nombres, apPat, apMat, email, asignatura;
-        UtilsCLI.imprimirSolicitar("el nivel del curso", "número de 1 a 12");
-        nivel = Short.parseShort(this.lector.readLine());
-        UtilsCLI.imprimirSolicitar("el paralelo del curso", "caracter");
-        paralelo = this.lector.readLine().charAt(0);
+
+        idCurso = this.obtenerIDCurso();
         UtilsCLI.imprimirSolicitar("el RUT del profesor jefe", "RUT");
-        rut = this.lector.readLine();
+        rut = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("los nombres del profesor jefe", "texto");
-        nombres = this.lector.readLine();
+        nombres = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("el apellido paterno del profesor jefe", "texto");
-        apPat = this.lector.readLine();
+        apPat = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("el apellido materno del profesor jefe", "texto");
-        apMat = this.lector.readLine();
+        apMat = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("la asignatura del profesor jefe", "texto");
-        asignatura = this.lector.readLine();
+        asignatura = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("el email del profesor jefe", "texto");
-        email = this.lector.readLine();
+        email = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("el teléfono del profesor jefe", "texto");
-        telefono = Integer.parseInt(this.lector.readLine());
-        return new Curso(nivel, paralelo, new Profesor(rut, nombres, apPat, apMat, asignatura, email, telefono));
+        telefono = Integer.parseInt(this.menuCLI.getLector().readLine());
+        return new Curso(idCurso.nivel, idCurso.paralelo, new Profesor(rut, nombres, apPat, apMat, asignatura, email,
+                telefono));
     }
 
     /**
@@ -89,21 +85,42 @@ public class CursoControllerCLI {
         int telefono;
         String rut, nombres, apPat, apMat, email, asignatura;
         UtilsCLI.imprimirSolicitar("el RUT del profesor jefe", "RUT");
-        rut = this.lector.readLine();
+        rut = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("los nombres del profesor jefe", "texto");
-        nombres = this.lector.readLine();
+        nombres = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("el apellido paterno del profesor jefe", "texto");
-        apPat = this.lector.readLine();
+        apPat = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("el apellido materno del profesor jefe", "texto");
-        apMat = this.lector.readLine();
+        apMat = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("la asignatura del profesor jefe", "texto");
-        asignatura = this.lector.readLine();
+        asignatura = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("el email del profesor jefe", "texto");
-        email = this.lector.readLine();
+        email = this.menuCLI.getLector().readLine();
         UtilsCLI.imprimirSolicitar("el teléfono del profesor jefe", "texto");
-        telefono = Integer.parseInt(this.lector.readLine());
+        telefono = Integer.parseInt(this.menuCLI.getLector().readLine());
         return new Curso(cursoOriginal.getNivel(), cursoOriginal.getParalelo(), new Profesor(rut, nombres, apPat, apMat,
                 asignatura, email, telefono));
+    }
+
+    public IDCurso obtenerIDCurso() throws IOException {
+        short nivel;
+        char paralelo;
+
+        UtilsCLI.imprimirSolicitar("el nivel del curso", "número de 1 a 12");
+        nivel = Short.parseShort(this.menuCLI.getLector().readLine());
+        while ((nivel < 1) || (nivel > 12)) {
+            UtilsCLI.imprimirSolicitar("el nivel del curso", "número de 1 a 12");
+            nivel = Short.parseShort(this.menuCLI.getLector().readLine());
+        }
+
+        UtilsCLI.imprimirSolicitar("el paralelo del curso", "caracter");
+        paralelo = this.menuCLI.getLector().readLine().charAt(0);
+        while (!Character.isAlphabetic(paralelo)) {
+            UtilsCLI.imprimirSolicitar("el nivel del curso", "número de 1 a 12");
+            paralelo = this.menuCLI.getLector().readLine().charAt(0);
+        }
+
+        return new IDCurso(nivel, paralelo);
     }
 
     /**
@@ -129,6 +146,7 @@ public class CursoControllerCLI {
             line.clear();
         }
         return reporteListaCurso.getFilePath();
+
     }
 
     /**
@@ -153,6 +171,55 @@ public class CursoControllerCLI {
             line.clear();
         }
         return reporteTablaCursos.getFilePath();
+    }
+
+    public void agregarCurso() throws IOException {
+        this.menuCLI.getCursoData().insertCurso(this.obtenerDatosCurso());
+        CursoViewCLI.mostrarTablaCursos(this.menuCLI.getCursoData().getCursos());
+    }
+
+    public void mostrarCursos() {
+        CursoViewCLI.mostrarTablaCursos(this.menuCLI.getCursoData().getCursos());
+    }
+
+    public void asignarNuevoProfesorJefeACurso() throws IOException {
+        IDCurso idCurso;
+        Curso curso, cursoActualizado;
+        idCurso = this.obtenerIDCurso();
+        curso = this.menuCLI.getCursoData().getCurso(idCurso.nivel, idCurso.paralelo);
+        System.out.println("Cambiando profesor jefe del " + curso.cursoToString());
+        cursoActualizado = this.obtenerDatosCurso(curso);
+        if (this.menuCLI.getCursoData().updateCurso(cursoActualizado)) {
+            this.menuCLI.getProfesorData().insertProfesor(cursoActualizado.getProfesorJefe());
+            this.menuCLI.getProfesorData().deleteProfesor(curso.getProfesorJefe());
+            System.out.println("El curso ha sido actualizado exitosamente");
+        } else
+            System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
+    }
+
+    public void eliminarCurso() throws IOException {
+        IDCurso idCurso;
+        Curso curso;
+
+        idCurso = obtenerIDCurso();
+        curso = this.menuCLI.getCursoData().getCurso(idCurso.nivel, idCurso.paralelo);
+        System.out.println("Eliminando curso " + curso.cursoToString());
+        if (this.menuCLI.getCursoData().deleteCurso(curso))
+            System.out.println("El curso ha sido eliminado exitosamente");
+        else
+            System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
+    }
+
+    public void verDatosCurso() throws IOException {
+        IDCurso idCurso;
+        Curso curso;
+
+        idCurso = obtenerIDCurso();
+        curso = this.menuCLI.getCursoData().getCurso(idCurso);
+        if (curso != null)
+            UtilsCLI.imprimirCurso(curso);
+        else
+            UtilsCLI.mensajeErrorNoEncontrado("curso", 0);
     }
 
 }

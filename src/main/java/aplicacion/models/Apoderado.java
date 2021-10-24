@@ -61,4 +61,20 @@ public class Apoderado extends Persona {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return super.toString("Apoderado") +
+                "    Datos de contacto\n" +
+                "      -> Teléfono       : " + telefono + "\n" +
+                "      -> Email          : " + email + "\n";
+    }
+
+    @Override
+    public String toString(String titulo) {
+        return super.toString(titulo) +
+                "    Datos de contacto\n" +
+                "      -> Teléfono       : " + telefono + "\n" +
+                "      -> Email          : " + email + "\n";
+    }
 }

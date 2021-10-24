@@ -1,13 +1,16 @@
 package aplicacion.models;
 
 /**
- * Clase que define una persona.
+ * Clase abstracta que define una persona.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
  * @version 2.0
  */
-public class Persona {
-    private String rut, nombres, apPaterno, apMaterno;
+public abstract class Persona {
+    private final String rut;
+    private String nombres;
+    private String apPaterno;
+    private String apMaterno;
 
     /**
      * Genera un objeto de tipo Persona
@@ -93,5 +96,22 @@ public class Persona {
      */
     public String getNombreCompleto() {
         return this.nombres + " " + this.apPaterno + " " + this.apMaterno;
+    }
+
+    @Override
+    public String toString() {
+        return "Datos persona: \n" +
+                "    -> RUT              : " + rut + "\n" +
+                "    -> Nombres          : " + nombres + "\n" +
+                "    -> Apellido paterno : " + apPaterno + "\n" +
+                "    -> Apellido materno : " + apMaterno + "\n";
+    }
+
+    public String toString(String titulo) {
+        return "Datos " + titulo + ": \n" +
+                "    -> RUT              : " + rut + "\n" +
+                "    -> Nombres          : " + nombres + "\n" +
+                "    -> Apellido paterno : " + apPaterno + "\n" +
+                "    -> Apellido materno : " + apMaterno + "\n";
     }
 }
