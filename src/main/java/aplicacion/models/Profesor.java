@@ -92,4 +92,13 @@ public class Profesor extends Persona {
                 "      -> Teléfono       : " + telefono + "\n" +
                 "      -> Email          : " + email + "\n";
     }
+
+    @Override
+    public String toString(String titulo) {
+        return super.toString(titulo) +
+                "    -> Asignatura       : " + asignatura + "\n" +
+                "    Datos de contacto\n" +
+                "      -> Teléfono       : " + telefono + "\n" +
+                "      -> Email          : " + email + "\n";
+    }
 }

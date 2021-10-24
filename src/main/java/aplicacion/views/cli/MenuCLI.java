@@ -39,7 +39,7 @@ public class MenuCLI {
     public MenuCLI(BufferedReader lector, AlumnoData alumnoData, ApoderadoData apoderadoData, CursoData cursoData,
                    ProfesorData profesorData) {
         this.lector = lector;
-        this.menuControllerCLI = new MenuControllerCLI(lector, this);
+        this.menuControllerCLI = new MenuControllerCLI(this);
         this.alumnoData = alumnoData;
         this.apoderadoData = apoderadoData;
         this.cursoData = cursoData;
@@ -95,7 +95,7 @@ public class MenuCLI {
                 },
                 {
                         2,
-                        "Reportes",
+                        "Generar reportes",
                         "Permite generar reportes con los datos del sistema"
                 },
                 {
@@ -166,16 +166,21 @@ public class MenuCLI {
                 },
                 {
                         2,
+                        "Ver datos de curso",
+                        "Permite ver los datos de un curso en específico"
+                },
+                {
+                        3,
                         "Ver cursos",
                         "Permite ver la lista de cursos disponibles"
                 },
                 {
-                        3,
+                        4,
                         "Asignar nuevo profesor jefe a curso",
                         "Permite asignar un nuevo profesor jefe al curso"
                 },
                 {
-                        4,
+                        5,
                         "Eliminar curso",
                         "Permite eliminar un curso en específico"
                 },
@@ -198,16 +203,21 @@ public class MenuCLI {
                 },
                 {
                         2,
+                        "Ver datos de alumno",
+                        "Permite ver los datos de un alumno en específico"
+                },
+                {
+                        3,
                         "Ver alumnos",
                         "Permite ver la lista de alumnos del curso"
                 },
                 {
-                        3,
+                        4,
                         "Editar alumno",
                         "Permite editar un alumno en específico"
                 },
                 {
-                        4,
+                        5,
                         "Eliminar alumno",
                         "Permite eliminar un alumno en específico"
                 },
@@ -230,16 +240,21 @@ public class MenuCLI {
                 },
                 {
                         2,
+                        "Registrar asistencia (próximamente)",
+                        "Permite registrar la asistencia de un curso un día determinado"
+                },
+                {
+                        3,
                         "Alumnos entre % y % de asistencia",
                         "Permite ver los alumnos con los porcentajes de asistencia especificados"
                 },
                 {
-                        3,
+                        4,
                         "Alumno con mas retiros",
                         "Permite ver el alumno con mas retiros en el año"
                 },
                 {
-                        4,
+                        5,
                         "Alumnos entre % y % de retiros",
                         "Permite ver los alumnos con los porcentajes de retiros especificados"
                 },
@@ -291,4 +306,7 @@ public class MenuCLI {
         }
     }
 
+    public BufferedReader getLector() {
+        return lector;
+    }
 }

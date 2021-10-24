@@ -22,39 +22,47 @@ import java.io.InputStreamReader;
  */
 public class CLI {
 
-    private final BufferedReader lector;
-
     private final MenuCLI menuCLI;
-
-    private final AlumnoData alumnoData;
-    private final ApoderadoData apoderadoData;
-    private final ProfesorData profesorData;
-    private final CursoData cursoData;
 
     /**
      * Genera la instancia de la aplicación CLI
      */
     public CLI() {
-        this.lector = new BufferedReader(new InputStreamReader(System.in));
+        AlumnoData alumnoData;
+        ApoderadoData apoderadoData;
+        ProfesorData profesorData;
+        CursoData cursoData;
 
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+
+        UtilsCLI.mensajeBienvenida();
         // Se intenta conexión con la base da datos y se verifica
         UtilsCLI.mensajeIntentandoConexionMySQL();
+
         if (DBConnection.connect() != null) {
             UtilsCLI.mensajeExitoConexionMySQL();
-            this.alumnoData = new AlumnoDB();
-            this.apoderadoData = new ApoderadoDB();
-            this.profesorData = new ProfesorDB();
-            this.cursoData = new CursoDB();
+            alumnoData = new AlumnoDB();
+            apoderadoData = new ApoderadoDB();
+            profesorData = new ProfesorDB();
+            cursoData = new CursoDB();
         } else {
             UtilsCLI.mensajeUtilizandoDatafile();
-            this.alumnoData = new AlumnoDatafile();
-            this.apoderadoData = new ApoderadoDatafile();
-            this.profesorData = new ProfesorDatafile();
-            this.cursoData = new CursoDatafile();
+            alumnoData = new AlumnoDatafile();
+            apoderadoData = new ApoderadoDatafile();
+            profesorData = new ProfesorDatafile();
+            cursoData = new CursoDatafile();
         }
 
-        this.menuCLI = new MenuCLI(lector, this.alumnoData, this.apoderadoData, this.cursoData, this.profesorData);
+        this.menuCLI = new MenuCLI(lector, alumnoData, apoderadoData, cursoData, profesorData);
 
+    }
+
+    public void iniciarCLI() throws IOException{
+        menuCLI.mostrarMenu("principal");
+    }
+
+    public void finalizarCLI() {
+        UtilsCLI.mensajeDespedida();
     }
 
     /**
@@ -64,17 +72,9 @@ public class CLI {
      * @throws IOException Posibles errores de entrada/salida de datos
      */
     public static void main(String[] args) throws IOException {
-        UtilsCLI.mensajeBienvenida();
         CLI cli = new CLI();
-
-//        Persona x = cli.cursoData.getCursos().get(0).getProfesorJefe();
-//        Persona x = cli.alumnoData.getAlumnos().get("46595942-0");
-//        Persona x = cli.alumnoData.getAlumnos().get("46595942-0").getApoderado();
-//        System.out.println(x.toString());
-//        System.out.println(x.getNombreCompleto());
-
-        cli.menuCLI.mostrarMenu("principal");
-        UtilsCLI.mensajeDespedida();
+        cli.iniciarCLI();
+        cli.finalizarCLI();
     }
 
 }

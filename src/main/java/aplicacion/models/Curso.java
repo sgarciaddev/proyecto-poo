@@ -10,8 +10,7 @@ import java.util.Map;
  * @version 2.0
  */
 public class Curso {
-    private short nivel;
-    private char paralelo;
+    private final IDCurso idCurso;
     private Profesor profesorJefe;
     private Map<String, Alumno> alumnos;
 
@@ -24,8 +23,7 @@ public class Curso {
      * @param alumnos      Lista de alumnos del curso
      */
     public Curso(short nivel, char paralelo, Profesor profesorJefe, Map<String, Alumno> alumnos) {
-        this.nivel = nivel;
-        this.paralelo = paralelo;
+        this.idCurso = new IDCurso(nivel, paralelo);
         this.profesorJefe = profesorJefe;
         this.alumnos = alumnos;
     }
@@ -38,8 +36,7 @@ public class Curso {
      * @param profesorJefe Profesor jefe a cargo del curso
      */
     public Curso(short nivel, char paralelo, Profesor profesorJefe) {
-        this.nivel = nivel;
-        this.paralelo = paralelo;
+        this.idCurso = new IDCurso(nivel, paralelo);
         this.profesorJefe = profesorJefe;
         this.alumnos = new HashMap<String, Alumno>();
     }
@@ -70,7 +67,7 @@ public class Curso {
      * @return Valor numérico del nivel (de 1 a 12)
      */
     public short getNivel() {
-        return nivel;
+        return idCurso.nivel;
     }
 
     /**
@@ -79,7 +76,16 @@ public class Curso {
      * @return Caracter identificador del paralelo del curso
      */
     public char getParalelo() {
-        return paralelo;
+        return idCurso.paralelo;
+    }
+
+    /**
+     * Obtiene ID (nivel y paralelo) del curso
+     *
+     * @return IDCurso con el nivel y paralelo identificador del curso
+     */
+    public IDCurso getIdCurso() {
+        return idCurso;
     }
 
     /**
@@ -124,10 +130,10 @@ public class Curso {
      * @return String con el nivel del curso
      */
     public String nivelToString() {
-        if (this.nivel >= 9) {
-            return Integer.toString(this.nivel - 8) + " medio";
+        if (this.idCurso.nivel >= 9) {
+            return Integer.toString(this.idCurso.nivel - 8) + " medio";
         } else {
-            return Integer.toString(this.nivel) + " básico";
+            return Integer.toString(this.idCurso.nivel) + " básico";
         }
     }
 
@@ -137,7 +143,7 @@ public class Curso {
      * @return String con el curso en palabras
      */
     public String cursoToString() {
-        return this.nivelToString() + " " + Character.toUpperCase(this.paralelo);
+        return this.nivelToString() + " " + Character.toUpperCase(this.idCurso.paralelo);
     }
 
     /**
@@ -146,10 +152,23 @@ public class Curso {
      * @return String con el curso en formato corto
      */
     public String toShortStr() {
-        if (this.nivel >= 9) {
-            return Integer.toString(this.nivel - 8) + "M" + Character.toUpperCase(this.paralelo);
+        if (this.idCurso.nivel >= 9) {
+            return Integer.toString(this.idCurso.nivel - 8) + "M" + Character.toUpperCase(this.idCurso.paralelo);
         } else {
-            return Integer.toString(this.nivel) + "B" + Character.toUpperCase(this.paralelo);
+            return Integer.toString(this.idCurso.nivel) + "B" + Character.toUpperCase(this.idCurso.paralelo);
         }
+    }
+
+    /**
+     * Sobreescritura del método toString para impresiones por pantalla.
+     * @return String con los datos del curso, para impresion por pantalla.
+     */
+    @Override
+    public String toString() {
+        return "Datos curso: \n" +
+                "    -> Nivel            : " + idCurso.nivel + "\n" +
+                "    -> Paralelo         : " + idCurso.paralelo + "\n" +
+                "    -> Curso            : " + cursoToString(idCurso.nivel, idCurso.paralelo) + "\n" +
+                "    " + profesorJefe.toString("Profesor Jefe");
     }
 }

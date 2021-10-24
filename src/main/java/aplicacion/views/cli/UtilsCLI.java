@@ -1,5 +1,8 @@
 package aplicacion.views.cli;
 
+import aplicacion.models.Curso;
+import aplicacion.models.Persona;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -210,6 +213,24 @@ public class UtilsCLI {
     }
 
     /**
+     * Método que se encarga de imprimir una persona. Llama el método toString para que muestre cada persona en el
+     * formato correcto.
+     * @param persona Persona que se desea mostrar por pantalla
+     */
+    public static void imprimirPersona(Persona persona) {
+        System.out.println(persona.toString());
+    }
+
+    /**
+     * Método que se encarga de imprimir una curso. Llama el método toString para que muestre el curso en el
+     * formato correcto.
+     * @param curso Curso que se desea mostrar por pantalla
+     */
+    public static void imprimirCurso(Curso curso) {
+        System.out.println(curso.toString());
+    }
+
+    /**
      * Imprime por pantalla un mensaje sobre la funcionalidad que aún no ha sido implementada en el software.
      */
     public static void imprimirFuncionalidadNoImplementada() {
@@ -237,6 +258,19 @@ public class UtilsCLI {
     public static void mensajeUtilizandoDatafile() {
         System.out.println("La conexión con la base de datos MySQL no ha sido posible. Se utilizará base de datos " +
                 "local en reemplazo.\n");
+    }
+
+    public static void mensajeErrorNoEncontrado(String tipo, int g) {
+        if (g == 0)
+            System.out.println("El " + tipo + " solicitado no ha sido encontrado. Revisa lo ingresado e intenta " +
+                    "nuevamente.");
+        else
+            System.out.println("La " + tipo + " solicitada no ha sido encontrada. Revisa lo ingresado e intenta " +
+                    "nuevamente.");
+    }
+
+    public static void imprimirEsperaEnter() {
+        System.out.println("-> Presiona enter para continuar...");
     }
 
 }

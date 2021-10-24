@@ -3,6 +3,7 @@ package aplicacion.data.datafile;
 import aplicacion.data.CursoData;
 import aplicacion.models.Alumno;
 import aplicacion.models.Curso;
+import aplicacion.models.IDCurso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +98,21 @@ public class CursoDatafile implements CursoData {
         List<String> data = this.datafile.getData();
         for (String csv : data)
             if ((Integer.parseInt(csv.split(",")[0]) == nivel) && (csv.split(",")[1].charAt(0) == paralelo))
+                return cursoFromCSV(csv);
+        return null;
+    }
+
+    /**
+     * Permite obtener un curso en especifico, almacenado en el archivo CSV.
+     *
+     * @param idCurso IDCurso con el nivel y paralelo del curso.
+     * @return Curso solicitado
+     */
+    @Override
+    public Curso getCurso(IDCurso idCurso) {
+        List<String> data = this.datafile.getData();
+        for (String csv : data)
+            if ((Integer.parseInt(csv.split(",")[0]) == idCurso.nivel) && (csv.split(",")[1].charAt(0) == idCurso.paralelo))
                 return cursoFromCSV(csv);
         return null;
     }

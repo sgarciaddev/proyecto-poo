@@ -2,6 +2,7 @@ package aplicacion.data.database;
 
 import aplicacion.data.CursoData;
 import aplicacion.models.Curso;
+import aplicacion.models.IDCurso;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -90,6 +91,32 @@ public class CursoDB implements CursoData {
         Curso curso;
         try {
             ResultSet resultados = DBConnection.getQuery(String.format(SQLSentences.GET_CURSO.toString(), nivel, paralelo));
+            if (resultados == null) return null;
+            if (resultados.next()) {
+                curso = new Curso(resultados.getShort("nivel"), resultados.getString("paralelo").charAt(0),
+                        this.profesorData.getProfesor(resultados.getString("rut_profesor")));
+                curso.setAlumnos(alumnoData.getAlumnos(curso.getNivel(), curso.getParalelo()));
+                return curso;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+
+        }
+        return null;
+    }
+
+    /**
+     * Permite obtener un curso en específico, almacenado en la base de datos MySQL.
+     *
+     * @param idCurso IDCurso con el nivel y paralelo del curso a buscar.
+     * @return Curso solicitado
+     */
+    @Override
+    public Curso getCurso(IDCurso idCurso) {
+        Curso curso;
+        try {
+            ResultSet resultados = DBConnection.getQuery(String.format(SQLSentences.GET_CURSO.toString(), idCurso.nivel,
+                    idCurso.paralelo));
             if (resultados == null) return null;
             if (resultados.next()) {
                 curso = new Curso(resultados.getShort("nivel"), resultados.getString("paralelo").charAt(0),
