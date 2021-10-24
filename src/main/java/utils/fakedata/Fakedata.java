@@ -68,7 +68,11 @@ public class Fakedata {
         return new Alumno(rut, nombres, ap.getApPaterno(), apMat, nivel, paralelo, ap);
     }
 
-
+    /**
+     * Genera asistencia, ausencias y retiros aleatorios a un alumno a base de una distribución normal
+     *
+     * @return registroAsistencia Registro de asistencia con valores en dias inicializados
+     */
     public RegistroAsistencia generateAsistencia(){
         RegistroAsistencia registroAsistencia = new RegistroAsistencia();
         float randomNormal, randomDistribucionAsistir, randomDistribucionRetirarse;

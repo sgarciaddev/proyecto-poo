@@ -56,6 +56,7 @@ public class AlumnoDatafile implements AlumnoData {
      * @return Alumno
      */
     public Alumno alumnoFromCSV(String csv) {
+        // Todo: Leer asistencia desde el csv
         String[] parts = csv.split(",");
         return new Alumno(parts[2],
                           parts[3],
