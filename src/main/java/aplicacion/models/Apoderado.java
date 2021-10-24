@@ -69,4 +69,12 @@ public class Apoderado extends Persona {
                 "      -> Teléfono       : " + telefono + "\n" +
                 "      -> Email          : " + email + "\n";
     }
+
+    @Override
+    public String toString(String titulo) {
+        return super.toString(titulo) +
+                "    Datos de contacto\n" +
+                "      -> Teléfono       : " + telefono + "\n" +
+                "      -> Email          : " + email + "\n";
+    }
 }

@@ -2,9 +2,12 @@ package aplicacion.controllers.cli;
 
 import aplicacion.models.Alumno;
 import aplicacion.models.Curso;
+import aplicacion.views.cli.AsistenciaViewCli;
 import aplicacion.views.cli.MenuCLI;
+import aplicacion.views.cli.UtilsCLI;
 
-import java.io.BufferedReader;
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,18 +21,15 @@ import java.util.Map;
 
 public class AsistenciaControllerCLI {
 
-    private final BufferedReader lector;
     private final MenuCLI menuCLI;
 
     /**
      * Objeto controlador de Asistencia en la interfaz de línea de comandos
      *
-     * @param lector  Instancia de lector para lectura de datos ingresados por teclado.
      * @param menuCLI Instancia del origen de datos de alumnos.
      */
-    public AsistenciaControllerCLI(BufferedReader lector, MenuCLI menuCLI) {
+    public AsistenciaControllerCLI(MenuCLI menuCLI) {
         this.menuCLI = menuCLI;
-        this.lector = lector;
     }
 
     /**
@@ -78,6 +78,49 @@ public class AsistenciaControllerCLI {
             }
         }
         return alumnos;
+    }
+
+    public void alumnoMejorAsistencia() {
+        Alumno alumno;
+
+        alumno = getAlumnoRequerido(1);
+        if (alumno != null)
+            System.out.println(alumno.toString("del alumno con mejor asistencia"));
+        else
+            UtilsCLI.mensajeErrorNoEncontrado("registro de asistencia", 0);
+    }
+
+    public void alumnosEntrePorcentajesAsistencia() throws IOException {
+        int porcentaje1, porcentaje2;
+        Map<String, Alumno> alumnosEnPorcentaje;
+
+        UtilsCLI.imprimirSolicitar("porcentaje 1 ", "número de 0 a 100");
+        porcentaje1 = Integer.parseInt(this.menuCLI.getLector().readLine());
+        UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 0 a 100");
+        porcentaje2 = Integer.parseInt(this.menuCLI.getLector().readLine());
+        alumnosEnPorcentaje = getEntrePorcentajes(porcentaje1, porcentaje2, 1);
+        AsistenciaViewCli.mostrarTablaAlumnosAsistencia(alumnosEnPorcentaje, "porcentaje dado ASISTENCIA");
+    }
+
+    public void alumnoConMasRetiros() throws IOException {
+        Alumno alumno;
+        DecimalFormat df = new DecimalFormat("##.##");
+
+        System.out.println("Alumno con mas retiros: ");
+        alumno = getAlumnoRequerido(0);
+        System.out.println(alumno.getNombreCompleto() + " con " + df.format(alumno.getAsistencia().obtenerRetiros()) + "% de retiros");
+    }
+
+    public void alumnoEntrePorcentajesRetiros() throws IOException {
+        int porcentaje1, porcentaje2;
+        Map<String, Alumno> alumnosEnPorcentaje;
+
+        UtilsCLI.imprimirSolicitar("porcentaje 1 ", "número de 0 a 100");
+        porcentaje1 = Integer.parseInt(this.menuCLI.getLector().readLine());
+        UtilsCLI.imprimirSolicitar("porcentaje 2 ", "número de 0 a 100");
+        porcentaje2 = Integer.parseInt(this.menuCLI.getLector().readLine());
+        alumnosEnPorcentaje = getEntrePorcentajes(porcentaje1, porcentaje2, 0);
+        AsistenciaViewCli.mostrarTablaAlumnosAsistencia(alumnosEnPorcentaje, "porcentaje dado RETIROS");
     }
 
 }

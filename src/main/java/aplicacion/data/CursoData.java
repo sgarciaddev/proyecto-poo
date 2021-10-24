@@ -1,6 +1,7 @@
 package aplicacion.data;
 
 import aplicacion.models.Curso;
+import aplicacion.models.IDCurso;
 
 import java.util.List;
 
@@ -34,6 +35,14 @@ public interface CursoData {
      * @return Curso buscado, o `null` en caso de no encontrarse
      */
     Curso getCurso(short nivel, char letra);
+
+    /**
+     * Obtiene un curso específico
+     *
+     * @param idCurso IDCurso con el nivel y paralelo del curso.
+     * @return Curso buscado, o `null` en caso de no encontrarse
+     */
+    Curso getCurso(IDCurso idCurso);
 
     /**
      * Agrega un curso
