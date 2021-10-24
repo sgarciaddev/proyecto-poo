@@ -4,11 +4,9 @@ import aplicacion.data.datafile.AlumnoDatafile;
 import aplicacion.data.datafile.ApoderadoDatafile;
 import aplicacion.data.datafile.CursoDatafile;
 import aplicacion.data.datafile.ProfesorDatafile;
-import aplicacion.models.Alumno;
-import aplicacion.models.Apoderado;
-import aplicacion.models.Curso;
-import aplicacion.models.Profesor;
+import aplicacion.models.*;
 import com.github.javafaker.Faker;
+import java.util.Random;
 
 /**
  * Clase que permite generar datos falsos y almacenarlos en los archivos de
@@ -71,6 +69,34 @@ public class Fakedata {
     }
 
     /**
+     * Genera asistencia, ausencias y retiros aleatorios a un alumno a base de una distribución normal
+     *
+     * @return registroAsistencia Registro de asistencia con valores en dias inicializados
+     */
+    public RegistroAsistencia generateAsistencia(){
+        RegistroAsistencia registroAsistencia = new RegistroAsistencia();
+        float randomNormal, randomDistribucionAsistir, randomDistribucionRetirarse;
+        Random random = new Random();
+        randomDistribucionAsistir = (float) (random.nextGaussian() * 15 + 75);
+        randomDistribucionRetirarse = (float) (random.nextGaussian() * 6 + 13);
+
+        for (int mes = 0; mes <= 9; mes++) {
+            for (int dia = 0; dia <= 30; dia++) {
+                randomNormal = random.nextFloat() * 100.0f;
+                if (randomNormal <= randomDistribucionAsistir) {
+                    randomNormal = random.nextFloat() * 100.0f;
+                    if (randomNormal <= randomDistribucionRetirarse)
+                        registroAsistencia.registrarAsistencia(0.5f, mes, dia);
+                    else
+                        registroAsistencia.registrarAsistencia(1.0f, mes, dia);
+                }else
+                    registroAsistencia.registrarAsistencia(0.0f, mes, dia);
+            }
+        }
+        return registroAsistencia;
+    }
+
+    /**
      * Genera profesor ficticio
      *
      * @return Profesor ficticio
@@ -104,6 +130,7 @@ public class Fakedata {
                 for (int k = 0; k < 15; k++) {
                     apoderado = generateApoderado();
                     alumno = generateAlumno(apoderado, i, j);
+                    alumno.setAsistencia(generateAsistencia());
                     alumnoDatafile.insertAlumno(alumno);
                 }
             }

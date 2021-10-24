@@ -144,13 +144,13 @@ public class MenuControllerCLI {
                 UtilsCLI.mensajeDespedida();
                 System.exit(0);
             case 1:
-                // Todo: Registrar asistencia
-                UtilsCLI.imprimirFuncionalidadNoImplementada();
+                this.asistenciaController.alumnoMejorAsistencia();
                 UtilsCLI.imprimirEsperaEnter();
                 this.menuCLI.getLector().readLine();
                 break;
             case 2:
-                this.asistenciaController.alumnoMejorAsistencia();
+                // Todo: Registrar asistencia
+                UtilsCLI.imprimirFuncionalidadNoImplementada();
                 UtilsCLI.imprimirEsperaEnter();
                 this.menuCLI.getLector().readLine();
                 break;
