@@ -1,6 +1,7 @@
 package aplicacion.data.datafile;
 
 import aplicacion.data.AlumnoData;
+import aplicacion.data.RegistroAsistenciaData;
 import aplicacion.models.Alumno;
 
 import java.lang.reflect.Array;
@@ -17,6 +18,7 @@ public class AlumnoDatafile implements AlumnoData {
 
     private final Datafile datafile;
     private final ApoderadoDatafile apDataFile;
+    private final RegistroAsistenciaDF registroAsistenciaDataFile;
 
     /**
      * Constructor de AlumnoDatafile. Trabaja con un objeto Datafile.
@@ -24,6 +26,7 @@ public class AlumnoDatafile implements AlumnoData {
     public AlumnoDatafile() {
         this.datafile = new Datafile("alumno");
         this.apDataFile = new ApoderadoDatafile();
+        this.registroAsistenciaDataFile = new RegistroAsistenciaDF();
     }
 
     /**
@@ -42,9 +45,6 @@ public class AlumnoDatafile implements AlumnoData {
         dataList.add(alumno.getApPaterno());
         dataList.add(alumno.getApMaterno());
         dataList.add(alumno.getApoderado().getRut());
-        for (float[] diasAsistencia: alumno.getAsistencia().getAsistenciaMatriz()) {
-            dataList.add(Arrays.toString(diasAsistencia));
-        }
         return Datafile.listToCSV(dataList);
     }
 
@@ -79,6 +79,7 @@ public class AlumnoDatafile implements AlumnoData {
         List<String> dataList = this.datafile.getData();
         for (String csv : dataList) {
             alumno = alumnoFromCSV(csv);
+            alumno.setAsistencia(this.registroAsistenciaDataFile.getRegistroAsistencia(alumno.getRut()));
             alumnos.put(alumno.getRut(), alumno);
         }
         return alumnos;
@@ -99,6 +100,7 @@ public class AlumnoDatafile implements AlumnoData {
         for (String csv : dataList) {
             if (Integer.parseInt(csv.split(",")[0]) == nivel) {
                 alumno = alumnoFromCSV(csv);
+                alumno.setAsistencia(this.registroAsistenciaDataFile.getRegistroAsistencia(alumno.getRut()));
                 alumnos.put(alumno.getRut(), alumno);
             }
         }
@@ -122,6 +124,7 @@ public class AlumnoDatafile implements AlumnoData {
         for (String csv : dataList) {
             if (Integer.parseInt(csv.split(",")[0]) == nivel && csv.split(",")[1].charAt(0) == paralelo) {
                 alumno = alumnoFromCSV(csv);
+                alumno.setAsistencia(this.registroAsistenciaDataFile.getRegistroAsistencia(alumno.getRut()));
                 alumnos.put(alumno.getRut(), alumno);
             }
         }
@@ -137,9 +140,14 @@ public class AlumnoDatafile implements AlumnoData {
     @Override
     public Alumno getAlumno(String rut) {
         List<String> dataList = this.datafile.getData();
+        Alumno alumno;
         for (String csv : dataList) {
-            if (csv.split(",")[2].equals(rut))
-                return alumnoFromCSV(csv);
+            if (csv.split(",")[2].equals(rut)) {
+                alumno = alumnoFromCSV(csv);
+                alumno.setAsistencia(this.registroAsistenciaDataFile.getRegistroAsistencia(alumno.getRut()));
+                return alumno;
+            }
+
         }
         return null;
     }

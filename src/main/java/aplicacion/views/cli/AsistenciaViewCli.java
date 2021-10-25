@@ -29,7 +29,7 @@ public class AsistenciaViewCli {
             data[i][3] = alumno.getNombres();
             data[i][4] = alumno.getApoderado().getNombreCompleto();
             data[i][5] = alumno.getApoderado().getTelefono();
-            data[i][6] = alumno.getAsistencia().obtenerAsistencia();
+            data[i][6] = alumno.getPromAsistencia();
             i++;
         }
         UtilsCLI.imprimirTabla(data, UtilsCLI.headers.get("asistencia"), "Asistencia de alumnos del " + curso);
