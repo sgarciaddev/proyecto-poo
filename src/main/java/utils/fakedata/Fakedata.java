@@ -1,11 +1,13 @@
 package utils.fakedata;
 
-import aplicacion.data.datafile.AlumnoDatafile;
-import aplicacion.data.datafile.ApoderadoDatafile;
-import aplicacion.data.datafile.CursoDatafile;
-import aplicacion.data.datafile.ProfesorDatafile;
+import aplicacion.data.RegistroAsistenciaData;
+import aplicacion.data.datafile.*;
 import aplicacion.models.*;
 import com.github.javafaker.Faker;
+
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -19,9 +21,8 @@ import java.util.Random;
 public class Fakedata {
 
     private final AlumnoDatafile alumnoDatafile;
-    private final ApoderadoDatafile apoderadoDatafile;
     private final CursoDatafile cursoDatafile;
-    private final ProfesorDatafile profesorDatafile;
+    private final RegistroAsistenciaData registrarAsistenciaData;
     private final Faker faker;
 
     /**
@@ -29,9 +30,8 @@ public class Fakedata {
      */
     public Fakedata() {
         this.alumnoDatafile = new AlumnoDatafile();
-        this.apoderadoDatafile = new ApoderadoDatafile();
         this.cursoDatafile = new CursoDatafile();
-        this.profesorDatafile = new ProfesorDatafile();
+        this.registrarAsistenciaData = new RegistroAsistenciaDF();
         this.faker = new Faker();
     }
 
@@ -43,7 +43,7 @@ public class Fakedata {
     public Apoderado generateApoderado() {
         String rut, nombres, apPat, apMat, email;
         int telefono;
-        rut = Integer.toString(this.faker.number().numberBetween(25000000, 35000000))
+        rut = Integer.toString(this.faker.number().numberBetween(70000000, 90000000))
                 + "-" + Integer.toString(this.faker.number().numberBetween(0, 9));
         nombres = this.faker.name().firstName();
         apPat = this.faker.name().lastName();
@@ -61,7 +61,7 @@ public class Fakedata {
      */
     public Alumno generateAlumno(Apoderado ap, int nivel, char paralelo) {
         String rut, nombres, apMat;
-        rut = Integer.toString(this.faker.number().numberBetween(40000000, 50000000))
+        rut = Integer.toString(this.faker.number().numberBetween(30000000, 50000000))
                 + "-" + Integer.toString(this.faker.number().numberBetween(0, 9));
         nombres = this.faker.name().firstName();
         apMat = this.faker.name().lastName();
@@ -74,26 +74,7 @@ public class Fakedata {
      * @return registroAsistencia Registro de asistencia con valores en dias inicializados
      */
     public RegistroAsistencia generateAsistencia(){
-        RegistroAsistencia registroAsistencia = new RegistroAsistencia();
-        float randomNormal, randomDistribucionAsistir, randomDistribucionRetirarse;
-        Random random = new Random();
-        randomDistribucionAsistir = (float) (random.nextGaussian() * 15 + 75);
-        randomDistribucionRetirarse = (float) (random.nextGaussian() * 6 + 13);
-
-        for (int mes = 0; mes <= 9; mes++) {
-            for (int dia = 0; dia <= 30; dia++) {
-                randomNormal = random.nextFloat() * 100.0f;
-                if (randomNormal <= randomDistribucionAsistir) {
-                    randomNormal = random.nextFloat() * 100.0f;
-                    if (randomNormal <= randomDistribucionRetirarse)
-                        registroAsistencia.registrarAsistencia(0.5f, mes, dia);
-                    else
-                        registroAsistencia.registrarAsistencia(1.0f, mes, dia);
-                }else
-                    registroAsistencia.registrarAsistencia(0.0f, mes, dia);
-            }
-        }
-        return registroAsistencia;
+        return null;
     }
 
     /**
@@ -104,7 +85,7 @@ public class Fakedata {
     public Profesor generateProfesor() {
         String rut, nombres, apPat, apMat, email, asignatura;
         int telefono;
-        rut = Integer.toString(this.faker.number().numberBetween(25000000, 35000000))
+        rut = Integer.toString(this.faker.number().numberBetween(70000000, 90000000))
                 + "-" + Integer.toString(this.faker.number().numberBetween(0, 9));
         nombres = this.faker.name().firstName();
         apPat = this.faker.name().lastName();
@@ -125,16 +106,51 @@ public class Fakedata {
         for (short i = 1; i < 13; i++) {
             for (char j = 65; j < 67; j++) {
                 profesor = generateProfesor();
-                profesorDatafile.insertProfesor(profesor);
                 cursoDatafile.insertCurso(new Curso(i, j, profesor, null));
                 for (int k = 0; k < 15; k++) {
                     apoderado = generateApoderado();
                     alumno = generateAlumno(apoderado, i, j);
-                    alumno.setAsistencia(generateAsistencia());
                     alumnoDatafile.insertAlumno(alumno);
                 }
             }
         }
+    }
+
+    public RegistroAsistencia genRegAleatorio(IDAsistencia id) {
+        double random = faker.number().randomDouble(2, 0, 1);
+        final double PROB_RET = 0.05, PROB_AUS = 0.2;
+        RegistroAsistencia registroAsistencia;
+
+        if (random < PROB_RET) {
+            registroAsistencia = new RegistroAsistencia(id, faker.number().randomDouble(1, 0, 1), true, false, true);
+        } else if (random < PROB_AUS) {
+            double random2 = faker.number().randomDouble(2, 0, 1);
+            if (random2 < 0.75) {
+                registroAsistencia = new RegistroAsistencia(id, 0.0, false, false, false);
+            } else {
+                registroAsistencia = new RegistroAsistencia(id, 0.0, false, true, false);
+            }
+        } else {
+            registroAsistencia = new RegistroAsistencia(id, 1.0, true, false, false);
+        }
+
+        return registroAsistencia;
+
+    }
+
+    public void generateDatosAsistencia() {
+        Map<String, Alumno> alumnos = this.alumnoDatafile.getAlumnos();
+        IDAsistencia id;
+
+        for (Map.Entry<String, Alumno> entry: alumnos.entrySet()) {
+            for (int i = 2; i <= 31; i++) {
+                if (((i - 2) % 5) == 0)
+                    i += 2;
+                id = new IDAsistencia(entry.getKey(), Date.valueOf(String.format("%s-%s-%02d", "2021", "08", i)));
+                this.registrarAsistenciaData.insertarRegistroAsistencia(genRegAleatorio(id));
+            }
+        }
+
     }
 
     /**
@@ -145,6 +161,7 @@ public class Fakedata {
     public static void main(String[] args) {
         Fakedata fakedata = new Fakedata();
         fakedata.generateFakedata();
+        fakedata.generateDatosAsistencia();
     }
 
 }

@@ -1,106 +1,86 @@
 package aplicacion.models;
 
+import java.text.SimpleDateFormat;
+
 /**
- * Clase que registra la asistencia de un alumno, para un año escolar completo.
+ * Clase que registra la asistencia de un alumno, para un dia especifico.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
  * @version 2.0
  */
 public class RegistroAsistencia {
 
-    private float[][] asistencia; // Matriz que registra asistencia (dia y mes).
-    private int[] contadorDias; // Arreglo que contiene el total de días a considerar en la asistencia
+    private final IDAsistencia id;
+    private double valor;
+    private boolean estaPresente, estaJustificado, hizoRetiro;
+
+    public static final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * Constructor que permite crear un objeto para registrar la asistencia. No recibe parámetros.
      */
-    public RegistroAsistencia() {
+    public RegistroAsistencia(IDAsistencia id, double valor, boolean p, boolean j, boolean r) {
         // Considera 31 días máximo por mes, desde Marzo (índice 0) a Diciembre (índice 9).
-        this.asistencia = new float[10][31];
-        this.contadorDias = new int[10];
-
+        this.id = id;
+        this.valor = valor;
+        this.estaPresente = p;
+        this.estaJustificado = j;
+        this.hizoRetiro = r;
     }
 
-    public float[][] getAsistenciaMatriz() {
-        return this.asistencia;
-    }
-
-    public void setAsistenciaMatriz(float[][] asistencia) {
-        this.asistencia = asistencia;
-    }
-
-    /**
-     * Permite registrar la asistencia del alumno en un día y mes determinado.
-     *
-     * @param valor El valor de la asistencia (entre 0 y 1)
-     * @param dia El día para el que se quiere registrar la asistencia
-     * @param mes El mes para el que se quiere registrar la asistencia
-     */
-    public void registrarAsistencia(float valor, int mes, int dia) {
-        if ((mes >= 0 && mes <= 9) && (dia >= 0 && dia <= 30))
-            this.asistencia[mes][dia] = valor;
-        this.contadorDias[mes]++;
+    public IDAsistencia getId() {
+        return id;
     }
 
     /**
-     * Permite obtener la asistencia del alumno, calculada al día de realizada la consulta.
+     * Define el valor de asistencia. Acepta 2 opciones:
+     * - 1: El alumno queda como presente
+     * - 2: El alumno queda como ausente (sin justificar)
+     * - 3: El alumno queda como ausente (justificado)
      *
-     * @return Porcentaje de asistencia (entre 0 y 1).
+     * @param opt Opcion numerica con el valor a colocar
      */
-    public float obtenerAsistencia() {
-        float totalDiasAsistidos = 0;
-
-        for (int mes = 0; mes < 10; mes++){
-            for (int dia = 0; dia < 31; dia++){
-                if (Float.compare(this.asistencia[mes][dia], 1.0f) == 0 || Float.compare(this.asistencia[mes][dia], 0.5f) == 0){
-                    totalDiasAsistidos++;
-                }
-            }
+    public void setValor(int opt) {
+        switch (opt) {
+            case 1:
+                this.valor = 1.0;
+                this.estaPresente = true;
+                break;
+            case 2:
+                this.valor = 0.0;
+                this.estaPresente = false;
+                break;
+            case 3:
+                this.valor = 0.0;
+                this.estaPresente = false;
+                this.estaJustificado = true;
+                break;
         }
-        if (totalDiasAsistidos != 0)
-            return totalDiasAsistidos / 310;
-        return 0.0f;
     }
 
-    /**
-     * Permite obtener la asistencia del alumno en un mes determinado.
-     *
-     * @param mes Número de mes (1 = marzo, 10 = diciembre)
-     * @return Porcentaje de asistencia (entre 0 y 1).
-     */
-    public float obtenerAsistencia(int mes) {
-        return 0.0f;
+    public double getValor() {
+        return valor;
     }
 
-    /**
-     * Permite obtener la asistencia del alumno, calculada al día de realizada la consulta.
-     *
-     * @param dia Dia a buscar
-     * @param mes Número de mes (1 = marzo, 10 = diciembre)
-     * @return Porcentaje de asistencia (entre 0 y 1).
-     */
-    public float obtenerAsistencia(int dia, int mes) {
-        return 0.0f;
+    public boolean presente() {
+        return this.estaPresente;
     }
 
-    /**
-     * Permite obtener los retiros del alumno, calculada al día de realizada la consulta.
-     *
-     * @return Porcentaje de retiros (entre 0 y 1).
-     */
-    public float obtenerRetiros() {
-        float totalDiasRetirado = 0;
+    public boolean justificado() {
+        return this.estaJustificado;
+    }
 
-        for (int i = 0; i < 10; i++){
-            for (int j = 0; j < 31; j++){
-                if (Float.compare(this.asistencia[j][i], 0.5f) == 0){
-                    totalDiasRetirado++;
-                }
-            }
-        }
-        if (totalDiasRetirado != 0)
-            return totalDiasRetirado / 310;
-        return 0.0f;
+    public boolean retirado() {
+        return this.hizoRetiro;
+    }
+
+    public void justificar() {
+        this.estaJustificado = true;
+    }
+
+    public void retirar(double valor) {
+        this.valor = valor;
+        this.hizoRetiro = true;
     }
 
 }
