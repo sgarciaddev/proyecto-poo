@@ -21,9 +21,7 @@ import java.util.Random;
 public class Fakedata {
 
     private final AlumnoDatafile alumnoDatafile;
-    private final ApoderadoDatafile apoderadoDatafile;
     private final CursoDatafile cursoDatafile;
-    private final ProfesorDatafile profesorDatafile;
     private final RegistroAsistenciaData registrarAsistenciaData;
     private final Faker faker;
 
@@ -32,9 +30,7 @@ public class Fakedata {
      */
     public Fakedata() {
         this.alumnoDatafile = new AlumnoDatafile();
-        this.apoderadoDatafile = new ApoderadoDatafile();
         this.cursoDatafile = new CursoDatafile();
-        this.profesorDatafile = new ProfesorDatafile();
         this.registrarAsistenciaData = new RegistroAsistenciaDF();
         this.faker = new Faker();
     }
@@ -47,7 +43,7 @@ public class Fakedata {
     public Apoderado generateApoderado() {
         String rut, nombres, apPat, apMat, email;
         int telefono;
-        rut = Integer.toString(this.faker.number().numberBetween(25000000, 35000000))
+        rut = Integer.toString(this.faker.number().numberBetween(70000000, 90000000))
                 + "-" + Integer.toString(this.faker.number().numberBetween(0, 9));
         nombres = this.faker.name().firstName();
         apPat = this.faker.name().lastName();
@@ -65,7 +61,7 @@ public class Fakedata {
      */
     public Alumno generateAlumno(Apoderado ap, int nivel, char paralelo) {
         String rut, nombres, apMat;
-        rut = Integer.toString(this.faker.number().numberBetween(40000000, 50000000))
+        rut = Integer.toString(this.faker.number().numberBetween(30000000, 50000000))
                 + "-" + Integer.toString(this.faker.number().numberBetween(0, 9));
         nombres = this.faker.name().firstName();
         apMat = this.faker.name().lastName();
@@ -89,7 +85,7 @@ public class Fakedata {
     public Profesor generateProfesor() {
         String rut, nombres, apPat, apMat, email, asignatura;
         int telefono;
-        rut = Integer.toString(this.faker.number().numberBetween(25000000, 35000000))
+        rut = Integer.toString(this.faker.number().numberBetween(70000000, 90000000))
                 + "-" + Integer.toString(this.faker.number().numberBetween(0, 9));
         nombres = this.faker.name().firstName();
         apPat = this.faker.name().lastName();
@@ -110,7 +106,6 @@ public class Fakedata {
         for (short i = 1; i < 13; i++) {
             for (char j = 65; j < 67; j++) {
                 profesor = generateProfesor();
-                profesorDatafile.insertProfesor(profesor);
                 cursoDatafile.insertCurso(new Curso(i, j, profesor, null));
                 for (int k = 0; k < 15; k++) {
                     apoderado = generateApoderado();
