@@ -44,10 +44,10 @@ public class AsistenciaControllerCLI {
 
         for (Curso curso: cursos) {
             for (Alumno alumno: curso.getAlumnos().values()) {
-                if (value == 1 && (alumnoReq == null || alumno.getAsistencia().obtenerAsistencia() > alumnoReq.getAsistencia().obtenerAsistencia())) {
+                if (value == 1 && (alumnoReq == null || alumno.getPromAsistencia() > alumnoReq.getPromAsistencia())) {
                     alumnoReq = alumno;
                 }
-                if (value == 0 && (alumnoReq == null || alumno.getAsistencia().obtenerRetiros() > alumnoReq.getAsistencia().obtenerRetiros()))
+                if (value == 0 && (alumnoReq == null || alumno.getPromAsistencia() > alumnoReq.getPromAsistencia()))
                     alumnoReq = alumno;
             }
         }
@@ -70,9 +70,10 @@ public class AsistenciaControllerCLI {
         for (Curso curso: cursos) {
             for (Alumno alumno: curso.getAlumnos().values()) {
                 if (value == 1)
-                    alumnoReq = (int) Math.round((alumno.getAsistencia().obtenerAsistencia() * 100.0));
+                    alumnoReq = (int) Math.round((alumno.getPromAsistencia() * 100.0));
                 if (value == 0)
-                    alumnoReq = (int) Math.round((alumno.getAsistencia().obtenerRetiros() * 100.0));
+                    // Todo: Funcion para generar dato de cantidad de retiros.
+                    alumnoReq = (int) Math.round((alumno.getPromAsistencia() * 100.0));
                 if (alumnoReq >= percent1 && alumnoReq <= percent2)
                     alumnos.put(alumno.getRut(), alumno);
             }
@@ -108,7 +109,8 @@ public class AsistenciaControllerCLI {
 
         System.out.println("Alumno con mas retiros: ");
         alumno = getAlumnoRequerido(0);
-        System.out.println(alumno.getNombreCompleto() + " con " + df.format(alumno.getAsistencia().obtenerRetiros()) + "% de retiros");
+        // Todo: Funcion para generar dato de cantidad de retiros.
+        System.out.println(alumno.getNombreCompleto() + " con " + df.format(alumno.getPromAsistencia()) + "% de retiros");
     }
 
     public void alumnoEntrePorcentajesRetiros() throws IOException {
