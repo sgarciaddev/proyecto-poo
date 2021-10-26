@@ -7,7 +7,6 @@ import aplicacion.views.cli.MenuCLI;
 import aplicacion.views.cli.UtilsCLI;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +46,7 @@ public class AsistenciaControllerCLI {
                 if (value == 1 && (alumnoReq == null || alumno.getPromAsistencia() > alumnoReq.getPromAsistencia())) {
                     alumnoReq = alumno;
                 }
-                if (value == 0 && (alumnoReq == null || alumno.getPromAsistencia() > alumnoReq.getPromAsistencia()))
+                if (value == 0 && (alumnoReq == null || alumno.promRetiros() > alumnoReq.promRetiros()))
                     alumnoReq = alumno;
             }
         }
@@ -72,8 +71,7 @@ public class AsistenciaControllerCLI {
                 if (value == 1)
                     alumnoReq = (int) Math.round((alumno.getPromAsistencia() * 100.0));
                 if (value == 0)
-                    // Todo: Funcion para generar dato de cantidad de retiros.
-                    alumnoReq = (int) Math.round((alumno.getPromAsistencia() * 100.0));
+                    alumnoReq = (int) Math.round((alumno.promRetiros() * 100.0));
                 if (alumnoReq >= percent1 && alumnoReq <= percent2)
                     alumnos.put(alumno.getRut(), alumno);
             }
@@ -105,12 +103,10 @@ public class AsistenciaControllerCLI {
 
     public void alumnoConMasRetiros() throws IOException {
         Alumno alumno;
-        DecimalFormat df = new DecimalFormat("##.##");
 
         System.out.println("Alumno con mas retiros: ");
         alumno = getAlumnoRequerido(0);
-        // Todo: Funcion para generar dato de cantidad de retiros.
-        System.out.println(alumno.getNombreCompleto() + " con " + df.format(alumno.getPromAsistencia()) + "% de retiros");
+        System.out.println(alumno.toString("del alumno con mas retiros"));
     }
 
     public void alumnoEntrePorcentajesRetiros() throws IOException {
