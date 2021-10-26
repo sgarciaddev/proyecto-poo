@@ -5,6 +5,7 @@ import aplicacion.models.Persona;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Clase con utilidades para la interfaz de consola de comandos (CLI).
@@ -281,6 +282,8 @@ public class UtilsCLI {
 
     public static void imprimirEsperaEnter() {
         System.out.println("-> Presiona enter para continuar...");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 
 }

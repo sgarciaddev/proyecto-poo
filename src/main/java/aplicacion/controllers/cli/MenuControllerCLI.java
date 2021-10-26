@@ -53,7 +53,6 @@ public class MenuControllerCLI {
                 // Todo: Gráficos
                 UtilsCLI.imprimirFuncionalidadNoImplementada();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             default:
                 UtilsCLI.mensajeErrIngresado();
@@ -117,12 +116,10 @@ public class MenuControllerCLI {
             case 1:
                 this.reportesController.generarListaCurso(this.cursoController);
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 2:
                 this.reportesController.generarTablaCursos(this.cursoController);
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             default:
                 UtilsCLI.mensajeErrIngresado();
@@ -146,28 +143,23 @@ public class MenuControllerCLI {
             case 1:
                 this.asistenciaController.alumnoMejorAsistencia();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 2:
                 // Todo: Registrar asistencia
                 UtilsCLI.imprimirFuncionalidadNoImplementada();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 3:
                 this.asistenciaController.alumnosEntrePorcentajesAsistencia();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 4:
                 this.asistenciaController.alumnoConMasRetiros();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 5:
                 this.asistenciaController.alumnoEntrePorcentajesRetiros();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             default:
                 UtilsCLI.mensajeErrIngresado();
@@ -191,27 +183,22 @@ public class MenuControllerCLI {
             case 1:
                 this.alumnoController.agregarAlumno(this.cursoController);
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 2:
                 this.alumnoController.verAlumno();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 3:
                 this.alumnoController.verAlumnos(this.cursoController);
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 4:
                 this.alumnoController.editarAlumno();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 5:
                 this.alumnoController.eliminarAlumno();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             default:
                 UtilsCLI.mensajeErrIngresado();
@@ -235,27 +222,22 @@ public class MenuControllerCLI {
             case 1:
                 this.cursoController.agregarCurso();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 2:
                 this.cursoController.verDatosCurso();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 3:
                 this.cursoController.mostrarCursos();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 4:
                 this.cursoController.asignarNuevoProfesorJefeACurso();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             case 5:
                 this.cursoController.eliminarCurso();
                 UtilsCLI.imprimirEsperaEnter();
-                this.menuCLI.getLector().readLine();
                 break;
             default:
                 UtilsCLI.mensajeErrIngresado();
