@@ -69,6 +69,17 @@ public class Alumno extends Persona {
             this.promAsistencia = suma / dias;
     }
 
+    public float promRetiros(){
+        float diasRetirado = 0.0f;
+        float diasTotales = 0.0f;
+        for (Map.Entry<IDAsistencia, RegistroAsistencia> registro: this.asistencia.entrySet()) {
+            if (registro.getValue().retirado())
+                diasRetirado++;
+            diasTotales++;
+        }
+        return diasRetirado / diasTotales;
+    }
+
     /**
      * Obtener apoderado asociado al alumno
      *
@@ -123,7 +134,8 @@ public class Alumno extends Persona {
         return super.toString("Alumno") +
                 "    -> Curso            : " + Curso.cursoToString(nivel, paralelo) + "\n" +
                 "    -> Apoderado        : " + apoderado.getRut() + " - " + apoderado.getNombreCompleto() + "\n" +
-                "    -> Prom. Asistencia : " + String.format("%.1f", getPromAsistencia() * 100) + " %\n";
+                "    -> Prom. Asistencia : " + String.format("%.1f", getPromAsistencia() * 100) + " %\n" +
+                "    -> Prom. Retiros    : " + String.format("%.1f", promRetiros() * 100) + " %\n";
     }
 
     @Override
@@ -131,6 +143,7 @@ public class Alumno extends Persona {
         return super.toString(titulo) +
                 "    -> Curso            : " + Curso.cursoToString(nivel, paralelo) + "\n" +
                 "    -> Apoderado        : " + apoderado.getRut() + " - " + apoderado.getNombreCompleto() + "\n" +
-                "    -> Prom. Asistencia : " + String.format("%.1f", getPromAsistencia() * 100) + " %\n";
+                "    -> Prom. Asistencia : " + String.format("%.1f", getPromAsistencia() * 100) + " %\n" +
+                "    -> Prom. Retiros    : " + String.format("%.1f", promRetiros() * 100) + " %\n";
     }
 }

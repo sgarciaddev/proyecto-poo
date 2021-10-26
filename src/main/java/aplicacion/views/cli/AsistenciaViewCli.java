@@ -22,17 +22,27 @@ public class AsistenciaViewCli {
     public static void mostrarTablaAlumnosAsistencia(Map<String, Alumno> alumnos, String curso) {
         int i = 0;
         Object[][] data = new Object[alumnos.size()][UtilsCLI.headers.get("asistencia").length];
-        for (Alumno alumno : alumnos.values()) {
-            data[i][0] = alumno.getRut();
-            data[i][1] = alumno.getApPaterno();
-            data[i][2] = alumno.getApMaterno();
-            data[i][3] = alumno.getNombres();
-            data[i][4] = alumno.getApoderado().getNombreCompleto();
-            data[i][5] = alumno.getApoderado().getTelefono();
-            data[i][6] = alumno.getPromAsistencia();
-            i++;
-        }
-        UtilsCLI.imprimirTabla(data, UtilsCLI.headers.get("asistencia"), "Asistencia de alumnos del " + curso);
-    }
+        if (alumnos.isEmpty()){
+            System.out.println("No hay alumnos que cumplan los parametros, vuelva a intentar con otros");
+        }else {
+            for (Alumno alumno : alumnos.values()) {
+                data[i][0] = alumno.getRut();
+                data[i][1] = alumno.getApPaterno();
+                data[i][2] = alumno.getApMaterno();
+                data[i][3] = alumno.getNombres();
+                data[i][4] = alumno.getApoderado().getNombreCompleto();
+                data[i][5] = alumno.getApoderado().getTelefono();
+                if (curso.equals("porcentaje dado ASISTENCIA"))
+                    data[i][6] = String.format("%.2f", alumno.getPromAsistencia() * 100);
+                else
+                    data[i][6] = String.format("%.2f", alumno.promRetiros() * 100);
+                i++;
+            }
+            if (curso.equals("porcentaje dado ASISTENCIA"))
+                UtilsCLI.imprimirTabla(data, UtilsCLI.headers.get("asistencia"), "Asistencia");
+            else
+                UtilsCLI.imprimirTabla(data, UtilsCLI.headers.get("retiros"), "Retiros");
 
+        }
+    }
 }

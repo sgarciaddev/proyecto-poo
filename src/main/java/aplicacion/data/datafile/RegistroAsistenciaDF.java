@@ -83,9 +83,9 @@ public class RegistroAsistenciaDF implements RegistroAsistenciaData {
             parts = csv.split(",");
             if (parts[0].equals(rutAlumno)) {
                 id = new IDAsistencia(parts[0], Date.valueOf(parts[1]));
-                System.out.println(csv);
-                System.out.println(String.format("presente %s - justificado %s - retiro %s", Boolean.parseBoolean(parts[2]),
-                        Boolean.parseBoolean(parts[3]), Boolean.parseBoolean(parts[4])));
+                //System.out.println(csv);
+                //System.out.println(String.format("presente %s - justificado %s - retiro %s", Boolean.parseBoolean(parts[2]),
+                        //Boolean.parseBoolean(parts[3]), Boolean.parseBoolean(parts[4])));
                 registro.put(id, regitroAsistenciaFromCSV(csv));
             }
         }
