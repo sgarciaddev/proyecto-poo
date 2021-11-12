@@ -2,29 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package GUI;
+package aplicacion.views.gui;
 
 import java.awt.BorderLayout;
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author user
  */
-public class Main extends javax.swing.JFrame {
+public class GUI extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
      */
-    public Main() {
+    public GUI() {
         initComponents();
         this.setLocationRelativeTo(null);
         LocalDate now = LocalDate.now();
         int year = now.getYear();
         int dia = now.getDayOfMonth();
         int month = now.getMonthValue();
-        String[] meses = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"," ;Septiembre"
-            ,"Octubre","Noviembre","Diciemrbre"};
+        String[] meses = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre"
+            ,"octubre","noviembre","diciemrbre"};
         fecha.setText("Hoy es "+dia+" de "+meses[month - 1]+" de "+year);
         
         Inicio p3 = new Inicio();
@@ -77,7 +78,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel2.setText("               Menú");
+        jLabel2.setText("               Menï¿½");
 
         btMostrarLista.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btMostrarLista.setForeground(new java.awt.Color(0, 204, 204));
@@ -121,7 +122,7 @@ public class Main extends javax.swing.JFrame {
 
         fecha.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         fecha.setForeground(new java.awt.Color(0, 153, 153));
-        fecha.setText("Hoy es Sábado 28 de Abril de 2018");
+        fecha.setText("Hoy es Sï¿½bado 28 de Abril de 2018");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -204,7 +205,8 @@ public class Main extends javax.swing.JFrame {
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        int opt = JOptionPane.showConfirmDialog(null, "Estas seguro?", "Saliendo de la aplicaciÃ³n", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (opt == 0) System.exit(0);
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
@@ -236,20 +238,20 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new GUI().setVisible(true);
             }
         });
     }

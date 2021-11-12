@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package GUI;
+package aplicacion.views.gui;
 
 /**
  *
@@ -48,11 +48,11 @@ public class Inicio extends javax.swing.JPanel {
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 330, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel5.setText("• Agregar alumnos");
+        jLabel5.setText("ï¿½ Agregar alumnos");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 170, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel8.setText("• Revision de la asistencia");
+        jLabel8.setText("ï¿½ Revision de la asistencia");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 330, -1));
 
         Text1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -63,15 +63,15 @@ public class Inicio extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 330, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel6.setText("• Asistencia");
+        jLabel6.setText("ï¿½ Asistencia");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 170, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel3.setText("tendrá acceso a herramientas especiales para tareas específicas, como lo son:");
+        jLabel3.setText("tendrï¿½ acceso a herramientas especiales para tareas especï¿½ficas, como lo son:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel7.setText("• Visualizacion de cursos");
+        jLabel7.setText("ï¿½ Visualizacion de cursos");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 320, -1));
 
         Title.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -82,7 +82,7 @@ public class Inicio extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setText("Esta herramienta le permitirá llevar un control completo y detallado sobre la asistencia,");
+        jLabel2.setText("Esta herramienta le permitirï¿½ llevar un control completo y detallado sobre la asistencia,");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
