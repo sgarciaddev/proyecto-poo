@@ -9,7 +9,7 @@ import java.util.List;
  * Interfaz que permite interactuar con los datos de los cursos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public interface CursoData {
     /**

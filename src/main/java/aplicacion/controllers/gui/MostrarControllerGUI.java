@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package aplicacion.views.gui;
+package aplicacion.controllers.gui;
 
 import aplicacion.data.CursoData;
 import aplicacion.models.Alumno;
@@ -12,22 +12,30 @@ import javax.swing.table.AbstractTableModel;
 import java.util.Map;
 
 /**
+ * Clase que controla la interacción con los cursos en la ejecución de la interfaz gráfica.
  *
- * @author user
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 3.0
  */
-public class MostrarViewGUI extends javax.swing.JPanel {
+public class MostrarControllerGUI extends javax.swing.JPanel {
 
     private final CursoData cursoData;
 
     /**
      * Creates new form Mostrar
      */
-    public MostrarViewGUI(CursoData cursoData) {
+    public MostrarControllerGUI(CursoData cursoData) {
         this.cursoData = cursoData;
         initComponents();
         
     }
 
+    /**
+     * Permite transformar un Map de alumnos a el formato que se necesita para mostrar por el JTable.
+     *
+     * @param alumnos HashMap con los alumnos
+     * @return Matriz de Object con los alumnos.
+     */
     private Object[][] alumnosATabla(Map<String, Alumno> alumnos) {
         Object[][] tabla = new Object[alumnos.size()][5];
         int i = 0;
@@ -132,15 +140,20 @@ public class MostrarViewGUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Permite mostrar un curso por pantalla.
+     *
+     * @param evt Evento.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Curso curso = this.cursoData.getCurso(Short.parseShort(jTextField1.getText()), jTextField2.getText().charAt(0));
         if (curso == null) {
-            MessageGUI.errorMsg("No se encontró el curso ingresado.");
+            MessageUtilsGUI.errorMsg("No se encontró el curso ingresado.");
             return;
         }
         Object[][] data = alumnosATabla(curso.getAlumnos());
         if (data.length == 0) {
-            MessageGUI.errorMsg("El curso seleccionado no tiene alumnos registrados.");
+            MessageUtilsGUI.errorMsg("El curso seleccionado no tiene alumnos registrados.");
             return;
         }
         String[] columns = new String[] {
@@ -151,7 +164,6 @@ public class MostrarViewGUI extends javax.swing.JPanel {
                 "Apellido materno"
         };
 
-        // TODO add your handling code here:
         jTable1.setModel(new AbstractTableModel() {
             @Override
             public String getColumnName(int col) {

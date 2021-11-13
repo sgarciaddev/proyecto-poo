@@ -2,18 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package aplicacion.views.gui;
+package aplicacion.controllers.gui;
 
 /**
+ * Clase que controla la interacción con la pantalla de inicio en la ejecución de la interfaz gráfica.
  *
- * @author user
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 3.0
  */
-public class InicioViewGUI extends javax.swing.JPanel {
+public class InicioControllerGUI extends javax.swing.JPanel {
 
     /**
      * Creates new form Principal
      */
-    public InicioViewGUI() {
+    public InicioControllerGUI() {
         initComponents();
     }
 

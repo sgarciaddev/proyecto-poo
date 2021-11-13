@@ -6,7 +6,7 @@ import aplicacion.models.Apoderado;
  * Interfaz que permite interactuar con los datos de Apoderados.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version e.0
  */
 public interface ApoderadoData {
     /**
@@ -15,7 +15,7 @@ public interface ApoderadoData {
      * @param rut RUT del apoderado
      * @return Apoderado
      */
-    public Apoderado getApoderado(String rut);
+    Apoderado getApoderado(String rut);
 
     /**
      * Actualiza un apoderado
@@ -23,7 +23,7 @@ public interface ApoderadoData {
      * @param apoderado Apoderado a actualizar
      * @return Valor de verdad sobre el éxito o fracaso de la operación
      */
-    public boolean updateApoderado(Apoderado apoderado);
+    boolean updateApoderado(Apoderado apoderado);
 
     /**
      * Agrega un apoderado
@@ -31,7 +31,7 @@ public interface ApoderadoData {
      * @param apoderado Apoderado a agregar
      * @return Valor de verdad sobre el éxito o fracaso de la operación
      */
-    public boolean insertApoderado(Apoderado apoderado);
+    boolean insertApoderado(Apoderado apoderado);
 
     /**
      * Elimina un apoderado
@@ -39,5 +39,5 @@ public interface ApoderadoData {
      * @param apoderado Apoderado a eliminar
      * @return Valor de verdad sobre el éxito o fracaso de la operación
      */
-    public boolean deleteApoderado(Apoderado apoderado);
+    boolean deleteApoderado(Apoderado apoderado);
 }

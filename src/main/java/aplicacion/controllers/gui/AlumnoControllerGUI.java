@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package aplicacion.views.gui;
+package aplicacion.controllers.gui;
 
 import aplicacion.data.AlumnoData;
 import aplicacion.data.ApoderadoData;
@@ -12,10 +12,12 @@ import aplicacion.models.Apoderado;
 import java.awt.Color;
 
 /**
+ * Clase que controla la interacción con alumnso en la ejecución de la interfaz gráfica.
  *
- * @author user
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 3.0
  */
-public class AlumnoViewGUI extends javax.swing.JPanel {
+public class AlumnoControllerGUI extends javax.swing.JPanel {
     
     private final AlumnoData alumnoData;
     private final ApoderadoData apoderadoData;
@@ -24,7 +26,7 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
      * Creates new form Agregar
      */
     int xMouse, yMouse;
-    public AlumnoViewGUI(AlumnoData alumnoData, ApoderadoData apoderadoData) {
+    public AlumnoControllerGUI(AlumnoData alumnoData, ApoderadoData apoderadoData) {
         this.alumnoData = alumnoData;
         this.apoderadoData = apoderadoData;
         initComponents();
@@ -97,12 +99,6 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 204, 204));
         jLabel8.setText("Apellido paterno Apoderado");
-
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 204, 204));
@@ -235,28 +231,43 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
                 .addContainerGap(56, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
+
+    /**
+     * Permite obtener las coordenadas del mouse.
+     *
+     * @param evt Evento.
+     */
     private void headerMousePressed(java.awt.event.MouseEvent evt) {                                    
         xMouse = evt.getX();
         yMouse = evt.getY();
-    }      
-    
+    }
+
+    /**
+     * Permite controlar la entrada de datos del nivel.
+     *
+     * @param evt Evento.
+     */
     private void niveltxtMousePressed(java.awt.event.MouseEvent evt) {                                     
         if (niveltxt.getText().equals("nivel 1 al 12")) {
             niveltxt.setText("");
             niveltxt.setForeground(Color.black);
         }
-     }    
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+     }
 
+    /**
+     * Permite controlar la entrada de datos del nivel.
+     *
+     * @param evt Evento.
+     */
     private void niveltxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_niveltxtActionPerformed
-        // TODO add your handling code here:
-        
         niveltxt.setText("");
     }//GEN-LAST:event_niveltxtActionPerformed
 
+    /**
+     * Permite agregar un alumno al sistema
+     *
+     * @param evt Evento.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Apoderado apoderado = new Apoderado(
@@ -278,7 +289,7 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
         );
         this.apoderadoData.insertApoderado(apoderado);
         this.alumnoData.insertAlumno(alumno);
-        MessageGUI.infoMsg("El alumno ha sido agregado con éxito");
+        MessageUtilsGUI.infoMsg("El alumno ha sido agregado con éxito");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

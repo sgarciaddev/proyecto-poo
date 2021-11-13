@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
  * Clase que registra la asistencia de un alumno, para un dia especifico.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public class RegistroAsistencia {
 
@@ -58,26 +58,54 @@ public class RegistroAsistencia {
         }
     }
 
+    /**
+     * Permite obtener el valor numérico de la asistencia
+     *
+     * @return Valor numérico entre 0 y 1 que representa la asistencia del alumno.
+     */
     public double getValor() {
         return valor;
     }
 
+    /**
+     * Permite obtener el valor de verdad sobre si el alumno está como presente
+     *
+     * @return Si el alumno está presente.
+     */
     public boolean presente() {
         return this.estaPresente;
     }
 
+    /**
+     * Permite obtener el valor de verdad sobre si el alumno está ausente, pero justificado.
+     *
+     * @return Si la ausencia del alumno está justificada.
+     */
     public boolean justificado() {
         return this.estaJustificado;
     }
 
+    /**
+     * Permite obtener el valor de verdad sobre si el alumno realizó retiro.
+     *
+     * @return Si el alumno realizó retiro.
+     */
     public boolean retirado() {
         return this.hizoRetiro;
     }
 
+    /**
+     * Permite justificar la inasistencia del alumno
+     */
     public void justificar() {
         this.estaJustificado = true;
     }
 
+    /**
+     * Permite generar un retiro en el registro de asistencia específico.
+     *
+     * @param valor Valor numérico con el porcentaje del día que el alumno estuvo presente.
+     */
     public void retirar(double valor) {
         this.valor = valor;
         this.hizoRetiro = true;

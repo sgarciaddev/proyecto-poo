@@ -14,7 +14,7 @@ import java.io.IOException;
  * Clase controladora del menú de gestión de Alumnos de la interfaz de linea de comandos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public class AlumnoControllerCLI {
 
@@ -87,6 +87,12 @@ public class AlumnoControllerCLI {
                 alumnoOriginal.getApoderado());
     }
 
+    /**
+     * Agrega un nuevo alumno al sistema.
+     *
+     * @param cursoController Clase controladora de cursos
+     * @throws IOException Errores de entrada/salida de datos
+     */
     public void agregarAlumno(CursoControllerCLI cursoController) throws IOException {
         IDCurso idCurso;
         idCurso = cursoController.obtenerIDCurso();
@@ -95,6 +101,12 @@ public class AlumnoControllerCLI {
                 Curso.cursoToString(idCurso.nivel, idCurso.paralelo));
     }
 
+    /**
+     * Muestra la tabla con los alumnos especificados por el usuario.
+     *
+     * @param cursoController Clase controladora de cursos.
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void verAlumnos(CursoControllerCLI cursoController) throws IOException {
         IDCurso idCurso;
         idCurso = cursoController.obtenerIDCurso();
@@ -102,6 +114,11 @@ public class AlumnoControllerCLI {
                 Curso.cursoToString(idCurso.nivel, idCurso.paralelo));
     }
 
+    /**
+     * Permite ver un alumno específico determinado por el usuario.
+     *
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void verAlumno() throws IOException {
         String rut;
         Alumno alumno;
@@ -115,6 +132,11 @@ public class AlumnoControllerCLI {
             UtilsCLI.mensajeErrorNoEncontrado("alumno", 0);
     }
 
+    /**
+     * Permite editar un alumno especifico.
+     *
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void editarAlumno() throws IOException {
         String rut;
         Alumno alumno, alumnoEditado;
@@ -134,6 +156,11 @@ public class AlumnoControllerCLI {
             System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
     }
 
+    /**
+     * Permite eliminar un alumno del sistema.
+     *
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void eliminarAlumno() throws IOException {
         Alumno alumno;
         String rut;

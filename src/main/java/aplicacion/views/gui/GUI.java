@@ -4,22 +4,25 @@
  */
 package aplicacion.views.gui;
 
+import aplicacion.controllers.gui.*;
 import aplicacion.data.AlumnoData;
 import aplicacion.data.ApoderadoData;
 import aplicacion.data.CursoData;
 import aplicacion.data.ProfesorData;
 import aplicacion.data.database.*;
-import aplicacion.data.datafile.AlumnoDatafile;
-import aplicacion.data.datafile.ApoderadoDatafile;
-import aplicacion.data.datafile.CursoDatafile;
-import aplicacion.data.datafile.ProfesorDatafile;
+import aplicacion.data.datafile.AlumnoDF;
+import aplicacion.data.datafile.ApoderadoDF;
+import aplicacion.data.datafile.CursoDF;
+import aplicacion.data.datafile.ProfesorDF;
 
 import java.awt.BorderLayout;
 import java.time.LocalDate;
 
 /**
+ * Clase que controla la ejecución de la interfaz gráfica.
  *
- * @author user
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 3.0
  */
 public class GUI extends javax.swing.JFrame {
     
@@ -29,7 +32,7 @@ public class GUI extends javax.swing.JFrame {
     private final CursoData cursoData;
 
     /**
-     * Creates new form Main
+     * Genera la interfaz gráfica.
      */
     public GUI() {
         initComponents();
@@ -37,24 +40,24 @@ public class GUI extends javax.swing.JFrame {
         
 
         if (DBConnection.connect() != null) {
-            MessageGUI.infoMsg("La conexión con la base de datos fue exitosa.");
+            MessageUtilsGUI.infoMsg("La conexión con la base de datos fue exitosa.");
             this.alumnoData = new AlumnoDB();
             this.apoderadoData = new ApoderadoDB();
             this.profesorData = new ProfesorDB();
             this.cursoData = new CursoDB();
         } else {
-            MessageGUI.errorMsg("La conexión con la base de datos no pudo realizarse. Se utilizarán los datos locales.");
-            this.alumnoData = new AlumnoDatafile();
-            this.apoderadoData = new ApoderadoDatafile();
-            this.profesorData = new ProfesorDatafile();
-            this.cursoData = new CursoDatafile();
+            MessageUtilsGUI.errorMsg("La conexión con la base de datos no pudo realizarse. Se utilizarán los datos locales.");
+            this.alumnoData = new AlumnoDF();
+            this.apoderadoData = new ApoderadoDF();
+            this.profesorData = new ProfesorDF();
+            this.cursoData = new CursoDF();
         }
         String[] meses = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre"
                 ,"octubre","noviembre","diciemrbre"};
         fecha.setText(String.format("Hoy es %d de %s de %d", LocalDate.now().getDayOfMonth(),
                 meses[LocalDate.now().getMonthValue() - 1], LocalDate.now().getYear()));
         
-        InicioViewGUI p3 = new InicioViewGUI();
+        InicioControllerGUI p3 = new InicioControllerGUI();
         p3.setSize(700, 480);
         p3.setLocation(0,0);
         
@@ -205,9 +208,14 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Permite agregar un alumno al sistema
+     *
+     * @param evt Evento
+     */
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
         // TODO add your handling code here:
-        AlumnoViewGUI p1 = new AlumnoViewGUI(this.alumnoData, this.apoderadoData);
+        AlumnoControllerGUI p1 = new AlumnoControllerGUI(this.alumnoData, this.apoderadoData);
         p1.setSize(700, 480);
         p1.setLocation(0, 0);
 
@@ -217,9 +225,14 @@ public class GUI extends javax.swing.JFrame {
         background.repaint();
     }//GEN-LAST:event_btAgregarActionPerformed
 
+    /**
+     * Permite mostrar la lista de un curso determinado.
+     *
+     * @param evt Evento.
+     */
     private void btMostrarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMostrarListaActionPerformed
         // TODO add your handling code here:
-       MostrarViewGUI p2 = new MostrarViewGUI(this.cursoData);
+       MostrarControllerGUI p2 = new MostrarControllerGUI(this.cursoData);
        p2.setSize(700, 480);
        p2.setLocation(0, 0);
 
@@ -229,15 +242,25 @@ public class GUI extends javax.swing.JFrame {
        background.repaint(); 
     }//GEN-LAST:event_btMostrarListaActionPerformed
 
+    /**
+     * Permite salir de la aplicación
+     *
+     * @param evt Evento
+     */
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         // TODO add your handling code here:
-        int opt = MessageGUI.msjSiNo("¿Deseas salir de la aplicación?");
+        int opt = MessageUtilsGUI.msjSiNo("¿Deseas salir de la aplicación?");
         if (opt == 0) System.exit(0);
     }//GEN-LAST:event_btSalirActionPerformed
 
+    /**
+     * Permite buscar una persona en el sistema.
+     *
+     * @param evt Evento.
+     */
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         // TODO add your handling code here:
-       BuscarViewGUI p2 = new BuscarViewGUI(this.alumnoData, this.apoderadoData, this.profesorData);
+       BuscarControllerGUI p2 = new BuscarControllerGUI(this.alumnoData, this.apoderadoData, this.profesorData);
        p2.setSize(700, 480);
        p2.setLocation(0, 0);
 
@@ -248,7 +271,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btBuscarActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Método main. Ejecuta la interfaz gráfica.
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

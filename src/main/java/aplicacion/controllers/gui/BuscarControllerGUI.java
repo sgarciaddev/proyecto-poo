@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package aplicacion.views.gui;
+package aplicacion.controllers.gui;
 
 import aplicacion.data.AlumnoData;
 import aplicacion.data.ApoderadoData;
@@ -12,10 +12,12 @@ import aplicacion.models.Persona;
 import javax.swing.table.AbstractTableModel;
 
 /**
+ * Clase que controla la interacción con la búsqueda de una persona en la ejecución de la interfaz gráfica.
  *
- * @author user
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 3.0
  */
-public class BuscarViewGUI extends javax.swing.JPanel {
+public class BuscarControllerGUI extends javax.swing.JPanel {
 
     private final AlumnoData alumnoData;
     private final ApoderadoData apoderadoData;
@@ -24,13 +26,19 @@ public class BuscarViewGUI extends javax.swing.JPanel {
     /**
      * Creates new form Buscar
      */
-    public BuscarViewGUI(AlumnoData alumnoData, ApoderadoData apoderadoData, ProfesorData profesorData) {
+    public BuscarControllerGUI(AlumnoData alumnoData, ApoderadoData apoderadoData, ProfesorData profesorData) {
         this.alumnoData = alumnoData;
         this.apoderadoData = apoderadoData;
         this.profesorData = profesorData;
         initComponents();
     }
 
+    /**
+     * Permite buscar a la persona en los registros.
+     *
+     * @param rut RUT de la persona a buscar.
+     * @return Matriz de Object con los datos a mostrar en la JTable.
+     */
     private Object[][] buscarPersona(String rut) {
         Persona persona = null;
         String tipo = "";
@@ -74,12 +82,6 @@ public class BuscarViewGUI extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("Ingrese rut de persona");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -95,11 +97,6 @@ public class BuscarViewGUI extends javax.swing.JPanel {
 
         jToggleButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jToggleButton1.setText("Buscar");
-        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseClicked(evt);
-            }
-        });
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -139,16 +136,12 @@ public class BuscarViewGUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_jToggleButton1MouseClicked
-
+    /**
+     * Permite buscar una persona en los datos y mostrarlos a través de la interfaz gráfica.
+     *
+     * @param evt Evento.
+     */
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
         String[] columns = new String[] {
@@ -156,7 +149,7 @@ public class BuscarViewGUI extends javax.swing.JPanel {
         };
         Object[][] data = buscarPersona(jTextField1.getText());
         if (data == null) {
-            MessageGUI.errorMsg("La persona buscada no fue encontrada en nuestros registros.");
+            MessageUtilsGUI.errorMsg("La persona buscada no fue encontrada en nuestros registros.");
             return;
         }
         jTable1.setModel(new AbstractTableModel() {

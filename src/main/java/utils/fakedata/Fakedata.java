@@ -6,9 +6,7 @@ import aplicacion.models.*;
 import com.github.javafaker.Faker;
 
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * Clase que permite generar datos falsos y almacenarlos en los archivos de
@@ -20,8 +18,8 @@ import java.util.Random;
  */
 public class Fakedata {
 
-    private final AlumnoDatafile alumnoDatafile;
-    private final CursoDatafile cursoDatafile;
+    private final AlumnoDF alumnoDF;
+    private final CursoDF cursoDF;
     private final RegistroAsistenciaData registrarAsistenciaData;
     private final Faker faker;
 
@@ -29,8 +27,8 @@ public class Fakedata {
      * Constructor del objeto Fakedata. Interactúa con los Datafile.
      */
     public Fakedata() {
-        this.alumnoDatafile = new AlumnoDatafile();
-        this.cursoDatafile = new CursoDatafile();
+        this.alumnoDF = new AlumnoDF();
+        this.cursoDF = new CursoDF();
         this.registrarAsistenciaData = new RegistroAsistenciaDF();
         this.faker = new Faker();
     }
@@ -106,11 +104,11 @@ public class Fakedata {
         for (short i = 1; i < 13; i++) {
             for (char j = 65; j < 67; j++) {
                 profesor = generateProfesor();
-                cursoDatafile.insertCurso(new Curso(i, j, profesor, null));
+                cursoDF.insertCurso(new Curso(i, j, profesor, null));
                 for (int k = 0; k < 15; k++) {
                     apoderado = generateApoderado();
                     alumno = generateAlumno(apoderado, i, j);
-                    alumnoDatafile.insertAlumno(alumno);
+                    alumnoDF.insertAlumno(alumno);
                 }
             }
         }
@@ -139,7 +137,7 @@ public class Fakedata {
     }
 
     public void generateDatosAsistencia() {
-        Map<String, Alumno> alumnos = this.alumnoDatafile.getAlumnos();
+        Map<String, Alumno> alumnos = this.alumnoDF.getAlumnos();
         IDAsistencia id;
 
         for (Map.Entry<String, Alumno> entry: alumnos.entrySet()) {

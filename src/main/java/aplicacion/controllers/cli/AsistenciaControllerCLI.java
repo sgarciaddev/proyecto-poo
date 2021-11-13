@@ -15,7 +15,7 @@ import java.util.Map;
  * Clase controladora del menú de gestión de Asistencia de la interfaz de linea de comandos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 
 public class AsistenciaControllerCLI {
@@ -79,6 +79,9 @@ public class AsistenciaControllerCLI {
         return alumnos;
     }
 
+    /**
+     * Permite mostrar por pantalla el alumno con mejor registro de asistencia.
+     */
     public void alumnoMejorAsistencia() {
         Alumno alumno;
 
@@ -89,6 +92,12 @@ public class AsistenciaControllerCLI {
             UtilsCLI.mensajeErrorNoEncontrado("registro de asistencia", 0);
     }
 
+    /**
+     * Permite mostrar por pantalla una tabla con los alumnos que tengan una asistencia promedio entre los
+     * porcentajes especificados por el usuario.
+     *
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void alumnosEntrePorcentajesAsistencia() throws IOException {
         int porcentaje1, porcentaje2;
         Map<String, Alumno> alumnosEnPorcentaje;
@@ -101,6 +110,11 @@ public class AsistenciaControllerCLI {
         AsistenciaViewCli.mostrarTablaAlumnosAsistencia(alumnosEnPorcentaje, "porcentaje dado ASISTENCIA");
     }
 
+    /**
+     * Permite mostrar por pantalla al alumno que registre más retiros.
+     *
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void alumnoConMasRetiros() throws IOException {
         Alumno alumno;
 
@@ -109,6 +123,12 @@ public class AsistenciaControllerCLI {
         System.out.println(alumno.toString("del alumno con mas retiros"));
     }
 
+    /**
+     * Permite mostrar una tabla de alumnos que posean un porcentaje de retiros entre límites especificados por el
+     * usuario.
+     *
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void alumnoEntrePorcentajesRetiros() throws IOException {
         int porcentaje1, porcentaje2;
         Map<String, Alumno> alumnosEnPorcentaje;
