@@ -4,7 +4,7 @@ package aplicacion.models;
  * Clase que define un profesor.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public class Profesor extends Persona {
     private String asignatura;
@@ -84,6 +84,11 @@ public class Profesor extends Persona {
         this.telefono = telefono;
     }
 
+    /**
+     * Permite obtener un String con los datos del profesor para impresión por pantalla.
+     *
+     * @return String con los datos del profesor.
+     */
     @Override
     public String toString() {
         return super.toString("Profesor") +
@@ -93,6 +98,12 @@ public class Profesor extends Persona {
                 "      -> Email          : " + email + "\n";
     }
 
+    /**
+     * Permite obtener un String con los datos del profesor para impresión por pantalla.
+     *
+     * @param titulo Titulo a incorporar en la impresión.
+     * @return String con los datos del profesor.
+     */
     @Override
     public String toString(String titulo) {
         return super.toString(titulo) +

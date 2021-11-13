@@ -11,7 +11,7 @@ import java.util.Scanner;
  * Clase con utilidades para la interfaz de consola de comandos (CLI).
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public class UtilsCLI {
 
@@ -271,6 +271,12 @@ public class UtilsCLI {
                 "local en reemplazo.\n");
     }
 
+    /**
+     * Permite mostrar un mensaje de Error: no encontrado por pantalla
+     *
+     * @param tipo Tipo de dato que no se encuentra
+     * @param g Género (0: La, 1: El)
+     */
     public static void mensajeErrorNoEncontrado(String tipo, int g) {
         if (g == 0)
             System.out.println("El " + tipo + " solicitado no ha sido encontrado. Revisa lo ingresado e intenta " +
@@ -280,6 +286,9 @@ public class UtilsCLI {
                     "nuevamente.");
     }
 
+    /**
+     * Permite generar por pantalla una pausa, esperando un enter para continuar.
+     */
     public static void imprimirEsperaEnter() {
         System.out.println("-> Presiona enter para continuar...");
         Scanner scanner = new Scanner(System.in);

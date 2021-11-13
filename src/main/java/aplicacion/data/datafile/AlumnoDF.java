@@ -1,10 +1,8 @@
 package aplicacion.data.datafile;
 
 import aplicacion.data.AlumnoData;
-import aplicacion.data.RegistroAsistenciaData;
 import aplicacion.models.Alumno;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -12,20 +10,20 @@ import java.util.*;
  * los datos de los alumnos. Implementa la interfaz AlumnoData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
-public class AlumnoDatafile implements AlumnoData {
+public class AlumnoDF implements AlumnoData {
 
     private final Datafile datafile;
-    private final ApoderadoDatafile apDataFile;
+    private final ApoderadoDF apDataFile;
     private final RegistroAsistenciaDF registroAsistenciaDataFile;
 
     /**
      * Constructor de AlumnoDatafile. Trabaja con un objeto Datafile.
      */
-    public AlumnoDatafile() {
+    public AlumnoDF() {
         this.datafile = new Datafile("alumno");
-        this.apDataFile = new ApoderadoDatafile();
+        this.apDataFile = new ApoderadoDF();
         this.registroAsistenciaDataFile = new RegistroAsistenciaDF();
     }
 

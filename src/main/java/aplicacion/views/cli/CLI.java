@@ -5,10 +5,10 @@ import aplicacion.data.ApoderadoData;
 import aplicacion.data.CursoData;
 import aplicacion.data.ProfesorData;
 import aplicacion.data.database.*;
-import aplicacion.data.datafile.AlumnoDatafile;
-import aplicacion.data.datafile.ApoderadoDatafile;
-import aplicacion.data.datafile.CursoDatafile;
-import aplicacion.data.datafile.ProfesorDatafile;
+import aplicacion.data.datafile.AlumnoDF;
+import aplicacion.data.datafile.ApoderadoDF;
+import aplicacion.data.datafile.CursoDF;
+import aplicacion.data.datafile.ProfesorDF;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
  * Aplicación principal de la interfaz de consola de comandos (CLI).
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public class CLI {
 
@@ -47,20 +47,28 @@ public class CLI {
             cursoData = new CursoDB();
         } else {
             UtilsCLI.mensajeUtilizandoDatafile();
-            alumnoData = new AlumnoDatafile();
-            apoderadoData = new ApoderadoDatafile();
-            profesorData = new ProfesorDatafile();
-            cursoData = new CursoDatafile();
+            alumnoData = new AlumnoDF();
+            apoderadoData = new ApoderadoDF();
+            profesorData = new ProfesorDF();
+            cursoData = new CursoDF();
         }
 
         this.menuCLI = new MenuCLI(lector, alumnoData, apoderadoData, cursoData, profesorData);
 
     }
 
+    /**
+     * Método que inicia la aplicación de consola
+     *
+     * @throws IOException Errores de entrada/salida de datos
+     */
     public void iniciarCLI() throws IOException{
         menuCLI.mostrarMenu("principal");
     }
 
+    /**
+     * Método que permite finalizar el programa. Imprime un mensaje de despedida.
+     */
     public void finalizarCLI() {
         UtilsCLI.mensajeDespedida();
     }

@@ -5,14 +5,31 @@ import aplicacion.views.cli.MenuCLI;
 
 import java.io.IOException;
 
+/**
+ * Clase controladora de los reportes que genera el sistema.
+ *
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 3.0
+ */
 public class ReportesControllerCLI {
 
     private final MenuCLI menuCLI;
 
+    /**
+     * Genera un objeto de tipo ReporteControllerCLI
+     *
+     * @param menuCLI MenuCLI para obtener acceso a los datos.
+     */
     public ReportesControllerCLI( MenuCLI menuCLI) {
         this.menuCLI = menuCLI;
     }
 
+    /**
+     * Genera el reporte con la lista de un curso específico.
+     *
+     * @param cursoController Controlador de cursos
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void generarListaCurso(CursoControllerCLI cursoController) throws IOException {
         IDCurso idCurso;
         String rutaArchivo;
@@ -26,6 +43,12 @@ public class ReportesControllerCLI {
             System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
     }
 
+    /**
+     * Genera el reporte con la tabla de todos los cursos registrados en el sistema.
+     *
+     * @param cursoController Controlador de cursos.
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void generarTablaCursos(CursoControllerCLI cursoController) throws IOException {
         String rutaArchivo;
 

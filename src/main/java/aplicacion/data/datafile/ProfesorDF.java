@@ -12,16 +12,16 @@ import java.util.List;
  * los datos de Profesor. Implementa la interfaz ProfesorData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
-public class ProfesorDatafile implements ProfesorData {
+public class ProfesorDF implements ProfesorData {
 
     private final Datafile datafile;
 
     /**
      * Constructor de ProfesorDatafile. Trabaja con un objeto Datafile.
      */
-    public ProfesorDatafile() {
+    public ProfesorDF() {
         this.datafile = new Datafile("profesor");
     }
 
