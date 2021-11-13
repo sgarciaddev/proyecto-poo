@@ -4,15 +4,29 @@
  */
 package aplicacion.views.gui;
 
+import aplicacion.data.AlumnoData;
+import aplicacion.data.ApoderadoData;
+import aplicacion.data.CursoData;
+import aplicacion.data.ProfesorData;
+import aplicacion.data.database.*;
+import aplicacion.data.datafile.AlumnoDatafile;
+import aplicacion.data.datafile.ApoderadoDatafile;
+import aplicacion.data.datafile.CursoDatafile;
+import aplicacion.data.datafile.ProfesorDatafile;
+
 import java.awt.BorderLayout;
 import java.time.LocalDate;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author user
  */
 public class GUI extends javax.swing.JFrame {
+    
+    private final AlumnoData alumnoData;
+    private final ApoderadoData apoderadoData;
+    private final ProfesorData profesorData;
+    private final CursoData cursoData;
 
     /**
      * Creates new form Main
@@ -20,15 +34,27 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
         this.setLocationRelativeTo(null);
-        LocalDate now = LocalDate.now();
-        int year = now.getYear();
-        int dia = now.getDayOfMonth();
-        int month = now.getMonthValue();
-        String[] meses = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre"
-            ,"octubre","noviembre","diciemrbre"};
-        fecha.setText("Hoy es "+dia+" de "+meses[month - 1]+" de "+year);
         
-        Inicio p3 = new Inicio();
+
+        if (DBConnection.connect() != null) {
+            MessageGUI.infoMsg("La conexión con la base de datos fue exitosa.");
+            this.alumnoData = new AlumnoDB();
+            this.apoderadoData = new ApoderadoDB();
+            this.profesorData = new ProfesorDB();
+            this.cursoData = new CursoDB();
+        } else {
+            MessageGUI.errorMsg("La conexión con la base de datos no pudo realizarse. Se utilizarán los datos locales.");
+            this.alumnoData = new AlumnoDatafile();
+            this.apoderadoData = new ApoderadoDatafile();
+            this.profesorData = new ProfesorDatafile();
+            this.cursoData = new CursoDatafile();
+        }
+        String[] meses = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre"
+                ,"octubre","noviembre","diciemrbre"};
+        fecha.setText(String.format("Hoy es %d de %s de %d", LocalDate.now().getDayOfMonth(),
+                meses[LocalDate.now().getMonthValue() - 1], LocalDate.now().getYear()));
+        
+        InicioViewGUI p3 = new InicioViewGUI();
         p3.setSize(700, 480);
         p3.setLocation(0,0);
         
@@ -181,7 +207,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
         // TODO add your handling code here:
-        Alumno p1 = new Alumno();
+        AlumnoViewGUI p1 = new AlumnoViewGUI(this.alumnoData, this.apoderadoData);
         p1.setSize(700, 480);
         p1.setLocation(0, 0);
 
@@ -193,7 +219,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void btMostrarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMostrarListaActionPerformed
         // TODO add your handling code here:
-       Mostrar p2 = new Mostrar();
+       MostrarViewGUI p2 = new MostrarViewGUI(this.cursoData);
        p2.setSize(700, 480);
        p2.setLocation(0, 0);
 
@@ -205,13 +231,13 @@ public class GUI extends javax.swing.JFrame {
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         // TODO add your handling code here:
-        int opt = JOptionPane.showConfirmDialog(null, "Estas seguro?", "Saliendo de la aplicación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int opt = MessageGUI.msjSiNo("¿Deseas salir de la aplicación?");
         if (opt == 0) System.exit(0);
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         // TODO add your handling code here:
-       Buscar p2 = new Buscar();
+       BuscarViewGUI p2 = new BuscarViewGUI(this.alumnoData, this.apoderadoData, this.profesorData);
        p2.setSize(700, 480);
        p2.setLocation(0, 0);
 

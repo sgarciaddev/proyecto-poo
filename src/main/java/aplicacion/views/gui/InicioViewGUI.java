@@ -8,12 +8,12 @@ package aplicacion.views.gui;
  *
  * @author user
  */
-public class Inicio extends javax.swing.JPanel {
+public class InicioViewGUI extends javax.swing.JPanel {
 
     /**
      * Creates new form Principal
      */
-    public Inicio() {
+    public InicioViewGUI() {
         initComponents();
     }
 

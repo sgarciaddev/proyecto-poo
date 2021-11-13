@@ -4,19 +4,29 @@
  */
 package aplicacion.views.gui;
 
+import aplicacion.data.AlumnoData;
+import aplicacion.data.ApoderadoData;
+import aplicacion.models.Alumno;
+import aplicacion.models.Apoderado;
+
 import java.awt.Color;
 
 /**
  *
  * @author user
  */
-public class Alumno extends javax.swing.JPanel {
+public class AlumnoViewGUI extends javax.swing.JPanel {
+    
+    private final AlumnoData alumnoData;
+    private final ApoderadoData apoderadoData;
 
     /**
      * Creates new form Agregar
      */
     int xMouse, yMouse;
-    public Alumno() {
+    public AlumnoViewGUI(AlumnoData alumnoData, ApoderadoData apoderadoData) {
+        this.alumnoData = alumnoData;
+        this.apoderadoData = apoderadoData;
         initComponents();
     }
 
@@ -249,6 +259,26 @@ public class Alumno extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Apoderado apoderado = new Apoderado(
+                jTextField5.getText(),
+                jTextField6.getText(),
+                jTextField7.getText(),
+                jTextField8.getText(),
+                Integer.parseInt(jTextField10.getText()),
+                jTextField9.getText()
+        );
+        Alumno alumno = new Alumno(
+                jTextField1.getText(),
+                jTextField2.getText(),
+                jTextField3.getText(),
+                jTextField4.getText(),
+                Integer.parseInt(niveltxt.getText()),
+                jTextField12.getText().charAt(0),
+                apoderado
+        );
+        this.apoderadoData.insertApoderado(apoderado);
+        this.alumnoData.insertAlumno(alumno);
+        MessageGUI.infoMsg("El alumno ha sido agregado con éxito");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -4,17 +4,55 @@
  */
 package aplicacion.views.gui;
 
+import aplicacion.data.AlumnoData;
+import aplicacion.data.ApoderadoData;
+import aplicacion.data.ProfesorData;
+import aplicacion.models.Persona;
+
+import javax.swing.table.AbstractTableModel;
+
 /**
  *
  * @author user
  */
-public class Buscar extends javax.swing.JPanel {
+public class BuscarViewGUI extends javax.swing.JPanel {
+
+    private final AlumnoData alumnoData;
+    private final ApoderadoData apoderadoData;
+    private final ProfesorData profesorData;
 
     /**
      * Creates new form Buscar
      */
-    public Buscar() {
+    public BuscarViewGUI(AlumnoData alumnoData, ApoderadoData apoderadoData, ProfesorData profesorData) {
+        this.alumnoData = alumnoData;
+        this.apoderadoData = apoderadoData;
+        this.profesorData = profesorData;
         initComponents();
+    }
+
+    private Object[][] buscarPersona(String rut) {
+        Persona persona = null;
+        String tipo = "";
+        if (alumnoData.getAlumno(rut) != null) {
+            tipo = "Alumno";
+            persona = alumnoData.getAlumno(rut);
+        } else if (apoderadoData.getApoderado(rut) != null) {
+            tipo = "Apoderado";
+            persona = apoderadoData.getApoderado(rut);
+        } else if (profesorData.getProfesor(rut) != null) {
+            tipo = "Profesor";
+            persona = profesorData.getProfesor(rut);
+        }
+        if (persona != null)
+            return new Object[][]{{
+                persona.getRut(),
+                persona.getNombres(),
+                persona.getApMaterno(),
+                persona.getApMaterno(),
+                tipo
+            }};
+        return null;
     }
 
     /**
@@ -57,6 +95,16 @@ public class Buscar extends javax.swing.JPanel {
 
         jToggleButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jToggleButton1.setText("Buscar");
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,7 +141,46 @@ public class Buscar extends javax.swing.JPanel {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jToggleButton1MouseClicked
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        String[] columns = new String[] {
+                "rut", "Nombres", "Apellido Paterno", "Apellido materno", "Tipo"
+        };
+        Object[][] data = buscarPersona(jTextField1.getText());
+        if (data == null) {
+            MessageGUI.errorMsg("La persona buscada no fue encontrada en nuestros registros.");
+            return;
+        }
+        jTable1.setModel(new AbstractTableModel() {
+            @Override
+            public String getColumnName(int col) {
+                return columns[col];
+            }
+
+            @Override
+            public int getRowCount() {
+                return data.length;
+            }
+
+            @Override
+            public int getColumnCount() {
+                return columns.length;
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+                return data[rowIndex][columnIndex];
+            }
+        });
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

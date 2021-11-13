@@ -4,18 +4,42 @@
  */
 package aplicacion.views.gui;
 
+import aplicacion.data.CursoData;
+import aplicacion.models.Alumno;
+import aplicacion.models.Curso;
+
+import javax.swing.table.AbstractTableModel;
+import java.util.Map;
+
 /**
  *
  * @author user
  */
-public class Mostrar extends javax.swing.JPanel {
+public class MostrarViewGUI extends javax.swing.JPanel {
+
+    private final CursoData cursoData;
 
     /**
      * Creates new form Mostrar
      */
-    public Mostrar() {
+    public MostrarViewGUI(CursoData cursoData) {
+        this.cursoData = cursoData;
         initComponents();
         
+    }
+
+    private Object[][] alumnosATabla(Map<String, Alumno> alumnos) {
+        Object[][] tabla = new Object[alumnos.size()][5];
+        int i = 0;
+        for (Map.Entry<String, Alumno> alumno: alumnos.entrySet()) {
+            tabla[i][0] = alumno.getValue().getNivel();
+            tabla[i][1] = alumno.getValue().getParalelo();
+            tabla[i][2] = alumno.getValue().getNombres();
+            tabla[i][3] = alumno.getValue().getApPaterno();
+            tabla[i][4] = alumno.getValue().getApMaterno();
+            i++;
+        }
+        return tabla;
     }
 
     /**
@@ -109,7 +133,46 @@ public class Mostrar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Curso curso = this.cursoData.getCurso(Short.parseShort(jTextField1.getText()), jTextField2.getText().charAt(0));
+        if (curso == null) {
+            MessageGUI.errorMsg("No se encontró el curso ingresado.");
+            return;
+        }
+        Object[][] data = alumnosATabla(curso.getAlumnos());
+        if (data.length == 0) {
+            MessageGUI.errorMsg("El curso seleccionado no tiene alumnos registrados.");
+            return;
+        }
+        String[] columns = new String[] {
+                "Nivel",
+                "Paralelo",
+                "Nombres",
+                "Apellido paterno",
+                "Apellido materno"
+        };
+
         // TODO add your handling code here:
+        jTable1.setModel(new AbstractTableModel() {
+            @Override
+            public String getColumnName(int col) {
+                return columns[col];
+            }
+
+            @Override
+            public int getRowCount() {
+                return data.length;
+            }
+
+            @Override
+            public int getColumnCount() {
+                return columns.length;
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+                return data[rowIndex][columnIndex];
+            }
+        });
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
