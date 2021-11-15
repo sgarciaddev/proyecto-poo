@@ -2,14 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package aplicacion.controllers.gui;
+package aplicacion.views.gui;
 
+import aplicacion.controllers.gui.MessageUtilsGUI;
 import aplicacion.data.AlumnoData;
 import aplicacion.data.ApoderadoData;
 import aplicacion.data.ProfesorData;
 import aplicacion.models.Persona;
+import java.awt.Color;
+import javax.swing.Icon;
 
 import javax.swing.table.AbstractTableModel;
+import jiconfont.icons.font_awesome.FontAwesome;
+import jiconfont.swing.IconFontSwing;
 
 /**
  * Clase que controla la interacción con la búsqueda de una persona en la ejecución de la interfaz gráfica.
@@ -17,7 +22,7 @@ import javax.swing.table.AbstractTableModel;
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
  * @version 3.0
  */
-public class BuscarControllerGUI extends javax.swing.JPanel {
+public class BuscarViewGUI extends javax.swing.JPanel {
 
     private final AlumnoData alumnoData;
     private final ApoderadoData apoderadoData;
@@ -26,11 +31,15 @@ public class BuscarControllerGUI extends javax.swing.JPanel {
     /**
      * Creates new form Buscar
      */
-    public BuscarControllerGUI(AlumnoData alumnoData, ApoderadoData apoderadoData, ProfesorData profesorData) {
+    public BuscarViewGUI(AlumnoData alumnoData, ApoderadoData apoderadoData, ProfesorData profesorData) {
         this.alumnoData = alumnoData;
         this.apoderadoData = apoderadoData;
         this.profesorData = profesorData;
         initComponents();
+    }
+    
+    private Icon eyeIcon() {
+        return IconFontSwing.buildIcon(FontAwesome.SEARCH, 18, new Color(250, 250, 250));
     }
 
     /**
@@ -76,18 +85,21 @@ public class BuscarControllerGUI extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        setBackground(new java.awt.Color(240, 239, 240));
+
+        jLabel1.setFont(new java.awt.Font("Fira Sans", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("Ingrese rut de persona");
+
+        jTextField1.setBackground(new java.awt.Color(250, 250, 250));
+        jTextField1.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
             },
             new String [] {
                 "rut", "Nombres", "Apellido Paterno", "Apellido materno", "Tipo"
@@ -95,11 +107,21 @@ public class BuscarControllerGUI extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jToggleButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jToggleButton1.setText("Buscar");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setFont(new java.awt.Font("Fira Sans", 1, 32)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 142, 153));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Buscar persona");
+
+        jButton1.setBackground(new java.awt.Color(0, 142, 153));
+        jButton1.setFont(new java.awt.Font("Fira Sans", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(250, 250, 250));
+        jButton1.setIcon(eyeIcon());
+        jButton1.setText("Buscar");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton1.setIconTextGap(10);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -107,45 +129,40 @@ public class BuscarControllerGUI extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
             .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1))
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
-    /**
-     * Permite buscar una persona en los datos y mostrarlos a través de la interfaz gráfica.
-     *
-     * @param evt Evento.
-     */
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String[] columns = new String[] {
-                "rut", "Nombres", "Apellido Paterno", "Apellido materno", "Tipo"
+                "RUT", "Nombres", "Apellido Paterno", "Apellido materno", "Tipo"
         };
         Object[][] data = buscarPersona(jTextField1.getText());
         if (data == null) {
@@ -173,14 +190,16 @@ public class BuscarControllerGUI extends javax.swing.JPanel {
                 return data[rowIndex][columnIndex];
             }
         });
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
