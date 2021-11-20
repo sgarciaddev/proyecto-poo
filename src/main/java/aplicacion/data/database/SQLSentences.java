@@ -119,5 +119,43 @@ public enum SQLSentences {
         public String toString() {
             return "DELETE FROM Apoderados WHERE rut = '%s'";
         }
+    },
+    GET_REG_AS_ID {
+        public String toString() {
+            return "SELECT * FROM RegistroAsistencia WHERE rut_alumno = '%s' AND fecha = '%s'";
+        }
+    },
+    GET_REG_AS_RUT {
+        public String toString() {
+            return "SELECT * FROM RegistroAsistencia WHERE rut_alumno = '%s'";
+        }
+    },
+    GET_REG_AS_FECHA {
+        public String toString() {
+            return "SELECT * FROM RegistroAsistencia WHERE fecha = '%s'";
+        }
+    },
+    GET_TODOS_REG_AS {
+        public String toString() {
+            return "SELECT * FROM RegistroAsistencia";
+        }
+    },
+    INSERT_REG_AS {
+        public String toString() {
+            return "INSERT INTO RegistroAsistencia (rut_alumno, fecha, valor, presente, " +
+                    "justificado, retiro) VALUES ('%s', '%s', %f, %b, %b, %b)";
+        }
+    },
+    UPDATE_REG_AS {
+        public String toString() {
+            return "UPDATE RegistroAsistencia SET rut_alumno = '%s' , fecha = '%s' , valor = %f, " +
+                    "presente = %b, justificado = %b, retiro = %b WHERE rut_alumno = '%s' AND" +
+                    "fecha = '%s'";
+        }
+    },
+    DELETE_REG_AS {
+        public String toString() {
+            return "DELETE FROM RegistroAsistencia WHERE rut_alumno = '%s' AND fecha = '%s";
+        }
     }
 }
