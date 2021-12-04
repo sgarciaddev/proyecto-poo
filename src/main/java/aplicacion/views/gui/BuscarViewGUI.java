@@ -4,17 +4,18 @@
  */
 package aplicacion.views.gui;
 
-import aplicacion.controllers.gui.MessageUtilsGUI;
+import aplicacion.controllers.gui.CustomColors;
+import aplicacion.controllers.gui.UtilsGUI;
 import aplicacion.data.AlumnoData;
 import aplicacion.data.ApoderadoData;
 import aplicacion.data.ProfesorData;
 import aplicacion.models.Persona;
-import java.awt.Color;
-import javax.swing.Icon;
-
-import javax.swing.table.AbstractTableModel;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
+
+import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import java.awt.*;
 
 /**
  * Clase que controla la interacción con la búsqueda de una persona en la ejecución de la interfaz gráfica.
@@ -27,14 +28,17 @@ public class BuscarViewGUI extends javax.swing.JPanel {
     private final AlumnoData alumnoData;
     private final ApoderadoData apoderadoData;
     private final ProfesorData profesorData;
+    private final ShowPanelGUI bg;
 
     /**
      * Creates new form Buscar
      */
-    public BuscarViewGUI(AlumnoData alumnoData, ApoderadoData apoderadoData, ProfesorData profesorData) {
+    public BuscarViewGUI(AlumnoData alumnoData, ApoderadoData apoderadoData, ProfesorData profesorData,
+                         ShowPanelGUI bg) {
         this.alumnoData = alumnoData;
         this.apoderadoData = apoderadoData;
         this.profesorData = profesorData;
+        this.bg = bg;
         initComponents();
     }
     
@@ -61,14 +65,16 @@ public class BuscarViewGUI extends javax.swing.JPanel {
             tipo = "Profesor";
             persona = profesorData.getProfesor(rut);
         }
-        if (persona != null)
+        if (persona != null) {
+            this.bg.setSubtitle("Persona encontrada con RUT " + rut);
             return new Object[][]{{
-                persona.getRut(),
-                persona.getNombres(),
-                persona.getApMaterno(),
-                persona.getApMaterno(),
-                tipo
+                    persona.getRut(),
+                    persona.getNombres(),
+                    persona.getApMaterno(),
+                    persona.getApMaterno(),
+                    tipo
             }};
+        }
         return null;
     }
 
@@ -85,36 +91,35 @@ public class BuscarViewGUI extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(240, 239, 240));
+        setMaximumSize(new java.awt.Dimension(875, 480));
+        setMinimumSize(new java.awt.Dimension(875, 480));
+        setSize(new java.awt.Dimension(875, 480));
 
         jLabel1.setFont(new java.awt.Font("Fira Sans", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("Ingrese rut de persona");
 
-        jTextField1.setBackground(new java.awt.Color(250, 250, 250));
         jTextField1.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
 
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(450, 400));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(450, 400));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(450, 400));
+        jScrollPane1.setSize(new java.awt.Dimension(450, 400));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-            },
-            new String [] {
-                "rut", "Nombres", "Apellido Paterno", "Apellido materno", "Tipo"
-            }
+                new Object[][]{
+                        {null, null, null, null, null},
+                },
+                new String[]{
+                        "rut", "Nombres", "Apellido Paterno", "Apellido materno", "Tipo"
+                }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel2.setFont(new java.awt.Font("Fira Sans", 1, 32)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 142, 153));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Buscar persona");
-
-        jButton1.setBackground(new java.awt.Color(0, 142, 153));
+        jButton1.setBackground(CustomColors.MAIN_COLOR.getColor());
         jButton1.setFont(new java.awt.Font("Fira Sans", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(250, 250, 250));
+        jButton1.setForeground(CustomColors.LIGHT_COLOR.getColor());
         jButton1.setIcon(eyeIcon());
         jButton1.setText("Buscar");
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -130,31 +135,28 @@ public class BuscarViewGUI extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButton1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,7 +168,8 @@ public class BuscarViewGUI extends javax.swing.JPanel {
         };
         Object[][] data = buscarPersona(jTextField1.getText());
         if (data == null) {
-            MessageUtilsGUI.errorMsg("La persona buscada no fue encontrada en nuestros registros.");
+            this.bg.setSubtitle("No se encontró persona con RUT " + jTextField1.getText());
+            UtilsGUI.errorMsg("La persona con el RUT " + jTextField1.getText() + " no fue encontrada en nuestros registros.");
             return;
         }
         jTable1.setModel(new AbstractTableModel() {
@@ -197,7 +200,6 @@ public class BuscarViewGUI extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
