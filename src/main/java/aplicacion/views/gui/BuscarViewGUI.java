@@ -21,7 +21,7 @@ import java.awt.*;
  * Clase que controla la interacción con la búsqueda de una persona en la ejecución de la interfaz gráfica.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class BuscarViewGUI extends javax.swing.JPanel {
 
@@ -41,7 +41,12 @@ public class BuscarViewGUI extends javax.swing.JPanel {
         this.bg = bg;
         initComponents();
     }
-    
+
+    /**
+     * Método que permite obtener un ícono con forma de ojo, para botón de búsqueda.
+     *
+     * @return Ícono con los colores especificados.
+     */
     private Icon eyeIcon() {
         return IconFontSwing.buildIcon(FontAwesome.SEARCH, 18, new Color(250, 250, 250));
     }

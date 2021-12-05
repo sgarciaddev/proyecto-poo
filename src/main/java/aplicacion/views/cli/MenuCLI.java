@@ -15,7 +15,7 @@ import java.util.Map;
  * Clase que controla los menús de la interfaz de consola de comandos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class MenuCLI {
 

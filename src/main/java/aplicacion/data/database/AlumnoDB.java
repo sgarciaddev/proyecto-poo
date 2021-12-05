@@ -12,7 +12,7 @@ import java.util.Map;
  * los datos de los alumnos. Implementa la interfaz AlumnoData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class AlumnoDB implements AlumnoData {
 

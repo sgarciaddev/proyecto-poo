@@ -20,7 +20,7 @@ import java.util.Map;
  * Clase que controla la interacción con los cursos en la ejecución de la interfaz gráfica.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class MostrarViewGUI extends javax.swing.JPanel {
 

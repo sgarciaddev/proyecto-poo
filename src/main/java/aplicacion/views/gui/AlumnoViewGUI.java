@@ -23,7 +23,7 @@ import java.util.List;
  * Clase que controla la interacción con alumnso en la ejecución de la interfaz gráfica.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class AlumnoViewGUI extends javax.swing.JPanel {
 
@@ -33,11 +33,12 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
 
     private final ShowPanelGUI bg;
 
+
+    int xMouse, yMouse;
+
     /**
      * Creates new form Agregar
      */
-    int xMouse, yMouse;
-
     public AlumnoViewGUI(AlumnoData alumnoData, ApoderadoData apoderadoData, List<Curso> cursoData, ShowPanelGUI bg) {
         this.alumnoData = alumnoData;
         this.apoderadoData = apoderadoData;
@@ -55,7 +56,12 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
         this.telefonoApTextField.setEnabled(false);
         this.emailApTextField.setEnabled(false);
     }
-    
+
+    /**
+     * Método que permite obtener un ComboBox con los datos de los cursos, para seleccionar.
+     *
+     * @return Combobox con los cursos.
+     */
     private DefaultComboBoxModel getCursosCB() {
         String labels[] = new String[this.cursoData.size()];
         int i = 0;
@@ -323,11 +329,16 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
      *
      * @param evt Evento.
      */
-    private void headerMousePressed(java.awt.event.MouseEvent evt) {                                    
+    private void headerMousePressed(java.awt.event.MouseEvent evt) {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }
-    
+
+    /**
+     * Método que retorna un ícono con forma de diskette, para botón de guardado.
+     *
+     * @return Icono con los colores predefinidos.
+     */
     private Icon saveIcon() {
         return IconFontSwing.buildIcon(FontAwesome.FLOPPY_O, 25, new Color(250, 250, 250));
     }
@@ -470,6 +481,13 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
         telefonoApTextField.setText("");
     }//GEN-LAST:event_telefonoApTextFieldFocusGained
 
+    /**
+     * Método que permite obtener el valor numérico de un teléfono ingresado.
+     *
+     * @param textField Texto indicado por el usuario
+     * @return Valor numérico de lo ingresado por el alumno
+     * @throws InvalidNumberException Errores de ingreso de datos no numéricos.
+     */
     private int obtenerNumeroTelefono(String textField) throws InvalidNumberException {
         return Integer.parseInt(textField);
     }

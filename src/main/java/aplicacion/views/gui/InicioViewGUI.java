@@ -12,7 +12,7 @@ import jiconfont.icons.font_awesome.FontAwesome;
  * Clase que controla la interacción con la pantalla de inicio en la ejecución de la interfaz gráfica.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class InicioViewGUI extends javax.swing.JPanel {
 

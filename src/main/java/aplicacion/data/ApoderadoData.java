@@ -6,7 +6,7 @@ import aplicacion.models.Apoderado;
  * Interfaz que permite interactuar con los datos de Apoderados.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version e.0
+ * @version 4.0
  */
 public interface ApoderadoData {
     /**

@@ -8,7 +8,7 @@ import java.util.Map;
  * Interfaz que permite interactuar con los datos de Alumnos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public interface AlumnoData {
     /**

@@ -13,7 +13,7 @@ import java.util.List;
  * los datos del Curso. Implementa la interfaz CursoData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class CursoDF implements CursoData {
 

@@ -14,7 +14,7 @@ import java.util.List;
  * los datos de los registros de asistencia. Implementa la interfaz RegistroAsistenciaData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class RegistroAsistenciaDF implements RegistroAsistenciaData {
 

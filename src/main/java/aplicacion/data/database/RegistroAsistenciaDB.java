@@ -13,7 +13,7 @@ import java.util.HashMap;
  * los datos con los registros de asistencia de los alumnos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class RegistroAsistenciaDB implements RegistroAsistenciaData {
 

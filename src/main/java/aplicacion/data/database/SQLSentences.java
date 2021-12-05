@@ -4,7 +4,7 @@ package aplicacion.data.database;
  * Enum con las sentencias SQL utilizadas
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public enum SQLSentences {
     GET_TODOS_ALUMNOS {

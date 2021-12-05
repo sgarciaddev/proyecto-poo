@@ -14,7 +14,7 @@ import java.sql.ResultSet;
  * de entorno, conectadas a su vez a la configuración lanzada con Docker.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class DBConnection {
 

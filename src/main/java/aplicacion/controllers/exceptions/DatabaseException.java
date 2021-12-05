@@ -1,6 +1,7 @@
 package aplicacion.controllers.exceptions;
 
 import aplicacion.controllers.gui.UtilsGUI;
+import aplicacion.views.cli.UtilsCLI;
 
 import java.sql.SQLException;
 
@@ -29,10 +30,18 @@ public class DatabaseException extends SQLException {
     }
 
     /**
-     * Método que permite mostrar un mensaje de error al usuario.
+     * Método que permite mostrar un mensaje de error al usuario (GUI).
      */
     public void mostrarMensajeError() {
         UtilsGUI.errorMsg("La conexión con la base de datos no pudo realizarse. Se utilizarán los datos locales.");
     }
+
+    /**
+     * Método que permite imprimir por pantalla un mensaje de error al usuario (CLI)
+     */
+    public void imprimirMensajeError() {
+        UtilsCLI.mensajeUtilizandoDatafile();
+    }
+
 
 }

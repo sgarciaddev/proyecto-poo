@@ -14,7 +14,7 @@ import java.util.List;
  * Clase que controla la generación de mensajes al usuario, en la interfaz gráfica.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class UtilsGUI {
 //    private static final Icon UtilsGUI.getIcon(FontAwesome.QUESTION_CIRCLE, 40, Colors.QUESTION_YELLOW.getColor()) = IconFontSwing.buildIcon(FontAwesome.QUESTION_CIRCLE, 40, );

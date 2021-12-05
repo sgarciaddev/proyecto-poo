@@ -2,6 +2,12 @@ package aplicacion.controllers.gui;
 
 import java.awt.*;
 
+/**
+ * Enum con colores varios de utilidad para la interfaz gráfica.
+ *
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 4.0
+ */
 public enum CustomColors {
 
     DANGER_RED {

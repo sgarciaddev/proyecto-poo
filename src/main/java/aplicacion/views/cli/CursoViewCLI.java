@@ -8,7 +8,7 @@ import java.util.List;
  * Clase que controla los aspectos visuales de los Cursos, en la interfaz de consola de comandos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class CursoViewCLI {
 

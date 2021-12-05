@@ -37,7 +37,7 @@ import java.util.Map;
  * Clase que controla la ejecución de la interfaz gráfica.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class GUI extends javax.swing.JFrame {
 
@@ -63,6 +63,9 @@ public class GUI extends javax.swing.JFrame {
         this.mainPanel.setActualPanel(new InicioViewGUI(), "Bienvenidos");
     }
 
+    /**
+     * Método que permite intercambiar entre modo claro y modo oscuro.
+     */
     private void setColorMode() {
         Color color;
         if (this.darkMode) {
@@ -82,6 +85,10 @@ public class GUI extends javax.swing.JFrame {
         this.repListaCursoMenuItem.setIcon(UtilsGUI.getIcon(FontAwesome.FILE_EXCEL_O, 12, color));
     }
 
+    /**
+     * Método que realiza la conexión con el origen de datos, intentando conexión con BD MySQL, y en caso de no poder
+     * conectarse, utilizará datos locales.
+     */
     private void setDataType() {
         try {
             if (DBConnection.connect() != null) {

@@ -9,7 +9,7 @@ import java.util.List;
  * Interfaz que permite interactuar con los datos de Profesor.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public interface ProfesorData {
     /**

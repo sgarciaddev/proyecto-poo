@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
  * Aplicación principal de la interfaz de consola de comandos (CLI).
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class CLI {
 
@@ -49,8 +49,7 @@ public class CLI {
                 cursoData = new CursoDB();
             } else throw new DatabaseException();
         } catch (DatabaseException e) {
-            e.mostrarMensajeError();
-            UtilsCLI.mensajeUtilizandoDatafile();
+            e.imprimirMensajeError();
             alumnoData = new AlumnoDF();
             apoderadoData = new ApoderadoDF();
             profesorData = new ProfesorDF();
