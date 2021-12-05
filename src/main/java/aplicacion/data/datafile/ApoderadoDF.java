@@ -11,16 +11,16 @@ import java.util.List;
  * los datos de Apoderado. Implementa la interfaz ApoderadoData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
-public class ApoderadoDatafile implements ApoderadoData {
+public class ApoderadoDF implements ApoderadoData {
 
     private final Datafile datafile;
 
     /**
      * Constructor de ApoderadoDatafile. Trabaja con un objeto Datafile.
      */
-    public ApoderadoDatafile() {
+    public ApoderadoDF() {
         this.datafile = new Datafile("apoderado");
     }
 

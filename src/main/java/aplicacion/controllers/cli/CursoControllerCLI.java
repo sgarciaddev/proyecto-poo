@@ -19,7 +19,7 @@ import java.util.Map;
  * Clase controladora del menú de gestión de Cursos de la interfaz de linea de comandos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public class CursoControllerCLI {
     private final MenuCLI menuCLI;
@@ -102,6 +102,12 @@ public class CursoControllerCLI {
                 asignatura, email, telefono));
     }
 
+    /**
+     * Permite obtener el ID del curso que especifique el usuario.
+     *
+     * @return IDCurso con el ID del curso especificado.
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public IDCurso obtenerIDCurso() throws IOException {
         short nivel;
         char paralelo;
@@ -173,15 +179,28 @@ public class CursoControllerCLI {
         return reporteTablaCursos.getFilePath();
     }
 
+    /**
+     * Permite agregar un curso nuevo al sistema.
+     *
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void agregarCurso() throws IOException {
         this.menuCLI.getCursoData().insertCurso(this.obtenerDatosCurso());
         CursoViewCLI.mostrarTablaCursos(this.menuCLI.getCursoData().getCursos());
     }
 
+    /**
+     * Permite mostrar una tabla con todos los cursos que posee el origen de datos.
+     */
     public void mostrarCursos() {
         CursoViewCLI.mostrarTablaCursos(this.menuCLI.getCursoData().getCursos());
     }
 
+    /**
+     * Permite asignar un nuevo profesor jefe a un curso especifico.
+     *
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void asignarNuevoProfesorJefeACurso() throws IOException {
         IDCurso idCurso;
         Curso curso, cursoActualizado;
@@ -197,6 +216,11 @@ public class CursoControllerCLI {
             System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
     }
 
+    /**
+     * Permite eliminar un curso específico.
+     *
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void eliminarCurso() throws IOException {
         IDCurso idCurso;
         Curso curso;
@@ -210,6 +234,11 @@ public class CursoControllerCLI {
             System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
     }
 
+    /**
+     * Permite mostrar por pantalla los datos de un curso especifico.
+     *
+     * @throws IOException Errores de entrada/salida de datos.
+     */
     public void verDatosCurso() throws IOException {
         IDCurso idCurso;
         Curso curso;

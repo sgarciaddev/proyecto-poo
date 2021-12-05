@@ -4,7 +4,7 @@ package aplicacion.models;
  * Clase que define un apoderado. Clase hija de Persona.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public class Apoderado extends Persona {
     private int telefono;
@@ -62,6 +62,11 @@ public class Apoderado extends Persona {
         this.email = email;
     }
 
+    /**
+     * Permite obtener un String con los datos del apoderado para impresión.
+     *
+     * @return String con los datos del apoderado.
+     */
     @Override
     public String toString() {
         return super.toString("Apoderado") +
@@ -70,6 +75,12 @@ public class Apoderado extends Persona {
                 "      -> Email          : " + email + "\n";
     }
 
+    /**
+     * Permite obtener un String con los datos del apoderado para impresión.
+     *
+     * @param titulo Titulo a agregar a la impresión por pantalla.
+     * @return String con los datos del apoderado.
+     */
     @Override
     public String toString(String titulo) {
         return super.toString(titulo) +

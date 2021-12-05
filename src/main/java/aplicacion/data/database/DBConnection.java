@@ -1,5 +1,6 @@
 package aplicacion.data.database;
 
+import aplicacion.controllers.exceptions.DatabaseException;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.Connection;
@@ -13,19 +14,27 @@ import java.sql.ResultSet;
  * de entorno, conectadas a su vez a la configuración lanzada con Docker.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public class DBConnection {
 
     public static final Dotenv dotenv = Dotenv.load();
-    public static final Connection connection = connect();
+    public static Connection connection;
+
+    public DBConnection() {
+        try {
+            connection = connect();
+        } catch (DatabaseException e) {
+            connection = null;
+        }
+    }
 
     /**
      * Método estático que realiza la conexión a la base de datos.
      *
      * @return La conexión, o null en caso de error.
      */
-    public static Connection connect() {
+    public static Connection connect() throws DatabaseException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(String.format("jdbc:mysql://%s:%s/%s",

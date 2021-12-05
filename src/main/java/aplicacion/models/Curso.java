@@ -7,7 +7,7 @@ import java.util.Map;
  * Clase que define un curso. Clase hija de Nivel.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public class Curso {
     private final IDCurso idCurso;

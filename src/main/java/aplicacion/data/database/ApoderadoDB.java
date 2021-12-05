@@ -10,7 +10,7 @@ import java.sql.ResultSet;
  * los datos de Apoderado. Implementa la interfaz ApoderadoData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public class ApoderadoDB implements ApoderadoData {
 

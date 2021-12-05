@@ -4,7 +4,7 @@ package aplicacion.models;
  * Clase abstracta que define una persona.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
 public abstract class Persona {
     private final String rut;
@@ -107,6 +107,12 @@ public abstract class Persona {
                 "    -> Apellido materno : " + apMaterno + "\n";
     }
 
+    /**
+     * Método que permite obtener el nombre completo de la persona.
+     *
+     * @param titulo Titulo a incorporar en la impresión.
+     * @return String con el nombre completo (nombres y dos apellidos).
+     */
     public String toString(String titulo) {
         return "Datos " + titulo + ": \n" +
                 "    -> RUT              : " + rut + "\n" +

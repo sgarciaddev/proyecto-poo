@@ -1,0 +1,9 @@
+{
+  "java.configuration.runtimes": [
+    {
+      "name": "OpenJDK 8",
+      "path": "/Library/Java/JavaVirtualMachines/openjdk-8.jdk/Contents/Home",
+      "default": true
+    }
+  ]
+}

@@ -1,7 +1,9 @@
 aplicacion.controllers.cli
+aplicacion.controllers.gui
 aplicacion.data
 aplicacion.data.database
 aplicacion.data.datafile
 aplicacion.models
 aplicacion.views.cli
+aplicacion.views.gui
 utils.fakedata

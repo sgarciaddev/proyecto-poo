@@ -13,21 +13,21 @@ import java.util.List;
  * los datos del Curso. Implementa la interfaz CursoData.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 2.0
+ * @version 3.0
  */
-public class CursoDatafile implements CursoData {
+public class CursoDF implements CursoData {
 
     private final Datafile datafile;
-    private final ProfesorDatafile prDatafile;
-    private final AlumnoDatafile alDatafile;
+    private final ProfesorDF prDatafile;
+    private final AlumnoDF alDatafile;
 
     /**
      * Constructor de CursoDatafile. Trabaja con un objeto Datafile.
      */
-    public CursoDatafile() {
+    public CursoDF() {
         this.datafile = new Datafile("curso");
-        this.prDatafile = new ProfesorDatafile();
-        this.alDatafile = new AlumnoDatafile();
+        this.prDatafile = new ProfesorDF();
+        this.alDatafile = new AlumnoDF();
     }
 
     /**
