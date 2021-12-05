@@ -4,7 +4,10 @@
  */
 package aplicacion.views.gui;
 
-import aplicacion.controllers.gui.*;
+import aplicacion.controllers.exceptions.DatabaseException;
+import aplicacion.controllers.gui.CustomColors;
+import aplicacion.controllers.gui.ReportesControllerGUI;
+import aplicacion.controllers.gui.UtilsGUI;
 import aplicacion.data.AlumnoData;
 import aplicacion.data.ApoderadoData;
 import aplicacion.data.CursoData;
@@ -14,19 +17,21 @@ import aplicacion.data.datafile.AlumnoDF;
 import aplicacion.data.datafile.ApoderadoDF;
 import aplicacion.data.datafile.CursoDF;
 import aplicacion.data.datafile.ProfesorDF;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDate;
-import javax.swing.Icon;
-import javax.swing.UIManager;
+import aplicacion.models.Alumno;
+import aplicacion.models.Curso;
+import aplicacion.models.Profesor;
+import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Clase que controla la ejecución de la interfaz gráfica.
@@ -35,69 +40,69 @@ import jiconfont.swing.IconFontSwing;
  * @version 3.0
  */
 public class GUI extends javax.swing.JFrame {
-    
-    private final AlumnoData alumnoData;
-    private final ApoderadoData apoderadoData;
-    private final ProfesorData profesorData;
-    private final CursoData cursoData;
-    
+
+    private Map<String, Alumno> alumnosMap;
+    private AlumnoData alumnoData;
+    private ApoderadoData apoderadoData;
+    private List<Profesor> profesoresList;
+    private ProfesorData profesorData;
+    private List<Curso> cursosList;
+    private CursoData cursoData;
+
+    private boolean darkMode = false;
 
     /**
      * Genera la interfaz gráfica.
      */
     public GUI() {
         initComponents();
+        setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
+        setDataType();
         this.setLocationRelativeTo(null);
-        
+        fecha.setText(UtilsGUI.getActualDate());
+        this.mainPanel.setActualPanel(new InicioViewGUI(), "Bienvenidos");
+    }
 
-        if (DBConnection.connect() != null) {
-            MessageUtilsGUI.infoMsg("La conexión con la base de datos fue exitosa.");
-            this.alumnoData = new AlumnoDB();
-            this.apoderadoData = new ApoderadoDB();
-            this.profesorData = new ProfesorDB();
-            this.cursoData = new CursoDB();
+    private void setColorMode() {
+        Color color;
+        if (this.darkMode) {
+            FlatArcDarkOrangeIJTheme.setup();
+            color = CustomColors.LIGHT_COLOR.getColor();
         } else {
-            MessageUtilsGUI.errorMsg("La conexión con la base de datos no pudo realizarse. Se utilizarán los datos locales.");
+            FlatArcOrangeIJTheme.setup();
+            color = CustomColors.DARK_COLOR.getColor();
+        }
+        this.menuBar.setForeground(color);
+        this.modoOscuroMenuItem.setForeground(color);
+        this.salirMenuItem.setForeground(color);
+        this.repListaCursoMenuItem.setForeground(color);
+        this.archivoMenu.setIcon(UtilsGUI.getIcon(FontAwesome.HOME, 12, color));
+        this.reportesMenu.setIcon(UtilsGUI.getIcon(FontAwesome.FILE_ARCHIVE_O, 12, color));
+        this.salirMenuItem.setIcon(UtilsGUI.getIcon(FontAwesome.SIGN_OUT, 12, color));
+        this.repListaCursoMenuItem.setIcon(UtilsGUI.getIcon(FontAwesome.FILE_EXCEL_O, 12, color));
+    }
+
+    private void setDataType() {
+        try {
+            if (DBConnection.connect() != null) {
+                UtilsGUI.infoMsg("La conexión con la base de datos fue exitosa.");
+                this.alumnoData = new AlumnoDB();
+                this.apoderadoData = new ApoderadoDB();
+                this.profesorData = new ProfesorDB();
+                this.cursoData = new CursoDB();
+            } else throw new DatabaseException();
+        } catch (DatabaseException e) {
+            e.mostrarMensajeError();
             this.alumnoData = new AlumnoDF();
             this.apoderadoData = new ApoderadoDF();
             this.profesorData = new ProfesorDF();
             this.cursoData = new CursoDF();
         }
-        String[] meses = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre"
-                ,"octubre","noviembre","diciemrbre"};
-        fecha.setText(String.format("Hoy es %d de %s de %d", LocalDate.now().getDayOfMonth(),
-                meses[LocalDate.now().getMonthValue() - 1], LocalDate.now().getYear()));
-        
-        InicioViewGUI p3 = new InicioViewGUI();
-        p3.setSize(700, 480);
-        p3.setLocation(0,0);
-        
-        background.removeAll();
-        background.add(p3, BorderLayout.CENTER);
-        background.revalidate();
-        background.repaint();
+        this.alumnosMap = this.alumnoData.getAlumnos();
+        this.profesoresList = this.profesorData.getProfesores();
+        this.cursosList = this.cursoData.getCursos();
     }
-    
-    private Icon calIcon() {
-        return IconFontSwing.buildIcon(FontAwesome.CALENDAR, 20, new Color(0, 142, 153));
-    }
-    
-    private Icon plusIcon() {
-        return IconFontSwing.buildIcon(FontAwesome.PLUS_CIRCLE, 25, new Color(250, 250, 250));
-    }
-    
-    private Icon listIcon() {
-        return IconFontSwing.buildIcon(FontAwesome.LIST, 25, new Color(250, 250, 250));
-    }
-    
-    private Icon searchIcon() {
-        return IconFontSwing.buildIcon(FontAwesome.SEARCH, 25, new Color(250, 250, 250));
-    }
-    
-    private Icon exitIcon() {
-        return IconFontSwing.buildIcon(FontAwesome.SIGN_OUT, 25, new Color(250, 250, 250));
-    }
-
+//
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,35 +112,62 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        guiPanel = new javax.swing.JPanel();
+        mainTitleLbl = new javax.swing.JLabel();
+        fecha = new javax.swing.JLabel();
+        menuPanel = new javax.swing.JPanel();
         btAgregar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         btMostrarLista = new javax.swing.JButton();
         btBuscar = new javax.swing.JButton();
-        background = new javax.swing.JPanel();
+        mainPanel = new aplicacion.views.gui.ShowPanelGUI();
         btSalir = new javax.swing.JButton();
-        fecha = new javax.swing.JLabel();
+        menuBar = new javax.swing.JMenuBar();
+        archivoMenu = new javax.swing.JMenu();
+        modoOscuroMenuItem = new javax.swing.JCheckBoxMenuItem();
+        salirMenuItem = new javax.swing.JMenuItem();
+        reportesMenu = new javax.swing.JMenu();
+        repListaCursoMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(237, 236, 237));
         setForeground(new java.awt.Color(0, 0, 0));
+        setLocation(new java.awt.Point(150, 150));
+        setMaximumSize(new java.awt.Dimension(1150, 685));
+        setMinimumSize(new java.awt.Dimension(1150, 685));
         setUndecorated(true);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setResizable(false);
+        setSize(new java.awt.Dimension(1150, 685));
 
-        jPanel1.setBackground(new java.awt.Color(215, 217, 215));
-        jPanel1.setForeground(new java.awt.Color(24, 21, 27));
+        guiPanel.setForeground(new java.awt.Color(24, 21, 27));
+        guiPanel.setMaximumSize(new java.awt.Dimension(1150, 700));
+        guiPanel.setMinimumSize(new java.awt.Dimension(1150, 700));
+        guiPanel.setPreferredSize(new java.awt.Dimension(1150, 700));
 
-        jLabel1.setFont(new java.awt.Font("Fira Sans", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 142, 153));
-        jLabel1.setText("Sistema de registro de asistencia");
+        mainTitleLbl.setFont(new java.awt.Font("Fira Sans", 1, 36)); // NOI18N
+        mainTitleLbl.setForeground(CustomColors.MAIN_COLOR.getColor());
+        mainTitleLbl.setText("Sistema de registro de asistencia");
 
-        btAgregar.setBackground(new java.awt.Color(0, 142, 153));
+        fecha.setFont(new java.awt.Font("Fira Sans", 2, 16)); // NOI18N
+        fecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        fecha.setToolTipText("");
+        fecha.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        fecha.setMaximumSize(new java.awt.Dimension(300, 20));
+        fecha.setMinimumSize(new java.awt.Dimension(300, 20));
+        fecha.setPreferredSize(new java.awt.Dimension(300, 20));
+        fecha.setSize(new java.awt.Dimension(300, 20));
+
+        menuPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(CustomColors.MAIN_COLOR.getColor(), 2, true), "  Menú  ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Fira Sans", 0, 18), CustomColors.MAIN_COLOR.getColor())); // NOI18N
+        menuPanel.setMaximumSize(new java.awt.Dimension(230, 575));
+        menuPanel.setMinimumSize(new java.awt.Dimension(230, 575));
+        menuPanel.setPreferredSize(new java.awt.Dimension(230, 575));
+        menuPanel.setSize(new java.awt.Dimension(230, 575));
+
+        btAgregar.setBackground(CustomColors.MAIN_COLOR.getColor());
         btAgregar.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        btAgregar.setForeground(new java.awt.Color(250, 250, 250));
-        btAgregar.setIcon(plusIcon());
+        btAgregar.setForeground(CustomColors.LIGHT_COLOR.getColor());
+        btAgregar.setIcon(UtilsGUI.getIcon(FontAwesome.PLUS_CIRCLE, 20, CustomColors.LIGHT_COLOR.getColor())
+        );
         btAgregar.setText("Agregar alumno");
-        btAgregar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btAgregar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -148,68 +180,83 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Fira Sans", 2, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 142, 153));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Menú");
-
-        btMostrarLista.setBackground(new java.awt.Color(0, 142, 153));
+        btMostrarLista.setBackground(CustomColors.MAIN_COLOR.getColor());
         btMostrarLista.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        btMostrarLista.setForeground(new java.awt.Color(250, 250, 250));
-        btMostrarLista.setIcon(listIcon());
+        btMostrarLista.setForeground(CustomColors.LIGHT_COLOR.getColor());
+        btMostrarLista.setIcon(UtilsGUI.getIcon(FontAwesome.LIST, 20, CustomColors.LIGHT_COLOR.getColor()));
         btMostrarLista.setText("Mostrar lista");
-        btMostrarLista.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btMostrarLista.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btMostrarLista.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        btMostrarLista.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btMostrarLista.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btMostrarLista.setIconTextGap(10);
+        btMostrarLista.setMargin(new java.awt.Insets(0, 20, 0, 20));
         btMostrarLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btMostrarListaActionPerformed(evt);
             }
         });
 
-        btBuscar.setBackground(new java.awt.Color(0, 142, 153));
+        btBuscar.setBackground(CustomColors.MAIN_COLOR.getColor());
         btBuscar.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        btBuscar.setForeground(new java.awt.Color(250, 250, 250));
-        btBuscar.setIcon(searchIcon());
+        btBuscar.setForeground(CustomColors.LIGHT_COLOR.getColor());
+        btBuscar.setIcon(UtilsGUI.getIcon(FontAwesome.SEARCH, 20, CustomColors.LIGHT_COLOR.getColor()));
         btBuscar.setText("Buscar");
-        btBuscar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btBuscar.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        btBuscar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btBuscar.setIconTextGap(10);
+        btBuscar.setMargin(new java.awt.Insets(0, 20, 0, 20));
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBuscarActionPerformed(evt);
             }
         });
 
-        background.setBackground(new java.awt.Color(240, 239, 240));
-
-        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
-        background.setLayout(backgroundLayout);
-        backgroundLayout.setHorizontalGroup(
-            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
+        menuPanel.setLayout(menuPanelLayout);
+        menuPanelLayout.setHorizontalGroup(
+                menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
+                                .addContainerGap(18, Short.MAX_VALUE)
+                                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btMostrarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(24, 24, 24))
         );
-        backgroundLayout.setVerticalGroup(
-            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
+        menuPanelLayout.setVerticalGroup(
+                menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(btMostrarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(397, Short.MAX_VALUE))
         );
 
-        btSalir.setBackground(new java.awt.Color(165, 85, 85));
+        mainPanel.setBorder(new javax.swing.border.LineBorder(CustomColors.MAIN_COLOR.getColor(), 2, true));
+
+        btSalir.setBackground(CustomColors.DANGER_RED.getColor());
         btSalir.setFont(new java.awt.Font("Fira Sans", 1, 16)); // NOI18N
-        btSalir.setForeground(new java.awt.Color(250, 250, 250));
-        btSalir.setIcon(exitIcon());
+        btSalir.setIcon(UtilsGUI.getIcon(FontAwesome.TIMES_CIRCLE, 24
+                , CustomColors.LIGHT_COLOR.getColor())
+        );
         btSalir.setText(null);
         btSalir.setBorder(null);
-        btSalir.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btSalir.setIconTextGap(6);
+        btSalir.setFocusable(false);
+        btSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btSalir.setIconTextGap(0);
+        btSalir.setMaximumSize(new java.awt.Dimension(30, 30));
+        btSalir.setMinimumSize(new java.awt.Dimension(30, 30));
+        btSalir.setPreferredSize(new java.awt.Dimension(30, 30));
+        btSalir.setSize(new java.awt.Dimension(30, 30));
         btSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btSalirMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btSalirMouseExited(evt);
             }
@@ -220,70 +267,115 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        fecha.setFont(new java.awt.Font("Fira Sans", 2, 16)); // NOI18N
-        fecha.setForeground(new java.awt.Color(0, 142, 153));
-        fecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        fecha.setIcon(calIcon());
-        fecha.setText("Hoy es Sábado 28 de Abril de 2018");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(8, Short.MAX_VALUE)
-                        .addComponent(btAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btMostrarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        javax.swing.GroupLayout guiPanelLayout = new javax.swing.GroupLayout(guiPanel);
+        guiPanel.setLayout(guiPanelLayout);
+        guiPanelLayout.setHorizontalGroup(
+                guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(guiPanelLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(guiPanelLayout.createSequentialGroup()
+                                                .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(guiPanelLayout.createSequentialGroup()
+                                                .addComponent(mainTitleLbl)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(btSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(fecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(11, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btMostrarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(12, Short.MAX_VALUE))))
+        guiPanelLayout.setVerticalGroup(
+                guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guiPanelLayout.createSequentialGroup()
+                                .addGroup(guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(guiPanelLayout.createSequentialGroup()
+                                                .addComponent(mainTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(guiPanelLayout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(50, 50, 50))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        menuBar.setBackground(CustomColors.MAIN_COLOR.getColor());
+        menuBar.setForeground(CustomColors.DARK_COLOR.getColor());
+        menuBar.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
+
+        archivoMenu.setForeground(CustomColors.DARK_COLOR.getColor());
+        archivoMenu.setIcon(UtilsGUI.getIcon(FontAwesome.HOME, 18, CustomColors.DARK_COLOR.getColor())
+        );
+        archivoMenu.setText("Archivo");
+        archivoMenu.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
+        archivoMenu.setIconTextGap(12);
+
+        modoOscuroMenuItem.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
+        modoOscuroMenuItem.setForeground(CustomColors.DARK_COLOR.getColor());
+        modoOscuroMenuItem.setText("Modo oscuro");
+        modoOscuroMenuItem.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                modoOscuroMenuItemItemStateChanged(evt);
+            }
+        });
+        archivoMenu.add(modoOscuroMenuItem);
+
+        salirMenuItem.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
+        salirMenuItem.setForeground(CustomColors.DARK_COLOR.getColor());
+        salirMenuItem.setIcon(UtilsGUI.getIcon(FontAwesome.SIGN_OUT, 18, CustomColors.DARK_COLOR.getColor())
+        );
+        salirMenuItem.setText("Salir");
+        salirMenuItem.setIconTextGap(10);
+        salirMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirMenuItemActionPerformed(evt);
+            }
+        });
+        archivoMenu.add(salirMenuItem);
+
+        menuBar.add(archivoMenu);
+
+        reportesMenu.setForeground(CustomColors.DARK_COLOR.getColor());
+        reportesMenu.setIcon(UtilsGUI.getIcon(FontAwesome.FILE_ARCHIVE_O, 18, CustomColors.DARK_COLOR.getColor())
+        );
+        reportesMenu.setText("Reportes");
+        reportesMenu.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
+        reportesMenu.setIconTextGap(12);
+
+        repListaCursoMenuItem.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
+        repListaCursoMenuItem.setForeground(CustomColors.DARK_COLOR.getColor());
+        repListaCursoMenuItem.setIcon(UtilsGUI.getIcon(FontAwesome.FILE_EXCEL_O, 18, CustomColors.DARK_COLOR.getColor())
+        );
+        repListaCursoMenuItem.setText("Lista de curso");
+        repListaCursoMenuItem.setIconTextGap(10);
+        repListaCursoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repListaCursoMenuItemActionPerformed(evt);
+            }
+        });
+        reportesMenu.add(repListaCursoMenuItem);
+
+        menuBar.add(reportesMenu);
+
+        setJMenuBar(menuBar);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(guiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(guiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 4, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -295,14 +387,7 @@ public class GUI extends javax.swing.JFrame {
      */
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
         // TODO add your handling code here:
-        AlumnoViewGUI p1 = new AlumnoViewGUI(this.alumnoData, this.apoderadoData, this.cursoData);
-        p1.setSize(700, 480);
-        p1.setLocation(0, 0);
-
-        background.removeAll();
-        background.add(p1, BorderLayout.CENTER);
-        background.revalidate();
-        background.repaint();
+        this.mainPanel.setActualPanel(new AlumnoViewGUI(this.alumnoData, this.apoderadoData, this.cursosList, this.mainPanel), "Agregar alumno", "Seleccione el curso del alumno a agregar.");
     }//GEN-LAST:event_btAgregarActionPerformed
 
     /**
@@ -312,14 +397,8 @@ public class GUI extends javax.swing.JFrame {
      */
     private void btMostrarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMostrarListaActionPerformed
         // TODO add your handling code here:
-       MostrarViewGUI p2 = new MostrarViewGUI(this.cursoData);
-       p2.setSize(700, 480);
-       p2.setLocation(0, 0);
-
-       background.removeAll();
-       background.add(p2, BorderLayout.CENTER);
-       background.revalidate();
-       background.repaint(); 
+        this.mainPanel.setActualPanel(new MostrarViewGUI(this.cursosList, this.mainPanel), "Mostrar lista de curso",
+                "Seleccione curso");
     }//GEN-LAST:event_btMostrarListaActionPerformed
 
     /**
@@ -329,7 +408,7 @@ public class GUI extends javax.swing.JFrame {
      */
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         // TODO add your handling code here:
-        int opt = MessageUtilsGUI.msjSiNo("¿Deseas salir de la aplicación?");
+        int opt = UtilsGUI.msjSiNo("¿Deseas salir de la aplicación?");
         if (opt == 0) System.exit(0);
     }//GEN-LAST:event_btSalirActionPerformed
 
@@ -340,25 +419,61 @@ public class GUI extends javax.swing.JFrame {
      */
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         // TODO add your handling code here:
-       BuscarViewGUI p2 = new BuscarViewGUI(this.alumnoData, this.apoderadoData, this.profesorData);
-       p2.setSize(700, 480);
-       p2.setLocation(0, 0);
-
-       background.removeAll();
-       background.add(p2, BorderLayout.CENTER);
-       background.revalidate();
-       background.repaint();
+        this.mainPanel.setActualPanel(new BuscarViewGUI(this.alumnoData, this.apoderadoData, this.profesorData, this.mainPanel),
+                "Buscar persona", "Ingrese RUT de persona a buscar");
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSalirMouseEntered
         // TODO add your handling code here:
-        btSalir.setText("Salir");
     }//GEN-LAST:event_btSalirMouseEntered
 
     private void btSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSalirMouseExited
         // TODO add your handling code here:
-        btSalir.setText(null);
     }//GEN-LAST:event_btSalirMouseExited
+
+    private void salirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirMenuItemActionPerformed
+        // TODO add your handling code here:
+        btSalirActionPerformed(evt);
+    }//GEN-LAST:event_salirMenuItemActionPerformed
+
+    private void repListaCursoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repListaCursoMenuItemActionPerformed
+        // TODO add your handling code here:
+        JComboBox<String> comboBox = new JComboBox<>();
+        comboBox.setModel(UtilsGUI.getCursosCB(this.cursosList));
+        String msg = "Seleccione el curso a generar reporte";
+        JFileChooser fileChooser = new JFileChooser();
+        Object[] params = {msg, comboBox};
+        if (JOptionPane.showConfirmDialog(null, params, "Seleccione curso",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+            Curso curso = UtilsGUI.getCursoFromCB(comboBox, this.cursosList);
+            fileChooser.showSaveDialog(null);
+            System.out.println(fileChooser.getSelectedFile().getAbsolutePath());
+            String filePath = ReportesControllerGUI.generarReporteListaCurso(curso);
+            int abrirArchivo = JOptionPane.showConfirmDialog(null,
+                    "El reporte se ha generado con éxito en " + filePath + ". Deseas " +
+                            "abrir el archivo?", "Archivo " + "generado", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE);
+            if (abrirArchivo == JOptionPane.YES_OPTION) {
+                try {
+                    Desktop.getDesktop().open(new File(filePath));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }//GEN-LAST:event_repListaCursoMenuItemActionPerformed
+
+    private void modoOscuroMenuItemItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_modoOscuroMenuItemItemStateChanged
+        // TODO add your handling code here:
+        if (modoOscuroMenuItem.isSelected())
+            this.darkMode = true;
+        else
+            this.darkMode = false;
+        setColorMode();
+        SwingUtilities.updateComponentTreeUI(this);
+        this.pack();
+    }//GEN-LAST:event_modoOscuroMenuItemItemStateChanged
 
     /**
      * Método main. Ejecuta la interfaz gráfica.
@@ -367,7 +482,7 @@ public class GUI extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         
         try {
@@ -395,11 +510,8 @@ public class GUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        FlatArcOrangeIJTheme.setup();
         IconFontSwing.register(FontAwesome.getIconFont());
-        UIManager UI=new UIManager();
-        UI.put("OptionPane.background", new Color(235, 237, 235));
-        UI.put("Panel.background", new Color(235, 237, 235));
-        UI.getLookAndFeelDefaults().put("Panel.background", new Color(235, 237, 235));
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -410,14 +522,21 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel background;
+    private javax.swing.JMenu archivoMenu;
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btMostrarLista;
     private javax.swing.JButton btSalir;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel fecha;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel guiPanel;
+    private aplicacion.views.gui.ShowPanelGUI mainPanel;
+    private javax.swing.JLabel mainTitleLbl;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JPanel menuPanel;
+    private javax.swing.JCheckBoxMenuItem modoOscuroMenuItem;
+    private javax.swing.JMenuItem repListaCursoMenuItem;
+    private javax.swing.JMenu reportesMenu;
+    private javax.swing.JMenuItem salirMenuItem;
     // End of variables declaration//GEN-END:variables
 }

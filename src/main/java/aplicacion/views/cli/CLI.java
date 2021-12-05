@@ -1,5 +1,6 @@
 package aplicacion.views.cli;
 
+import aplicacion.controllers.exceptions.DatabaseException;
 import aplicacion.data.AlumnoData;
 import aplicacion.data.ApoderadoData;
 import aplicacion.data.CursoData;
@@ -39,20 +40,22 @@ public class CLI {
         // Se intenta conexión con la base da datos y se verifica
         UtilsCLI.mensajeIntentandoConexionMySQL();
 
-        if (DBConnection.connect() != null) {
-            UtilsCLI.mensajeExitoConexionMySQL();
-            alumnoData = new AlumnoDB();
-            apoderadoData = new ApoderadoDB();
-            profesorData = new ProfesorDB();
-            cursoData = new CursoDB();
-        } else {
+        try {
+            if (DBConnection.connect() != null) {
+                UtilsCLI.mensajeExitoConexionMySQL();
+                alumnoData = new AlumnoDB();
+                apoderadoData = new ApoderadoDB();
+                profesorData = new ProfesorDB();
+                cursoData = new CursoDB();
+            } else throw new DatabaseException();
+        } catch (DatabaseException e) {
+            e.mostrarMensajeError();
             UtilsCLI.mensajeUtilizandoDatafile();
             alumnoData = new AlumnoDF();
             apoderadoData = new ApoderadoDF();
             profesorData = new ProfesorDF();
             cursoData = new CursoDF();
         }
-
         this.menuCLI = new MenuCLI(lector, alumnoData, apoderadoData, cursoData, profesorData);
 
     }

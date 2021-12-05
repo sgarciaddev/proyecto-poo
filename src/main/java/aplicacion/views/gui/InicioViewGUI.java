@@ -4,10 +4,9 @@
  */
 package aplicacion.views.gui;
 
-import java.awt.Color;
-import javax.swing.Icon;
+import aplicacion.controllers.gui.CustomColors;
+import aplicacion.controllers.gui.UtilsGUI;
 import jiconfont.icons.font_awesome.FontAwesome;
-import jiconfont.swing.IconFontSwing;
 
 /**
  * Clase que controla la interacción con la pantalla de inicio en la ejecución de la interfaz gráfica.
@@ -23,10 +22,6 @@ public class InicioViewGUI extends javax.swing.JPanel {
     public InicioViewGUI() {
         initComponents();
     }
-    
-    private Icon circleIcon() {
-        return IconFontSwing.buildIcon(FontAwesome.CIRCLE, 12, new Color(35, 33, 35));
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,105 +32,35 @@ public class InicioViewGUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        Text1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        Title = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jTextArea1 = new javax.swing.JTextArea();
 
-        setBackground(new java.awt.Color(240, 239, 240));
-        setForeground(new java.awt.Color(35, 33, 35));
+        setMaximumSize(new java.awt.Dimension(875, 480));
+        setMinimumSize(new java.awt.Dimension(875, 480));
+        setPreferredSize(new java.awt.Dimension(875, 480));
+        setSize(new java.awt.Dimension(875, 480));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
+        jLabel1.setIcon(UtilsGUI.getIcon(FontAwesome.ARROW_CIRCLE_O_RIGHT, 25, CustomColors.DARK_COLOR.getColor())
+        );
+        jLabel1.setText("Obtener información");
+        jLabel1.setIconTextGap(10);
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 330, -1));
-
-        jLabel5.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(35, 33, 35));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setIcon(circleIcon());
-        jLabel5.setText("Agregar alumnos");
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setIconTextGap(8);
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 170, -1));
-
-        jLabel8.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(35, 33, 35));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setIcon(circleIcon());
-        jLabel8.setText("Revision de la asistencia");
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setIconTextGap(8);
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 330, -1));
-
-        Text1.setFont(new java.awt.Font("Fira Sans", 2, 24)); // NOI18N
-        Text1.setForeground(new java.awt.Color(35, 33, 35));
-        Text1.setText("Sistema de Gestion de asistencia. ");
-        add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 380, 20));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 330, -1));
-
-        jLabel6.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(35, 33, 35));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setIcon(circleIcon());
-        jLabel6.setText("Asistencia");
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setIconTextGap(8);
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 170, -1));
-
-        jLabel3.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(35, 33, 35));
-        jLabel3.setText("tendrá acceso a herramientas especiales para tareas específicas, como lo son:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(35, 33, 35));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setIcon(circleIcon());
-        jLabel7.setText("Visualizacion de cursos");
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setIconTextGap(8);
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 320, -1));
-
-        Title.setFont(new java.awt.Font("Fira Sans", 1, 36)); // NOI18N
-        Title.setForeground(new java.awt.Color(35, 33, 35));
-        Title.setText("Bienvenido");
-        add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(35, 33, 35));
-        jLabel2.setText("Esta herramienta le permitirá llevar un control completo y detallado sobre la asistencia,");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(1);
+        jTextArea1.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Bienvenidos al sistema de gestión de asistencia.  Estás en la pantalla de inicio. Esta herramienta \npermite gestionar la asistencia de los alumnos de un colegio durante un año escolar. Posee las \nherramientas necesarias para el control y gestión de cursos, alumnos, profesores y estudiantes.  \nAdemás, el programa nos permite:");
+        jTextArea1.setToolTipText("");
+        jTextArea1.setBorder(null);
+        add(jTextArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 820, 110));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Text1;
-    private javax.swing.JLabel Title;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

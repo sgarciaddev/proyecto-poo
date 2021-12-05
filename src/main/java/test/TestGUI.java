@@ -1,10 +1,12 @@
+package test;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package aplicacion.views.gui;
 
-import aplicacion.controllers.gui.CustomColors;
+import aplicacion.data.CursoData;
+import aplicacion.data.database.CursoDB;
 import aplicacion.models.Alumno;
 import aplicacion.models.Curso;
 import jiconfont.icons.font_awesome.FontAwesome;
@@ -13,7 +15,6 @@ import jiconfont.swing.IconFontSwing;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,30 +23,23 @@ import java.util.Map;
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
  * @version 3.0
  */
-public class MostrarViewGUI extends javax.swing.JPanel {
+public class TestGUI extends javax.swing.JPanel {
 
-    private final List<Curso> cursoData;
-    private final ShowPanelGUI bg;
+    private final CursoData cursoData;
 
     /**
      * Creates new form Mostrar
      */
-    public MostrarViewGUI(List<Curso> cursoData, ShowPanelGUI bg) {
+    public TestGUI(CursoData cursoData) {
         this.cursoData = cursoData;
-        this.bg = bg;
         initComponents();
+
     }
-    
+
     private DefaultComboBoxModel getCursosCB() {
-        String labels[] = new String[this.cursoData.size()];
-        int i = 0;
-        for (Curso curso : this.cursoData) {
-            labels[i] = curso.cursoToString();
-            i++;
-        }
-        return new DefaultComboBoxModel(labels);
+        return new CursosComboBoxModel(new CursoDB());
     }
-    
+
     private Icon eyeIcon() {
         return IconFontSwing.buildIcon(FontAwesome.EYE, 18, new Color(250, 250, 250));
     }
@@ -59,7 +53,7 @@ public class MostrarViewGUI extends javax.swing.JPanel {
     private Object[][] alumnosATabla(Map<String, Alumno> alumnos) {
         Object[][] tabla = new Object[alumnos.size()][6];
         int i = 0;
-        for (Map.Entry<String, Alumno> alumno: alumnos.entrySet()) {
+        for (Map.Entry<String, Alumno> alumno : alumnos.entrySet()) {
             tabla[i][0] = alumno.getValue().getRut();
             tabla[i][1] = alumno.getValue().getNombres();
             tabla[i][2] = alumno.getValue().getApPaterno();
@@ -82,15 +76,16 @@ public class MostrarViewGUI extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(875, 480));
-        setMinimumSize(new java.awt.Dimension(875, 480));
-        setSize(new java.awt.Dimension(875, 480));
+        setBackground(new java.awt.Color(240, 239, 240));
+        setForeground(new java.awt.Color(240, 239, 240));
 
-        jButton1.setBackground(CustomColors.MAIN_COLOR.getColor());
+        jButton1.setBackground(new java.awt.Color(0, 142, 153));
         jButton1.setFont(new java.awt.Font("Fira Sans", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(250, 250, 250));
         jButton1.setIcon(eyeIcon());
@@ -103,20 +98,22 @@ public class MostrarViewGUI extends javax.swing.JPanel {
             }
         });
 
+        jComboBox1.setBackground(new java.awt.Color(250, 250, 250));
         jComboBox1.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(35, 33, 35));
         jComboBox1.setModel(this.getCursosCB());
-        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox1ItemStateChanged(evt);
-            }
-        });
 
-        jScrollPane1.setMaximumSize(new java.awt.Dimension(830, 385));
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(830, 385));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(830, 385));
-        jScrollPane1.setSize(new java.awt.Dimension(830, 385));
+        jLabel1.setFont(new java.awt.Font("Fira Sans", 1, 32)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 142, 153));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Mostrar lista de curso");
 
-        jTable1.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 142, 153));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Seleccione el curso");
+
+        jTable1.setBackground(new java.awt.Color(240, 239, 240));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
                         {null, null, null, null, null, null}
@@ -130,56 +127,63 @@ public class MostrarViewGUI extends javax.swing.JPanel {
                         "Teléfono"
                 }
         ));
-        jTable1.setMaximumSize(new java.awt.Dimension(830, 385));
-        jTable1.setMinimumSize(new java.awt.Dimension(830, 385));
-        jTable1.setPreferredSize(new java.awt.Dimension(830, 385));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTable1.setSize(new java.awt.Dimension(830, 385));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Fira Sans", 0, 16)); // NOI18N
-        jLabel1.setText("Seleccione el curso:");
+        jLabel16.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 142, 153));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel16.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
+                                .addGap(14, 14, 14)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 838, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jButton1)))
-                                .addContainerGap(15, Short.MAX_VALUE))
+                                        .addComponent(jLabel1)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                        .addComponent(jLabel15)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(jButton1)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jLabel16))
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(33, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(14, 14, 14)
+                                                .addComponent(jLabel1))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addContainerGap(68, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jButton1)
+                                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel15)
+                                                        .addComponent(jLabel16))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Curso curso = null;
-        for (Curso c : this.cursoData) {
+        for (Curso c : cursoData.getCursos()) {
             if (c != null && c.cursoToString().equals(jComboBox1.getSelectedItem().toString())) {
                 curso = c;
             }
         }
         if (curso != null) {
+            jLabel16.setText("Curso: " + curso.cursoToString());
             Curso finalCurso = curso;
             Object[][] tablaAlumnos = alumnosATabla(curso.getAlumnos());
             String[] titulos = new String[]{
@@ -212,21 +216,17 @@ public class MostrarViewGUI extends javax.swing.JPanel {
                 }
             });
         }
-        this.bg.setSubtitle("Alumnos del " + jComboBox1.getSelectedItem().toString());
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        // TODO add your handling code here:
-        this.bg.setSubtitle("Curso seleccionado: " + jComboBox1.getSelectedItem().toString());
-    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

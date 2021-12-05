@@ -18,12 +18,14 @@ public class AlumnoDB implements AlumnoData {
 
 
     private final ApoderadoDB apoderadoData;
+    private final RegistroAsistenciaDB registroAsistenciaData;
 
     /**
      * Constructor de AlumnoDatafile. Trabaja con el origen de datos de apoderados.
      */
     public AlumnoDB() {
         this.apoderadoData = new ApoderadoDB();
+        this.registroAsistenciaData = new RegistroAsistenciaDB();
     }
 
     /**
@@ -45,7 +47,8 @@ public class AlumnoDB implements AlumnoData {
                         resultados.getString("apellido_materno"),
                         resultados.getInt("nivel"),
                         resultados.getString("paralelo").charAt(0),
-                        this.apoderadoData.getApoderado(resultados.getString("rut_apoderado"))
+                        this.apoderadoData.getApoderado(resultados.getString("rut_apoderado")),
+                        this.registroAsistenciaData.getRegistroAsistencia(resultados.getString("rut"))
                 ));
             }
             return alumnos;
@@ -77,7 +80,8 @@ public class AlumnoDB implements AlumnoData {
                         resultados.getString("apellido_materno"),
                         resultados.getInt("nivel"),
                         resultados.getString("paralelo").charAt(0),
-                        this.apoderadoData.getApoderado(resultados.getString("rut_apoderado"))
+                        this.apoderadoData.getApoderado(resultados.getString("rut_apoderado")),
+                        this.registroAsistenciaData.getRegistroAsistencia(resultados.getString("rut"))
                 ));
             }
             return alumnos;
@@ -111,7 +115,8 @@ public class AlumnoDB implements AlumnoData {
                         resultados.getString("apellido_materno"),
                         resultados.getInt("nivel"),
                         resultados.getString("paralelo").charAt(0),
-                        this.apoderadoData.getApoderado(resultados.getString("rut_apoderado"))
+                        this.apoderadoData.getApoderado(resultados.getString("rut_apoderado")),
+                        this.registroAsistenciaData.getRegistroAsistencia(resultados.getString("rut"))
                 ));
             }
             return alumnos;
@@ -140,7 +145,8 @@ public class AlumnoDB implements AlumnoData {
                         resultados.getString("apellido_materno"),
                         resultados.getInt("nivel"),
                         resultados.getString("paralelo").charAt(0),
-                        this.apoderadoData.getApoderado(resultados.getString("rut_apoderado"))
+                        this.apoderadoData.getApoderado(resultados.getString("rut_apoderado")),
+                        this.registroAsistenciaData.getRegistroAsistencia(resultados.getString("rut"))
                 );
             }
         } catch (Exception e) {

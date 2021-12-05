@@ -4,21 +4,20 @@
  */
 package aplicacion.views.gui;
 
-import aplicacion.controllers.gui.MessageUtilsGUI;
+import aplicacion.controllers.exceptions.InvalidNumberException;
+import aplicacion.controllers.gui.CustomColors;
+import aplicacion.controllers.gui.UtilsGUI;
 import aplicacion.data.AlumnoData;
 import aplicacion.data.ApoderadoData;
-import aplicacion.data.CursoData;
 import aplicacion.models.Alumno;
 import aplicacion.models.Apoderado;
 import aplicacion.models.Curso;
-import java.awt.Color;
-
-import java.util.List;
-import javax.swing.*;
-import javax.swing.event.ListDataListener;
-
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
 
 /**
  * Clase que controla la interacción con alumnso en la ejecución de la interfaz gráfica.
@@ -27,28 +26,40 @@ import jiconfont.swing.IconFontSwing;
  * @version 3.0
  */
 public class AlumnoViewGUI extends javax.swing.JPanel {
-    
+
     private final AlumnoData alumnoData;
     private final ApoderadoData apoderadoData;
-    private final CursoData cursoData;
+    private final List<Curso> cursoData;
+
+    private final ShowPanelGUI bg;
 
     /**
      * Creates new form Agregar
      */
     int xMouse, yMouse;
-    public AlumnoViewGUI(AlumnoData alumnoData, ApoderadoData apoderadoData, CursoData cursoData) {
+
+    public AlumnoViewGUI(AlumnoData alumnoData, ApoderadoData apoderadoData, List<Curso> cursoData, ShowPanelGUI bg) {
         this.alumnoData = alumnoData;
         this.apoderadoData = apoderadoData;
         this.cursoData = cursoData;
+        this.bg = bg;
         initComponents();
+        this.rutAlumnoTextField.setEnabled(false);
+        this.rutApoderadoTextField.setEnabled(false);
+        this.nombresApoderadoTextField.setEnabled(false);
+        this.nombresAlumnoTextField.setEnabled(false);
+        this.apMatApTextField.setEnabled(false);
+        this.apMatTextField.setEnabled(false);
+        this.apPatApTextField.setEnabled(false);
+        this.apPatTextField.setEnabled(false);
+        this.telefonoApTextField.setEnabled(false);
+        this.emailApTextField.setEnabled(false);
     }
     
     private DefaultComboBoxModel getCursosCB() {
-        
-        List<Curso> cursos = this.cursoData.getCursos();
-        String labels[] = new String[cursos.size()];
+        String labels[] = new String[this.cursoData.size()];
         int i = 0;
-        for (Curso curso: cursos) {
+        for (Curso curso : this.cursoData) {
             labels[i] = curso.cursoToString();
             i++;
         }
@@ -64,7 +75,6 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         rutAlumnoTextField = new javax.swing.JTextField();
         nombresAlumnoTextField = new javax.swing.JTextField();
         apPatTextField = new javax.swing.JTextField();
@@ -81,29 +91,25 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(240, 239, 240));
+        setForeground(null);
+        setMaximumSize(new java.awt.Dimension(875, 480));
+        setMinimumSize(new java.awt.Dimension(875, 480));
+        setPreferredSize(new java.awt.Dimension(875, 480));
+        setSize(new java.awt.Dimension(875, 480));
 
-        jLabel1.setFont(new java.awt.Font("Fira Sans", 1, 32)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 142, 153));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Agregar un nuevo alumno");
-
-        rutAlumnoTextField.setBackground(new java.awt.Color(250, 250, 250));
         rutAlumnoTextField.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
-        rutAlumnoTextField.setForeground(new java.awt.Color(35, 33, 35));
         rutAlumnoTextField.setText("RUT alumno");
         rutAlumnoTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 rutAlumnoTextFieldFocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 rutAlumnoTextFieldFocusLost(evt);
             }
         });
 
-        nombresAlumnoTextField.setBackground(new java.awt.Color(250, 250, 250));
         nombresAlumnoTextField.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
-        nombresAlumnoTextField.setForeground(new java.awt.Color(35, 33, 35));
         nombresAlumnoTextField.setText("Nombres alumno");
         nombresAlumnoTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -114,9 +120,7 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
             }
         });
 
-        apPatTextField.setBackground(new java.awt.Color(250, 250, 250));
         apPatTextField.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
-        apPatTextField.setForeground(new java.awt.Color(35, 33, 35));
         apPatTextField.setText("Apellido paterno alumno");
         apPatTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -127,9 +131,7 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
             }
         });
 
-        apMatTextField.setBackground(new java.awt.Color(250, 250, 250));
         apMatTextField.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
-        apMatTextField.setForeground(new java.awt.Color(35, 33, 35));
         apMatTextField.setText("Apellido materno alumno");
         apMatTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -140,9 +142,7 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
             }
         });
 
-        rutApoderadoTextField.setBackground(new java.awt.Color(250, 250, 250));
         rutApoderadoTextField.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
-        rutApoderadoTextField.setForeground(new java.awt.Color(35, 33, 35));
         rutApoderadoTextField.setText("RUT Apoderado");
         rutApoderadoTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -153,9 +153,7 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
             }
         });
 
-        nombresApoderadoTextField.setBackground(new java.awt.Color(250, 250, 250));
         nombresApoderadoTextField.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
-        nombresApoderadoTextField.setForeground(new java.awt.Color(35, 33, 35));
         nombresApoderadoTextField.setText("Nombres apoderado");
         nombresApoderadoTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -166,9 +164,7 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
             }
         });
 
-        apPatApTextField.setBackground(new java.awt.Color(250, 250, 250));
         apPatApTextField.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
-        apPatApTextField.setForeground(new java.awt.Color(35, 33, 35));
         apPatApTextField.setText("Apellido paterno apoderado");
         apPatApTextField.setToolTipText("");
         apPatApTextField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -180,9 +176,7 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
             }
         });
 
-        apMatApTextField.setBackground(new java.awt.Color(250, 250, 250));
         apMatApTextField.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
-        apMatApTextField.setForeground(new java.awt.Color(35, 33, 35));
         apMatApTextField.setText("Apellido materno apoderado");
         apMatApTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -193,9 +187,7 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
             }
         });
 
-        emailApTextField.setBackground(new java.awt.Color(250, 250, 250));
         emailApTextField.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
-        emailApTextField.setForeground(new java.awt.Color(35, 33, 35));
         emailApTextField.setText("Correo electrónico apoderado");
         emailApTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -206,9 +198,7 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
             }
         });
 
-        telefonoApTextField.setBackground(new java.awt.Color(250, 250, 250));
         telefonoApTextField.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
-        telefonoApTextField.setForeground(new java.awt.Color(35, 33, 35));
         telefonoApTextField.setText("Teléfono apoderado");
         telefonoApTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -219,9 +209,9 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 142, 153));
+        jButton1.setBackground(CustomColors.MAIN_COLOR.getColor());
         jButton1.setFont(new java.awt.Font("Fira Sans", 1, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(250, 250, 250));
+        jButton1.setForeground(CustomColors.LIGHT_COLOR.getColor());
         jButton1.setIcon(saveIcon());
         jButton1.setText("Guardar");
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -232,105 +222,99 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setBackground(new java.awt.Color(250, 250, 250));
-        jComboBox1.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(35, 33, 35));
+        jComboBox1.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
         jComboBox1.setModel(this.getCursosCB());
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
-        jLabel13.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 142, 153));
+        jLabel13.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Datos alumno");
 
-        jLabel14.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 142, 153));
+        jLabel14.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Datos apoderado");
 
-        jLabel15.setFont(new java.awt.Font("Fira Sans", 0, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 142, 153));
+        jLabel15.setFont(new java.awt.Font("Fira Sans", 0, 24)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Curso del alumno");
+        jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(apPatTextField)
-                            .addComponent(apMatTextField)
-                            .addComponent(rutAlumnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombresAlumnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rutApoderadoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(telefonoApTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(emailApTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                .addComponent(apMatApTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(apPatApTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nombresApoderadoTextField, javax.swing.GroupLayout.Alignment.LEADING))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(287, 287, 287)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(123, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(144, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(374, 374, 374))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(apPatTextField)
+                                                        .addComponent(apMatTextField)
+                                                        .addComponent(rutAlumnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(nombresAlumnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(86, 86, 86)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(rutApoderadoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(telefonoApTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(emailApTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(apMatApTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(apPatApTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(nombresApoderadoTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(165, 165, 165))))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel13)
-                                .addGap(18, 18, 18)
-                                .addComponent(rutAlumnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nombresAlumnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(apPatTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(apMatTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(18, 18, 18)
-                                .addComponent(rutApoderadoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nombresApoderadoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(apPatApTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(apMatApTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(emailApTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(telefonoApTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 107, 107))))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(61, 61, 61)
+                                                .addComponent(jLabel13)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(rutAlumnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(nombresAlumnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(apPatTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(apMatTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(46, 46, 46)
+                                                .addComponent(jLabel14)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(rutApoderadoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(nombresApoderadoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(apPatApTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(apMatApTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(emailApTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(telefonoApTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(34, 34, 34)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(75, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -357,7 +341,7 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Curso curso = null;
-        for (Curso c: cursoData.getCursos()) {
+        for (Curso c : this.cursoData) {
             if (c != null && c.cursoToString().equals(jComboBox1.getSelectedItem().toString())) {
                 curso = c;
             }
@@ -384,9 +368,9 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
             );
             this.apoderadoData.insertApoderado(apoderado);
             this.alumnoData.insertAlumno(alumno);
-            MessageUtilsGUI.infoMsg("El alumno ha sido agregado con éxito");
+            UtilsGUI.infoMsg("El alumno ha sido agregado con éxito");
         } else {
-            MessageUtilsGUI.errorMsg("No ha seleccionado un curso.");
+            UtilsGUI.errorMsg("No ha seleccionado un curso.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -486,14 +470,18 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
         telefonoApTextField.setText("");
     }//GEN-LAST:event_telefonoApTextFieldFocusGained
 
+    private int obtenerNumeroTelefono(String textField) throws InvalidNumberException {
+        return Integer.parseInt(textField);
+    }
+
     private void telefonoApTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_telefonoApTextFieldFocusLost
         // TODO add your handling code here:
         int telefono;
         if (!telefonoApTextField.getText().equals("")) {
             try {
-                telefono = Integer.parseInt(telefonoApTextField.getText());
-            } catch (NumberFormatException e) {
-                MessageUtilsGUI.errorMsg("El formato del teléfono debe ser numérico.");
+                telefono = obtenerNumeroTelefono(telefonoApTextField.getText());
+            } catch (InvalidNumberException e) {
+                e.mostrarMensajeError();
                 telefonoApTextField.setText("Teléfono apoderado");
                 return;
             }
@@ -501,6 +489,21 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
         if (telefonoApTextField.getText().equals(""))
             telefonoApTextField.setText("Teléfono apoderado");
     }//GEN-LAST:event_telefonoApTextFieldFocusLost
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        this.bg.setSubtitle("Agregando alumno al " + this.jComboBox1.getSelectedItem().toString());
+        this.rutAlumnoTextField.setEnabled(true);
+        this.rutApoderadoTextField.setEnabled(true);
+        this.nombresApoderadoTextField.setEnabled(true);
+        this.nombresAlumnoTextField.setEnabled(true);
+        this.apMatApTextField.setEnabled(true);
+        this.apMatTextField.setEnabled(true);
+        this.apPatApTextField.setEnabled(true);
+        this.apPatTextField.setEnabled(true);
+        this.telefonoApTextField.setEnabled(true);
+        this.emailApTextField.setEnabled(true);
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -511,7 +514,6 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
     private javax.swing.JTextField emailApTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;

@@ -45,6 +45,34 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/datafiles/reportes/lista-curso-11-B.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/datafiles/reportes/lista-curso-3-A.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/datafiles/reportes/lista-curso-6-A.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/datafiles/reportes/lista-curso-9-A.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/datafiles/reportes/tabla-cursos-3854.csv">
           <value>
             <Attribute>

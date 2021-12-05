@@ -3,6 +3,8 @@ package aplicacion.controllers.cli;
 import aplicacion.models.IDCurso;
 import aplicacion.views.cli.MenuCLI;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -37,9 +39,10 @@ public class ReportesControllerCLI {
         idCurso = cursoController.obtenerIDCurso();
         System.out.println("Generar reporte del curso " + idCurso.nivel + "/" + idCurso.paralelo);
         rutaArchivo = cursoController.generarReporteListaCurso(idCurso.nivel, idCurso.paralelo);
-        if (!rutaArchivo.equals(""))
+        if (!rutaArchivo.equals("")) {
             System.out.println("Archivo generado: " + rutaArchivo);
-        else
+            Desktop.getDesktop().open(new File(rutaArchivo));
+        } else
             System.out.println("Ha ocurrido un error, por favor intente nuevamente.");
     }
 
