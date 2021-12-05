@@ -43,6 +43,9 @@ public abstract class PanelModel extends JPanel {
         return new Font("Fira Sans", type, size);
     }
 
+    /**
+     * Método que inicializa los componentes
+     */
     protected void initComponents() {
         titleLbl = new javax.swing.JLabel();
         subtitleLbl = new javax.swing.JLabel();
