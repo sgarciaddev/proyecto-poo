@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>aplicacion.data</OriginalElement>
+  <nodes>
+    <node x="867.5" y="784.0">aplicacion.data.CursoData</node>
+    <node x="181.25" y="784.0">aplicacion.data.AlumnoData</node>
+    <node x="995.0" y="1055.0">aplicacion.data.database.CursoDB</node>
+    <node x="857.0" y="293.5">aplicacion.data.database.RegistroAsistenciaDB</node>
+    <node x="1558.0" y="1033.5">aplicacion.data.database.ProfesorDB</node>
+    <node x="1275.0" y="1000.0">aplicacion.data.datafile.ProfesorDF</node>
+    <node x="347.0" y="1022.0">aplicacion.data.datafile.AlumnoDF</node>
+    <node x="0.0" y="1055.0">aplicacion.data.database.AlumnoDB</node>
+    <node x="740.0" y="1022.0">aplicacion.data.datafile.CursoDF</node>
+    <node x="313.0" y="1560.0">aplicacion.data.datafile.ApoderadoDF</node>
+    <node x="0.0" y="0.0">aplicacion.data.database.SQLSentences</node>
+    <node x="0.0" y="1593.5">aplicacion.data.database.ApoderadoDB</node>
+    <node x="287.0" y="260.0">aplicacion.data.datafile.RegistroAsistenciaDF</node>
+    <node x="572.0" y="0.0">aplicacion.data.RegistroAsistenciaData</node>
+    <node x="961.0" y="1389.0">aplicacion.data.database.DBConnection</node>
+    <node x="1417.0" y="784.0">aplicacion.data.ProfesorData</node>
+    <node x="156.75" y="1389.0">aplicacion.data.ApoderadoData</node>
+    <node x="652.0" y="1389.0">aplicacion.data.datafile.Datafile</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="aplicacion.data.datafile.RegistroAsistenciaDF" target="aplicacion.data.RegistroAsistenciaData" relationship="REALIZATION">
+      <point x="0.0" y="-150.0" />
+      <point x="562.0" y="235.0" />
+      <point x="847.0" y="235.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.data.CursoData" relationship="REALIZATION">
+      <point x="0.0" y="-161.0" />
+      <point x="857.5" y="997.0" />
+      <point x="985.0" y="997.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.data.CursoData" relationship="REALIZATION">
+      <point x="0.0" y="-128.0" />
+      <point x="1112.5" y="997.0" />
+      <point x="985.0" y="997.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.data.AlumnoData" relationship="REALIZATION">
+      <point x="0.0" y="-128.0" />
+      <point x="163.5" y="997.0" />
+      <point x="342.25" y="997.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDF" target="aplicacion.data.AlumnoData" relationship="REALIZATION">
+      <point x="0.0" y="-161.0" />
+      <point x="521.0" y="997.0" />
+      <point x="342.25" y="997.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.data.database.ApoderadoDB" target="aplicacion.data.ApoderadoData" relationship="REALIZATION">
+      <point x="0.0" y="-72.0" />
+      <point x="146.5" y="1535.0" />
+      <point x="303.25" y="1535.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="aplicacion.data.database.ProfesorDB" target="aplicacion.data.ProfesorData" relationship="REALIZATION">
+      <point x="0.0" y="-94.5" />
+      <point x="1688.5" y="975.0" />
+      <point x="1547.5" y="975.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ApoderadoDF" target="aplicacion.data.ApoderadoData" relationship="REALIZATION">
+      <point x="0.0" y="-105.5" />
+      <point x="460.0" y="1535.0" />
+      <point x="303.25" y="1535.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ProfesorDF" target="aplicacion.data.ProfesorData" relationship="REALIZATION">
+      <point x="0.0" y="-128.0" />
+      <point x="1406.5" y="975.0" />
+      <point x="1547.5" y="975.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="aplicacion.data.database.RegistroAsistenciaDB" target="aplicacion.data.RegistroAsistenciaData" relationship="REALIZATION">
+      <point x="0.0" y="-116.5" />
+      <point x="1132.0" y="235.0" />
+      <point x="847.0" y="235.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.4276940256839754" showDependencies="false" x="909.5" y="885.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

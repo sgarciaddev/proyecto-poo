@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>aplicacion.models</OriginalElement>
+  <nodes>
+    <node x="0.0" y="605.0">aplicacion.models.RegistroAsistencia</node>
+    <node x="713.0" y="327.0">aplicacion.models.Profesor</node>
+    <node x="931.0" y="605.0">aplicacion.models.IDAsistencia</node>
+    <node x="1189.0" y="605.0">aplicacion.models.IDCurso</node>
+    <node x="520.0" y="605.0">aplicacion.models.Curso</node>
+    <node x="769.5" y="0.0">aplicacion.models.Persona</node>
+    <node x="1130.0" y="338.0">aplicacion.models.Apoderado</node>
+    <node x="0.0" y="261.0">aplicacion.models.Alumno</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="aplicacion.models.Profesor" target="aplicacion.models.Persona" relationship="GENERALIZATION">
+      <point x="0.0" y="-83.5" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.models.Apoderado" target="aplicacion.models.Persona" relationship="GENERALIZATION">
+      <point x="0.0" y="-72.5" />
+      <point x="1314.5" y="236.0" />
+      <point x="911.5" y="236.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.models.Alumno" target="aplicacion.models.Persona" relationship="GENERALIZATION">
+      <point x="0.0" y="-149.5" />
+      <point x="346.5" y="236.0" />
+      <point x="911.5" y="236.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6840026333113891" showDependencies="false" x="749.5" y="452.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
