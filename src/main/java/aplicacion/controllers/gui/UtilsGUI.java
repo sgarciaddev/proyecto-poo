@@ -22,6 +22,12 @@ public class UtilsGUI {
     public UtilsGUI() {
     }
 
+    // Todo: Generar documentacion
+    /**
+     *
+     * @param cursoData
+     * @return
+     */
     public static DefaultComboBoxModel getCursosCB(List<Curso> cursoData) {
         String labels[] = new String[cursoData.size()];
         int i = 0;
@@ -32,6 +38,14 @@ public class UtilsGUI {
         return new DefaultComboBoxModel(labels);
     }
 
+    // Todo: Generar documentacion
+    /**
+     *
+     *
+     * @param comboBox
+     * @param cursoData
+     * @return
+     */
     public static Curso getCursoFromCB(JComboBox comboBox, List<Curso> cursoData) {
         Curso curso = null;
         for (Curso c : cursoData) {
@@ -42,10 +56,23 @@ public class UtilsGUI {
         return curso;
     }
 
+    /**
+     * Método para getter para obtener icono
+     *
+     * @param icon Codigo del icono a obtener
+     * @param size Tamaño del que tendrá el icono
+     * @param color Color que tendrá el icono
+     * @return Retorna el objeto icono con los parámetros indicados
+     */
     public static Icon getIcon(IconCode icon, float size, Color color) {
         return IconFontSwing.buildIcon(icon, size, color);
     }
 
+    /**
+     * Método para obtener la fecha al dia de la consulta
+     *
+     * @return Retorna un string con la fecha actual
+     */
     public static String getActualDate() {
         String[] meses = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre"
                 , "octubre", "noviembre", "diciemrbre"};
@@ -54,7 +81,9 @@ public class UtilsGUI {
     }
 
     /**
-     * @param mensaje
+     * Método para generar un mensaje de error y botón de confirmación
+     *
+     * @param mensaje Mensaje de error para el usuario
      */
     public static void errorMsg(String mensaje) {
         JOptionPane.showConfirmDialog(null,
@@ -66,17 +95,19 @@ public class UtilsGUI {
     }
 
     /**
+     * Método para generar un mensaje con información con botón de confirmación
      *
-     *
-     * @param mensaje
+     * @param mensaje Mensaje con la información para el usuario
      */
     public static void infoMsg(String mensaje) {
         JOptionPane.showConfirmDialog(null, mensaje, "Info", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, UtilsGUI.getIcon(FontAwesome.INFO_CIRCLE, 40, CustomColors.INFO_BLUE.getColor()));
     }
 
     /**
-     * @param mensaje
-     * @return
+     * Método para generar un mensaje para confirmar opción y botón de confirmación
+     *
+     * @param mensaje Mensaje que contiene la información a confirmar.
+     * @return Retorna la opción seleccionada por el usuario.
      */
     public static int msjSiNo(String mensaje) {
         return JOptionPane.showConfirmDialog(null, mensaje, "Confirme", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, UtilsGUI.getIcon(FontAwesome.QUESTION_CIRCLE, 40, CustomColors.QUESTION_YELLOW.getColor()));

@@ -10,12 +10,31 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Clase que genera reportes
+ *
+ * @author Sebastián García, Guillermo González, Benjamín Navarrete
+ * @version 3.0
+ */
 public class ReportesControllerGUI {
 
+    /**
+     * Método que genera reportes del tipo indicado
+     *
+     * @param tipo Tipo de reporte a generar
+     * @param id Id que identifica sobre cual curso se genera el reporte
+     * @return Retorna un tipo Datafile con el reporte del tipo especificado
+     */
     private static Datafile generarReporte(String tipo, String id) {
         return new Datafile("reportes/" + tipo + "-" + id);
     }
 
+    /**
+     * Metodo que genera reporte de una lista del curso y lo guarda en un archivo de formato CSV
+     *
+     * @param curso Curso del que se desea generar el reporte
+     * @return Retorna la ubicación del reporte
+     */
     public static String generarReporteListaCurso(Curso curso) {
         Datafile reporteListaCurso = generarReporte("lista-curso", (curso.getNivel() + "-" + curso.getParalelo()));
         reporteListaCurso.insertLine(Datafile.listToCSV(Arrays.asList(UtilsCLI.headers.get("alumnos"))));
