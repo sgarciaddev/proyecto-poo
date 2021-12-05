@@ -14,7 +14,7 @@ import java.io.IOException;
  * Clase controladora del menú de gestión de Alumnos de la interfaz de linea de comandos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class AlumnoControllerCLI {
 

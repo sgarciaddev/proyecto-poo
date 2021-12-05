@@ -19,7 +19,7 @@ import java.util.Map;
  * Clase controladora del menú de gestión de Cursos de la interfaz de linea de comandos.
  *
  * @author Sebastián García, Guillermo González, Benjamín Navarrete
- * @version 3.0
+ * @version 4.0
  */
 public class CursoControllerCLI {
     private final MenuCLI menuCLI;
