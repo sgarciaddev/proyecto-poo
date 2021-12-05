@@ -3,142 +3,1781 @@
   <ID>JAVA</ID>
   <OriginalElement>aplicacion</OriginalElement>
   <nodes>
-    <node x="1257.0" y="1253.0">aplicacion.views.cli.CLI</node>
-    <node x="962.0" y="252.0">aplicacion.data.datafile.AlumnoDatafile</node>
-    <node x="331.0" y="1253.0">aplicacion.views.cli.MenuCLI</node>
-    <node x="253.5" y="0.0">aplicacion.models.Persona</node>
-    <node x="1366.0" y="1645.0">aplicacion.views.cli.AlumnoViewCLI</node>
-    <node x="0.0" y="1645.0">aplicacion.models.RegistroAsistencia</node>
-    <node x="706.0" y="0.0">aplicacion.data.database.SQLSentences</node>
-    <node x="920.0" y="1253.0">aplicacion.controllers.cli.CursoControllerCLI</node>
-    <node x="892.0" y="897.0">aplicacion.data.datafile.ApoderadoDatafile</node>
-    <node x="904.0" y="1645.0">aplicacion.views.cli.AsistenciaViewCli</node>
-    <node x="1501.0" y="717.0">aplicacion.models.Curso</node>
-    <node x="351.0" y="945.0">aplicacion.data.datafile.ProfesorDatafile</node>
-    <node x="0.0" y="717.0">aplicacion.views.cli.UtilsCLI</node>
-    <node x="465.0" y="397.0">aplicacion.models.Profesor</node>
-    <node x="1613.0" y="228.0">aplicacion.data.datafile.CursoDatafile</node>
-    <node x="1728.5" y="0.0">aplicacion.data.CursoData</node>
-    <node x="1844.0" y="264.0">aplicacion.data.database.CursoDB</node>
-    <node x="1118.5" y="0.0">aplicacion.data.AlumnoData</node>
-    <node x="277.0" y="433.0">aplicacion.models.Apoderado</node>
-    <node x="609.0" y="981.5">aplicacion.data.database.ProfesorDB</node>
-    <node x="0.0" y="373.0">aplicacion.models.Alumno</node>
-    <node x="0.0" y="1253.0">aplicacion.controllers.cli.MenuControllerCLI</node>
-    <node x="1275.0" y="288.0">aplicacion.data.database.AlumnoDB</node>
-    <node x="545.0" y="1645.0">aplicacion.controllers.cli.AlumnoControllerCLI</node>
-    <node x="1775.0" y="1645.0">aplicacion.views.cli.CursoViewCLI</node>
-    <node x="1184.0" y="933.5">aplicacion.data.database.ApoderadoDB</node>
-    <node x="1534.0" y="1253.0">aplicacion.controllers.cli.AsistenciaControllerCLI</node>
-    <node x="297.0" y="1645.0">aplicacion.data.database.DBConnection</node>
-    <node x="480.0" y="717.0">aplicacion.data.ProfesorData</node>
-    <node x="635.0" y="1253.0">aplicacion.data.datafile.Datafile</node>
-    <node x="1038.0" y="717.0">aplicacion.data.ApoderadoData</node>
+    <node x="34.737078709429625" y="4802.0">aplicacion.views.gui</node>
+    <node x="2648.4316173448365" y="0.0">aplicacion.models.Persona</node>
+    <node x="5011.104166666666" y="2710.5">aplicacion.data.database.RegistroAsistenciaDB</node>
+    <node x="3164.1329120427627" y="313.0">aplicacion.models.RegistroAsistencia</node>
+    <node x="1212.8829120427627" y="3328.0">aplicacion.controllers.cli</node>
+    <node x="136.47328401150298" y="3827.0">aplicacion.controllers.exceptions.InvalidNumberException</node>
+    <node x="751.854744656807" y="3816.0">aplicacion.controllers.exceptions.DatabaseException</node>
+    <node x="5236.79957870943" y="1763.0">aplicacion.data.database.SQLSentences</node>
+    <node x="3825.6672446568073" y="1982.5">aplicacion.data.datafile.RegistroAsistenciaDF</node>
+    <node x="850.854744656807" y="3608.0">aplicacion.views.cli</node>
+    <node x="1097.1329120427627" y="1190.0">aplicacion.models.Curso</node>
+    <node x="4493.04957870943" y="741.5">aplicacion.data.RegistroAsistenciaData</node>
+    <node x="363.2992832922141" y="763.0">aplicacion.models.Profesor</node>
+    <node x="3285.9316173448365" y="55.5">aplicacion.models.IDAsistencia</node>
+    <node x="1892.3829120427627" y="796.5">aplicacion.models.IDCurso</node>
+    <node x="1054.8829120427627" y="2733.0">aplicacion.data.CursoData</node>
+    <node x="1708.5774506781697" y="2038.5">aplicacion.data.AlumnoData</node>
+    <node x="5135.340949958881" y="4494.0">aplicacion.data.database.CursoDB</node>
+    <node x="2151.299283292214" y="390.5">aplicacion.models.Apoderado</node>
+    <node x="2417.6816173448365" y="4221.0">aplicacion.data.database.ProfesorDB</node>
+    <node x="2092.3829120427627" y="697.0">aplicacion.models.Alumno</node>
+    <node x="2776.2291666666665" y="2699.0">aplicacion.data.datafile.ProfesorDF</node>
+    <node x="3868.6041666666665" y="2666.0">aplicacion.data.datafile.AlumnoDF</node>
+    <node x="4968.590949958881" y="3215.0">aplicacion.data.database.AlumnoDB</node>
+    <node x="4470.667244656806" y="3182.0">aplicacion.data.datafile.CursoDF</node>
+    <node x="3400.8409499588806" y="2027.0">aplicacion.data.datafile.ApoderadoDF</node>
+    <node x="4587.473284011503" y="2755.0">aplicacion.data.database.ApoderadoDB</node>
+    <node x="119.42428329221411" y="3732.0">aplicacion.controllers.gui</node>
+    <node x="2238.9316173448365" y="3970.0">aplicacion.data.database.DBConnection</node>
+    <node x="674.104744656807" y="2049.5">aplicacion.data.ProfesorData</node>
+    <node x="1483.1329120427627" y="1279.0">aplicacion.data.ApoderadoData</node>
+    <node x="3510.3829120427627" y="1200.5">aplicacion.data.datafile.Datafile</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="aplicacion.data.datafile.AlumnoDatafile" target="aplicacion.data.AlumnoData" relationship="REALIZATION">
-      <point x="0.0" y="-149.5" />
-      <point x="1108.5" y="227.0" />
-      <point x="1265.0" y="227.0" />
-      <point x="0.0" y="101.0" />
+    <edge source="aplicacion.views.gui" target="aplicacion.data.CursoData" relationship="TO_ONE">
+      <point x="-43.66666666666674" y="-15.0" />
+      <point x="56.570412042762655" y="4781.0" />
+      <point x="21.5" y="4781.0" />
+      <point x="21.5" y="3160.0" />
+      <point x="255.0492832922141" y="3160.0" />
+      <point x="255.0492832922141" y="3110.0" />
+      <point x="1094.0495787094294" y="3110.0" />
+      <point x="-78.33333333333331" y="94.0" />
     </edge>
-    <edge source="aplicacion.data.datafile.ApoderadoDatafile" target="aplicacion.data.ApoderadoData" relationship="REALIZATION">
-      <point x="0.0" y="-101.5" />
-      <point x="1028.0" y="872.0" />
-      <point x="1174.0" y="872.0" />
-      <point x="0.0" y="65.0" />
+    <edge source="aplicacion.data.datafile.RegistroAsistenciaDF" target="aplicacion.data.datafile.Datafile" relationship="TO_ONE">
+      <point x="-183.33333333333337" y="-150.0" />
+      <point x="3917.333911323474" y="1691.0" />
+      <point x="3708.3829120427627" y="1691.0" />
+      <point x="66.0" y="139.0" />
     </edge>
-    <edge source="aplicacion.data.datafile.ProfesorDatafile" target="aplicacion.data.ProfesorData" relationship="REALIZATION">
-      <point x="0.0" y="-125.5" />
-      <point x="470.0" y="920.0" />
-      <point x="599.0" y="920.0" />
-      <point x="0.0" y="89.0" />
+    <edge source="aplicacion.views.cli" target="aplicacion.data.ProfesorData" relationship="TO_ONE">
+      <point x="-41.66666666666663" y="-15.0" />
+      <point x="871.6880779901403" y="3586.0" />
+      <point x="479.85474465680704" y="3586.0" />
+      <point x="479.85474465680704" y="3576.0" />
+      <point x="469.3749999999998" y="3576.0" />
+      <point x="469.3749999999998" y="2644.0" />
+      <point x="282.5492832922141" y="2644.0" />
+      <point x="282.5492832922141" y="2544.0" />
+      <point x="717.604744656807" y="2544.0" />
+      <point x="-87.0" y="83.0" />
     </edge>
-    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.data.AlumnoData" relationship="REALIZATION">
-      <point x="0.0" y="-113.5" />
-      <point x="1421.5" y="227.0" />
-      <point x="1265.0" y="227.0" />
-      <point x="0.0" y="101.0" />
+    <edge source="aplicacion.views.gui" target="aplicacion.models.Curso" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="100.23707870942962" y="4781.0" />
+      <point x="89.15374537609614" y="4781.0" />
+      <point x="89.15374537609614" y="4771.0" />
+      <point x="76.5" y="4771.0" />
+      <point x="76.5" y="2574.0" />
+      <point x="343.47974465680727" y="2574.0" />
+      <point x="343.47974465680727" y="1721.0" />
+      <point x="1280.1329120427627" y="1721.0" />
+      <point x="0.0" y="149.5" />
     </edge>
-    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.data.CursoData" relationship="REALIZATION">
-      <point x="0.0" y="-113.5" />
-      <point x="1949.5" y="203.0" />
-      <point x="1834.0" y="203.0" />
-      <point x="0.0" y="89.0" />
-    </edge>
-    <edge source="aplicacion.data.datafile.CursoDatafile" target="aplicacion.data.CursoData" relationship="REALIZATION">
-      <point x="0.0" y="-149.5" />
-      <point x="1718.5" y="203.0" />
-      <point x="1834.0" y="203.0" />
-      <point x="0.0" y="89.0" />
+    <edge source="aplicacion.data.datafile.ProfesorDF" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="32.875" y="-128.0" />
+      <point x="2940.6041666666665" y="2644.0" />
+      <point x="3084.7441173448365" y="2644.0" />
+      <point x="3084.7441173448365" y="2534.0" />
+      <point x="3101.2441173448365" y="2534.0" />
+      <point x="3101.2441173448365" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
     </edge>
     <edge source="aplicacion.data.database.ApoderadoDB" target="aplicacion.data.ApoderadoData" relationship="REALIZATION">
-      <point x="0.0" y="-65.0" />
-      <point x="1320.0" y="872.0" />
-      <point x="1174.0" y="872.0" />
-      <point x="0.0" y="65.0" />
+      <point x="-97.66666666666674" y="-72.0" />
+      <point x="4636.306617344836" y="1681.0" />
+      <point x="4077.8829120427627" y="1681.0" />
+      <point x="4077.8829120427627" y="1521.0" />
+      <point x="1727.2995787094296" y="1521.0" />
+      <point x="97.66666666666674" y="60.5" />
     </edge>
-    <edge source="aplicacion.data.database.ProfesorDB" target="aplicacion.data.ProfesorData" relationship="REALIZATION">
-      <point x="0.0" y="-89.0" />
-      <point x="728.0" y="920.0" />
-      <point x="599.0" y="920.0" />
-      <point x="0.0" y="89.0" />
+    <edge source="aplicacion.views.cli" target="aplicacion.views.cli" relationship="TO_ONE">
+      <point x="-15.625" y="15.0" />
+      <point x="897.729744656807" y="3668.0" />
+      <point x="820.854744656807" y="3668.0" />
+      <point x="820.854744656807" y="3615.5" />
+      <point x="-62.5" y="-7.5" />
     </edge>
-    <edge source="aplicacion.models.Profesor" target="aplicacion.models.Persona" relationship="GENERALIZATION">
-      <point x="0.0" y="-125.5" />
-      <point x="563.0" y="348.0" />
-      <point x="361.0" y="348.0" />
-      <point x="0.0" y="161.5" />
+    <edge source="aplicacion.data.database.RegistroAsistenciaDB" target="aplicacion.data.database.DBConnection" relationship="DEPENDENCY">
+      <point x="-183.33333333333348" y="116.5" />
+      <point x="5102.770833333333" y="3080.0" />
+      <point x="2356.4316173448365" y="3080.0" />
+      <point x="2356.4316173448365" y="3943.0" />
+      <point x="2351.4316173448365" y="3943.0" />
+      <point x="0.0" y="-83.5" />
     </edge>
-    <edge source="aplicacion.models.Alumno" target="aplicacion.models.Persona" relationship="GENERALIZATION">
-      <point x="0.0" y="-149.5" />
-      <point x="128.5" y="348.0" />
-      <point x="361.0" y="348.0" />
-      <point x="0.0" y="161.5" />
+    <edge source="aplicacion.views.gui" target="aplicacion.models.Curso" relationship="TO_MANY">
+      <point x="-43.66666666666674" y="-15.0" />
+      <point x="56.570412042762655" y="4781.0" />
+      <point x="21.5" y="4781.0" />
+      <point x="21.5" y="1581.0" />
+      <point x="1158.1329120427627" y="1581.0" />
+      <point x="-122.0" y="149.5" />
     </edge>
     <edge source="aplicacion.models.Apoderado" target="aplicacion.models.Persona" relationship="GENERALIZATION">
-      <point x="0.0" y="-89.5" />
-      <point x="0.0" y="161.5" />
+      <point x="0.0" y="-72.5" />
+      <point x="2335.799283292214" y="292.0" />
+      <point x="2194.07745067817" y="292.0" />
+      <point x="2194.07745067817" y="252.0" />
+      <point x="2719.4316173448365" y="252.0" />
+      <point x="-71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.models.Profesor" relationship="TO_MANY">
+      <point x="-43.66666666666674" y="-15.0" />
+      <point x="56.570412042762655" y="4781.0" />
+      <point x="21.5" y="4781.0" />
+      <point x="21.5" y="4771.0" />
+      <point x="11.0" y="4771.0" />
+      <point x="11.0" y="1078.0" />
+      <point x="209.22328401150298" y="1078.0" />
+      <point x="209.22328401150298" y="1058.0" />
+      <point x="429.4659499588806" y="1058.0" />
+      <point x="-132.33333333333337" y="83.5" />
+    </edge>
+    <edge source="aplicacion.models.Curso" target="aplicacion.models.IDCurso" relationship="TO_ONE">
+      <point x="-122.0" y="-149.5" />
+      <point x="1158.1329120427627" y="1158.0" />
+      <point x="214.22328401150298" y="1158.0" />
+      <point x="214.22328401150298" y="1108.0" />
+      <point x="1922.3829120427627" y="1108.0" />
+      <point x="-60.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.data.database.DBConnection" relationship="DEPENDENCY">
+      <point x="88.125" y="-128.0" />
+      <point x="5340.965949958881" y="4472.0" />
+      <point x="5737.479166666666" y="4472.0" />
+      <point x="5737.479166666666" y="4189.0" />
+      <point x="2351.4316173448365" y="4189.0" />
+      <point x="0.0" y="83.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.RegistroAsistenciaDF" target="aplicacion.data.RegistroAsistenciaData" relationship="REALIZATION">
+      <point x="183.33333333333326" y="-150.0" />
+      <point x="4284.00057799014" y="1671.0" />
+      <point x="4144.520833333333" y="1671.0" />
+      <point x="4144.520833333333" y="1138.0" />
+      <point x="4768.04957870943" y="1138.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="100.23707870942962" y="4781.0" />
+      <point x="89.15374537609614" y="4781.0" />
+      <point x="89.15374537609614" y="4771.0" />
+      <point x="32.5" y="4771.0" />
+      <point x="32.5" y="1068.0" />
+      <point x="0.0" y="1068.0" />
+      <point x="0.0" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.data.database.RegistroAsistenciaDB" relationship="CREATE">
+      <point x="122.625" y="-128.0" />
+      <point x="5254.715949958881" y="3160.0" />
+      <point x="5275.153449958881" y="3160.0" />
+      <point x="5275.153449958881" y="3110.0" />
+      <point x="5469.4375" y="3110.0" />
+      <point x="183.33333333333337" y="116.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ProfesorDF" target="aplicacion.models.Curso" relationship="DEPENDENCY">
+      <point x="32.875" y="-128.0" />
+      <point x="2940.6041666666665" y="2644.0" />
+      <point x="3084.7441173448365" y="2644.0" />
+      <point x="3084.7441173448365" y="2534.0" />
+      <point x="3068.2441173448365" y="2534.0" />
+      <point x="3068.2441173448365" y="1721.0" />
+      <point x="1280.1329120427627" y="1721.0" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.models.Alumno" relationship="CREATE">
+      <point x="122.625" y="-128.0" />
+      <point x="5254.715949958881" y="3160.0" />
+      <point x="5275.153449958881" y="3160.0" />
+      <point x="5275.153449958881" y="3110.0" />
+      <point x="5675.29957870943" y="3110.0" />
+      <point x="5675.29957870943" y="1118.0" />
+      <point x="4881.723284011503" y="1118.0" />
+      <point x="4881.723284011503" y="1018.0" />
+      <point x="2669.8829120427627" y="1018.0" />
+      <point x="231.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.models.Profesor" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="100.23707870942962" y="4781.0" />
+      <point x="89.15374537609614" y="4781.0" />
+      <point x="89.15374537609614" y="4771.0" />
+      <point x="54.5" y="4771.0" />
+      <point x="54.5" y="1571.0" />
+      <point x="540.7992832922141" y="1571.0" />
+      <point x="540.7992832922141" y="1168.0" />
+      <point x="561.7992832922141" y="1168.0" />
+      <point x="0.0" y="83.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.data.datafile.Datafile" relationship="TO_ONE">
+      <point x="-29.375" y="-161.0" />
+      <point x="4558.792244656806" y="3150.0" />
+      <point x="4395.590949958881" y="3150.0" />
+      <point x="4395.590949958881" y="3020.0" />
+      <point x="4451.04957870943" y="3020.0" />
+      <point x="4451.04957870943" y="1691.0" />
+      <point x="3708.3829120427627" y="1691.0" />
+      <point x="66.0" y="139.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDF" target="aplicacion.data.datafile.Datafile" relationship="TO_ONE">
+      <point x="-130.5" y="-161.0" />
+      <point x="3912.1041666666665" y="2644.0" />
+      <point x="3636.6672446568073" y="2644.0" />
+      <point x="3636.6672446568073" y="2534.0" />
+      <point x="3389.619695334977" y="2534.0" />
+      <point x="3389.619695334977" y="1691.0" />
+      <point x="3708.3829120427627" y="1691.0" />
+      <point x="66.0" y="139.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.database.DBConnection" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="100.23707870942962" y="4781.0" />
+      <point x="89.15374537609614" y="4781.0" />
+      <point x="89.15374537609614" y="4771.0" />
+      <point x="389.973284011503" y="4771.0" />
+      <point x="389.973284011503" y="4189.0" />
+      <point x="2351.4316173448365" y="4189.0" />
+      <point x="0.0" y="83.5" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.database.AlumnoDB" relationship="CREATE">
+      <point x="43.666666666666515" y="-15.0" />
+      <point x="143.90374537609614" y="4781.0" />
+      <point x="5762.916666666666" y="4781.0" />
+      <point x="5762.916666666666" y="4771.0" />
+      <point x="5782.98707870943" y="4771.0" />
+      <point x="5782.98707870943" y="3536.0" />
+      <point x="5181.090949958881" y="3536.0" />
+      <point x="5181.090949958881" y="3526.0" />
+      <point x="5132.090949958881" y="3526.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.CursoData" relationship="TO_ONE">
+      <point x="-41.66666666666663" y="-15.0" />
+      <point x="871.6880779901403" y="3586.0" />
+      <point x="479.85474465680704" y="3586.0" />
+      <point x="479.85474465680704" y="3576.0" />
+      <point x="469.3749999999998" y="3576.0" />
+      <point x="469.3749999999998" y="3160.0" />
+      <point x="255.0492832922141" y="3160.0" />
+      <point x="255.0492832922141" y="3110.0" />
+      <point x="1094.0495787094294" y="3110.0" />
+      <point x="-78.33333333333331" y="94.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.models.Curso" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="913.354744656807" y="3546.0" />
+      <point x="982.6249999999998" y="3546.0" />
+      <point x="982.6249999999998" y="2604.0" />
+      <point x="1058.604744656807" y="2604.0" />
+      <point x="1058.604744656807" y="1721.0" />
+      <point x="1280.1329120427627" y="1721.0" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.data.ProfesorData" target="aplicacion.models.Profesor" relationship="DEPENDENCY">
+      <point x="0.0" y="-83.0" />
+      <point x="804.604744656807" y="1741.0" />
+      <point x="956.604744656807" y="1741.0" />
+      <point x="956.604744656807" y="1168.0" />
+      <point x="561.7992832922141" y="1168.0" />
+      <point x="0.0" y="83.5" />
+    </edge>
+    <edge source="aplicacion.controllers.gui" target="aplicacion.controllers.gui" relationship="DEPENDENCY">
+      <point x="-32.75" y="15.0" />
+      <point x="152.1742832922141" y="3782.0" />
+      <point x="99.42428329221411" y="3782.0" />
+      <point x="99.42428329221411" y="3747.0" />
+      <point x="-65.5" y="-0.0" />
+    </edge>
+    <edge source="aplicacion.controllers.gui" target="aplicacion.models.Alumno" relationship="DEPENDENCY">
+      <point x="-32.75" y="-15.0" />
+      <point x="152.1742832922141" y="3710.0" />
+      <point x="206.6742832922141" y="3710.0" />
+      <point x="206.6742832922141" y="3120.0" />
+      <point x="304.97974465680727" y="3120.0" />
+      <point x="304.97974465680727" y="2564.0" />
+      <point x="332.47974465680727" y="2564.0" />
+      <point x="332.47974465680727" y="1561.0" />
+      <point x="420.2992832922141" y="1561.0" />
+      <point x="420.2992832922141" y="1148.0" />
+      <point x="2438.8829120427627" y="1148.0" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="-31.25" y="-15.0" />
+      <point x="1244.1329120427627" y="3160.0" />
+      <point x="1300.3829120427627" y="3160.0" />
+      <point x="1300.3829120427627" y="3140.0" />
+      <point x="1500.1249999999998" y="3140.0" />
+      <point x="1500.1249999999998" y="1611.0" />
+      <point x="1881.8829120427627" y="1611.0" />
+      <point x="1881.8829120427627" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.controllers.gui" target="aplicacion.data.datafile.Datafile" relationship="CREATE">
+      <point x="32.75" y="-15.0" />
+      <point x="217.6742832922141" y="3690.0" />
+      <point x="241.72328401150298" y="3690.0" />
+      <point x="241.72328401150298" y="3140.0" />
+      <point x="321.47974465680727" y="3140.0" />
+      <point x="321.47974465680727" y="2584.0" />
+      <point x="354.47974465680727" y="2584.0" />
+      <point x="354.47974465680727" y="1701.0" />
+      <point x="3279.6816173448365" y="1701.0" />
+      <point x="3279.6816173448365" y="1511.0" />
+      <point x="3576.3829120427627" y="1511.0" />
+      <point x="-66.0" y="139.0" />
+    </edge>
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.data.database.AlumnoDB" relationship="CREATE">
+      <point x="-88.125" y="-128.0" />
+      <point x="5164.715949958881" y="4472.0" />
+      <point x="1950.917244656807" y="4472.0" />
+      <point x="1950.917244656807" y="4442.0" />
+      <point x="5181.090949958881" y="4442.0" />
+      <point x="5181.090949958881" y="3526.0" />
+      <point x="5132.090949958881" y="3526.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDF" target="aplicacion.data.datafile.ApoderadoDF" relationship="TO_ONE">
+      <point x="-130.5" y="-161.0" />
+      <point x="3912.1041666666665" y="2644.0" />
+      <point x="3636.6672446568073" y="2644.0" />
+      <point x="3636.6672446568073" y="2534.0" />
+      <point x="3474.3409499588806" y="2534.0" />
+      <point x="-73.5" y="105.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ApoderadoDF" target="aplicacion.data.datafile.Datafile" relationship="TO_ONE">
+      <point x="-36.75" y="-105.5" />
+      <point x="3511.0909499588806" y="1691.0" />
+      <point x="3708.3829120427627" y="1691.0" />
+      <point x="66.0" y="139.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDF" target="aplicacion.data.datafile.RegistroAsistenciaDF" relationship="CREATE">
+      <point x="-43.5" y="-161.0" />
+      <point x="3999.1041666666665" y="2644.0" />
+      <point x="4026.6672446568073" y="2644.0" />
+      <point x="4026.6672446568073" y="2524.0" />
+      <point x="4238.167244656807" y="2524.0" />
+      <point x="137.5" y="150.0" />
+    </edge>
+    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.data.database.SQLSentences" relationship="DEPENDENCY">
+      <point x="40.875" y="-128.0" />
+      <point x="5172.965949958881" y="3160.0" />
+      <point x="5208.340949958881" y="3160.0" />
+      <point x="5208.340949958881" y="3100.0" />
+      <point x="5642.79957870943" y="3100.0" />
+      <point x="5642.79957870943" y="2614.0" />
+      <point x="5357.79957870943" y="2614.0" />
+      <point x="0.0" y="369.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ProfesorDF" target="aplicacion.data.ProfesorData" relationship="REALIZATION">
+      <point x="-98.625" y="-128.0" />
+      <point x="2809.1041666666665" y="2614.0" />
+      <point x="1941.1329120427627" y="2614.0" />
+      <point x="1941.1329120427627" y="2524.0" />
+      <point x="891.604744656807" y="2524.0" />
+      <point x="87.0" y="83.0" />
+    </edge>
+    <edge source="aplicacion.data.database.ApoderadoDB" target="aplicacion.data.database.DBConnection" relationship="DEPENDENCY">
+      <point x="-97.66666666666697" y="72.0" />
+      <point x="4636.306617344836" y="3070.0" />
+      <point x="2346.4316173448365" y="3070.0" />
+      <point x="2346.4316173448365" y="3943.0" />
+      <point x="2351.4316173448365" y="3943.0" />
+      <point x="0.0" y="-83.5" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="913.354744656807" y="3546.0" />
+      <point x="2166.07745067817" y="3546.0" />
+      <point x="2166.07745067817" y="1681.0" />
+      <point x="2833.8829120427627" y="1681.0" />
+      <point x="2833.8829120427627" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.models.Curso" target="aplicacion.models.Alumno" relationship="TO_MANY">
+      <point x="-122.0" y="-149.5" />
+      <point x="1158.1329120427627" y="1158.0" />
+      <point x="214.22328401150298" y="1158.0" />
+      <point x="214.22328401150298" y="1098.0" />
+      <point x="219.22328401150298" y="1098.0" />
+      <point x="219.22328401150298" y="1048.0" />
+      <point x="2207.8829120427627" y="1048.0" />
+      <point x="-231.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.models.IDCurso" relationship="CREATE">
+      <point x="31.25" y="-15.0" />
+      <point x="1306.6329120427627" y="3160.0" />
+      <point x="2064.57745067817" y="3160.0" />
+      <point x="2064.57745067817" y="3140.0" />
+      <point x="2005.1329120427627" y="3140.0" />
+      <point x="2005.1329120427627" y="2554.0" />
+      <point x="2085.3829120427627" y="2554.0" />
+      <point x="2085.3829120427627" y="1631.0" />
+      <point x="2344.82745067817" y="1631.0" />
+      <point x="2344.82745067817" y="1168.0" />
+      <point x="1982.3829120427627" y="1168.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.models.RegistroAsistencia" target="aplicacion.models.IDAsistencia" relationship="TO_ONE">
+      <point x="-118.75" y="-150.0" />
+      <point x="3282.8829120427627" y="292.0" />
+      <point x="2584.07745067817" y="292.0" />
+      <point x="2584.07745067817" y="242.0" />
+      <point x="3321.4316173448365" y="242.0" />
+      <point x="-71.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.data.CursoData" target="aplicacion.models.Curso" relationship="DEPENDENCY">
+      <point x="0.0" y="-94.0" />
+      <point x="1172.3829120427627" y="2644.0" />
+      <point x="1241.3749999999998" y="2644.0" />
+      <point x="1241.3749999999998" y="1721.0" />
+      <point x="1280.1329120427627" y="1721.0" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.data.database.DBConnection" target="aplicacion.controllers.exceptions.DatabaseException" relationship="DEPENDENCY">
+      <point x="0.0" y="-83.5" />
+      <point x="2351.4316173448365" y="3943.0" />
+      <point x="916.854744656807" y="3943.0" />
+      <point x="55.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.data.CursoData" relationship="REALIZATION">
+      <point x="29.375" y="-128.0" />
+      <point x="5282.215949958881" y="4472.0" />
+      <point x="5306.090949958881" y="4472.0" />
+      <point x="5306.090949958881" y="3060.0" />
+      <point x="4655.723284011503" y="3060.0" />
+      <point x="4655.723284011503" y="3030.0" />
+      <point x="1250.7162453760957" y="3030.0" />
+      <point x="78.33333333333331" y="94.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.views.gui" relationship="TO_ONE">
+      <point x="-32.75" y="15.0" />
+      <point x="67.48707870942962" y="4852.0" />
+      <point x="14.737078709429625" y="4852.0" />
+      <point x="14.737078709429625" y="4824.5" />
+      <point x="-65.5" y="7.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDF" target="aplicacion.data.AlumnoData" relationship="REALIZATION">
+      <point x="130.5" y="-161.0" />
+      <point x="4173.104166666666" y="2634.0" />
+      <point x="4461.54957870943" y="2634.0" />
+      <point x="4461.54957870943" y="2544.0" />
+      <point x="1976.9107840115028" y="2544.0" />
+      <point x="107.33333333333326" y="94.0" />
+    </edge>
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.models.Curso" relationship="CREATE">
+      <point x="-88.125" y="-128.0" />
+      <point x="5164.715949958881" y="4472.0" />
+      <point x="1950.917244656807" y="4472.0" />
+      <point x="1950.917244656807" y="4442.0" />
+      <point x="3257.6816173448365" y="4442.0" />
+      <point x="3257.6816173448365" y="1531.0" />
+      <point x="1402.1329120427627" y="1531.0" />
+      <point x="122.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.controllers.cli" relationship="CREATE">
+      <point x="-50.0" y="15.0" />
+      <point x="1225.3829120427627" y="3378.0" />
+      <point x="1192.8829120427627" y="3378.0" />
+      <point x="1192.8829120427627" y="3350.5" />
+      <point x="-62.5" y="7.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ProfesorDF" target="aplicacion.models.Profesor" relationship="CREATE">
+      <point x="-32.875" y="-128.0" />
+      <point x="2874.8541666666665" y="2644.0" />
+      <point x="2913.1041666666665" y="2644.0" />
+      <point x="2913.1041666666665" y="1691.0" />
+      <point x="3079.2441173448365" y="1691.0" />
+      <point x="3079.2441173448365" y="1168.0" />
+      <point x="2855.6329120427627" y="1168.0" />
+      <point x="2855.6329120427627" y="1038.0" />
+      <point x="694.1326166255476" y="1038.0" />
+      <point x="132.33333333333337" y="83.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDF" target="aplicacion.data.datafile.ApoderadoDF" relationship="CREATE">
+      <point x="-43.5" y="-161.0" />
+      <point x="3999.1041666666665" y="2644.0" />
+      <point x="4026.6672446568073" y="2644.0" />
+      <point x="4026.6672446568073" y="2594.0" />
+      <point x="3599.1041666666665" y="2594.0" />
+      <point x="3599.1041666666665" y="2524.0" />
+      <point x="3621.3409499588806" y="2524.0" />
+      <point x="73.5" y="105.5" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.database.DBConnection" relationship="DEPENDENCY">
+      <point x="15.625" y="15.0" />
+      <point x="928.979744656807" y="3680.0" />
+      <point x="939.604744656807" y="3680.0" />
+      <point x="939.604744656807" y="3690.0" />
+      <point x="2309.6329120427627" y="3690.0" />
+      <point x="2309.6329120427627" y="3943.0" />
+      <point x="2351.4316173448365" y="3943.0" />
+      <point x="0.0" y="-83.5" />
+    </edge>
+    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.data.database.ApoderadoDB" relationship="CREATE">
+      <point x="122.625" y="-128.0" />
+      <point x="5254.715949958881" y="3160.0" />
+      <point x="5275.153449958881" y="3160.0" />
+      <point x="5275.153449958881" y="3070.0" />
+      <point x="4838.348862001643" y="3070.0" />
+      <point x="4838.348862001643" y="3040.0" />
+      <point x="4831.63995067817" y="3040.0" />
+      <point x="97.66666666666674" y="72.0" />
+    </edge>
+    <edge source="aplicacion.data.database.RegistroAsistenciaDB" target="aplicacion.data.database.SQLSentences" relationship="DEPENDENCY">
+      <point x="-183.33333333333337" y="-116.5" />
+      <point x="5102.770833333333" y="2614.0" />
+      <point x="5357.79957870943" y="2614.0" />
+      <point x="0.0" y="369.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.data.datafile.ProfesorDF" relationship="CREATE">
+      <point x="-88.125" y="-161.0" />
+      <point x="4500.042244656806" y="3160.0" />
+      <point x="3357.119695334977" y="3160.0" />
+      <point x="3357.119695334977" y="3050.0" />
+      <point x="2177.07745067817" y="3050.0" />
+      <point x="2177.07745067817" y="3020.0" />
+      <point x="2841.9791666666665" y="3020.0" />
+      <point x="-65.75" y="128.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.AlumnoData" relationship="TO_ONE">
+      <point x="-43.66666666666674" y="-15.0" />
+      <point x="56.570412042762655" y="4781.0" />
+      <point x="21.5" y="4781.0" />
+      <point x="21.5" y="2604.0" />
+      <point x="589.854744656807" y="2604.0" />
+      <point x="589.854744656807" y="2534.0" />
+      <point x="1762.2441173448365" y="2534.0" />
+      <point x="-107.33333333333326" y="94.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.controllers.gui" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="100.23707870942962" y="4781.0" />
+      <point x="89.15374537609614" y="4781.0" />
+      <point x="89.15374537609614" y="4771.0" />
+      <point x="125.97328401150298" y="4771.0" />
+      <point x="125.97328401150298" y="3794.0" />
+      <point x="217.6742832922141" y="3794.0" />
+      <point x="32.75" y="15.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.database.ApoderadoDB" relationship="CREATE">
+      <point x="41.666666666666686" y="-15.0" />
+      <point x="955.0214113234738" y="3586.0" />
+      <point x="1966.049283292214" y="3586.0" />
+      <point x="1966.049283292214" y="3536.0" />
+      <point x="2187.57745067817" y="3536.0" />
+      <point x="2187.57745067817" y="3130.0" />
+      <point x="4838.348862001643" y="3130.0" />
+      <point x="4838.348862001643" y="3040.0" />
+      <point x="4831.63995067817" y="3040.0" />
+      <point x="97.66666666666674" y="72.0" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.data.datafile.Datafile" relationship="CREATE">
+      <point x="31.25" y="-15.0" />
+      <point x="1306.6329120427627" y="3160.0" />
+      <point x="2064.57745067817" y="3160.0" />
+      <point x="2064.57745067817" y="2604.0" />
+      <point x="2144.82745067817" y="2604.0" />
+      <point x="2144.82745067817" y="1701.0" />
+      <point x="3279.6816173448365" y="1701.0" />
+      <point x="3279.6816173448365" y="1511.0" />
+      <point x="3576.3829120427627" y="1511.0" />
+      <point x="-66.0" y="139.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.datafile.CursoDF" relationship="CREATE">
+      <point x="43.666666666666515" y="-15.0" />
+      <point x="143.90374537609614" y="4781.0" />
+      <point x="5762.916666666666" y="4781.0" />
+      <point x="5762.916666666666" y="4771.0" />
+      <point x="5782.98707870943" y="4771.0" />
+      <point x="5782.98707870943" y="3546.0" />
+      <point x="4588.167244656806" y="3546.0" />
+      <point x="0.0" y="161.0" />
+    </edge>
+    <edge source="aplicacion.controllers.gui" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="-32.75" y="-15.0" />
+      <point x="152.1742832922141" y="3710.0" />
+      <point x="206.6742832922141" y="3710.0" />
+      <point x="206.6742832922141" y="3680.0" />
+      <point x="168.1742832922141" y="3680.0" />
+      <point x="168.1742832922141" y="1561.0" />
+      <point x="113.17428329221411" y="1561.0" />
+      <point x="113.17428329221411" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.models.Alumno" target="aplicacion.models.Persona" relationship="GENERALIZATION">
+      <point x="-231.0" y="-149.5" />
+      <point x="2207.8829120427627" y="675.0" />
+      <point x="2140.799283292214" y="675.0" />
+      <point x="2140.799283292214" y="292.0" />
+      <point x="2194.07745067817" y="292.0" />
+      <point x="2194.07745067817" y="252.0" />
+      <point x="2719.4316173448365" y="252.0" />
+      <point x="-71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.datafile.AlumnoDF" relationship="CREATE">
+      <point x="41.666666666666686" y="-15.0" />
+      <point x="955.0214113234738" y="3586.0" />
+      <point x="1966.049283292214" y="3586.0" />
+      <point x="1966.049283292214" y="3536.0" />
+      <point x="2187.57745067817" y="3536.0" />
+      <point x="2187.57745067817" y="3120.0" />
+      <point x="4037.6041666666665" y="3120.0" />
+      <point x="4037.6041666666665" y="3010.0" />
+      <point x="3955.6041666666665" y="3010.0" />
+      <point x="-87.0" y="161.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.models.Apoderado" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="913.354744656807" y="3546.0" />
+      <point x="809.8749999999998" y="3546.0" />
+      <point x="809.8749999999998" y="2604.0" />
+      <point x="945.604744656807" y="2604.0" />
+      <point x="945.604744656807" y="675.0" />
+      <point x="1308.3274506781697" y="675.0" />
+      <point x="1308.3274506781697" y="645.0" />
+      <point x="2212.799283292214" y="645.0" />
+      <point x="-123.0" y="72.5" />
+    </edge>
+    <edge source="aplicacion.data.database.RegistroAsistenciaDB" target="aplicacion.data.RegistroAsistenciaData" relationship="REALIZATION">
+      <point x="0.0" y="-116.5" />
+      <point x="5286.104166666666" y="2594.0" />
+      <point x="5489.29957870943" y="2594.0" />
+      <point x="5489.29957870943" y="1138.0" />
+      <point x="4768.04957870943" y="1138.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.data.database.ProfesorDB" relationship="CREATE">
+      <point x="-88.125" y="-128.0" />
+      <point x="5164.715949958881" y="4472.0" />
+      <point x="1950.917244656807" y="4472.0" />
+      <point x="1950.917244656807" y="4462.0" />
+      <point x="421.973284011503" y="4462.0" />
+      <point x="421.973284011503" y="4452.0" />
+      <point x="2482.9316173448365" y="4452.0" />
+      <point x="-65.25" y="94.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.data.CursoData" relationship="REALIZATION">
+      <point x="88.125" y="-161.0" />
+      <point x="4676.292244656806" y="3060.0" />
+      <point x="4655.723284011503" y="3060.0" />
+      <point x="4655.723284011503" y="3030.0" />
+      <point x="1250.7162453760957" y="3030.0" />
+      <point x="78.33333333333331" y="94.0" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.models.Profesor" relationship="CREATE">
+      <point x="31.25" y="-15.0" />
+      <point x="1306.6329120427627" y="3160.0" />
+      <point x="2064.57745067817" y="3160.0" />
+      <point x="2064.57745067817" y="3140.0" />
+      <point x="2053.57745067817" y="3140.0" />
+      <point x="2053.57745067817" y="2574.0" />
+      <point x="2133.82745067817" y="2574.0" />
+      <point x="2133.82745067817" y="1651.0" />
+      <point x="2795.8829120427627" y="1651.0" />
+      <point x="2795.8829120427627" y="1168.0" />
+      <point x="2855.6329120427627" y="1168.0" />
+      <point x="2855.6329120427627" y="1038.0" />
+      <point x="694.1326166255476" y="1038.0" />
+      <point x="132.33333333333337" y="83.5" />
+    </edge>
+    <edge source="aplicacion.data.RegistroAsistenciaData" target="aplicacion.models.IDAsistencia" relationship="DEPENDENCY">
+      <point x="0.0" y="-105.0" />
+      <point x="4768.04957870943" y="282.0" />
+      <point x="3392.4316173448365" y="282.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.data.CursoData" target="aplicacion.models.IDCurso" relationship="DEPENDENCY">
+      <point x="0.0" y="-94.0" />
+      <point x="1172.3829120427627" y="2644.0" />
+      <point x="1241.3749999999998" y="2644.0" />
+      <point x="1241.3749999999998" y="1601.0" />
+      <point x="1870.8829120427627" y="1601.0" />
+      <point x="1870.8829120427627" y="1128.0" />
+      <point x="4472.04957870943" y="1128.0" />
+      <point x="4472.04957870943" y="1028.0" />
+      <point x="2042.3829120427624" y="1028.0" />
+      <point x="60.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.models.Alumno" relationship="CREATE">
+      <point x="43.666666666666515" y="-15.0" />
+      <point x="143.90374537609614" y="4781.0" />
+      <point x="5762.916666666666" y="4781.0" />
+      <point x="5762.916666666666" y="4771.0" />
+      <point x="5782.98707870943" y="4771.0" />
+      <point x="5782.98707870943" y="1118.0" />
+      <point x="4881.723284011503" y="1118.0" />
+      <point x="4881.723284011503" y="1018.0" />
+      <point x="2669.8829120427627" y="1018.0" />
+      <point x="231.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.views.cli" relationship="CREATE">
+      <point x="-46.875" y="15.0" />
+      <point x="866.479744656807" y="3658.0" />
+      <point x="830.854744656807" y="3658.0" />
+      <point x="830.854744656807" y="3630.5" />
+      <point x="-62.5" y="7.5" />
+    </edge>
+    <edge source="aplicacion.data.AlumnoData" target="aplicacion.models.Alumno" relationship="DEPENDENCY">
+      <point x="0.0" y="-94.0" />
+      <point x="1869.5774506781697" y="1621.0" />
+      <point x="2165.8829120427627" y="1621.0" />
+      <point x="2165.8829120427627" y="1148.0" />
+      <point x="2438.8829120427627" y="1148.0" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.database.ProfesorDB" relationship="CREATE">
+      <point x="46.875" y="15.0" />
+      <point x="960.229744656807" y="3680.0" />
+      <point x="949.604744656807" y="3680.0" />
+      <point x="949.604744656807" y="3710.0" />
+      <point x="982.354744656807" y="3710.0" />
+      <point x="982.354744656807" y="4169.0" />
+      <point x="1313.167244656807" y="4169.0" />
+      <point x="1313.167244656807" y="4199.0" />
+      <point x="2548.1816173448365" y="4199.0" />
+      <point x="0.0" y="-94.5" />
+    </edge>
+    <edge source="aplicacion.models.Alumno" target="aplicacion.models.IDAsistencia" relationship="TO_MANY">
+      <point x="0.0" y="-149.5" />
+      <point x="2438.8829120427627" y="675.0" />
+      <point x="2486.82745067817" y="675.0" />
+      <point x="2486.82745067817" y="645.0" />
+      <point x="2530.799283292214" y="645.0" />
+      <point x="2530.799283292214" y="292.0" />
+      <point x="2584.07745067817" y="292.0" />
+      <point x="2584.07745067817" y="242.0" />
+      <point x="3321.4316173448365" y="242.0" />
+      <point x="-71.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="88.125" y="-128.0" />
+      <point x="5340.965949958881" y="4472.0" />
+      <point x="5737.479166666666" y="4472.0" />
+      <point x="5737.479166666666" y="4462.0" />
+      <point x="5771.98707870943" y="4462.0" />
+      <point x="5771.98707870943" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.AlumnoData" relationship="TO_ONE">
+      <point x="-41.66666666666663" y="-15.0" />
+      <point x="871.6880779901403" y="3586.0" />
+      <point x="479.85474465680704" y="3586.0" />
+      <point x="479.85474465680704" y="3576.0" />
+      <point x="589.854744656807" y="3576.0" />
+      <point x="589.854744656807" y="2534.0" />
+      <point x="1762.2441173448365" y="2534.0" />
+      <point x="-107.33333333333326" y="94.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.datafile.CursoDF" relationship="CREATE">
+      <point x="41.666666666666686" y="-15.0" />
+      <point x="955.0214113234738" y="3586.0" />
+      <point x="1966.049283292214" y="3586.0" />
+      <point x="1966.049283292214" y="3556.0" />
+      <point x="4588.167244656806" y="3556.0" />
+      <point x="0.0" y="161.0" />
+    </edge>
+    <edge source="aplicacion.data.database.ProfesorDB" target="aplicacion.data.database.DBConnection" relationship="DEPENDENCY">
+      <point x="87.0" y="-94.5" />
+      <point x="2635.1816173448365" y="4199.0" />
+      <point x="2987.9791666666665" y="4199.0" />
+      <point x="2987.9791666666665" y="4169.0" />
+      <point x="2351.4316173448365" y="4169.0" />
+      <point x="0.0" y="83.5" />
+    </edge>
+    <edge source="aplicacion.data.RegistroAsistenciaData" target="aplicacion.models.RegistroAsistencia" relationship="DEPENDENCY">
+      <point x="0.0" y="-105.0" />
+      <point x="4768.04957870943" y="655.0" />
+      <point x="3401.6329120427627" y="655.0" />
+      <point x="0.0" y="150.0" />
+    </edge>
+    <edge source="aplicacion.models.Curso" target="aplicacion.models.Alumno" relationship="DEPENDENCY">
+      <point x="0.0" y="-149.5" />
+      <point x="1280.1329120427627" y="1168.0" />
+      <point x="1291.8274506781697" y="1168.0" />
+      <point x="1291.8274506781697" y="1118.0" />
+      <point x="2438.8829120427627" y="1118.0" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.data.database.ProfesorDB" target="aplicacion.data.database.SQLSentences" relationship="DEPENDENCY">
+      <point x="87.0" y="-94.5" />
+      <point x="2635.1816173448365" y="4199.0" />
+      <point x="2987.9791666666665" y="4199.0" />
+      <point x="2987.9791666666665" y="4159.0" />
+      <point x="3219.6816173448365" y="4159.0" />
+      <point x="3219.6816173448365" y="2614.0" />
+      <point x="5357.79957870943" y="2614.0" />
+      <point x="0.0" y="369.5" />
+    </edge>
+    <edge source="aplicacion.models.Alumno" target="aplicacion.models.Curso" relationship="DEPENDENCY">
+      <point x="0.0" y="149.5" />
+      <point x="2438.8829120427627" y="1118.0" />
+      <point x="1291.8274506781697" y="1118.0" />
+      <point x="1291.8274506781697" y="1168.0" />
+      <point x="1280.1329120427627" y="1168.0" />
+      <point x="0.0" y="-149.5" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.database.ProfesorDB" relationship="CREATE">
+      <point x="43.666666666666515" y="-15.0" />
+      <point x="143.90374537609614" y="4781.0" />
+      <point x="5762.916666666666" y="4781.0" />
+      <point x="5762.916666666666" y="4771.0" />
+      <point x="421.97328401150344" y="4771.0" />
+      <point x="421.973284011503" y="4452.0" />
+      <point x="2482.9316173448365" y="4452.0" />
+      <point x="-65.25" y="94.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDF" target="aplicacion.data.datafile.Datafile" relationship="CREATE">
+      <point x="-43.5" y="-161.0" />
+      <point x="3999.1041666666665" y="2644.0" />
+      <point x="4026.6672446568073" y="2644.0" />
+      <point x="4026.6672446568073" y="2524.0" />
+      <point x="3705.3409499588806" y="2524.0" />
+      <point x="3705.3409499588806" y="1701.0" />
+      <point x="3279.6816173448365" y="1701.0" />
+      <point x="3279.6816173448365" y="1511.0" />
+      <point x="3576.3829120427627" y="1511.0" />
+      <point x="-66.0" y="139.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.ApoderadoData" relationship="TO_ONE">
+      <point x="-43.66666666666674" y="-15.0" />
+      <point x="56.570412042762655" y="4781.0" />
+      <point x="21.5" y="4781.0" />
+      <point x="21.5" y="1741.0" />
+      <point x="208.72328401150298" y="1741.0" />
+      <point x="208.72328401150298" y="1551.0" />
+      <point x="1531.966245376096" y="1551.0" />
+      <point x="-97.66666666666674" y="60.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ApoderadoDF" target="aplicacion.data.ApoderadoData" relationship="REALIZATION">
+      <point x="110.25" y="-105.5" />
+      <point x="3658.0909499588806" y="1681.0" />
+      <point x="4077.8829120427627" y="1681.0" />
+      <point x="4077.8829120427627" y="1521.0" />
+      <point x="1727.2995787094296" y="1521.0" />
+      <point x="97.66666666666674" y="60.5" />
+    </edge>
+    <edge source="aplicacion.controllers.gui" target="aplicacion.models.Apoderado" relationship="DEPENDENCY">
+      <point x="-32.75" y="-15.0" />
+      <point x="152.1742832922141" y="3710.0" />
+      <point x="206.6742832922141" y="3710.0" />
+      <point x="206.6742832922141" y="3680.0" />
+      <point x="190.1742832922141" y="3680.0" />
+      <point x="190.1742832922141" y="2554.0" />
+      <point x="332.47974465680727" y="2554.0" />
+      <point x="332.0492832922141" y="675.0" />
+      <point x="1308.3274506781697" y="675.0" />
+      <point x="1308.3274506781697" y="645.0" />
+      <point x="2212.799283292214" y="645.0" />
+      <point x="-123.0" y="72.5" />
+    </edge>
+    <edge source="aplicacion.data.database.ApoderadoDB" target="aplicacion.models.Apoderado" relationship="CREATE">
+      <point x="0.0" y="-72.0" />
+      <point x="4733.973284011503" y="2594.0" />
+      <point x="5215.29957870943" y="2594.0" />
+      <point x="5215.29957870943" y="675.0" />
+      <point x="3499.8829120427627" y="675.0" />
+      <point x="3499.8829120427627" y="635.0" />
+      <point x="2458.799283292214" y="635.0" />
+      <point x="123.0" y="72.5" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.controllers.exceptions.InvalidNumberException" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="100.23707870942962" y="4781.0" />
+      <point x="89.15374537609614" y="4781.0" />
+      <point x="89.15374537609614" y="4771.0" />
+      <point x="257.973284011503" y="4771.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="aplicacion.models.Curso" target="aplicacion.models.IDCurso" relationship="CREATE">
+      <point x="122.0" y="-149.5" />
+      <point x="1402.1329120427627" y="1168.0" />
+      <point x="1982.3829120427627" y="1168.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.data.ProfesorData" target="aplicacion.models.Curso" relationship="DEPENDENCY">
+      <point x="0.0" y="-83.0" />
+      <point x="804.604744656807" y="1741.0" />
+      <point x="956.604744656807" y="1741.0" />
+      <point x="956.604744656807" y="1591.0" />
+      <point x="1280.1329120427627" y="1591.0" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.models.Alumno" relationship="CREATE">
+      <point x="31.25" y="-15.0" />
+      <point x="1306.6329120427627" y="3160.0" />
+      <point x="2064.57745067817" y="3160.0" />
+      <point x="2064.57745067817" y="3140.0" />
+      <point x="2053.57745067817" y="3140.0" />
+      <point x="2053.57745067817" y="2584.0" />
+      <point x="2133.82745067817" y="2584.0" />
+      <point x="2133.82745067817" y="1661.0" />
+      <point x="2795.8829120427627" y="1661.0" />
+      <point x="2795.8829120427627" y="1118.0" />
+      <point x="4881.723284011503" y="1118.0" />
+      <point x="4881.723284011503" y="1018.0" />
+      <point x="2669.8829120427627" y="1018.0" />
+      <point x="231.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.ApoderadoData" relationship="TO_ONE">
+      <point x="-41.66666666666663" y="-15.0" />
+      <point x="871.6880779901403" y="3586.0" />
+      <point x="479.85474465680704" y="3586.0" />
+      <point x="479.85474465680704" y="1741.0" />
+      <point x="208.72328401150298" y="1741.0" />
+      <point x="208.72328401150298" y="1551.0" />
+      <point x="1531.966245376096" y="1551.0" />
+      <point x="-97.66666666666674" y="60.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ApoderadoDF" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="36.75" y="-105.5" />
+      <point x="3584.5909499588806" y="1671.0" />
+      <point x="3812.0079120427627" y="1671.0" />
+      <point x="3812.0079120427627" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ProfesorDF" target="aplicacion.data.datafile.Datafile" relationship="CREATE">
+      <point x="-32.875" y="-128.0" />
+      <point x="2874.8541666666665" y="2644.0" />
+      <point x="2913.1041666666665" y="2644.0" />
+      <point x="2913.1041666666665" y="1701.0" />
+      <point x="3279.6816173448365" y="1701.0" />
+      <point x="3279.6816173448365" y="1511.0" />
+      <point x="3576.3829120427627" y="1511.0" />
+      <point x="-66.0" y="139.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.data.datafile.Datafile" relationship="CREATE">
+      <point x="-88.125" y="-161.0" />
+      <point x="4500.042244656806" y="3160.0" />
+      <point x="3357.119695334977" y="3160.0" />
+      <point x="3357.119695334977" y="3040.0" />
+      <point x="3279.6816173448365" y="3040.0" />
+      <point x="3279.6816173448365" y="1511.0" />
+      <point x="3576.3829120427627" y="1511.0" />
+      <point x="-66.0" y="139.0" />
+    </edge>
+    <edge source="aplicacion.controllers.exceptions.InvalidNumberException" target="aplicacion.controllers.gui" relationship="DEPENDENCY">
+      <point x="0.0" y="-39.0" />
+      <point x="257.973284011503" y="3794.0" />
+      <point x="217.6742832922141" y="3794.0" />
+      <point x="32.75" y="15.0" />
+    </edge>
+    <edge source="aplicacion.controllers.gui" target="aplicacion.views.cli" relationship="DEPENDENCY">
+      <point x="-32.75" y="-15.0" />
+      <point x="152.1742832922141" y="3710.0" />
+      <point x="206.6742832922141" y="3710.0" />
+      <point x="206.6742832922141" y="3700.0" />
+      <point x="939.604744656807" y="3700.0" />
+      <point x="939.604744656807" y="3680.0" />
+      <point x="928.979744656807" y="3680.0" />
+      <point x="15.625" y="15.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.data.datafile.AlumnoDF" relationship="CREATE">
+      <point x="-88.125" y="-161.0" />
+      <point x="4500.042244656806" y="3160.0" />
+      <point x="3357.119695334977" y="3160.0" />
+      <point x="3357.119695334977" y="3060.0" />
+      <point x="4037.6041666666665" y="3060.0" />
+      <point x="4037.6041666666665" y="3010.0" />
+      <point x="3955.6041666666665" y="3010.0" />
+      <point x="-87.0" y="161.0" />
+    </edge>
+    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.data.database.RegistroAsistenciaDB" relationship="TO_ONE">
+      <point x="-122.625" y="-128.0" />
+      <point x="5009.465949958881" y="3160.0" />
+      <point x="5039.340949958881" y="3160.0" />
+      <point x="5039.340949958881" y="3050.0" />
+      <point x="5286.104166666666" y="3050.0" />
+      <point x="0.0" y="116.5" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.database.AlumnoDB" relationship="CREATE">
+      <point x="41.666666666666686" y="-15.0" />
+      <point x="955.0214113234738" y="3586.0" />
+      <point x="1966.049283292214" y="3586.0" />
+      <point x="1966.049283292214" y="3576.0" />
+      <point x="5181.090949958881" y="3576.0" />
+      <point x="5181.090949958881" y="3526.0" />
+      <point x="5132.090949958881" y="3526.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ApoderadoDF" target="aplicacion.data.datafile.Datafile" relationship="CREATE">
+      <point x="-110.25" y="-105.5" />
+      <point x="3437.5909499588806" y="1741.0" />
+      <point x="3609.3829120427627" y="1741.0" />
+      <point x="3609.3829120427627" y="1661.0" />
+      <point x="3279.6816173448365" y="1661.0" />
+      <point x="3279.6816173448365" y="1511.0" />
+      <point x="3576.3829120427627" y="1511.0" />
+      <point x="-66.0" y="139.0" />
+    </edge>
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.data.database.AlumnoDB" relationship="TO_ONE">
+      <point x="-29.375" y="-128.0" />
+      <point x="5223.465949958881" y="4472.0" />
+      <point x="5231.167244656806" y="4472.0" />
+      <point x="5231.417244656806" y="3586.0" />
+      <point x="5241.090949958881" y="3586.0" />
+      <point x="109.0" y="128.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.models.Alumno" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="913.354744656807" y="3546.0" />
+      <point x="2166.07745067817" y="3546.0" />
+      <point x="2166.07745067817" y="1671.0" />
+      <point x="2833.8829120427627" y="1671.0" />
+      <point x="2833.8829120427627" y="1148.0" />
+      <point x="2438.8829120427627" y="1148.0" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.data.database.ProfesorDB" target="aplicacion.data.ProfesorData" relationship="REALIZATION">
+      <point x="-87.0" y="-94.5" />
+      <point x="2461.1816173448365" y="4179.0" />
+      <point x="458.160784011503" y="4179.0" />
+      <point x="458.375" y="2614.0" />
+      <point x="1941.1329120427627" y="2614.0" />
+      <point x="1941.1329120427627" y="2524.0" />
+      <point x="891.604744656807" y="2524.0" />
+      <point x="87.0" y="83.0" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.data.CursoData" relationship="DEPENDENCY">
+      <point x="-31.25" y="-15.0" />
+      <point x="1244.1329120427627" y="3160.0" />
+      <point x="1300.3829120427627" y="3160.0" />
+      <point x="1300.3829120427627" y="3130.0" />
+      <point x="1172.3829120427627" y="3130.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.AlumnoData" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="100.23707870942962" y="4781.0" />
+      <point x="89.15374537609614" y="4781.0" />
+      <point x="89.15374537609614" y="4771.0" />
+      <point x="389.973284011503" y="4771.0" />
+      <point x="389.973284011503" y="3130.0" />
+      <point x="404.875" y="3130.0" />
+      <point x="404.875" y="2624.0" />
+      <point x="1869.5774506781697" y="2624.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.models.Alumno" target="aplicacion.models.Apoderado" relationship="DEPENDENCY">
+      <point x="231.0" y="-149.5" />
+      <point x="2669.8829120427627" y="675.0" />
+      <point x="2595.07745067817" y="675.0" />
+      <point x="2595.07745067817" y="655.0" />
+      <point x="1308.3274506781697" y="655.0" />
+      <point x="1308.3274506781697" y="645.0" />
+      <point x="2212.799283292214" y="645.0" />
+      <point x="-123.0" y="72.5" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.models.Apoderado" relationship="CREATE">
+      <point x="31.25" y="-15.0" />
+      <point x="1306.6329120427627" y="3160.0" />
+      <point x="2064.57745067817" y="3160.0" />
+      <point x="2064.57745067817" y="3140.0" />
+      <point x="2053.57745067817" y="3140.0" />
+      <point x="2053.57745067817" y="2564.0" />
+      <point x="2133.82745067817" y="2564.0" />
+      <point x="2133.82745067817" y="1641.0" />
+      <point x="2795.8829120427627" y="1641.0" />
+      <point x="2795.8829120427627" y="675.0" />
+      <point x="3499.8829120427627" y="675.0" />
+      <point x="3499.8829120427627" y="635.0" />
+      <point x="2458.799283292214" y="635.0" />
+      <point x="123.0" y="72.5" />
+    </edge>
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.data.database.ProfesorDB" relationship="TO_ONE">
+      <point x="-29.375" y="-128.0" />
+      <point x="5223.465949958881" y="4472.0" />
+      <point x="5231.167244656806" y="4472.0" />
+      <point x="5231.167244656806" y="4432.0" />
+      <point x="2613.4316173448365" y="4432.0" />
+      <point x="65.25" y="94.5" />
+    </edge>
+    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.data.database.DBConnection" relationship="DEPENDENCY">
+      <point x="-109.0" y="128.0" />
+      <point x="5023.090949958881" y="3566.0" />
+      <point x="2356.4316173448365" y="3566.0" />
+      <point x="2356.4316173448365" y="3943.0" />
+      <point x="2351.4316173448365" y="3943.0" />
+      <point x="0.0" y="-83.5" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.database.CursoDB" relationship="CREATE">
+      <point x="43.666666666666515" y="-15.0" />
+      <point x="143.90374537609614" y="4781.0" />
+      <point x="5762.916666666666" y="4781.0" />
+      <point x="5762.916666666666" y="4771.0" />
+      <point x="5252.840949958881" y="4771.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDF" target="aplicacion.models.Alumno" relationship="CREATE">
+      <point x="-43.5" y="-161.0" />
+      <point x="3999.1041666666665" y="2644.0" />
+      <point x="4026.6672446568073" y="2644.0" />
+      <point x="4026.6672446568073" y="2524.0" />
+      <point x="4386.167244656806" y="2524.0" />
+      <point x="4386.167244656806" y="1118.0" />
+      <point x="4881.723284011503" y="1118.0" />
+      <point x="4881.723284011503" y="1018.0" />
+      <point x="2669.8829120427627" y="1018.0" />
+      <point x="231.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.ApoderadoData" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="100.23707870942962" y="4781.0" />
+      <point x="89.15374537609614" y="4781.0" />
+      <point x="89.15374537609614" y="4771.0" />
+      <point x="76.5" y="4771.0" />
+      <point x="76.5" y="1731.0" />
+      <point x="551.2992832922141" y="1731.0" />
+      <point x="551.2992832922141" y="1541.0" />
+      <point x="1629.6329120427627" y="1541.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.ProfesorData" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="100.23707870942962" y="4781.0" />
+      <point x="89.15374537609614" y="4781.0" />
+      <point x="89.15374537609614" y="4771.0" />
+      <point x="76.5" y="4771.0" />
+      <point x="76.5" y="3150.0" />
+      <point x="354.0492832922141" y="3150.0" />
+      <point x="354.0492832922141" y="2634.0" />
+      <point x="804.604744656807" y="2634.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.controllers.cli" relationship="TO_ONE">
+      <point x="-25.0" y="15.0" />
+      <point x="1250.3829120427627" y="3388.0" />
+      <point x="1182.8829120427627" y="3388.0" />
+      <point x="1182.8829120427627" y="3335.5" />
+      <point x="-62.5" y="-7.5" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.views.cli" relationship="DEPENDENCY">
+      <point x="25.0" y="15.0" />
+      <point x="1300.3829120427627" y="3546.0" />
+      <point x="913.354744656807" y="3546.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.datafile.ProfesorDF" relationship="CREATE">
+      <point x="41.666666666666686" y="-15.0" />
+      <point x="955.0214113234738" y="3586.0" />
+      <point x="1966.049283292214" y="3586.0" />
+      <point x="1966.049283292214" y="3536.0" />
+      <point x="2177.07745067817" y="3536.0" />
+      <point x="2177.07745067817" y="3020.0" />
+      <point x="2841.9791666666665" y="3020.0" />
+      <point x="-65.75" y="128.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.views.gui" relationship="CREATE">
+      <point x="32.75" y="15.0" />
+      <point x="132.98707870942962" y="4862.0" />
+      <point x="4.737078709429625" y="4862.0" />
+      <point x="4.737078709429625" y="4809.5" />
+      <point x="-65.5" y="-7.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="29.375" y="-161.0" />
+      <point x="4617.542244656806" y="3140.0" />
+      <point x="4506.786362001643" y="3140.0" />
+      <point x="4506.786362001643" y="3060.0" />
+      <point x="4482.54957870943" y="3060.0" />
+      <point x="4482.54957870943" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.models.Apoderado" relationship="CREATE">
+      <point x="43.666666666666515" y="-15.0" />
+      <point x="143.90374537609614" y="4781.0" />
+      <point x="5762.916666666666" y="4781.0" />
+      <point x="5762.916666666666" y="4771.0" />
+      <point x="5782.98707870943" y="4771.0" />
+      <point x="5782.98707870943" y="675.0" />
+      <point x="3499.8829120427627" y="675.0" />
+      <point x="3499.8829120427627" y="635.0" />
+      <point x="2458.799283292214" y="635.0" />
+      <point x="123.0" y="72.5" />
+    </edge>
+    <edge source="aplicacion.models.Curso" target="aplicacion.models.Profesor" relationship="DEPENDENCY">
+      <point x="0.0" y="-149.5" />
+      <point x="1280.1329120427627" y="1168.0" />
+      <point x="1291.8274506781697" y="1168.0" />
+      <point x="1291.8274506781697" y="1098.0" />
+      <point x="561.7992832922141" y="1098.0" />
+      <point x="0.0" y="83.5" />
+    </edge>
+    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="40.875" y="-128.0" />
+      <point x="5172.965949958881" y="3160.0" />
+      <point x="5208.340949958881" y="3160.0" />
+      <point x="5208.340949958881" y="3100.0" />
+      <point x="5664.29957870943" y="3100.0" />
+      <point x="5664.29957870943" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.models.Alumno" target="aplicacion.models.RegistroAsistencia" relationship="DEPENDENCY">
+      <point x="231.0" y="-149.5" />
+      <point x="2669.8829120427627" y="675.0" />
+      <point x="2595.07745067817" y="675.0" />
+      <point x="2595.07745067817" y="665.0" />
+      <point x="3401.6329120427627" y="665.0" />
+      <point x="0.0" y="150.0" />
+    </edge>
+    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.data.database.ApoderadoDB" relationship="TO_ONE">
+      <point x="-122.625" y="-128.0" />
+      <point x="5009.465949958881" y="3160.0" />
+      <point x="5039.340949958881" y="3160.0" />
+      <point x="5039.340949958881" y="3050.0" />
+      <point x="4733.973284011503" y="3050.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+    <edge source="aplicacion.data.database.ProfesorDB" target="aplicacion.models.Curso" relationship="DEPENDENCY">
+      <point x="87.0" y="-94.5" />
+      <point x="2635.1816173448365" y="4199.0" />
+      <point x="2987.9791666666665" y="4199.0" />
+      <point x="2987.9791666666665" y="4159.0" />
+      <point x="2474.4316173448365" y="4159.0" />
+      <point x="2474.4316173448365" y="1721.0" />
+      <point x="1280.1329120427627" y="1721.0" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.RegistroAsistenciaDF" target="aplicacion.models.IDAsistencia" relationship="CREATE">
+      <point x="0.0" y="-150.0" />
+      <point x="4100.667244656807" y="1741.0" />
+      <point x="4026.619695334977" y="1741.0" />
+      <point x="4026.619695334977" y="1671.0" />
+      <point x="4067.3829120427627" y="1671.0" />
+      <point x="4067.3829120427627" y="272.0" />
+      <point x="4852.854166666666" y="272.0" />
+      <point x="4852.854166666666" y="252.0" />
+      <point x="3463.4316173448365" y="252.0" />
+      <point x="71.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.datafile.AlumnoDF" relationship="CREATE">
+      <point x="43.666666666666515" y="-15.0" />
+      <point x="143.90374537609614" y="4781.0" />
+      <point x="5762.916666666666" y="4781.0" />
+      <point x="5762.916666666666" y="4771.0" />
+      <point x="5782.98707870943" y="4771.0" />
+      <point x="5782.98707870943" y="3120.0" />
+      <point x="4037.6041666666665" y="3120.0" />
+      <point x="4037.6041666666665" y="3010.0" />
+      <point x="3955.6041666666665" y="3010.0" />
+      <point x="-87.0" y="161.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.database.ApoderadoDB" relationship="CREATE">
+      <point x="43.666666666666515" y="-15.0" />
+      <point x="143.90374537609614" y="4781.0" />
+      <point x="5762.916666666666" y="4781.0" />
+      <point x="5762.916666666666" y="4771.0" />
+      <point x="5782.98707870943" y="4771.0" />
+      <point x="5782.98707870943" y="3130.0" />
+      <point x="4838.348862001643" y="3130.0" />
+      <point x="4838.348862001643" y="3040.0" />
+      <point x="4831.63995067817" y="3040.0" />
+      <point x="97.66666666666674" y="72.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.controllers.cli" relationship="CREATE">
+      <point x="41.666666666666686" y="-15.0" />
+      <point x="955.0214113234738" y="3586.0" />
+      <point x="1966.049283292214" y="3586.0" />
+      <point x="1966.049283292214" y="3536.0" />
+      <point x="1325.3829120427627" y="3536.0" />
+      <point x="50.0" y="15.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.RegistroAsistenciaDF" target="aplicacion.data.datafile.Datafile" relationship="CREATE">
+      <point x="0.0" y="-150.0" />
+      <point x="4100.667244656807" y="1741.0" />
+      <point x="4026.619695334977" y="1741.0" />
+      <point x="4026.619695334977" y="1641.0" />
+      <point x="3279.6816173448365" y="1641.0" />
+      <point x="3279.6816173448365" y="1511.0" />
+      <point x="3576.3829120427627" y="1511.0" />
+      <point x="-66.0" y="139.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.AlumnoData" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="913.354744656807" y="3546.0" />
+      <point x="2086.07745067817" y="3546.0" />
+      <point x="2086.07745067817" y="2624.0" />
+      <point x="1869.5774506781697" y="2624.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.data.ApoderadoData" target="aplicacion.models.Apoderado" relationship="DEPENDENCY">
+      <point x="0.0" y="-60.5" />
+      <point x="1629.6329120427627" y="675.0" />
+      <point x="1308.3274506781697" y="675.0" />
+      <point x="1308.3274506781697" y="645.0" />
+      <point x="2212.799283292214" y="645.0" />
+      <point x="-123.0" y="72.5" />
+    </edge>
+    <edge source="aplicacion.data.database.RegistroAsistenciaDB" target="aplicacion.models.RegistroAsistencia" relationship="CREATE">
+      <point x="183.33333333333337" y="-116.5" />
+      <point x="5469.4375" y="2624.0" />
+      <point x="5653.29957870943" y="2624.0" />
+      <point x="5653.29957870943" y="645.0" />
+      <point x="4026.619695334977" y="645.0" />
+      <point x="4026.619695334977" y="635.0" />
+      <point x="3559.966245376096" y="635.0" />
+      <point x="158.33333333333348" y="150.0" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.data.ProfesorData" relationship="DEPENDENCY">
+      <point x="-31.25" y="-15.0" />
+      <point x="1244.1329120427627" y="3160.0" />
+      <point x="1300.3829120427627" y="3160.0" />
+      <point x="1300.3829120427627" y="2634.0" />
+      <point x="804.604744656807" y="2634.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.datafile.ProfesorDF" relationship="CREATE">
+      <point x="43.666666666666515" y="-15.0" />
+      <point x="143.90374537609614" y="4781.0" />
+      <point x="5762.916666666666" y="4781.0" />
+      <point x="5762.916666666666" y="4771.0" />
+      <point x="400.97328401150344" y="4771.0" />
+      <point x="400.973284011503" y="3150.0" />
+      <point x="2177.07745067817" y="3150.0" />
+      <point x="2177.07745067817" y="3020.0" />
+      <point x="2841.9791666666665" y="3020.0" />
+      <point x="-65.75" y="128.0" />
+    </edge>
+    <edge source="aplicacion.controllers.gui" target="aplicacion.models.Curso" relationship="DEPENDENCY">
+      <point x="-32.75" y="-15.0" />
+      <point x="152.1742832922141" y="3710.0" />
+      <point x="206.6742832922141" y="3710.0" />
+      <point x="206.6742832922141" y="3680.0" />
+      <point x="230.72328401150298" y="3680.0" />
+      <point x="230.72328401150298" y="3130.0" />
+      <point x="304.97974465680727" y="3130.0" />
+      <point x="304.97974465680727" y="2594.0" />
+      <point x="381.5492832922141" y="2594.0" />
+      <point x="381.5492832922141" y="1721.0" />
+      <point x="1280.1329120427627" y="1721.0" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.data.database.ApoderadoDB" target="aplicacion.data.database.SQLSentences" relationship="DEPENDENCY">
+      <point x="97.66666666666674" y="-72.0" />
+      <point x="4831.63995067817" y="2644.0" />
+      <point x="5226.29957870943" y="2644.0" />
+      <point x="5226.29957870943" y="2584.0" />
+      <point x="5357.79957870943" y="2584.0" />
+      <point x="0.0" y="369.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.models.IDCurso" relationship="DEPENDENCY">
+      <point x="29.375" y="-161.0" />
+      <point x="4617.542244656806" y="3140.0" />
+      <point x="4506.786362001643" y="3140.0" />
+      <point x="4506.786362001643" y="3060.0" />
+      <point x="4472.04957870943" y="3060.0" />
+      <point x="4472.04957870943" y="1028.0" />
+      <point x="2042.3829120427624" y="1028.0" />
+      <point x="60.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.ProfesorData" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="913.354744656807" y="3546.0" />
+      <point x="676.604744656807" y="3546.0" />
+      <point x="676.604744656807" y="2634.0" />
+      <point x="804.604744656807" y="2634.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.ApoderadoData" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="913.354744656807" y="3546.0" />
+      <point x="600.854744656807" y="3546.0" />
+      <point x="600.854744656807" y="1731.0" />
+      <point x="551.2992832922141" y="1731.0" />
+      <point x="551.2992832922141" y="1541.0" />
+      <point x="1629.6329120427627" y="1541.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDF" target="aplicacion.data.datafile.RegistroAsistenciaDF" relationship="TO_ONE">
+      <point x="-130.5" y="-161.0" />
+      <point x="3912.1041666666665" y="2644.0" />
+      <point x="3636.6672446568073" y="2644.0" />
+      <point x="3636.6672446568073" y="2534.0" />
+      <point x="3963.1672446568073" y="2534.0" />
+      <point x="-137.5" y="150.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.controllers.exceptions.DatabaseException" relationship="CREATE">
+      <point x="43.666666666666515" y="-15.0" />
+      <point x="143.90374537609614" y="4781.0" />
+      <point x="5762.916666666666" y="4781.0" />
+      <point x="5762.916666666666" y="4771.0" />
+      <point x="411.47328401150344" y="4771.0" />
+      <point x="411.473284011503" y="3943.0" />
+      <point x="806.854744656807" y="3943.0" />
+      <point x="-55.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.data.database.ApoderadoDB" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="97.66666666666674" y="-72.0" />
+      <point x="4831.63995067817" y="2644.0" />
+      <point x="5226.29957870943" y="2644.0" />
+      <point x="5226.29957870943" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.models.Curso" relationship="CREATE">
+      <point x="31.25" y="-15.0" />
+      <point x="1306.6329120427627" y="3160.0" />
+      <point x="2064.57745067817" y="3160.0" />
+      <point x="2064.57745067817" y="2594.0" />
+      <point x="2144.82745067817" y="2594.0" />
+      <point x="2144.82745067817" y="1711.0" />
+      <point x="3257.6816173448365" y="1711.0" />
+      <point x="3257.6816173448365" y="1531.0" />
+      <point x="1402.1329120427627" y="1531.0" />
+      <point x="122.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.views.cli" relationship="TO_ONE">
+      <point x="0.0" y="15.0" />
+      <point x="1275.3829120427627" y="3576.0" />
+      <point x="479.85474465680704" y="3576.0" />
+      <point x="479.85474465680704" y="3586.0" />
+      <point x="871.6880779901403" y="3586.0" />
+      <point x="-41.66666666666674" y="-15.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.controllers.cli" relationship="TO_ONE">
+      <point x="-41.66666666666663" y="-15.0" />
+      <point x="871.6880779901403" y="3586.0" />
+      <point x="479.85474465680704" y="3586.0" />
+      <point x="479.85474465680704" y="3576.0" />
+      <point x="1275.3829120427627" y="3576.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.AlumnoDF" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="43.5" y="-161.0" />
+      <point x="4086.1041666666665" y="2594.0" />
+      <point x="4397.167244656806" y="2594.0" />
+      <point x="4397.167244656806" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.models.Alumno" relationship="DEPENDENCY">
+      <point x="29.375" y="-161.0" />
+      <point x="4617.542244656806" y="3140.0" />
+      <point x="4506.786362001643" y="3140.0" />
+      <point x="4506.786362001643" y="3060.0" />
+      <point x="4472.04957870943" y="3060.0" />
+      <point x="4472.04957870943" y="1148.0" />
+      <point x="2438.8829120427627" y="1148.0" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.models.IDCurso" relationship="DEPENDENCY">
+      <point x="88.125" y="-128.0" />
+      <point x="5340.965949958881" y="4472.0" />
+      <point x="5737.479166666666" y="4472.0" />
+      <point x="5737.479166666666" y="4462.0" />
+      <point x="5771.98707870943" y="4462.0" />
+      <point x="5771.98707870943" y="1128.0" />
+      <point x="4472.04957870943" y="1128.0" />
+      <point x="4472.04957870943" y="1028.0" />
+      <point x="2042.3829120427624" y="1028.0" />
+      <point x="60.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ProfesorDF" target="aplicacion.data.datafile.Datafile" relationship="TO_ONE">
+      <point x="98.625" y="-128.0" />
+      <point x="3006.3541666666665" y="2594.0" />
+      <point x="3112.2441173448365" y="2594.0" />
+      <point x="3112.2441173448365" y="1691.0" />
+      <point x="3708.3829120427627" y="1691.0" />
+      <point x="66.0" y="139.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.ApoderadoDF" target="aplicacion.models.Apoderado" relationship="CREATE">
+      <point x="-110.25" y="-105.5" />
+      <point x="3437.5909499588806" y="1741.0" />
+      <point x="3609.3829120427627" y="1741.0" />
+      <point x="3609.3829120427627" y="1651.0" />
+      <point x="3499.8829120427627" y="1651.0" />
+      <point x="3499.8829120427627" y="635.0" />
+      <point x="2458.799283292214" y="635.0" />
+      <point x="123.0" y="72.5" />
+    </edge>
+    <edge source="aplicacion.models.Alumno" target="aplicacion.models.IDAsistencia" relationship="DEPENDENCY">
+      <point x="231.0" y="-149.5" />
+      <point x="2669.8829120427627" y="675.0" />
+      <point x="2595.07745067817" y="675.0" />
+      <point x="2595.07745067817" y="282.0" />
+      <point x="3392.4316173448365" y="282.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.data.database.AlumnoDB" target="aplicacion.data.AlumnoData" relationship="REALIZATION">
+      <point x="-40.875" y="-128.0" />
+      <point x="5091.215949958881" y="3090.0" />
+      <point x="5571.604166666666" y="3090.0" />
+      <point x="5571.604166666666" y="2634.0" />
+      <point x="4461.54957870943" y="2634.0" />
+      <point x="4461.54957870943" y="2544.0" />
+      <point x="1976.9107840115028" y="2544.0" />
+      <point x="107.33333333333326" y="94.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.CursoData" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="913.354744656807" y="3546.0" />
+      <point x="1172.3829120427627" y="3546.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.datafile.ApoderadoDF" relationship="CREATE">
+      <point x="41.666666666666686" y="-15.0" />
+      <point x="955.0214113234738" y="3586.0" />
+      <point x="1966.049283292214" y="3586.0" />
+      <point x="1966.049283292214" y="3536.0" />
+      <point x="2187.57745067817" y="3536.0" />
+      <point x="2187.57745067817" y="2604.0" />
+      <point x="3599.1041666666665" y="2604.0" />
+      <point x="3599.1041666666665" y="2524.0" />
+      <point x="3621.3409499588806" y="2524.0" />
+      <point x="73.5" y="105.5" />
+    </edge>
+    <edge source="aplicacion.data.database.CursoDB" target="aplicacion.data.database.SQLSentences" relationship="DEPENDENCY">
+      <point x="88.125" y="-128.0" />
+      <point x="5340.965949958881" y="4472.0" />
+      <point x="5737.479166666666" y="4472.0" />
+      <point x="5737.479166666666" y="4462.0" />
+      <point x="5771.98707870943" y="4462.0" />
+      <point x="5771.98707870943" y="2614.0" />
+      <point x="5357.79957870943" y="2614.0" />
+      <point x="0.0" y="369.5" />
+    </edge>
+    <edge source="aplicacion.controllers.cli" target="aplicacion.data.AlumnoData" relationship="DEPENDENCY">
+      <point x="-31.25" y="-15.0" />
+      <point x="1244.1329120427627" y="3160.0" />
+      <point x="1300.3829120427627" y="3160.0" />
+      <point x="1300.3829120427627" y="3140.0" />
+      <point x="1869.5774506781697" y="3140.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.controllers.exceptions.DatabaseException" relationship="CREATE">
+      <point x="46.875" y="15.0" />
+      <point x="960.229744656807" y="3680.0" />
+      <point x="949.604744656807" y="3680.0" />
+      <point x="949.604744656807" y="3710.0" />
+      <point x="916.854744656807" y="3710.0" />
+      <point x="55.0" y="-50.0" />
+    </edge>
+    <edge source="aplicacion.models.Profesor" target="aplicacion.models.Persona" relationship="GENERALIZATION">
+      <point x="0.0" y="-83.5" />
+      <point x="561.7992832922141" y="292.0" />
+      <point x="2194.07745067817" y="292.0" />
+      <point x="2194.07745067817" y="252.0" />
+      <point x="2719.4316173448365" y="252.0" />
+      <point x="-71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.models.Alumno" target="aplicacion.models.RegistroAsistencia" relationship="TO_MANY">
+      <point x="0.0" y="-149.5" />
+      <point x="2438.8829120427627" y="675.0" />
+      <point x="2486.82745067817" y="675.0" />
+      <point x="2486.82745067817" y="645.0" />
+      <point x="3243.2995787094296" y="645.0" />
+      <point x="-158.33333333333326" y="150.0" />
+    </edge>
+    <edge source="aplicacion.models.Alumno" target="aplicacion.models.Apoderado" relationship="TO_ONE">
+      <point x="0.0" y="-149.5" />
+      <point x="2438.8829120427627" y="675.0" />
+      <point x="2486.82745067817" y="675.0" />
+      <point x="2486.82745067817" y="645.0" />
+      <point x="2335.799283292214" y="645.0" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.models.Curso" relationship="CREATE">
+      <point x="-88.125" y="-161.0" />
+      <point x="4500.042244656806" y="3160.0" />
+      <point x="3357.119695334977" y="3160.0" />
+      <point x="3357.119695334977" y="3040.0" />
+      <point x="3279.6816173448365" y="3040.0" />
+      <point x="3279.6816173448365" y="1711.0" />
+      <point x="3257.6816173448365" y="1711.0" />
+      <point x="3257.6816173448365" y="1531.0" />
+      <point x="1402.1329120427627" y="1531.0" />
+      <point x="122.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.data.database.RegistroAsistenciaDB" target="aplicacion.models.IDAsistencia" relationship="CREATE">
+      <point x="183.33333333333337" y="-116.5" />
+      <point x="5469.4375" y="2624.0" />
+      <point x="5653.29957870943" y="2624.0" />
+      <point x="5653.29957870943" y="272.0" />
+      <point x="4852.854166666666" y="272.0" />
+      <point x="4852.854166666666" y="252.0" />
+      <point x="3463.4316173448365" y="252.0" />
+      <point x="71.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.RegistroAsistenciaDF" target="aplicacion.models.RegistroAsistencia" relationship="CREATE">
+      <point x="0.0" y="-150.0" />
+      <point x="4100.667244656807" y="1741.0" />
+      <point x="4026.619695334977" y="1741.0" />
+      <point x="4026.619695334977" y="635.0" />
+      <point x="3559.966245376096" y="635.0" />
+      <point x="158.33333333333348" y="150.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.data.datafile.AlumnoDF" relationship="TO_ONE">
+      <point x="-29.375" y="-161.0" />
+      <point x="4558.792244656806" y="3150.0" />
+      <point x="4395.590949958881" y="3150.0" />
+      <point x="4395.590949958881" y="3020.0" />
+      <point x="4129.604166666666" y="3020.0" />
+      <point x="87.0" y="161.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.ProfesorData" relationship="TO_ONE">
+      <point x="-43.66666666666674" y="-15.0" />
+      <point x="56.570412042762655" y="4781.0" />
+      <point x="21.5" y="4781.0" />
+      <point x="21.5" y="2644.0" />
+      <point x="282.5492832922141" y="2644.0" />
+      <point x="282.5492832922141" y="2544.0" />
+      <point x="717.604744656807" y="2544.0" />
+      <point x="-87.0" y="83.0" />
+    </edge>
+    <edge source="aplicacion.data.datafile.CursoDF" target="aplicacion.data.datafile.ProfesorDF" relationship="TO_ONE">
+      <point x="-29.375" y="-161.0" />
+      <point x="4558.792244656806" y="3150.0" />
+      <point x="4395.590949958881" y="3150.0" />
+      <point x="4395.590949958881" y="3020.0" />
+      <point x="2973.4791666666665" y="3020.0" />
+      <point x="65.75" y="128.0" />
+    </edge>
+    <edge source="aplicacion.models.RegistroAsistencia" target="aplicacion.models.IDAsistencia" relationship="DEPENDENCY">
+      <point x="118.75" y="-150.0" />
+      <point x="3520.3829120427627" y="282.0" />
+      <point x="3392.4316173448365" y="282.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.models.Alumno" relationship="TO_MANY">
+      <point x="-43.66666666666674" y="-15.0" />
+      <point x="56.570412042762655" y="4781.0" />
+      <point x="21.5" y="4781.0" />
+      <point x="21.5" y="4771.0" />
+      <point x="11.0" y="4771.0" />
+      <point x="11.0" y="1088.0" />
+      <point x="219.22328401150298" y="1088.0" />
+      <point x="219.22328401150298" y="1048.0" />
+      <point x="2207.8829120427627" y="1048.0" />
+      <point x="-231.0" y="149.5" />
+    </edge>
+    <edge source="aplicacion.models.Curso" target="aplicacion.models.Profesor" relationship="TO_ONE">
+      <point x="-122.0" y="-149.5" />
+      <point x="1158.1329120427627" y="1158.0" />
+      <point x="214.22328401150298" y="1158.0" />
+      <point x="214.22328401150298" y="1068.0" />
+      <point x="209.22328401150298" y="1068.0" />
+      <point x="209.22328401150298" y="1058.0" />
+      <point x="429.4659499588806" y="1058.0" />
+      <point x="-132.33333333333337" y="83.5" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.datafile.ApoderadoDF" relationship="CREATE">
+      <point x="43.666666666666515" y="-15.0" />
+      <point x="143.90374537609614" y="4781.0" />
+      <point x="5762.916666666666" y="4781.0" />
+      <point x="5762.916666666666" y="4771.0" />
+      <point x="5782.98707870943" y="4771.0" />
+      <point x="5782.98707870943" y="2604.0" />
+      <point x="3599.1041666666665" y="2604.0" />
+      <point x="3599.1041666666665" y="2524.0" />
+      <point x="3621.3409499588806" y="2524.0" />
+      <point x="73.5" y="105.5" />
+    </edge>
+    <edge source="aplicacion.views.gui" target="aplicacion.data.CursoData" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="100.23707870942962" y="4781.0" />
+      <point x="89.15374537609614" y="4781.0" />
+      <point x="89.15374537609614" y="4771.0" />
+      <point x="389.973284011503" y="4771.0" />
+      <point x="389.973284011503" y="3140.0" />
+      <point x="1172.3829120427627" y="3140.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="aplicacion.data.database.ProfesorDB" target="aplicacion.models.Persona" relationship="DEPENDENCY">
+      <point x="87.0" y="-94.5" />
+      <point x="2635.1816173448365" y="4199.0" />
+      <point x="2987.9791666666665" y="4199.0" />
+      <point x="2987.9791666666665" y="4159.0" />
+      <point x="3153.6329120427627" y="4159.0" />
+      <point x="3153.6329120427627" y="262.0" />
+      <point x="3139.4316173448365" y="262.0" />
+      <point x="3139.4316173448365" y="232.0" />
+      <point x="2861.4316173448365" y="232.0" />
+      <point x="71.0" y="105.5" />
+    </edge>
+    <edge source="aplicacion.controllers.exceptions.DatabaseException" target="aplicacion.controllers.gui" relationship="DEPENDENCY">
+      <point x="-55.0" y="-50.0" />
+      <point x="806.854744656807" y="3794.0" />
+      <point x="217.6742832922141" y="3794.0" />
+      <point x="32.75" y="15.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.data.database.CursoDB" relationship="CREATE">
+      <point x="46.875" y="15.0" />
+      <point x="960.229744656807" y="3680.0" />
+      <point x="949.604744656807" y="3680.0" />
+      <point x="949.604744656807" y="3710.0" />
+      <point x="447.160784011503" y="3710.0" />
+      <point x="447.160784011503" y="4442.0" />
+      <point x="1950.917244656807" y="4442.0" />
+      <point x="1950.917244656807" y="4472.0" />
+      <point x="5164.715949958881" y="4472.0" />
+      <point x="-88.125" y="-128.0" />
+    </edge>
+    <edge source="aplicacion.views.cli" target="aplicacion.models.Profesor" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="913.354744656807" y="3546.0" />
+      <point x="606.104744656807" y="3546.0" />
+      <point x="606.104744656807" y="1168.0" />
+      <point x="561.7992832922141" y="1168.0" />
+      <point x="0.0" y="83.5" />
+    </edge>
+    <edge source="aplicacion.data.database.ProfesorDB" target="aplicacion.models.Profesor" relationship="CREATE">
+      <point x="0.0" y="-94.5" />
+      <point x="2548.1816173448365" y="4199.0" />
+      <point x="1313.167244656807" y="4199.0" />
+      <point x="1313.167244656807" y="4169.0" />
+      <point x="2228.4316173448365" y="4169.0" />
+      <point x="2228.4316173448365" y="1691.0" />
+      <point x="2855.6329120427627" y="1691.0" />
+      <point x="2855.6329120427627" y="1038.0" />
+      <point x="694.1326166255476" y="1038.0" />
+      <point x="132.33333333333337" y="83.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="0.3584598698481562" showDependencies="false" x="1027.5" y="912.0" />
-  <SelectedNodes>
-    <node>aplicacion.views.cli.CLI</node>
-    <node>aplicacion.data.datafile.AlumnoDatafile</node>
-    <node>aplicacion.views.cli.MenuCLI</node>
-    <node>aplicacion.models.Persona</node>
-    <node>aplicacion.views.cli.AlumnoViewCLI</node>
-    <node>aplicacion.models.RegistroAsistencia</node>
-    <node>aplicacion.data.database.SQLSentences</node>
-    <node>aplicacion.controllers.cli.CursoControllerCLI</node>
-    <node>aplicacion.data.datafile.ApoderadoDatafile</node>
-    <node>aplicacion.views.cli.AsistenciaViewCli</node>
-    <node>aplicacion.models.Curso</node>
-    <node>aplicacion.data.datafile.ProfesorDatafile</node>
-    <node>aplicacion.views.cli.UtilsCLI</node>
-    <node>aplicacion.models.Profesor</node>
-    <node>aplicacion.data.datafile.CursoDatafile</node>
-    <node>aplicacion.data.CursoData</node>
-    <node>aplicacion.data.database.CursoDB</node>
-    <node>aplicacion.data.AlumnoData</node>
-    <node>aplicacion.models.Apoderado</node>
-    <node>aplicacion.data.database.ProfesorDB</node>
-    <node>aplicacion.models.Alumno</node>
-    <node>aplicacion.controllers.cli.MenuControllerCLI</node>
-    <node>aplicacion.data.database.AlumnoDB</node>
-    <node>aplicacion.controllers.cli.AlumnoControllerCLI</node>
-    <node>aplicacion.views.cli.CursoViewCLI</node>
-    <node>aplicacion.data.database.ApoderadoDB</node>
-    <node>aplicacion.controllers.cli.AsistenciaControllerCLI</node>
-    <node>aplicacion.data.database.DBConnection</node>
-    <node>aplicacion.data.ProfesorData</node>
-    <node>aplicacion.data.datafile.Datafile</node>
-    <node>aplicacion.data.ApoderadoData</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic" zoom="0.15690290864399836" showDependencies="true" x="2891.5" y="2431.0" />
+  <SelectedNodes />
   <Categories>
+    <Category>Constructors</Category>
     <Category>Fields</Category>
+    <Category>Inner Classes</Category>
     <Category>Methods</Category>
+    <Category>Properties</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

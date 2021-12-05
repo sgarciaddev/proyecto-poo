@@ -16,13 +16,16 @@
 
 ## Indice
 
+- [Reporte final](#reporte-final)
 - [Instalación de la BBDD y Docker compose](database/README.md)
 - [Estructura de directorios](#estructura-de-directorios)
-  - [Mirada general](#mirada-general)
-  - [Estructura de clases](#estructura-de-clases)
 - [IDE de desarrollo](#ide)
 - [Descripción](#descripcion)
-- [To-do](markdown/todo.md)
+
+## Reporte final
+
+El reporte final de este proyecto fue escrito en LaTeX, y está disponible a través del repositorio de GitHub disponible
+en [el siguiente link](../../../reporte-final-poo)
 
 ## Base de datos
 
@@ -31,74 +34,6 @@ archivo `database/sql/dump.sql`. Para el desarrollo de la aplicación, se utiliz
 MySQL, cuyas instrucciones de instalación están [aquí](database/README.md).
 
 ## Estructura de directorios
-
-### Mirada general
-
-```
-.
-├── .gitignore
-├── pom.xml
-├── README.md
-├── nb-configuration.xml
-├── markdown/
-│   └── todo.md
-├── datafiles/
-│   ├── alumno.csv
-│   ├── apoderado.csv
-│   ├── curso.csv
-│   └── profesor.csv
-└── src/
-    └── main/
-        └── java/
-            ├── aplicacion.controllers/
-            │   ├── cli/
-            │   └── gui/
-            ├── aplicacion.data/
-            │   ├── datafile/
-            │   └── database/
-            ├── aplicacion.models
-            └── aplicacion.views/
-                ├── cli/
-                └── gui/
-```
-
-### Estructura de clases
-```
-.
-└── src/main/java/
-    ├── aplicacion.controllers.cli/
-    │   ├── AlumnoControllerCLI.java
-    │   └── CursoControllerCLI.java
-    ├── aplicacion.data/
-    │   ├── database/
-    │   │   ├── AlumnoDB.java
-    │   │   ├── ApoderadoDB.java
-    │   │   ├── CursoDB.java
-    │   │   ├── ProfesorDB.java
-    │   │   └── ConexionDB.java
-    │   ├── datafile/
-    │   │   ├── AlumnoDatafile.java
-    │   │   ├── ApoderadoDatafile.java
-    │   │   ├── CursoDatafile.java
-    │   │   ├── ProfesorDatafile.java
-    │   │   └── Datafile.java
-    │   ├── AlumnoData.java
-    │   ├── ApoderadoData.java
-    │   ├── CursoData.java
-    │   └── ProfesorData.java
-    ├── aplicacion.models/
-    │   ├── Alumno.java
-    │   ├── Apoderado.java
-    │   ├── Curso.java
-    │   ├── Persona.java
-    │   ├── Profesor.java
-    │   └── RegistroAsistencia.java
-    └── aplicacion.views.cli/
-        ├── AlumnoViewCLI.java
-        ├── CursoViewCLI.java
-        ├── CLI.java
-        └── UtilsCLI.java
-```
 
 Las carpetas en las que se divide el proyecto corresponden a:
 * Modelo -- Vista -- Controlador

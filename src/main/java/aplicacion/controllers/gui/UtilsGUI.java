@@ -21,7 +21,7 @@ public class UtilsGUI {
 
     public UtilsGUI() {
     }
-
+  
     // Todo: Generar documentacion
     /**
      *
@@ -81,6 +81,7 @@ public class UtilsGUI {
     }
 
     /**
+     * @param mensaje
      * Método para generar un mensaje de error y botón de confirmación
      *
      * @param mensaje Mensaje de error para el usuario
@@ -95,6 +96,9 @@ public class UtilsGUI {
     }
 
     /**
+     *
+     *
+     * @param mensaje
      * Método para generar un mensaje con información con botón de confirmación
      *
      * @param mensaje Mensaje con la información para el usuario
@@ -104,6 +108,8 @@ public class UtilsGUI {
     }
 
     /**
+     * @param mensaje
+     * @return
      * Método para generar un mensaje para confirmar opción y botón de confirmación
      *
      * @param mensaje Mensaje que contiene la información a confirmar.
