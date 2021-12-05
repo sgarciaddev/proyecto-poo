@@ -4,6 +4,7 @@
  */
 package aplicacion.views.gui;
 
+import aplicacion.controllers.exceptions.DatabaseException;
 import aplicacion.controllers.gui.CustomColors;
 import aplicacion.controllers.gui.ReportesControllerGUI;
 import aplicacion.controllers.gui.UtilsGUI;
@@ -82,14 +83,16 @@ public class GUI extends javax.swing.JFrame {
     }
 
     private void setDataType() {
-        if (DBConnection.connect() != null) {
-            UtilsGUI.infoMsg("La conexión con la base de datos fue exitosa.");
-            this.alumnoData = new AlumnoDB();
-            this.apoderadoData = new ApoderadoDB();
-            this.profesorData = new ProfesorDB();
-            this.cursoData = new CursoDB();
-        } else {
-            UtilsGUI.errorMsg("La conexión con la base de datos no pudo realizarse. Se utilizarán los datos locales.");
+        try {
+            if (DBConnection.connect() != null) {
+                UtilsGUI.infoMsg("La conexión con la base de datos fue exitosa.");
+                this.alumnoData = new AlumnoDB();
+                this.apoderadoData = new ApoderadoDB();
+                this.profesorData = new ProfesorDB();
+                this.cursoData = new CursoDB();
+            } else throw new DatabaseException();
+        } catch (DatabaseException e) {
+            e.mostrarMensajeError();
             this.alumnoData = new AlumnoDF();
             this.apoderadoData = new ApoderadoDF();
             this.profesorData = new ProfesorDF();

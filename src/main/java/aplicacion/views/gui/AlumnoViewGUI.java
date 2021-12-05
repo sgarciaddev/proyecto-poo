@@ -4,6 +4,7 @@
  */
 package aplicacion.views.gui;
 
+import aplicacion.controllers.exceptions.InvalidNumberException;
 import aplicacion.controllers.gui.CustomColors;
 import aplicacion.controllers.gui.UtilsGUI;
 import aplicacion.data.AlumnoData;
@@ -469,14 +470,18 @@ public class AlumnoViewGUI extends javax.swing.JPanel {
         telefonoApTextField.setText("");
     }//GEN-LAST:event_telefonoApTextFieldFocusGained
 
+    private int obtenerNumeroTelefono(String textField) throws InvalidNumberException {
+        return Integer.parseInt(textField);
+    }
+
     private void telefonoApTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_telefonoApTextFieldFocusLost
         // TODO add your handling code here:
         int telefono;
         if (!telefonoApTextField.getText().equals("")) {
             try {
-                telefono = Integer.parseInt(telefonoApTextField.getText());
-            } catch (NumberFormatException e) {
-                UtilsGUI.errorMsg("El formato del teléfono debe ser numérico.");
+                telefono = obtenerNumeroTelefono(telefonoApTextField.getText());
+            } catch (InvalidNumberException e) {
+                e.mostrarMensajeError();
                 telefonoApTextField.setText("Teléfono apoderado");
                 return;
             }
