@@ -25,7 +25,7 @@
 ## Reporte final
 
 El reporte final de este proyecto fue escrito en LaTeX, y está disponible a través del repositorio de GitHub disponible
-en [el siguiente link](.../.../.../reporte-final-poo)
+en [el siguiente link](../../../reporte-final-poo)
 
 ## Base de datos
 
