@@ -1,4 +1,5 @@
 aplicacion.controllers.cli
+aplicacion.controllers.exceptions
 aplicacion.controllers.gui
 aplicacion.data
 aplicacion.data.database
