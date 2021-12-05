@@ -35,7 +35,12 @@ public class MostrarViewGUI extends javax.swing.JPanel {
         this.bg = bg;
         initComponents();
     }
-    
+
+    /**
+     * Método que obtiene los datos de los cursos para el ComboBox
+     *
+     * @return Objeto de tipo DefaultComboBoxModel con los cursos
+     */
     private DefaultComboBoxModel getCursosCB() {
         String labels[] = new String[this.cursoData.size()];
         int i = 0;
@@ -45,13 +50,18 @@ public class MostrarViewGUI extends javax.swing.JPanel {
         }
         return new DefaultComboBoxModel(labels);
     }
-    
+
+    /**
+     * Método para generar icono de ojo
+     *
+     * @return Icono de ojo con los parámetros especificados
+     */
     private Icon eyeIcon() {
         return IconFontSwing.buildIcon(FontAwesome.EYE, 18, new Color(250, 250, 250));
     }
 
     /**
-     * Permite transformar un Map de alumnos a el formato que se necesita para mostrar por el JTable.
+     * Permite transformar un Map de alumnos al formato que se necesita para mostrar por el JTable.
      *
      * @param alumnos HashMap con los alumnos
      * @return Matriz de Object con los alumnos.

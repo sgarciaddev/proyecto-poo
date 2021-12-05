@@ -114,6 +114,12 @@ public class Fakedata {
         }
     }
 
+    /**
+     * Genera datos de asistencia aleatorios para un alumno
+     *
+     * @param id Id que identifica la asistencia
+     * @return Objeto de tipo RegistroAsistencia
+     */
     public RegistroAsistencia genRegAleatorio(IDAsistencia id) {
         double random = faker.number().randomDouble(2, 0, 1);
         final double PROB_RET = 0.05, PROB_AUS = 0.2;
@@ -136,6 +142,10 @@ public class Fakedata {
 
     }
 
+    /**
+     * Genera datos ficticios de asistencia y los asocia a alumno
+     *
+     */
     public void generateDatosAsistencia() {
         Map<String, Alumno> alumnos = this.alumnoDF.getAlumnos();
         IDAsistencia id;

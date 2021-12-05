@@ -23,14 +23,30 @@ public class ShowPanelGUI extends javax.swing.JPanel {
         initComponents();
     }
 
+    /**
+     * Método que establece el título del panel de la interfaz gráfica
+     *
+     * @param title Nombre del título a mostrar
+     */
     public void setTitle(String title) {
         this.titleLbl.setText(title);
     }
 
+    /**
+     * Método que establece el subtítulo del panel de la interfaz gráfica
+     *
+     * @param subtitle Nombre del subtítulo a mostrar
+     */
     public void setSubtitle(String subtitle) {
         this.subtitleLbl.setText(subtitle);
     }
 
+    /**
+     * Método que establece un panel en pantalla
+     *
+     * @param newPanel Parámetro para inicializar el panel
+     * @param title Título principal que tendrá el Panel
+     */
     public void setActualPanel(JPanel newPanel, String title) {
         setTitle(title);
         setSubtitle("");
@@ -42,6 +58,13 @@ public class ShowPanelGUI extends javax.swing.JPanel {
         this.jPanel1.repaint();
     }
 
+    /**
+     * Método que establece un panel en pantalla
+     *
+     * @param newPanel Parámetro para inicializar el panel
+     * @param title Título principal que tendrá el Panel
+     * @param subtitle Subtitulo que tendrá el panel
+     */
     public void setActualPanel(JPanel newPanel, String title, String subtitle) {
         setTitle(title);
         setSubtitle(subtitle);
